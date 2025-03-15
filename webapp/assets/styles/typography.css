@@ -1,0 +1,5 @@
+@layer utilities {
+    .daniel {
+        @apply text-warning-400 text-4xl bg-warning-50;
+    }
+}
