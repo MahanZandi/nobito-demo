@@ -1,5 +1,171 @@
 @layer utilities {
-    .daniel {
-        @apply text-warning-400 text-4xl bg-warning-50;
+    .font-h1-bold {
+        @apply text-[32px] leading-[155%] font-bold;
+    }
+    .font-h1-medium {
+        @apply text-[32px] leading-[155%] font-medium;
+    }
+    .font-h1-regular {
+        @apply text-[32px] leading-[155%] font-normal;
+    }
+
+    .font-h2-bold {
+        @apply text-[28px] leading-[155%] font-bold;
+    }
+    .font-h2-medium {
+        @apply text-[28px] leading-[155%] font-medium;
+    }
+    .font-h2-regular {
+        @apply text-[28px] leading-[155%] font-normal;
+    }
+
+    .font-h3-bold {
+        @apply text-2xl leading-[155%] font-bold;
+    }
+    .font-h3-medium {
+        @apply text-2xl leading-[155%] font-medium;
+    }
+    .font-h3-regular {
+        @apply text-2xl leading-[155%] font-normal;
+    }
+
+    .font-d1-bold {
+        @apply text-[57px] leading-[155%] font-bold;
+    }
+    .font-d1-medium {
+        @apply text-[57px] leading-[155%] font-medium;
+    }
+    .font-d1-regular {
+        @apply text-[57px] leading-[155%] font-normal;
+    }
+
+    .font-d2-bold {
+        @apply text-[45px] leading-[155%] font-bold;
+    }
+    .font-d2-medium {
+        @apply text-[45px] leading-[155%] font-medium;
+    }
+    .font-d2-regular {
+        @apply text-[45px] leading-[155%] font-normal;
+    }
+
+    .font-d3-bold {
+        @apply text-4xl leading-[155%] font-bold;
+    }
+    .font-d3-medium {
+        @apply text-4xl leading-[155%] font-medium;
+    }
+    .font-d3-regular {
+        @apply text-4xl leading-[155%] font-normal;
+    }
+
+    .font-l1-bold {
+        @apply text-sm leading-normal font-bold;
+    }
+    .font-l1-medium {
+        @apply text-sm leading-normal font-medium;
+    }
+    .font-l1-regular {
+        @apply text-sm leading-normal font-normal;
+    }
+
+    .font-l2-bold {
+        @apply text-xs leading-normal font-bold;
+    }
+    .font-l2-medium {
+        @apply text-xs leading-normal font-medium;
+    }
+    .font-l2-regular {
+        @apply text-xs leading-normal font-normal;
+    }
+
+    .font-l3-bold {
+        @apply text-[11px] leading-normal font-bold;
+    }
+    .font-l3-medium {
+        @apply text-[11px] leading-normal font-medium;
+    }
+    .font-l3-regular {
+        @apply text-[11px] leading-normal font-normal;
+    }
+
+    .font-t1-bold {
+        @apply text-[22px] leading-normal font-bold;
+    }
+    .font-t1-medium {
+        @apply text-[22px] leading-normal font-medium;
+    }
+    .font-t1-regular {
+        @apply text-[22px] leading-normal font-normal;
+    }
+
+    .font-t2-bold {
+        @apply text-base leading-normal font-bold;
+    }
+    .font-t2-medium {
+        @apply text-base leading-normal font-medium;
+    }
+    .font-t2-regular {
+        @apply text-base leading-normal font-normal;
+    }
+
+    .font-t3-bold {
+        @apply text-sm leading-normal font-bold;
+    }
+    .font-t3-medium {
+        @apply text-sm leading-normal font-medium;
+    }
+    .font-t3-regular {
+        @apply text-sm leading-normal font-normal;
+    }
+
+    .font-b1-bold {
+        @apply text-xl leading-normal font-bold;
+    }
+    .font-b1-medium {
+        @apply text-xl leading-normal font-medium;
+    }
+    .font-b1-regular {
+        @apply text-xl leading-normal font-normal;
+    }
+
+    .font-b2-bold {
+        @apply text-xl leading-normal font-bold;
+    }
+    .font-b2-medium {
+        @apply text-xl leading-normal font-medium;
+    }
+    .font-b2-regular {
+        @apply text-xl leading-normal font-normal;
+    }
+
+    .font-b3-bold {
+        @apply text-sm leading-normal font-bold;
+    }
+    .font-b3-medium {
+        @apply text-sm leading-normal font-medium;
+    }
+    .font-b3-regular {
+        @apply text-sm leading-normal font-normal;
+    }
+
+    .font-b4-bold {
+        @apply text-xs leading-normal font-bold;
+    }
+    .font-b4-medium {
+        @apply text-xs leading-normal font-medium;
+    }
+    .font-b4-regular {
+        @apply text-xs leading-normal font-normal;
+    }
+
+    .font-b5-bold {
+        @apply text-[10px] leading-normal font-bold;
+    }
+    .font-b5-medium {
+        @apply text-[10px] leading-normal font-medium;
+    }
+    .font-b5-regular {
+        @apply text-[10px] leading-normal font-normal;
     }
 }

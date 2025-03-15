@@ -1,6 +1,6 @@
 const Home = () => {
     return <>
-        <h1>
+        <h1 className='font-b2-bold'>
             این یک متن است
             <br/>
             09384213371
