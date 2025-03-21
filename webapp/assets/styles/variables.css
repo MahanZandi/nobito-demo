@@ -109,4 +109,7 @@
     --drop-shadow-16: 0px 0px 16px 0px rgba(0, 0, 0, 0.35);
     --drop-shadow-card: 0px 25px 7px 0px rgba(0, 0, 0, 0);
     --drop-shadow-contact: 0px 24px 14px 0px rgba(0, 0, 0, 0.05);
+
+    --breakpoint-xl: 77rem;
+    --breakpoint-2xl: 77rem;
 }

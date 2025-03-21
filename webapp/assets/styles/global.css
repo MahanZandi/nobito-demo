@@ -2,6 +2,10 @@
 @import "./variables.css";
 @import "./base.css";
 @import "./typography.css";
+@import "./utilities.css";
 @import "../fonts/vazir-ui/Vazirmatn-UI-font-face.css";
 @import "../fonts/vazir-ui-farsi-digits/Vazirmatn-UI-FD-font-face.css";
 @import "../fonts/iconsax-css/style.css";
+@import "../fonts/svg-icons/style.css";
+
+/* components */
