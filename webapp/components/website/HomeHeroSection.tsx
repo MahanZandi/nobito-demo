@@ -18,11 +18,12 @@ const HeroSection = () => {
                 {/* Main Heading with Quote */}
                 <blockquote className="relative font-d2-bold text-white text-lg leading-relaxed">
                     <span className="icon-quote-up text-secondary-500 text-2xl absolute top-0 -right-8"></span>
-                    تلاش ما
+                    تلاش ما دسترسی
                     <span className="text-primary-500 bg-accent-500 px-2 rounded-xl inline-block">
-                        سریع‌تر و آسان‌تر
+                        سریع‌تر و آسان
                     </span>
-                    دسترسی شما به خدمات پزشکی است :)
+                    <br/>
+                    تر شما به خدمات پزشکی است :)
                     <span className="icon-quote-down text-secondary-500 text-2xl absolute bottom-0 -left-8"></span>
                 </blockquote>
 
