@@ -2,7 +2,7 @@ const HomeSearchBox = () => {
     return <>
         <label
             form='search'
-            className='w-[798px] h-20 bg-white-50 rounded-2xl relative -mt-10 p-5
+            className='w-[320px] lg:w-[798px] h-20 bg-white-50 rounded-2xl relative -mt-10 p-5
                 flex items-center gap-2 mx-auto'
         >
             <span className='isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1'></span>
