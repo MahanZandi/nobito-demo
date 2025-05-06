@@ -7,7 +7,7 @@ import HomeDoctorsBanner from "@/components/website/HomeDoctorsBanner";
 
 const Home = () => {
   return (
-    <section className="overflow-x-hidden">
+    <section className="">
       <HomeHeroSection />
 
       <div className='pb-[72px]'>

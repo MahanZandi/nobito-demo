@@ -60,13 +60,13 @@ const HomeDoctorsBanner = () => {
                 <div className="lg:text-sm leading-normal font-medium text-xs line-clamp-3">
                   {banner.info}
                 </div>
-                <div className="font-b3-medium hidden lg:grid place-items-end h-18 text-white-button-text pl-2">
+                <div className="font-b3-medium hidden lg:grid place-items-end h-18 text-home-doctors-btn-color pl-2">
                   <Link
                     className="bg-white py-2 px-3 rounded-xl flex gap-1.5 "
                     href={banner.bannerLink.url}
                   >
                     <button>{banner.bannerLink.title}</button>
-                    <span className="isax isax-arrow-left-3 text-white-button-text text-2xl"></span>
+                    <span className="isax isax-arrow-left-3 text-home-doctors-btn-color text-2xl"></span>
                   </Link>
                 </div>
               </div>
