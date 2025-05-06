@@ -88,7 +88,7 @@ const HomeDoctorsBanner = () => {
     <section className="text-white">
       <div ref={emblaRef} className="overflow-hidden">
         <div className="flex justify-center gap-6">
-          {banner.map((banner: Banner) => {
+          {banner?.map((banner: Banner) => {
             return (
               <div className="w-[294px] h-[160px] lg:w-[588px] lg:h-[266px]" key={banner.id}>
                 <BannerBox banner={banner} />
