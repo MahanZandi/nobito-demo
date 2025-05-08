@@ -14,7 +14,7 @@ const Home = () => {
         <HomeSearchBox />
       </div>
 
-      <div className='my-[72px]'>
+      <div className='lg:my-[72px]'>
         <HomeStatistics />
       </div>
 
