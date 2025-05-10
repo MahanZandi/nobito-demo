@@ -1,22 +1,17 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
-import doctorBanner1 from "@/public/images/doctor-banner-1.png";
 import doctorBanner2 from "@/public/images/doctor-banner-2.png";
 import Link from "next/link";
 
 const HomeDoctorsBanner = () => {
-  const [emblaRef] = useEmblaCarousel({
-    direction: "rtl",
-  });
 
   const banner: Banner[] = [
     {
       id: 1,
-      title: "خدمات پزشکی رو برای شما در دسترستر کردیم",
+      title: "خدمات پزشکی در دسترس",
       info: "فقط با چند کلیک به خدمات پزشکی مورد نیاز افراد کم توان جسمی(حرکتی)دسترسی پیدا میکنید.",
       background: "bg-doctor-first-banner",
-      image: doctorBanner1,
+      image: doctorBanner2,
       bannerLink: {
         title: "مشاهده خدمات",
         url: "#",
@@ -24,7 +19,7 @@ const HomeDoctorsBanner = () => {
     },
     {
       id: 2,
-      title: "مشغله زندگی نمیزاره بیایی دکتر؟ مشاوره غیر حضوری بگیر",
+      title: "مشاوره غیر حضوری بگیر",
       info: "اگر زمان کافی برای مراجعه به پزشک رو ندارید میتونید از طریق مشاوره غیرحضوری با پزشک صحبت کنید.",
       background: "bg-doctor-second-banner",
       image: doctorBanner2,
@@ -49,15 +44,15 @@ const HomeDoctorsBanner = () => {
 
   const BannerBox: React.FC<{ banner: Banner }> = ({ banner }) => {
     return (
-      <div className={`${banner.background} rounded-3xl w-[294px] h-[160px] lg:w-[588px] lg:h-[266px]`}>
-        <div className="px-4 lg:px-10 flex ">
+      <div className={`${banner.background} rounded-3xl w-[310px] h-[160px] lg:w-[588px] lg:h-[266px]`}>
+        <div className="px-4 lg:px-10 flex">
           <div className="flex">
             <div>
-              <div className="pb-8 py-8 flex flex-col gap-4">
-                <div className="lg:text-[22px] leading-normal font-medium text-sm line-clamp-2">
+              <div className="pb-8 py-8 flex flex-col gap-4 w-[172px] lg:w-[335px]">
+                <div className="lg:text-[22px] leading-normal font-medium text-sm">
                   {banner.title}
                 </div>
-                <div className="lg:text-sm leading-normal font-medium text-xs line-clamp-3">
+                <div className="lg:text-sm leading-normal font-medium text-xs">
                   {banner.info}
                 </div>
                 <div className="font-b3-medium hidden lg:grid place-items-end h-18 text-white-button-text pl-2">
@@ -72,9 +67,9 @@ const HomeDoctorsBanner = () => {
               </div>
             </div>
           </div>
-          <div className="grid place-items-end ">
+          <div className="grid place-items-end mt-auto">
             <Image
-              className="w-[300px] h-full lg:size-[278px]"
+              className="w-[153px] lg:w-[300px] h-full object-contain"
               src={banner.image}
               alt="تصویر دکتر در سکشن"
             />
@@ -86,11 +81,11 @@ const HomeDoctorsBanner = () => {
 
   return (
     <section className="text-white">
-      <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex justify-center gap-6">
+      <div className="overflow-x-auto overflow-y-hidden container">
+        <div className="flex gap-6">
           {banner?.map((banner: Banner) => {
             return (
-              <div className="w-[294px] h-[160px] lg:w-[588px] lg:h-[266px]" key={banner.id}>
+              <div key={banner.id}>
                 <BannerBox banner={banner} />
               </div>
             );
