@@ -80,8 +80,8 @@ const HomeDoctorsBanner = () => {
   };
 
   return (
-    <section className="text-white">
-      <div className="overflow-x-auto overflow-y-hidden container">
+    <section className="text-white mx-2">
+      <div className="overflow-x-auto hide-scrollbar overflow-y-hidden container">
         <div className="flex gap-6">
           {banner?.map((banner: Banner) => {
             return (
