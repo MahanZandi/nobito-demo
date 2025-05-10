@@ -10,7 +10,7 @@ const HomeInsuranceBanner = () => {
   return (
     <div>
       <div className="bg-primary-500">
-        <div className="container flex flex-col-reverse items-center xl:flex-row xl:relative py-[32px] xl:py-0">
+        <div className="container flex flex-col-reverse items-center xl:flex-row xl:relative pt-[32px] xl:py-0">
           <div className="xl:w-[303px]">
             <Image
               alt="تصویر مشتری از رضایت بیمه"
@@ -25,27 +25,27 @@ const HomeInsuranceBanner = () => {
             {/* logos for desktop devices */}
             <Image
               alt="لوگوی شرکت بیمه"
-              className="size-[88px] xl:size-[112px]"
+              className="size-[88px] xl:size-[112px] hidden xl:block"
               src={asia}
             />
             <Image
               alt="لوگوی شرکت بیمه"
-              className="size-[88px] xl:size-[112px]"
+              className="size-[88px] xl:size-[112px] hidden xl:block"
               src={saman}
             />
             <Image
               alt="لوگوی شرکت بیمه"
-              className="size-[88px] xl:size-[112px]"
+              className="size-[88px] xl:size-[112px] hidden xl:block"
               src={iran}
             />
             <Image
               alt="لوگوی شرکت بیمه"
-              className="size-[88px] xl:size-[112px]"
+              className="size-[88px] xl:size-[112px] hidden xl:block"
               src={dana}
             />
             <Image
               alt="لوگوی شرکت بیمه"
-              className="size-[88px] xl:size-[112px]"
+              className="size-[88px] xl:size-[112px] hidden xl:block"
               src={alborz}
             />
             {/* logos for mobile & tablet devices */}
