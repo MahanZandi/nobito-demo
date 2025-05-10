@@ -1,4 +1,9 @@
 @theme {
+    --color-doctor-first-banner: #A8035C;
+    --color-doctor-second-banner: #11749E;
+    --color-home-doctors-btn-color: #3B3B3B;
+    --color-statistics: #E3EBEA; 
+
     --color-primary-50: #E9F1F0;
     --color-primary-100: #BAD3D0;
     --color-primary-200: #98BEBA;
