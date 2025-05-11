@@ -191,7 +191,7 @@ const AppHeader: React.FC = () => {
           </Link>
 
           {/* Separator for mobile view */}
-          <div className="flex-1 flex lg:hidden"></div>
+          <div className="flex-1 flex xl:hidden"></div>
 
           {/* Primary Navigation (for desktop view) */}
           <nav className="hidden xl:flex flex-1">
@@ -202,7 +202,7 @@ const AppHeader: React.FC = () => {
           <div className="flex items-center gap-2">
             {/* Notifications Button (for descktop view) */}
             <button
-              className="w-12 h-12 hidden lg:flex items-center justify-center"
+              className="w-12 h-12 hidden xl:flex items-center justify-center"
               aria-label="اعلان‌ها"
             >
               <i className="isax isax-notification text-[32px] leading-8 text-grey-500"></i>
@@ -211,13 +211,13 @@ const AppHeader: React.FC = () => {
             {/* Auth Button (for descktop view) */}
             <Link
               href="/"
-              className="bg-primary-500 w-[117px] h-12 hidden lg:flex items-center justify-center text-white-500 font-t2-medium rounded-lg"
+              className="bg-primary-500 w-[117px] h-12 hidden xl:flex items-center justify-center text-white-500 font-t2-medium rounded-lg"
             >
               ورود/ثبت نام
             </Link>
 
             {/* sidebar and searchbar for mobile view */}
-            <div className="flex text-2xl gap-3 lg:hidden">
+            <div className="flex text-2xl gap-3 xl:hidden">
               <span className="isax isax-search-normal"></span>
               <span
                 className="isax isax-menu-1"
@@ -228,10 +228,10 @@ const AppHeader: React.FC = () => {
         </div>
       </div>
 
-      {/* Separator (for descktop view)*/}
+      {/* Separator (for desktop view)*/}
       <div className="bg-grey-200 h-px mt-6 hidden xl:block"></div>
 
-      {/* Social & Secondary Links (for descktop view)*/}
+      {/* Social & Secondary Links (for desktop view)*/}
       <div className="container pt-4 hidden xl:flex items-center justify-between">
         <SocialLinks socials={socialLinks} />
         <NavLinks links={secondaryLinks} />
