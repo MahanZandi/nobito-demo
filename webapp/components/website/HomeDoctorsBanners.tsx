@@ -1,17 +1,16 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import doctorBanner2 from "@/public/images/doctor-banner-2.png";
 import Link from "next/link";
 
-const HomeDoctorsBanner = () => {
+const HomeDoctorsBanners = () => {
 
-  const banner: Banner[] = [
+  const banners = [
     {
       id: 1,
       title: "خدمات پزشکی در دسترس",
       info: "فقط با چند کلیک به خدمات پزشکی مورد نیاز افراد کم توان جسمی(حرکتی)دسترسی پیدا میکنید.",
       background: "bg-doctor-first-banner",
-      image: doctorBanner2,
+      image: '/images/doctor-banner-2.png',
       bannerLink: {
         title: "مشاهده خدمات",
         url: "#",
@@ -22,7 +21,7 @@ const HomeDoctorsBanner = () => {
       title: "مشاوره غیر حضوری بگیر",
       info: "اگر زمان کافی برای مراجعه به پزشک رو ندارید میتونید از طریق مشاوره غیرحضوری با پزشک صحبت کنید.",
       background: "bg-doctor-second-banner",
-      image: doctorBanner2,
+      image: '/images/doctor-banner-2.png',
       bannerLink: {
         title: "نوبت بگیر",
         url: "#",
@@ -71,7 +70,9 @@ const HomeDoctorsBanner = () => {
             <Image
               className="w-[153px] lg:w-[300px] h-full object-contain"
               src={banner.image}
-              alt="تصویر دکتر در سکشن"
+              alt={banner.title}
+              width={153}
+              height={153}
             />
           </div>
         </div>
@@ -83,7 +84,7 @@ const HomeDoctorsBanner = () => {
     <section className="text-white mx-2">
       <div className="overflow-x-auto hide-scrollbar overflow-y-hidden container">
         <div className="flex gap-6">
-          {banner?.map((banner: Banner) => {
+          {banners?.map((banner) => {
             return (
               <div key={banner.id}>
                 <BannerBox banner={banner} />
@@ -96,4 +97,4 @@ const HomeDoctorsBanner = () => {
   );
 };
 
-export default HomeDoctorsBanner;
+export default HomeDoctorsBanners;
