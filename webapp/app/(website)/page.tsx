@@ -3,10 +3,10 @@ import HomeSearchBox from "@/components/website/HomeSearchBox";
 import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
-import HomeDoctorsBanner from "@/components/website/HomeDoctorsBanner";
 import HomeTopMedicsSection from "@/components/website/HomeTopMedicsSection";
 import HomeInsuranceBanner from "@/components/website/HomeInsuranBanner";
 import HomeInsuranSection from "@/components/website/HomeInsuranSection";
+import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
 
 const Home = () => {
   return (
@@ -29,8 +29,8 @@ const Home = () => {
         <HomeConsultantsSection />
       </div>
 
-      <div className="py-[72px]">
-        <HomeDoctorsBanner />
+      <div className='py-[72px]'>
+        <HomeDoctorsBanners />
       </div>
 
       <div className="py-[72px]">
