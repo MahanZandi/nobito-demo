@@ -3,7 +3,7 @@ import HomeSearchBox from "@/components/website/HomeSearchBox";
 import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
-import HomeDoctorsBanner from "@/components/website/HomeDoctorsBanner";
+import HomeDoctorsBanner from "@/components/website/HomeDoctorsBanners";
 import HomeTopMedicsSection from "@/components/website/HomeTopMedicsSection";
 
 const Home = () => {
