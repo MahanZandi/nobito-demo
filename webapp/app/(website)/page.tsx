@@ -3,7 +3,7 @@ import HomeSearchBox from "@/components/website/HomeSearchBox";
 import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
-import HomeDoctorsBanner from "@/components/website/HomeDoctorsBanner";
+import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
 import HomeTopMedicsSection from "@/components/website/HomeTopMedicsSection";
 import HomeInsuranceBanner from "@/components/website/HomeInsuranBanner";
 
@@ -29,7 +29,7 @@ const Home = () => {
       </div>
 
       <div className="py-[72px]">
-        <HomeDoctorsBanner />
+        <HomeDoctorsBanners />
       </div>
 
       <div className="py-[72px]">
