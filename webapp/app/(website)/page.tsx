@@ -4,33 +4,49 @@ import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
 import HomePatientFeedBack from "@/components/website/HomePatientFeedBack";
+import HomeTopMedicsSection from "@/components/website/HomeTopMedicsSection";
+import HomeInsuranceBanner from "@/components/website/HomeInsuranBanner";
+import HomeInsuranSection from "@/components/website/HomeInsuranSection";
+import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
 
 const Home = () => {
-    return (
-        <section>
-            <HomeHeroSection/>
+  return (
+    <section>
+      <HomeHeroSection />
 
-            <div className='pb-[72px]'>
-                <HomeSearchBox/>
-            </div>
+      <div className="pb-[72px]">
+        <HomeSearchBox />
+      </div>
 
-            <div className='my-[72px]'>
-                <HomeStatistics/>
-            </div>
+      <div className="lg:my-[72px]">
+        <HomeStatistics />
+      </div>
 
-            <div className='py-[72px]'>
-                <HomePopularSection />
-            </div>
+      <div className="py-[72px]">
+        <HomePopularSection />
+      </div>
 
-            <div className='py-[72px]'>
-                <HomeConsultantsSection />
-            </div>
+      <div className="py-[72px]">
+        <HomeConsultantsSection />
+      </div>
 
-            <div className="py-[72px]">
-                <HomePatientFeedBack />
-            </div>
-        </section>
-    );
-}
+      <div className='py-[72px]'>
+        <HomeDoctorsBanners />
+      </div>
 
-export default Home
+      <div className="py-[72px]">
+        <HomeTopMedicsSection />
+      </div>
+
+      <div className="lg:pt-[168px] pb-[72px]">
+        <HomeInsuranceBanner/>
+      </div>
+
+      <div className="py-[72px]">
+        <HomeInsuranSection />
+      </div>
+    </section>
+  );
+};
+
+export default Home;
