@@ -3,6 +3,7 @@ import HomeSearchBox from "@/components/website/HomeSearchBox";
 import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
+import HomePatientFeedBack from "@/components/website/HomePatientFeedBack";
 
 const Home = () => {
     return (
@@ -23,6 +24,10 @@ const Home = () => {
 
             <div className='py-[72px]'>
                 <HomeConsultantsSection />
+            </div>
+
+            <div className="py-[72px]">
+                <HomePatientFeedBack />
             </div>
         </section>
     );
