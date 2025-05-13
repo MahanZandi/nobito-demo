@@ -45,6 +45,10 @@ const Home = () => {
       <div className="py-[72px]">
         <HomeInsuranSection />
       </div>
+
+      <div className="py-[72px]">
+        <HomePatientFeedBack />
+      </div>
     </section>
   );
 };

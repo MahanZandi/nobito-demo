@@ -1,300 +1,192 @@
-"use client"
-import useEmblaCarousel from 'embla-carousel-react';
-import Link from 'next/link';
-import Image from 'next/image';
+"use client";
+import useEmblaCarousel from "embla-carousel-react";
+import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const HomePatientFeedBack = () => {
-    const [emblaRef, emblaApi] = useEmblaCarousel({
-        direction: 'rtl',
-    });
-    const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    direction: "rtl",
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-    useEffect(() => {
-        if (emblaApi) {
-            // Update selected index when slide changes
-            emblaApi.on('select', () => {
-                setSelectedIndex(emblaApi.selectedScrollSnap());
-            });
-            
-            // Set initial selected index
-            setSelectedIndex(emblaApi.selectedScrollSnap());
-        }
-    }, [emblaApi]);
+  useEffect(() => {
+    if (emblaApi) {
+      const onSelect = () => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+      };
 
-    const doctors = [
-        {
-            id: 1,
-            name: 'عباس میراحمدی',
-            image: '/images/doctor-1.png',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 2,
-            name: 'دکتر محمدی',
-            image: '/images/doctor-2.jpeg',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 3,
-            name: 'مهران مهام',
-            image: '/images/doctor-3.jpeg',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 4,
-            name: 'لیلا میرزایی',
-            image: '/images/doctor-4.jpeg',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 5,
-            name: 'دکتر محمدی',
-            image: '/images/doctor-5.jpeg',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 6,
-            name: 'محمد ابراهیمی',
-            image: '/images/doctor-6.jpeg',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 7,
-            name: 'دکتر محمدی',
-            image: '/images/doctor-7.jpeg',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 8,
-            name: 'دکتر محمدی',
-            image: '/images/doctor-8.png',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 9,
-            name: 'امیرحسین فربد',
-            image: '/images/doctor-9.png',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-        {
-            id: 10,
-            name: 'دکتر محمدی',
-            image: '/images/doctor-10.png',
-            rate: '4/5',
-            specialization: 'متخصص قلب و عروق',
-            happyPatients: '2374',
-            happyPatientsPercentage: '97',
-            skills: [
-                'جراحی قلب',
-                'آنجوگرافی',
-                'تست ورزش'
-            ],
-            location: 'تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم'
-        },
-    ]
+      emblaApi.on("select", onSelect);
+      onSelect(); // مقدار اولیه
+    }
+  }, [emblaApi]);
 
-    return <>
-        <div className='container flex items-center gap-3'>
-            <h2 className='font-h1-medium text-grey-500 flex items-center gap-1'>
-                <span>محبوبترین</span>
-                <span className='text-primary-500'>پزشکان</span>
-                <span>این ماه</span>
-            </h2>
-            <div className='h-px bg-grey-200 flex-1'></div>
+  const feedbacks = [
+    {
+      id: 1,
+      name: "علیرضا حسابی",
+      rate: "4/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و متون بلکه روزنامه و مجله در ستون",
+      suggest: true,
+      image: "/images/comment-1.png",
+    },
+    {
+      id: 2,
+      name: "دکتر محمدی",
+      rate: "4/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم ها و متون بلکه روزنامه و مجله در ستون",
+      suggest: true,
+      image: "/images/comment-2.png",
+    },
+    {
+      id: 3,
+      name: "زهرا احمدی",
+      rate: "5/5",
+      date: "۱۵/۸/۱۴۰۲",
+      comment:
+        "ای داشتم. پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران ",
+      suggest: true,
+      image: "/images/comment-1.png",
+    },
+    {
+      id: 4,
+      name: "حسین رضایی",
+      rate: "3.5/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "خدمات نوبیتو خوب بود اما زمان‌بندی پزشک کمی مشکل داشت و . امیدوارم این مشکل در آینده برطرف شود.",
+      suggest: false,
+      image: "/images/comment-2.png",
+    },
+    {
+      id: 5,
+      name: "مریم کاظمی",
+      rate: "4.5/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "پیدا کردن پزشک از طریق نوبیتو بسیار راحت بود و توانستم به سرعت وقت و از خدمات ارائه شده راضی هستم.",
+      suggest: true,
+      image: "/images/comment-1.png",
+    },
+  ];
 
-            <Link href='/' className='flex items-center gap-2 font-t2-regular text-grey-500'>
-                مشاهده همه
-                <span className='isax isax-arrow-left-3 text-grey-500 text-2xl leading-6'></span>
-            </Link>
-        </div>
-        <div className='mt-14'>
-            <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex items-center gap-2">
-                    {
-                        doctors?.map((doctor, index) => (
-                            <div key={index}>
-                                <div
-                                    className="w-[282px] h-[405px] bg-white-100 border
-                                    border-grey-200 rounded-2xl p-4"
-                                >
-                                    <Image
-                                        src={doctor.image}
-                                        alt={doctor.name}
-                                        width={250}
-                                        height={152}
-                                        className='w-[250px] h-[152px] object-cover rounded-xl'
-                                    />
+  return (
+    <>
+      <div className="container flex items-center gap-3">
+        <h2 className="text-xl lg:text-[32px] leading-[155%] lg:font-medium font-[700] text-grey-500 flex items-center gap-1">
+          <span className="text-primary-500">بازخورد بیماران</span>
+          <span>این ماه</span>
+        </h2>
+        <div className="h-px bg-grey-200 flex-1 hidden lg:block"></div>
+        <div className="flex flex-1 lg:hidden"></div>
 
-                                    <div className='flex items-center justify-between mt-4'>
-                                        <div className='font-b2-bold'>
-                                            {doctor.name}
-                                        </div>
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-t2-regular text-grey-500"
+        >
+          مشاهده همه
+          <span className="isax isax-arrow-left-3 text-grey-500 text-2xl leading-6"></span>
+        </Link>
+      </div>
 
-                                        <div
-                                            className='text-black-400 font-t3-regular flex items-center gap-1 font-vazir-farsi'>
-                                            {doctor.rate}
-                                            <span
-                                                className='isax isax-star-15 text-lg leading-[18px] text-secondary-500'></span>
-                                        </div>
-                                    </div>
-
-                                    <p className='text-grey-400 font-t3-regular mt-3'>
-                                        {doctor.specialization}
-                                    </p>
-
-                                    <div className='mt-6 text-primary-500 font-t3-medium font-vazir-farsi
-                                    flex items-center gap-1'>
-                                        <span>
-                                            ({doctor.happyPatientsPercentage}%)
-                                        </span>
-                                        <span>
-                                            {doctor.happyPatients}
-                                        </span>
-                                        <span>
-                                            بیمار راضی
-                                        </span>
-                                    </div>
-
-                                    <div className='flex items-center gap-2 mt-6'>
-                                        {
-                                            doctor.skills.map((skill, index) => (
-                                                <div
-                                                    key={index}
-                                                    className='text-grey-500 font-l2-regular flex items-center gap-1 font-vazir-farsi
-                                                    py-0.5 px-3 bg-grey-50 rounded-full'>
-                                                    {skill}
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-
-                                    <div className='h-px my-4 bg-grey-200'></div>
-
-                                    <div className='flex whitespace-nowrap gap-2 font-l1-regular text-grey-500'>
-                                        <span className='isax isax-location text-2xl leading-6'></span>
-                                        نشانی :
-                                        <span className='truncate'>
-                                            {doctor.location}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-        </div>
-
-        <div className="flex items-center justify-center gap-4 mt-14">
-            <button 
-            className="w-10 h-10 bg-gray-50 cursor-pointer border border-black-400 rounded-full flex items-center justify-center"
-            onClick={() => emblaApi?.scrollPrev()}
-            >
-                <i className="isax isax-arrow-right-2 text-black-400 text-2xl leading-6"></i>
-            </button>
-
-            <div className="flex items-center gap-2">
-                {
-                    emblaApi?.scrollSnapList()?.map((scrollSnap, index) => (
-                        <button 
-                        key={index} 
-                        className={`w-3 h-3 bg-gray-50 cursor-pointer border border-black-400 rounded-full transition-all duration-300 ${index === selectedIndex ? 'border-0 bg-primary-500 w-12 h-2' : ''}`}
-                        onClick={() => emblaApi?.scrollTo(index)}
+      <div className="mt-14">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex items-center gap-2">
+            {feedbacks.map((feedback, index) => (
+              <div
+                key={index}
+                className="flex-none w-[283px] h-[220px] bg-white border border-grey-200 rounded-xl"
+              >
+                <div className="p-4">
+                  <div>
+                    {/* profile , name , date , rate */}
+                    <div className="flex justify-between">
+                      <div className="flex gap-3">
+                        <Image
+                          className="rounded-sm"
+                          src={feedback.image}
+                          alt={feedback.name}
+                          width={47}
+                          height={47}
                         />
-                    ))
-                }
-            </div>
+                        <div className="flex-col flex gap-2">
+                          <span className="text-text-black-title-color font-semibold">
+                            {feedback.name}
+                          </span>
+                          <span className="text-grey-500">{feedback.date}</span>
+                        </div>
+                      </div>
+                      <div className="flex gap-1">
+                        <span className="text-black-400">{feedback.rate}</span>
+                        <span className="isax isax-star-15 text-lg leading-[18px] text-secondary-500"></span>
+                      </div>
+                    </div>
 
-            <button 
-            className="w-10 h-10 bg-gray-50 cursor-pointer border border-black-400 rounded-full flex items-center justify-center"
-            onClick={() => emblaApi?.scrollNext()}
-            >
-                <i className="isax isax-arrow-left-3 text-black-400 text-2xl leading-6"></i>
-            </button>
+                    {/* comment */}
+                    <div className="pt-[16px] h-[90px] overflow-y-auto">
+                      <span className="text-[12px] text-grey-500 font-normal leading-[170%]">
+                        {feedback.comment}
+                      </span>
+                    </div>
+                    {/* suggest */}
+                    <div className="pt-[13px] flex items-end">
+                      <div className="flex gap-1 w-full">
+                        {feedback.suggest ? (
+                          <div className="pb-[16px] flex items-center text-primary-500 gap-1 w-full justify-end">
+                            <span className="isax isax-like-1 text-lg"></span>
+                            <span>پیشنهاد میکنم</span>
+                          </div>
+                        ) : (
+                          <div className="pb-[16px] flex items-center text-red-600 gap-1 w-full justify-end">
+                            <span className="isax isax-dislike text-lg"></span>
+                            <span>پیشنهاد نمیکنم</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
+
+      <div className="hidden xl:flex items-center justify-center gap-4 mt-14">
+        <button
+          className="w-10 h-10 bg-gray-50 cursor-pointer border border-black-400 rounded-full flex items-center justify-center"
+          onClick={() => emblaApi?.scrollPrev()}
+        >
+          <i className="isax isax-arrow-right-2 text-black-400 text-2xl leading-6"></i>
+        </button>
+
+        <div className="flex items-center gap-2">
+          {feedbacks.map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 bg-gray-50 cursor-pointer border border-black-400 rounded-full transition-all duration-300 ${
+                index === selectedIndex
+                  ? "border-0 bg-primary-500 w-12 h-2"
+                  : ""
+              }`}
+              onClick={() => emblaApi?.scrollTo(index)}
+            />
+          ))}
+        </div>
+
+        <button
+          className="w-10 h-10 bg-gray-50 cursor-pointer border border-black-400 rounded-full flex items-center justify-center"
+          onClick={() => emblaApi?.scrollNext()}
+        >
+          <i className="isax isax-arrow-left-3 text-black-400 text-2xl leading-6"></i>
+        </button>
+      </div>
     </>
-}
+  );
+};
 
 export default HomePatientFeedBack;
