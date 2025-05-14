@@ -5,22 +5,6 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const HomePatientFeedBack = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    direction: "rtl",
-  });
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  useEffect(() => {
-    if (emblaApi) {
-      const onSelect = () => {
-        setSelectedIndex(emblaApi.selectedScrollSnap());
-      };
-
-      emblaApi.on("select", onSelect);
-      onSelect(); // مقدار اولیه
-    }
-  }, [emblaApi]);
-
   const feedbacks = [
     {
       id: 1,
@@ -72,11 +56,80 @@ const HomePatientFeedBack = () => {
       suggest: true,
       image: "/images/comment-1.png",
     },
+    {
+      id: 6,
+      name: "علیرضا حسابی",
+      rate: "4/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و متون بلکه روزنامه و مجله در ستون",
+      suggest: true,
+      image: "/images/comment-1.png",
+    },
+    {
+      id: 7,
+      name: "دکتر محمدی",
+      rate: "4/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم ها و متون بلکه روزنامه و مجله در ستون",
+      suggest: true,
+      image: "/images/comment-2.png",
+    },
+    {
+      id: 8,
+      name: "زهرا احمدی",
+      rate: "5/5",
+      date: "۱۵/۸/۱۴۰۲",
+      comment:
+        "ای داشتم. پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران ",
+      suggest: true,
+      image: "/images/comment-1.png",
+    },
+    {
+      id: 9,
+      name: "حسین رضایی",
+      rate: "3.5/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "خدمات نوبیتو خوب بود اما زمان‌بندی پزشک کمی مشکل داشت و . امیدوارم این مشکل در آینده برطرف شود.",
+      suggest: false,
+      image: "/images/comment-2.png",
+    },
+    {
+      id: 10,
+      name: "مریم کاظمی",
+      rate: "4.5/5",
+      date: "۱۴۰۲/۲/۱۲",
+      comment:
+        "پیدا کردن پزشک از طریق نوبیتو بسیار راحت بود و توانستم به سرعت وقت و از خدمات ارائه شده راضی هستم.",
+      suggest: true,
+      image: "/images/comment-1.png",
+    },
   ];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    direction: "rtl",
+    align: "center",
+    skipSnaps: false,
+    loop: true,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (emblaApi) {
+      const onSelect = () => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+      };
+
+      emblaApi.on("select", onSelect);
+      onSelect(); // مقدار اولیه
+    }
+  }, [emblaApi]);
 
   return (
     <>
-      <div className="container flex items-center gap-3">
+      <div className="container flex items-center gap-3 ">
         <h2 className="text-xl lg:text-[32px] leading-[155%] lg:font-medium font-[700] text-grey-500 flex items-center gap-1">
           <span className="text-primary-500">بازخورد بیماران</span>
           <span>این ماه</span>
@@ -95,63 +148,92 @@ const HomePatientFeedBack = () => {
 
       <div className="mt-14">
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex items-center gap-2">
-            {feedbacks.map((feedback, index) => (
-              <div
-                key={index}
-                className="flex-none w-[283px] h-[220px] bg-white border border-grey-200 rounded-xl"
-              >
-                <div className="p-4">
-                  <div>
-                    {/* profile , name , date , rate */}
-                    <div className="flex justify-between">
-                      <div className="flex gap-3">
-                        <Image
-                          className="rounded-sm"
-                          src={feedback.image}
-                          alt={feedback.name}
-                          width={47}
-                          height={47}
-                        />
-                        <div className="flex-col flex gap-2">
-                          <span className="text-text-black-title-color font-semibold">
-                            {feedback.name}
+          <div className="flex items-center gap-2 xl:h-[260px]">
+            {feedbacks.map((feedback, index) => {
+              const isActive = index === selectedIndex;
+              const isVisible =
+                index === selectedIndex ||
+                index === selectedIndex - 1 ||
+                index === selectedIndex + 1;
+
+              return (
+                <div
+                  key={index}
+                  className={`
+                    flex-none 
+                    w-[283px] h-[220px] 
+                    xl:transition-all xl:duration-600
+                    bg-white border border-grey-200 rounded-xl
+                    ${
+                      isVisible
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-95 pointer-events-none"
+                    }
+                    ${
+                      isVisible
+                        ? isActive
+                          ? "xl:w-[506px] xl:h-[260px] xl:scale-100 xl:opacity-100"
+                          : "xl:w-[283px] xl:h-[220px] xl:scale-75 xl:opacity-60"
+                        : ""
+                    }
+                  `}
+                >
+                  <div className="p-4">
+                    <div>
+                      {/* profile , name , date , rate */}
+                      <div className="flex justify-between">
+                        <div className="flex gap-3">
+                          <Image
+                            className="rounded-sm"
+                            src={feedback.image}
+                            alt={feedback.name}
+                            width={47}
+                            height={47}
+                          />
+                          <div className="flex-col flex gap-2">
+                            <span className="text-text-black-title-color font-semibold">
+                              {feedback.name}
+                            </span>
+                            <span className="text-grey-500">
+                              {feedback.date}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex gap-1">
+                          <span className="text-black-400">
+                            {feedback.rate}
                           </span>
-                          <span className="text-grey-500">{feedback.date}</span>
+                          <span className="isax isax-star-15 text-lg leading-[18px] text-secondary-500"></span>
                         </div>
                       </div>
-                      <div className="flex gap-1">
-                        <span className="text-black-400">{feedback.rate}</span>
-                        <span className="isax isax-star-15 text-lg leading-[18px] text-secondary-500"></span>
-                      </div>
-                    </div>
 
-                    {/* comment */}
-                    <div className="pt-[16px] h-[90px] overflow-y-auto">
-                      <span className="text-[12px] text-grey-500 font-normal leading-[170%]">
-                        {feedback.comment}
-                      </span>
-                    </div>
-                    {/* suggest */}
-                    <div className="pt-[13px] flex items-end">
-                      <div className="flex gap-1 w-full">
-                        {feedback.suggest ? (
-                          <div className="pb-[16px] flex items-center text-primary-500 gap-1 w-full justify-end">
-                            <span className="isax isax-like-1 text-lg"></span>
-                            <span>پیشنهاد میکنم</span>
-                          </div>
-                        ) : (
-                          <div className="pb-[16px] flex items-center text-red-600 gap-1 w-full justify-end">
-                            <span className="isax isax-dislike text-lg"></span>
-                            <span>پیشنهاد نمیکنم</span>
-                          </div>
-                        )}
+                      {/* comment */}
+                      <div className={`pt-[16px] overflow-y-auto ${isActive ? "xl:h-[130px] h-[80px]" : "h-[80px] overflow-y-hidden"}`}>
+                        <span className="text-[12px] text-grey-500 font-normal leading-[170%]">
+                          {feedback.comment}
+                        </span>
+                      </div>
+                      {/* suggest */}
+                      <div className="pt-[13px] flex items-end">
+                        <div className="flex gap-1 w-full">
+                          {feedback.suggest ? (
+                            <div className="pb-[16px] flex items-center text-primary-500 gap-1 w-full justify-end">
+                              <span className="isax isax-like-1 text-lg"></span>
+                              <span>پیشنهاد میکنم</span>
+                            </div>
+                          ) : (
+                            <div className="pb-[16px] flex items-center text-red-600 gap-1 w-full justify-end">
+                              <span className="isax isax-dislike text-lg"></span>
+                              <span>پیشنهاد نمیکنم</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
