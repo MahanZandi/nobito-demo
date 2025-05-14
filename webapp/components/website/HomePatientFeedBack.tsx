@@ -148,7 +148,7 @@ const HomePatientFeedBack = () => {
 
       <div className="mt-14">
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex items-center gap-2 xl:h-[260px]">
+          <div className="flex items-center xl:container gap-2 xl:h-[260px]">
             {feedbacks.map((feedback, index) => {
               const isActive = index === selectedIndex;
               const isVisible =
