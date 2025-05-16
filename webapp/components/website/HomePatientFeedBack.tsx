@@ -145,7 +145,6 @@ const HomePatientFeedBack = () => {
           <span className="isax isax-arrow-left-3 text-grey-500 text-2xl leading-6"></span>
         </Link>
       </div>
-
       <div className="mt-14">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex items-center xl:container gap-2 xl:h-[260px]">
@@ -208,7 +207,13 @@ const HomePatientFeedBack = () => {
                       </div>
 
                       {/* comment */}
-                      <div className={`pt-[16px] overflow-y-auto ${isActive ? "xl:h-[130px] h-[80px]" : "h-[80px] overflow-y-hidden"}`}>
+                      <div
+                        className={`pt-[16px] overflow-y-auto ${
+                          isActive
+                            ? "xl:h-[130px] h-[80px]"
+                            : "h-[80px] overflow-y-hidden"
+                        }`}
+                      >
                         <span className="text-[12px] text-grey-500 font-normal leading-[170%]">
                           {feedback.comment}
                         </span>
@@ -237,7 +242,6 @@ const HomePatientFeedBack = () => {
           </div>
         </div>
       </div>
-
       <div className="hidden xl:flex items-center justify-center gap-4 mt-14">
         <button
           className="w-10 h-10 bg-gray-50 cursor-pointer border border-black-400 rounded-full flex items-center justify-center"
@@ -266,6 +270,29 @@ const HomePatientFeedBack = () => {
         >
           <i className="isax isax-arrow-left-3 text-black-400 text-2xl leading-6"></i>
         </button>
+      </div>
+      {/* chat icon */}‍
+      <div className="hidden xl:flex justify-between container">
+        <div></div> {/* for space */}
+        <div>
+          <div>
+            <Link
+              href="#"
+              className="w-[120px] bg-primary-600 rounded-full grid place-items-center"
+            >
+              <span className="isax z-50 isax-message-text text-[64px] text-white"></span>
+              <div className="absolute">
+                <Image
+                  width={120}
+                  height={124}
+                  className="-z-10"
+                  src="/images/outline-chat-icon.png"
+                  alt="chat logo"
+                />
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
