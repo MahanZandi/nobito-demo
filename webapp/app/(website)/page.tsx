@@ -46,7 +46,7 @@ const Home = () => {
         <HomeInsuranSection />
       </div>
 
-      <div className="py-[72px]">
+      <div className="py-[36px] xl:py-[72px]">
         <HomePatientFeedBack />
       </div>
     </section>
