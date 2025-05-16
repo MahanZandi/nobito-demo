@@ -51,7 +51,7 @@ const Home = () => {
         <HomePatientFeedBack />
       </div>
 
-      <div className="pt-[72px]">
+      <div className="pt-[36px] xl:pt-[72px]">
         <Footer/>
       </div>
     </section>
