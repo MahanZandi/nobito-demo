@@ -3,31 +3,31 @@ import HomeSearchBox from "@/components/website/HomeSearchBox";
 import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
-import HomeDoctorsBanner from "@/components/website/HomeDoctorsBanners";
+import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
 
 const Home = () => {
   return (
-    <section className="">
+    <section>
       <HomeHeroSection />
 
-      <div className='pb-[72px]'>
+      <div className='pb-[36px] xl:pb-[72px]'>
         <HomeSearchBox />
       </div>
 
-      <div className='lg:my-[72px]'>
+      <div className='py-[36px] xl:my-[72px]'>
         <HomeStatistics />
       </div>
 
-      <div className='py-[72px]'>
+      <div className='py-[36px] xl:py-[72px]'>
         <HomePopularSection />
       </div>
 
-      <div className='py-[72px]'>
+      <div className='py-[36px] xl:py-[72px]'>
         <HomeConsultantsSection />
       </div>
 
-      <div className='py-[72px]'>
-        <HomeDoctorsBanner />
+      <div className='py-[36px] xl:py-[72px]'>
+        <HomeDoctorsBanners />
       </div>
     </section>
   );
