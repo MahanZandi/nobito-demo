@@ -11,27 +11,27 @@ const Home = () => {
     <section>
       <HomeHeroSection />
 
-      <div className="pb-[72px]">
+      <div className='pb-[36px] xl:pb-[72px]'>
         <HomeSearchBox />
       </div>
 
-      <div className="lg:my-[72px]">
+      <div className='py-[36px] xl:my-[72px]'>
         <HomeStatistics />
       </div>
 
-      <div className="py-[72px]">
+      <div className='py-[36px] xl:py-[72px]'>
         <HomePopularSection />
       </div>
 
-      <div className="py-[72px]">
+      <div className='py-[36px] xl:py-[72px]'>
         <HomeConsultantsSection />
       </div>
 
-      <div className='py-[72px]'>
+      <div className='py-[36px] xl:py-[72px]'>
         <HomeDoctorsBanners />
       </div>
 
-      <div className="py-[72px]">
+      <div className="py-[36px] xl:py-[72px]">
         <HomeTopMedicsSection />
       </div>
     </section>
