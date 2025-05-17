@@ -1,8 +1,11 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { FooterLinks } from "@/Types/Footer";
+import { useState } from "react";
 
 const Footer: React.FC = () => {
-  const footerLinks = [
+  const footerLinks: FooterLinks[] = [
     {
       title: "نوبیتو",
       links: [
@@ -85,10 +88,14 @@ const Footer: React.FC = () => {
     },
   ];
 
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
+    null
+  );
+
   return (
     <footer className="bg-white-100">
       <div className="container py-[48px]">
-        <div className="flex gap-6">
+        <div className="flex flex-col items-center xl:flex-row gap-6">
           <Image
             src="/images/footer-logo.png"
             alt="Logo"
@@ -97,10 +104,10 @@ const Footer: React.FC = () => {
             className="w-[112px] h-[178px]"
           />
           <div className="flex flex-col gap-6 pb-[48px]">
-            <h3 className="text-[20px] leading-[155%] font-semibold text-black-400">
+            <h3 className="text-[20px] leading-[155%] font-semibold text-black-400 text-center xl:text-start">
               تلاش ما دسترسی آسان تر به خدمات پزشکی است
             </h3>
-            <p className="text-[16px] leading-[155%] text-grey-500">
+            <p className="text-[16px] leading-[155%] text-grey-500 text-center xl:text-start">
               با افتخار به شما پلتفرم نوبیتو را معرفی میکنیم. ما با افتخار به
               عنوان یک پلتفرم جامع ارائه دهنده خدمات پزشکی مثل نوبت‌دهی آنلاین،
               خدمات مشاوره حضوری و غیرحضوری و خدمات پزشکی در منزل را ارائه
@@ -112,27 +119,80 @@ const Footer: React.FC = () => {
             </p>
           </div>
         </div>
-          <div className="flex justify-between">
-            <div className="grid grid-cols-4 gap-[64px]">
-                {footerLinks.map((link) => (
-                  <div key={link.title} className="col-span-1">
-                    <h3 className="text-[22px] leading-[155%] font-semibold text-black-400">
-                      {link.title}
-                    </h3>
-                    <ul className="pt-[32px] flex flex-col gap-4">
-                      {link.links.map((item) => (
-                        <li key={item.title} className="text-[14px] leading-[155%] text-grey-500">
-                          <Link href={item.url} className="hover:underline">
-                            {item.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-            </div>
-            <div></div>
+        <div className="flex xl:justify-between">
+          <div className="grid w-full xl:grid-cols-4 xl:gap-[64px]">
+            {footerLinks.map((link, index) => (
+              <div key={link.title} className="py-[16px]">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[16px] font-medium xl:text-[22px] leading-[155%] xl:font-semibold text-black-400">
+                    {link.title}
+                  </h3>
+                  <button
+                    onClick={() =>
+                      setOpenDropdownIndex(
+                        openDropdownIndex === index ? null : index
+                      )
+                    }
+                    className={`flex xl:hidden isax isax-arrow-down-1 text-2xl transition-all ${
+                      openDropdownIndex === index ? "rotate-180" : "rotate-0"
+                    }`}
+                  ></button>
+                </div>
+                {/* footer links item in mobile view (dropdown) */}
+                <ul
+                  className={`flex xl:hidden flex-col transition-all duration-400 gap-4 ${
+                    openDropdownIndex === index
+                      ? "max-h-[500px] opacity-100 pt-[16px]"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  {link.links.map((item) => (
+                    <li
+                      key={item.title}
+                      className="text-[14px] leading-[155%] text-grey-500"
+                    >
+                      <Link href={item.url} className="hover:underline">
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                {/* horizontal line between footer links in mobile view */}
+                <div className="xl:hidden h-px mt-[16px] bg-grey-200"></div>
+                <ul className="hidden xl:flex flex-col gap-[16px] text-[16px] leading-[155%] text-grey-500 pt-[32px]">
+                  {link.links.map((item) => (
+                    <li key={item.title}>
+                      <Link href={item.url} className="hover:underline">
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
+          {/* Footer Form */}
+          <div className="pt-[70px]">
+            <div>
+              <h4 className="text-[16px]">خبرنامه</h4>
+              <p className="text-[12px] text-grey-500 pt-2 pb-4">
+                برای اینکه از جدیدترین اخبار نوبیتو جا نمونید...
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <input
+                type="text"
+                className="rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] border-grey-400"
+                placeholder="ایمیل خود را اینجا وارد کنید"
+              />
+              <button className="flex bg-primary-500 text-white-500 gap-2 py-[12px] px-[16px] rounded-lg">
+                <p>ارسال</p>
+                <span className="isax isax-arrow-left-3 text-2xl"></span>
+              </button>
+            </div>
+            <p className="pt-2 text-[12px] text-grey-500">تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.</p>
+          </div>
+        </div>
       </div>
     </footer>
   );
