@@ -1,16 +1,14 @@
-"use client";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 const HomeDoctorsBanners = () => {
-
   const banners = [
     {
       id: 1,
       title: "خدمات پزشکی در دسترس",
       info: "فقط با چند کلیک به خدمات پزشکی مورد نیاز افراد کم توان جسمی(حرکتی)دسترسی پیدا میکنید.",
-      background: "bg-doctor-first-banner",
-      image: '/images/doctor-banner-2.png',
+      background: "bg-rose-600",
+      image: "/images/doctor-banner-2.png",
       bannerLink: {
         title: "مشاهده خدمات",
         url: "#",
@@ -20,8 +18,8 @@ const HomeDoctorsBanners = () => {
       id: 2,
       title: "مشاوره غیر حضوری بگیر",
       info: "اگر زمان کافی برای مراجعه به پزشک رو ندارید میتونید از طریق مشاوره غیرحضوری با پزشک صحبت کنید.",
-      background: "bg-doctor-second-banner",
-      image: '/images/doctor-banner-2.png',
+      background: "bg-blueAccent-600",
+      image: "/images/doctor-banner-2.png",
       bannerLink: {
         title: "نوبت بگیر",
         url: "#",
@@ -43,7 +41,9 @@ const HomeDoctorsBanners = () => {
 
   const BannerBox: React.FC<{ banner: Banner }> = ({ banner }) => {
     return (
-      <div className={`${banner.background} rounded-3xl w-[310px] h-[160px] lg:w-[588px] lg:h-[266px]`}>
+      <div
+        className={`${banner.background} rounded-3xl w-[310px] h-[160px] lg:w-[588px] lg:h-[266px]`}
+      >
         <div className="px-4 lg:px-10 flex">
           <div className="flex">
             <div>
@@ -54,13 +54,13 @@ const HomeDoctorsBanners = () => {
                 <div className="lg:text-sm leading-normal font-medium text-xs">
                   {banner.info}
                 </div>
-                <div className="font-b3-medium hidden lg:grid place-items-end h-18 text-home-doctors-btn-color pl-2">
+                <div className="font-b3-medium hidden lg:grid place-items-end h-18 text-dark-gray pl-2">
                   <Link
-                    className="bg-white py-2 px-3 rounded-xl flex gap-1.5 "
+                    className="bg-white py-2 px-3 flex gap-1.5 rounded-xl"
                     href={banner.bannerLink.url}
                   >
-                    <button>{banner.bannerLink.title}</button>
-                    <span className="isax isax-arrow-left-3 text-home-doctors-btn-color text-2xl"></span>
+                    <p>{banner.bannerLink.title}</p>
+                    <span className="isax isax-arrow-left-3 text-dark-gray text-2xl"></span>
                   </Link>
                 </div>
               </div>
