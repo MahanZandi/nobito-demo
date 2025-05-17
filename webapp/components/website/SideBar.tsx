@@ -74,19 +74,26 @@ const PrimaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
                   )}
                 </button>
 
-                {openDropdownIndex === index && (
-                  <ul className=" rounded-xl transition-all flex flex-col ">
-                    {link.dropdownItems.map((item) => (
-                      <Link
-                        href={item.link}
-                        key={item.label}
-                        className="text-gray-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
-                      >
-                        <li>{item.label}</li>
-                      </Link>
-                    ))}
-                  </ul>
-                )}
+                <ul
+                  className={`
+                    rounded-xl transition-all duration-300 flex flex-col overflow-hidden 
+                    ${
+                      openDropdownIndex === index
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }
+                  `}
+                >
+                  {link.dropdownItems.map((item) => (
+                    <Link
+                      href={item.link}
+                      key={item.label}
+                      className="text-gray-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
+                    >
+                      <li>{item.label}</li>
+                    </Link>
+                  ))}
+                </ul>
               </div>
             ) : (
               <Link
@@ -154,19 +161,26 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
                   )}
                 </button>
 
-                {openDropdownIndex === index && (
-                  <ul className=" rounded-xl transition-all flex flex-col ">
-                    {link.dropdownItems.map((item) => (
-                      <Link
-                        href={item.link}
-                        key={item.label}
-                        className="text-grey-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
-                      >
-                        <li>{item.label}</li>
-                      </Link>
-                    ))}
-                  </ul>
-                )}
+                <ul
+                  className={`
+                    rounded-xl transition-all duration-300 flex flex-col overflow-hidden
+                    ${
+                      openDropdownIndex === index
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }
+                  `}
+                >
+                  {link.dropdownItems.map((item) => (
+                    <Link
+                      href={item.link}
+                      key={item.label}
+                      className="text-grey-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
+                    >
+                      <li>{item.label}</li>
+                    </Link>
+                  ))}
+                </ul>
               </div>
             ) : (
               <Link
