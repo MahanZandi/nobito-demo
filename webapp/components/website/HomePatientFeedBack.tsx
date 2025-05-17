@@ -147,7 +147,7 @@ const HomePatientFeedBack = () => {
       </div>
       <div className="mt-14">
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex items-center xl:container gap-2 xl:h-[260px]">
+          <div className="flex items-center xl:container xl:h-[260px]">
             {feedbacks.map((feedback, index) => {
               const isActive = index === selectedIndex;
               const isVisible =
@@ -159,20 +159,21 @@ const HomePatientFeedBack = () => {
                 <div
                   key={index}
                   className={`
-                    flex-none 
+                    flex-none
+                    xl:w-[506px] xl:h-[260px] 
                     w-[283px] h-[220px] 
                     xl:transition-all xl:duration-600
                     bg-white border border-grey-200 rounded-xl
                     ${
                       isVisible
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-95 pointer-events-none"
+                        ? "opacity-100 scale-90"
+                        : "opacity-0 scale-90 pointer-events-none"
                     }
                     ${
                       isVisible
                         ? isActive
                           ? "xl:w-[506px] xl:h-[260px] xl:scale-100 xl:opacity-100"
-                          : "xl:w-[283px] xl:h-[220px] xl:scale-75 xl:opacity-60"
+                          : "  xl:opacity-60 xl:w-[506px] xl:h-[260px]"
                         : ""
                     }
                   `}
@@ -208,11 +209,7 @@ const HomePatientFeedBack = () => {
 
                       {/* comment */}
                       <div
-                        className={`pt-[16px] overflow-y-auto ${
-                          isActive
-                            ? "xl:h-[130px] h-[80px]"
-                            : "h-[80px] overflow-y-hidden"
-                        }`}
+                        className='pt-[16px] overflow-y-auto xl:h-[130px] h-[80px]'
                       >
                         <span className="text-[12px] text-grey-500 font-normal leading-[170%]">
                           {feedback.comment}
