@@ -1,11 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FooterLinks } from "@/Types/Footer";
 import { useState } from "react";
 
 const Footer: React.FC = () => {
-  const footerLinks: FooterLinks[] = [
+  const footerLinks = [
     {
       title: "نوبیتو",
       links: [
@@ -119,7 +118,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
         </div>
-        <div className="flex xl:justify-between">
+        <div className="flex flex-col xl:flex-row xl:justify-between gap-[70px]">
           <div className="grid w-full xl:grid-cols-4 xl:gap-[64px]">
             {footerLinks.map((link, index) => (
               <div key={link.title} className="py-[16px]">
@@ -172,25 +171,140 @@ const Footer: React.FC = () => {
             ))}
           </div>
           {/* Footer Form */}
-          <div className="pt-[70px]">
+          <div className="flex flex-col items-center xl:pt-[70px]">
             <div>
-              <h4 className="text-[16px]">خبرنامه</h4>
-              <p className="text-[12px] text-grey-500 pt-2 pb-4">
-                برای اینکه از جدیدترین اخبار نوبیتو جا نمونید...
+              <div>
+                <h4 className="text-[16px]">خبرنامه</h4>
+                <p className="text-[12px] text-grey-500 pt-2 pb-4">
+                  برای اینکه از جدیدترین اخبار نوبیتو جا نمونید...
+                </p>
+              </div>
+              <div className="flex flex-col xl:flex-row gap-4">
+                <input
+                  type="text"
+                  className="rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] border-grey-400"
+                  placeholder="ایمیل خود را اینجا وارد کنید"
+                />
+                {/* text in mobile view */}
+                <p className="py-2 xl:hidden text-[12px] text-grey-500">
+                  تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
+                </p>
+                <div className="flex justify-end">
+                  <button className="flex w-[100px] bg-primary-500 text-white-500 gap-2 py-[12px] px-[16px] rounded-lg">
+                    <p>ارسال</p>
+                    <span className="isax isax-arrow-left-3 text-2xl"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            {/*text in desktop view */}
+            <p className="pt-2 hidden xl:block text-[12px] text-grey-500">
+              تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
+            </p>
+          </div>
+        </div>
+
+        <div className="xl:flex-row-reverse xl:justify-between flex-col-reverse flex pt-[52px] pb-[40px] xl:py-[48px] gap-[46px] xl:gap-0">
+          {/* Enamad  and ... footer image */}
+          <div>
+            <div className="flex justify-center xl:justify-start gap-6">
+              <Image
+                className="xl:size-[80px] size-[64px]"
+                alt="نماد های اعتماد"
+                src={"/images/footer-1.png"}
+                width={64}
+                height={64}
+              />
+              <Image
+                className="xl:size-[80px] size-[64px]"
+                alt="نماد های اعتماد"
+                src={"/images/footer-2.png"}
+                width={64}
+                height={64}
+              />
+              <Image
+                className="xl:size-[80px] size-[64px]"
+                alt="نماد های اعتماد"
+                src={"/images/footer-3.png"}
+                width={64}
+                height={64}
+              />
+              <Image
+                className="xl:size-[80px] size-[64px]"
+                alt="نماد های اعتماد"
+                src={"/images/footer-4.png"}
+                width={64}
+                height={64}
+              />
+            </div>
+            <p className="text-[14px] xl:text-[16px] text-grey-500 leading-[155%] xl:w-[422px] pt-[24px] xl:text-start text-center">
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+              استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه
+            </p>
+          </div>
+          {/* contact information */}
+          <div className="flex-col flex items-center">
+            <div className="grid xl:gap-[32px] gap-6 text-black-400">
+              <div className="gap-2 flex items-center">
+                <span className="isax isax-call-calling5 text-2xl text-primary-500"></span>
+                <p>تماس با پشتیبانی : ۱۲۳۴۵۶۷۸-۰۲۱</p>
+              </div>
+              <div className="gap-2 flex items-center">
+                <span className="isax isax-sms5 text-2xl text-primary-500"></span>
+                <p>نشانی پست الکترونیک : smartix@yahoo.com</p>
+              </div>
+              <div className="gap-2 flex items-center">
+                <span className="isax isax-building5 text-2xl text-primary-500"></span>
+                <p>نشانی پست الکترونیک : smartix@yahoo.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="h-px bg-grey-400 hidden xl:block"></div>
+        {/* social links */}
+        <div className="flex flex-col-reverse xl:flex-row justify-between items-center">
+          <div className="text-grey-500 ">
+            <div className="pt-[24px]">
+              <div className="h-px bg-grey-400 xl:hidden block"></div>
+              <p className="pt-[24px] xl:p-0">
+                تمامی حقوق این وبسایت متعلق به شرکت نوبیتو است
               </p>
             </div>
-            <div className="flex gap-4">
-              <input
-                type="text"
-                className="rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] border-grey-400"
-                placeholder="ایمیل خود را اینجا وارد کنید"
+          </div>
+
+          <div className="flex w-[272px] xl:w-auto justify-between xl:justify-center gap-4 pt-6">
+            <Link href="#" className="size-[32px]">
+              <Image
+                width={32}
+                height={32}
+                alt="تلگرام"
+                src={"/images/png-icons/instagram.png"}
               />
-              <button className="flex bg-primary-500 text-white-500 gap-2 py-[12px] px-[16px] rounded-lg">
-                <p>ارسال</p>
-                <span className="isax isax-arrow-left-3 text-2xl"></span>
-              </button>
-            </div>
-            <p className="pt-2 text-[12px] text-grey-500">تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.</p>
+            </Link>
+            <Link href="#" className="size-[32px]">
+              <Image
+                width={32}
+                height={32}
+                alt="تلگرام"
+                src={"/images/png-icons/instagram.png"}
+              />
+            </Link>
+            <Link href="#" className="size-[32px]">
+              <Image
+                width={32}
+                height={32}
+                alt="توییتر"
+                src={"/images/png-icons/Linkdin.png"}
+              />
+            </Link>
+            <Link href="#" className="size-[32px]">
+              <Image
+                width={32}
+                height={32}
+                alt="توییتر"
+                src={"/images/png-icons/telegram.png"}
+              />
+            </Link>
           </div>
         </div>
       </div>
