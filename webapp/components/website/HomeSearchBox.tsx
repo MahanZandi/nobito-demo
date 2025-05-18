@@ -1,44 +1,100 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
 
 const HomeSearchBox = () => {
-  const [query, setQuery] = useState("");
-  const router = useRouter();
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && query.trim()) {
-      router.push(`/search?query=${encodeURIComponent(query.trim())}`);
-    }
-  };
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className="px-4 lg:px-0">
-      <label
-        form="search"
-        className="lg:w-[798px] h-20 bg-white-50 rounded-2xl relative -mt-10 p-5
-                flex items-center gap-2 mx-auto"
-      >
-        <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
-        <input
-          id="search"
-          type="text"
-          enterKeyHint="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-          placeholder="جستجو پزشک،درمانگر،کلینیک..."
-        />
-
-        <button
-          className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+    <div>
+      <div className="px-4 lg:px-0">
+        <label
+          form="search"
+          className={`lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
+                flex items-center gap-2 mx-auto ${
+                  isFocused ? "rounded-t-2xl" : "rounded-2xl"
+                }`}
         >
-          <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-          <span className="hidden lg:block">انتخاب شهر</span>
-        </button>
-      </label>
+          <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+          <input
+            id="search"
+            onFocus={() => setIsFocused(true)}
+            className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+            placeholder="جستجو پزشک،درمانگر،کلینیک..."
+          />
+
+          <button
+            className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
+            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+          >
+            <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+            <span className="hidden lg:block">انتخاب شهر</span>
+          </button>
+        </label>
+      </div>
+
+      <div className="absolute w-full">
+        {isFocused && (
+          <div>
+            <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
+              <div className="overflow-y-auto  max-h-[656px]">
+                <div className="py-6 flex border-y border-grey-200 rounded">
+                  <p className="text-[16px] text-black-400 font-medium w-[120px]">
+                    جستجو های اخیر:
+                  </p>
+
+                  <ul className="flex items-center gap-3 pr-6 overflow-x-auto flex-1">
+                    <li className="flex items-center gap-2 text-grey-500 bg-black-50 rounded-[200px] min-w-[90px] h-[28px] px-[12px]">
+                      <p>سالن انتظار</p>
+                      <span className="isax isax-close-circle text-[16px] cursor-pointer"></span>
+                    </li>
+                  </ul>
+                </div>
+                <p className="flex justify-center text-[16px] text-black-400 font-medium pt-[24px]">
+                  نتایج جستجو:
+                </p>
+                <div className="flex justify-between pt-[24px] pb-[16px]">
+                  <div className="flex gap-4">
+                    <Image
+                      className="size-[74px] rounded-full"
+                      width={74}
+                      height={74}
+                      alt="پروفایل دکتر"
+                      src="/images/doctor-2.jpeg"
+                    />
+                    <div className="flex flex-col gap-3">
+                      <p className="text-black-400 text-[20px]">
+                        بهرام میرزایی
+                      </p>
+                      <p className="text-grey-500 text-[14px]">
+                        متخصص مغز و اعصاب
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-end text-primary-500">
+                    <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
+                      <span className="isax isax-like-1 text-lg"></span>
+                      <span>
+                        <span> ۹۷٪ </span>
+                        <span>پیشنهاد کاربران</span>
+                      </span>
+                    </div>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* overlay for close search box*/}
+        {isFocused && (
+          <div
+            className="fixed z-10 inset-0"
+            onClick={() => setIsFocused(false)}
+          />
+        )}
+      </div>
     </div>
   );
 };

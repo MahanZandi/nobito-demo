@@ -1,5 +1,4 @@
 @theme {
-
   --color-statistics: #e3ebea;
   --color-rose-600: #a8035c;
   --color-blueAccent-600: #11749e;
@@ -40,6 +39,7 @@
 
   --color-white-50: #fefefe;
   --color-white-100: #fdfdfd;
+  --color-white-150: #f0f0f0;
   --color-white-200: #fcfcfc;
   --color-white-300: #fbfbfb;
   --color-white-400: #fafafa;
