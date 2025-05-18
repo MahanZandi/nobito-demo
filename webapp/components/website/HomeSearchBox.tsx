@@ -22,6 +22,8 @@ const HomeSearchBox = () => {
         <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
         <input
           id="search"
+          type="text"
+          enterKeyHint="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
