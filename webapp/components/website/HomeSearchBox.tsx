@@ -1,4 +1,17 @@
+"use client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 const HomeSearchBox = () => {
+  const [query, setQuery] = useState("");
+  const router = useRouter();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && query.trim()) {
+      router.push(`/search?query=${encodeURIComponent(query.trim())}`);
+    }
+  };
+
   return (
     <div className="px-4 lg:px-0">
       <label
@@ -9,6 +22,9 @@ const HomeSearchBox = () => {
         <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
         <input
           id="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
           placeholder="جستجو پزشک،درمانگر،کلینیک..."
         />
