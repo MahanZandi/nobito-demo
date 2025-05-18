@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Footer: React.FC = () => {
   const footerLinks = [
@@ -86,6 +87,21 @@ const Footer: React.FC = () => {
       ],
     },
   ];
+
+  type FormValues = {
+    email: string;
+  };
+
+  // validation whit react hook form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit = (data: FormValues) => {
+    console.log("ایمیل معتبره:", data.email);
+  };
 
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
@@ -179,25 +195,38 @@ const Footer: React.FC = () => {
                   برای اینکه از جدیدترین اخبار نوبیتو جا نمونید...
                 </p>
               </div>
-              <div className="flex flex-col xl:flex-row gap-4">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col xl:flex-row gap-4"
+              >
                 <input
-                  type="text"
-                  className="rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] border-grey-400"
-                  placeholder="ایمیل خود را اینجا وارد کنید"
+                  type="email"
+                  className={`rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] ${errors.email ? "border-red-500 placeholder-red-500" : "border-grey-400"}`}
+                  placeholder={`${errors.email ? errors.email.message : "ایمیل خود را اینجا وارد کنید"}`}
+                  {...register("email", {
+                    required: "فرمت ایمیل شما نامعتبر است",
+                    pattern: {
+                      value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                      message: "فرمت ایمیل شما نامعتبر است",
+                    },
+                  })}
                 />
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    className="flex w-[100px] cursor-pointer bg-primary-500 text-white-500 gap-2 py-[12px] px-[16px] rounded-lg"
+                  >
+                    <span>ارسال</span>
+                    <span className="isax isax-arrow-left-3 text-2xl"></span>
+                  </button>
+                </div>
+
                 {/* text in mobile view */}
                 <p className="py-2 xl:hidden text-[12px] text-grey-500">
                   تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
                 </p>
-                <div className="flex justify-end">
-                  <button className="flex w-[100px] bg-primary-500 text-white-500 gap-2 py-[12px] px-[16px] rounded-lg">
-                    <p>ارسال</p>
-                    <span className="isax isax-arrow-left-3 text-2xl"></span>
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
-            {/*text in desktop view */}
             <p className="pt-2 hidden xl:block text-[12px] text-grey-500">
               تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
             </p>
