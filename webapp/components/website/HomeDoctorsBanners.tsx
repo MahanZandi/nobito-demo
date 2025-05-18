@@ -56,13 +56,11 @@ const HomeDoctorsBanners = () => {
                 </div>
                 <div className="font-b3-medium hidden lg:grid place-items-end h-18 text-dark-gray pl-2">
                   <Link
-                    className="bg-white py-2 px-3 flex rounded-xl"
+                    className="bg-white py-2 px-3 flex gap-1.5 rounded-xl"
                     href={banner.bannerLink.url}
                   >
-                    <button className="cursor-pointer flex items-center gap-1.5">
-                      {banner.bannerLink.title}
-                      <span className="isax isax-arrow-left-3 text-dark-gray text-2xl"></span>
-                    </button>
+                    <p>{banner.bannerLink.title}</p>
+                    <span className="isax isax-arrow-left-3 text-dark-gray text-2xl"></span>
                   </Link>
                 </div>
               </div>
