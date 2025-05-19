@@ -218,7 +218,10 @@ const HomeSearchBox = () => {
                           <HighlightedText text={data.name} query={query} />
                         </p>
                         <p className="text-grey-500 text-[14px]">
-                          <HighlightedText text={data.specialization} query={query} />
+                          <HighlightedText
+                            text={data.specialization}
+                            query={query}
+                          />
                         </p>
                       </div>
                     </div>
