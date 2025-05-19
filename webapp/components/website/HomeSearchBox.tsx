@@ -197,7 +197,7 @@ const HomeSearchBox = () => {
                     </li>
                   </ul>
                 </div>
-                <p className="flex justify-center text-[16px] text-black-400 font-medium pt-[24px]">
+                <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px]">
                   نتایج جستجو:
                 </p>
                 {filterSearchData?.map((data) => (
