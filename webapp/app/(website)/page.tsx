@@ -4,6 +4,7 @@ import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
 import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
+import HomeTopMedicsSection from "@/components/website/HomeTopMedicsSection";
 
 const Home = () => {
   return (
@@ -28,6 +29,10 @@ const Home = () => {
 
       <div className='py-[36px] xl:py-[72px]'>
         <HomeDoctorsBanners />
+      </div>
+
+      <div className="py-[36px] xl:py-[72px]">
+        <HomeTopMedicsSection />
       </div>
     </section>
   );
