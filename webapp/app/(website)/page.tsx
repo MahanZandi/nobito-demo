@@ -5,6 +5,7 @@ import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
 import HomeTopMedicsSection from "@/components/website/HomeTopMedicsSection";
 import HomeInsuranceBanner from "@/components/website/HomeInsuranBanner";
+import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
 
 const Home = () => {
   return (
