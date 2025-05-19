@@ -16,19 +16,19 @@ const HeroSection = () => {
             {/* Hero Content */}
             <div className="relative flex flex-col items-center justify-center h-full xl:w-[694px] mx-auto text-center">
                 {/* Main Heading with Quote */}
-                <blockquote className="relative font-d2-bold text-white text-lg leading-relaxed">
-                    <span className="icon-quote-up text-secondary-500 text-2xl absolute top-0 -right-8"></span>
+                <blockquote className="relative text-[22px] leading-normal lg:text-[45px] font-bold text-white text-lg lg:leading-relaxed">
+                    <span className="icon-quote-up text-secondary-500 text-lg lg:text-2xl absolute top-0 -right-8"></span>
                     تلاش ما دسترسی
                     <span className="text-primary-500 bg-accent-500 px-2 rounded-xl inline-block">
                         سریع‌تر و آسان
                     </span>
                     <br/>
                     تر شما به خدمات پزشکی است :)
-                    <span className="icon-quote-down text-secondary-500 text-2xl absolute bottom-0 -left-8"></span>
+                    <span className="icon-quote-down text-secondary-500 text-lg lg:text-2xl absolute bottom-0 -left-8"></span>
                 </blockquote>
 
                 {/* Supporting Paragraph */}
-                <p className="mt-8 text-grey-50 font-b1-regular">
+                <p className="mt-8 text-grey-50 lg:text-xl leading-normal font-normal">
                     کافیست خدمات درمانی موردنظر خود را جستجو کنید
                     <br />
                     (دریافت نوبت، مشاوره پزشکی، خدمات پزشکی در منزل)

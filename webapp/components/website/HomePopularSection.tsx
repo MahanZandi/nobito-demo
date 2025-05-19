@@ -177,12 +177,13 @@ const HomePopularSection = () => {
 
     return <>
         <div className='container flex items-center gap-3'>
-            <h2 className='font-h1-medium text-grey-500 flex items-center gap-1'>
+            <h2 className='text-xl lg:text-[32px] leading-[155%] lg:font-medium font-[700] text-grey-500 flex items-center gap-1'>
                 <span>محبوبترین</span>
                 <span className='text-primary-500'>پزشکان</span>
                 <span>این ماه</span>
             </h2>
-            <div className='h-px bg-grey-200 flex-1'></div>
+            <div className='h-px bg-grey-200 flex-1 hidden lg:block'></div> 
+            <div className="flex flex-1 lg:hidden"></div>
 
             <Link href='/' className='flex items-center gap-2 font-t2-regular text-grey-500'>
                 مشاهده همه
@@ -267,7 +268,7 @@ const HomePopularSection = () => {
             </div>
         </div>
 
-        <div className="flex items-center justify-center gap-4 mt-14">
+        <div className="hidden lg:flex items-center justify-center gap-4 mt-14">
             <button 
             className="w-10 h-10 bg-gray-50 cursor-pointer border border-black-400 rounded-full flex items-center justify-center"
             onClick={() => emblaApi?.scrollPrev()}
