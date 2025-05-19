@@ -1,11 +1,20 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import Sidebar from "./SideBar";
 
 interface NavLink {
   title: string;
   url: string;
   hasNotification?: boolean;
+  dropdownItems?: DropDownType[];
   icon?: string;
+}
+
+interface DropDownType {
+  label: string;
+  link: string;
 }
 
 interface SocialLink {
@@ -23,33 +32,89 @@ interface SocialLinksProps {
 }
 
 // 📌 Reusable component for navigation links
-const NavLinks: React.FC<NavLinksProps> = ({ links }) => (
-  <ul className="flex items-center gap-6">
-    {links.map((link) => (
-      <li key={link.title}>
-        <Link
-          href={link.url}
-          className="font-t2-regular text-grey-500 flex items-center gap-2 h-6"
-          aria-label={link.title}
-        >
-          {link.hasNotification && (
-            <span className="relative flex items-center justify-center">
-              <span className="absolute w-4 h-4 bg-error-50 rounded-full animate-ping"></span>
-              <span className="w-2 h-2 bg-error-500 rounded-full"></span>
-            </span>
-          )}
-          {link.icon && (
-            <i
-              className={`text-base leading-4 ${link.icon}`}
-              aria-hidden="true"
-            ></i>
-          )}
-          {link.title}
-        </Link>
-      </li>
-    ))}
-  </ul>
-);
+const NavLinks: React.FC<NavLinksProps> = ({ links }) => {
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
+  return (
+    <>
+      {/* Overlay for close dropdown */}
+      {openDropdownIndex !== null && (
+        <div
+          className="fixed inset-0 z-10"
+          onClick={() => setOpenDropdownIndex(null)}
+        />
+      )}
+
+      <ul className="flex items-center gap-6 relative z-10">
+        {links.map((link, index) => (
+          <li key={link.title} className="relative">
+            {link.dropdownItems ? (
+              <div className="relative">
+                <button
+                  onClick={() =>
+                    setOpenDropdownIndex(
+                      openDropdownIndex === index ? null : index
+                    )
+                  }
+                  className="font-t2-regular text-grey-500 flex items-center gap-2 h-6"
+                  aria-label={link.title}
+                >
+                  {link.hasNotification && (
+                    <span className="relative flex items-center justify-center">
+                      <span className="absolute w-4 h-4 bg-error-50 rounded-full animate-ping"></span>
+                      <span className="w-2 h-2 bg-error-500 rounded-full"></span>
+                    </span>
+                  )}
+                  {link.icon && (
+                    <i
+                      className={`leading-4 text-xl ${link.icon}`}
+                      aria-hidden="true"
+                    ></i>
+                  )}
+                  {link.title}
+                </button>
+
+                {openDropdownIndex === index && (
+                  <ul className="absolute top-full mt-2 w-40 bg-white shadow-md rounded-md py-2 z-10">
+                    {link.dropdownItems.map((item) => (
+                      <li key={item.label}>
+                        <Link
+                          href={item.link}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <Link
+                href={link.url}
+                className="font-t2-regular text-grey-500 flex items-center gap-2 h-6"
+                aria-label={link.title}
+              >
+                {link.hasNotification && (
+                  <span className="relative flex items-center justify-center">
+                    <span className="absolute w-4 h-4 bg-error-50 rounded-full animate-ping"></span>
+                    <span className="w-2 h-2 bg-error-500 rounded-full"></span>
+                  </span>
+                )}
+                {link.icon && (
+                  <i
+                    className={`leading-4 text-xl ${link.icon}`}
+                    aria-hidden="true"
+                  ></i>
+                )}
+                {link.title}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
 
 // 📌 Reusable component for social links
 const SocialLinks: React.FC<SocialLinksProps> = ({ socials }) => (
@@ -71,10 +136,22 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ socials }) => (
   </ul>
 );
 
+
+
 const AppHeader: React.FC = () => {
   const primaryLinks: NavLink[] = [
     { title: "نوبت دهی مطب", url: "#" },
-    { title: "خدمات", url: "#" },
+    {
+      title: "خدمات",
+      url: "#",
+      icon: "isax isax-arrow-down-1",
+      dropdownItems: [
+        { label: "ایتم ۱", link: "#" },
+        { label: "ایتم ۲", link: "#" },
+        { label: "ایتم ۳", link: "#" },
+        { label: "ایتم ۴", link: "#" },
+      ],
+    },
     { title: "مشاوره آنلاین", url: "#" },
     { title: "مجله سلامت", url: "#" },
     { title: "نیکوکاری", url: "#", hasNotification: true },
@@ -93,6 +170,9 @@ const AppHeader: React.FC = () => {
     { title: "سوالات متداول", url: "#" },
     { title: "+ انتخاب آدرس", url: "#", icon: "isax isax-location" },
   ];
+
+  // states for mobile side bar menu
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <header className="bg-white-100 py-2 xl:pt-6 xl:pb-4">
@@ -139,7 +219,10 @@ const AppHeader: React.FC = () => {
             {/* sidebar and searchbar for mobile view */}
             <div className="flex text-2xl gap-3 xl:hidden">
               <span className="isax isax-search-normal"></span>
-              <span className="isax isax-menu-1"></span>
+              <span
+                className="isax isax-menu-1"
+                onClick={() => setIsOpen(true)}
+              ></span>
             </div>
           </div>
         </div>
@@ -153,6 +236,8 @@ const AppHeader: React.FC = () => {
         <SocialLinks socials={socialLinks} />
         <NavLinks links={secondaryLinks} />
       </div>
+
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
 };
