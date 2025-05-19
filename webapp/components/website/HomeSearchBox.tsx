@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const HomeSearchBox = () => {
   const searchData = [
@@ -151,36 +152,69 @@ const HomeSearchBox = () => {
   }
 
   return (
-    <div>
-      <div className="px-4 lg:px-0">
-        <label
-          form="search"
-          className={`lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
+    <>
+      <div>
+        <div className="px-4 lg:px-0">
+          {/*this input for mobile becouse we have a search page in mobile view and linke worked in mobile view */}
+          <Link className="lg:hidden" href="/search">
+            <label
+              form="search"
+              className={`lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
             flex items-center gap-2 mx-auto ${
               isFocused ? "rounded-t-2xl" : "rounded-2xl"
             }`}
-        >
-          <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
-          <input
-            id="search"
-            onFocus={() => setIsFocused(true)}
-            className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-            placeholder="جستجو پزشک،درمانگر،کلینیک..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+            >
+              <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+              <input
+                id="search"
+                onFocus={() => setIsFocused(true)}
+                className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+                placeholder="جستجو پزشک،درمانگر،کلینیک..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
 
-          <button
-            className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
+              <button
+                className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
             flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
-          >
-            <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-            <span className="hidden lg:block">انتخاب شهر</span>
-          </button>
-        </label>
+              >
+                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                <span className="hidden lg:block">انتخاب شهر</span>
+              </button>
+            </label>
+          </Link>
+          {/* this input for desktop view becouse we have a search box in desktop */}
+          <div className="hidden lg:block">
+            <label
+              form="search"
+              className={`lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
+            flex items-center gap-2 mx-auto ${
+              isFocused ? "rounded-t-2xl" : "rounded-2xl"
+            }`}
+            >
+              <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+              <input
+                id="search"
+                onFocus={() => setIsFocused(true)}
+                className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+                placeholder="جستجو پزشک،درمانگر،کلینیک..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+
+              <button
+                className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
+            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+              >
+                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                <span className="hidden lg:block">انتخاب شهر</span>
+              </button>
+            </label>
+          </div>
+        </div>
       </div>
 
-      <div className="absolute w-full">
+      <div className="absolute w-full hidden lg:block">
         {isFocused && (
           <div>
             <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
@@ -249,7 +283,7 @@ const HomeSearchBox = () => {
           />
         )}
       </div>
-    </div>
+    </>
   );
 };
 
