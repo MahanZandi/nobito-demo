@@ -12,9 +12,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      location: "گرگان - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "گرگان",
     },
     {
       id: 2,
@@ -23,9 +24,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      location: "آبادان - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "آبادان",
     },
     {
       id: 3,
@@ -34,9 +36,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 4,
@@ -45,9 +48,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 5,
@@ -56,9 +60,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 6,
@@ -67,9 +72,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 7,
@@ -78,9 +84,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 8,
@@ -89,9 +96,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 9,
@@ -100,9 +108,10 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 10,
@@ -111,23 +120,42 @@ const HomeSearchBox = () => {
       rate: "4/5",
       specialization: "متخصص قلب و عروق",
       happyPatients: "2374",
-      happyPatientsPercentage: "97",
+      happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
   ];
+
+  // city selection
+  const [showCities, setShowCities] = useState(false);
+  const [selectedCity, setSelectedCity] = useState("");
+
+  const uniqueCities = [...new Set(searchData.map((item) => item.city))];
+
+  // handle clear city selection
+  const handleClearCityFilter = () => {
+    setSelectedCity("");
+    setShowCities(false);
+  };
 
   // for open our clode search box
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const [query, setQuery] = useState<string>("");
 
-  // filter search data (name, specialization)
-  const filterSearchData = searchData.filter(
-    (searchItem) =>
+  // filter search data (name, specialization, city)
+  const filterSearchData = searchData.filter((searchItem) => {
+    const matchesQuery =
       searchItem.name.toLowerCase().includes(query.toLowerCase()) ||
-      searchItem.specialization.toLowerCase().includes(query.toLowerCase())
-  );
+      searchItem.specialization.toLowerCase().includes(query.toLowerCase());
+
+    const matchesCity = selectedCity
+      ? searchItem.city.toLowerCase() === selectedCity.toLowerCase()
+      : true;
+
+    return matchesQuery && matchesCity;
+  });
 
   // this function for highlighting search result
   function HighlightedText({ text, query }: { text: string; query: string }) {
@@ -154,12 +182,12 @@ const HomeSearchBox = () => {
   return (
     <>
       <div>
-        <div className="px-4 lg:px-0">
+        <div className="px-4 xl:px-0">
           {/*this input for mobile becouse we have a search page in mobile view and linke worked in mobile view */}
-          <Link className="lg:hidden" href="/search">
+          <Link className="xl:hidden" href="/search">
             <label
               form="search"
-              className={`lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
+              className={`lg:w-[798px] lg:h-20 bg-white-50 relative z-20 -mt-10 p-5
             flex items-center gap-2 mx-auto ${
               isFocused ? "rounded-t-2xl" : "rounded-2xl"
             }`}
@@ -175,16 +203,16 @@ const HomeSearchBox = () => {
               />
 
               <button
-                className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
+                className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
             flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
               >
                 <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-                <span className="hidden lg:block">انتخاب شهر</span>
+                <span className="hidden xl:block">انتخاب شهر</span>
               </button>
             </label>
           </Link>
           {/* this input for desktop view becouse we have a search box in desktop */}
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <label
               form="search"
               className={`lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
@@ -203,18 +231,49 @@ const HomeSearchBox = () => {
               />
 
               <button
-                className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
+                onClick={() => setShowCities(!showCities)}
+                className="p-2 px-4 xl:h-10 border text-primary-600 border-primary-600
             flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
               >
                 <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-                <span className="hidden lg:block">انتخاب شهر</span>
+                <span>
+                  {selectedCity ? (
+                    selectedCity
+                  ) : (
+                    <span className="hidden xl:block">انتخاب شهر</span>
+                  )}
+                </span>
               </button>
+              {/* modal for selected city */}
+              {showCities && (
+                <div className="absolute text-black-400 z-[999] -left-51 top-0 mt-2 w-[200px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 shadow rounded-lg text-right">
+                  <div
+                    onClick={handleClearCityFilter}
+                    className="px-4 py-2 flex items-center gap-2 text-grey-400"
+                  >
+                    <span>برداشتن فیلتر</span>
+                    <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
+                  </div>
+                  {uniqueCities.map((city, index) => (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        setSelectedCity(city);
+                        setShowCities(false);
+                      }}
+                      className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                    >
+                      {city}
+                    </div>
+                  ))}
+                </div>
+              )}
             </label>
           </div>
         </div>
       </div>
 
-      <div className="absolute w-full hidden lg:block">
+      <div className="absolute w-full hidden xl:block">
         {isFocused && (
           <div>
             <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
@@ -280,6 +339,12 @@ const HomeSearchBox = () => {
           <div
             className="fixed z-10 inset-0"
             onClick={() => setIsFocused(false)}
+          />
+        )}
+        {showCities && (
+          <div
+            className="fixed z-10 inset-0"
+            onClick={() => setShowCities(false)}
           />
         )}
       </div>

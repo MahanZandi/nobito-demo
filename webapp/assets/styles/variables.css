@@ -129,7 +129,7 @@
     -ms-overflow-style: none; /* Internet Explorer 10+ */
   }
 
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+  .scrollbar-thin {
+    scrollbar-width: thin;
   }
 }

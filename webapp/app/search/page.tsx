@@ -14,7 +14,8 @@ const MobileSearchPage = () => {
       happyPatients: "2374",
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      location: "گرگان - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "گرگان",
     },
     {
       id: 2,
@@ -25,7 +26,8 @@ const MobileSearchPage = () => {
       happyPatients: "2374",
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      location: "آبادان - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "آبادان",
     },
     {
       id: 3,
@@ -37,6 +39,7 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 4,
@@ -48,6 +51,7 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 5,
@@ -59,6 +63,7 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 6,
@@ -70,6 +75,7 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 7,
@@ -81,6 +87,7 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 8,
@@ -92,6 +99,7 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 9,
@@ -103,6 +111,7 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
     {
       id: 10,
@@ -114,17 +123,36 @@ const MobileSearchPage = () => {
       happyPatientsPercentage: "97%",
       skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
     },
   ];
 
+  // city selection
+  const [showCities, setShowCities] = useState(false);
+  const [selectedCity, setSelectedCity] = useState("");
+
+  const uniqueCities = [...new Set(searchData.map((item) => item.city))];
+
+  // handle clear city selection
+  const handleClearCityFilter = () => {
+    setSelectedCity("");
+    setShowCities(false);
+  };
+
   const [query, setQuery] = useState<string>("");
 
-  // filter search data (name, specialization)
-  const filterSearchData = searchData.filter(
-    (searchItem) =>
+  // filter search data (name, specialization, city)
+  const filterSearchData = searchData.filter((searchItem) => {
+    const matchesQuery =
       searchItem.name.toLowerCase().includes(query.toLowerCase()) ||
-      searchItem.specialization.toLowerCase().includes(query.toLowerCase())
-  );
+      searchItem.specialization.toLowerCase().includes(query.toLowerCase());
+
+    const matchesCity = selectedCity
+      ? searchItem.city.toLowerCase() === selectedCity.toLowerCase()
+      : true;
+
+    return matchesQuery && matchesCity;
+  });
 
   // this function for highlighting search result
   function HighlightedText({ text, query }: { text: string; query: string }) {
@@ -162,7 +190,7 @@ const MobileSearchPage = () => {
             <label
               form="search"
               className="h-[48px] bg-white-50 relative z-20 p-3
-            flex items-center gap-2 justify-center rounded-2xl"
+            flex items-center gap-2 justify-center rounded-lg"
             >
               <span className="isax isax-search-normal text-[18px] leading-8 text-grey-400 flex-1"></span>
               <input
@@ -174,12 +202,39 @@ const MobileSearchPage = () => {
               />
 
               <button
-                className="p-1.5 lg:w-[141px] lg:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+                onClick={() => setShowCities(!showCities)}
+                className="bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600
+            flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
               >
                 <span className="isax isax-location text-lg leading-6 text-primary-600"></span>
-                <span className="hidden lg:block">انتخاب شهر</span>
+                <span className={`${selectedCity ? "inline" : "hidden"}`}>
+                  {selectedCity}
+                </span>
               </button>
+              {/* modal for selected city */}
+              {showCities && (
+                <div className="absolute text-black-400 z-50 left-0 top-8 mt-2 w-[150px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-lg text-right">
+                  <div
+                    onClick={handleClearCityFilter}
+                    className="px-4 py-2 flex items-center gap-2 text-grey-400"
+                  >
+                    <span>برداشتن فیلتر</span>
+                    <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
+                  </div>
+                  {uniqueCities.map((city, index) => (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        setSelectedCity(city);
+                        setShowCities(false);
+                      }}
+                      className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                    >
+                      {city}
+                    </div>
+                  ))}
+                </div>
+              )}
             </label>
           </div>
         </div>
@@ -187,7 +242,7 @@ const MobileSearchPage = () => {
 
       <div className="container">
         <div>
-          <div className="container relative z-20 rounded-b-2xl">
+          <div className="container relative rounded-b-2xl">
             <div className="overflow-y-auto ">
               <div className="py-4 flex flex-col gap-4 border-b border-grey-200 rounded">
                 <p className="text-[14px] text-black-400 font-medium w-[120px]">
@@ -243,6 +298,13 @@ const MobileSearchPage = () => {
           </div>
         </div>
       </div>
+
+      {showCities && (
+        <div
+          className="fixed z-10 inset-0"
+          onClick={() => setShowCities(false)}
+        />
+      )}
     </>
   );
 };
