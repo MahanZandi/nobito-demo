@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const MobileSearchPage = () => {
   const searchData = [
@@ -176,6 +177,36 @@ const MobileSearchPage = () => {
     );
   }
 
+  // for recent search
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+
+  useEffect(() => {
+    const storedSearches = localStorage.getItem("recentSearches");
+    if (storedSearches) {
+      setRecentSearches(JSON.parse(storedSearches));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  }, [recentSearches]);
+
+  // add recent search in input  by click on recent search button
+
+  const handleAddRecentSearch = (searchResult: string) => {
+    if (!recentSearches.includes(searchResult)) {
+      setRecentSearches([searchResult, ...recentSearches]);
+    }
+  };
+
+  const deleteRecentSearch = (index: number) => {
+    setRecentSearches(recentSearches.filter((_, i) => i !== index));
+  };
+
+  const handleSelectSearch = (recentSearcheItem: string) => {
+    setQuery(recentSearcheItem);
+  };
+
   return (
     <>
       <div className="bg-white text-[22px] font-medium text-black py-3 flex items-center px-4">
@@ -250,17 +281,32 @@ const MobileSearchPage = () => {
                 </p>
 
                 <ul className="flex items-center gap-3 overflow-x-auto flex-1">
-                  <li className="flex items-center gap-2 text-grey-500 bg-white rounded-[200px] min-w-[90px] h-[28px] px-[12px]">
-                    <p className="text-[14px]">سالن انتظار</p>
-                    <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
-                  </li>
+                  {recentSearches?.map((recentSearcheItem, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center gap-2 text-grey-500 bg-white rounded-[200px] min-w-[90px] h-[28px] px-[12px]"
+                    >
+                      <p
+                        className="cursor-pointer text-[14px]"
+                        onClick={() => handleSelectSearch(recentSearcheItem)}
+                      >
+                        {recentSearcheItem}
+                      </p>
+                      <span
+                        onClick={() => deleteRecentSearch(index)}
+                        className="isax isax-close-circle text-[18px] cursor-pointer"
+                      ></span>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px]">
                 نتایج جستجو:
               </p>
               {filterSearchData?.map((data) => (
-                <div
+                <Link
+                  href="#"
+                  onClick={() => handleAddRecentSearch(data.name)}
                   key={data.id}
                   className="flex justify-between pt-[24px] pb-[16px]"
                 >
@@ -292,7 +338,7 @@ const MobileSearchPage = () => {
                       </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

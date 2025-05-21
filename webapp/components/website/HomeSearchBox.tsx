@@ -248,11 +248,10 @@ const HomeSearchBox = () => {
   // add recent search in input  by click on recent search button
 
   const handleAddRecentSearch = (searchResult: string) => {
-  if (!recentSearches.includes(searchResult)) {
-    setRecentSearches([searchResult, ...recentSearches]);
-  }
-};
-
+    if (!recentSearches.includes(searchResult)) {
+      setRecentSearches([searchResult, ...recentSearches]);
+    }
+  };
 
   const deleteRecentSearch = (index: number) => {
     setRecentSearches(recentSearches.filter((_, i) => i !== index));
@@ -361,16 +360,28 @@ const HomeSearchBox = () => {
           <div>
             <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
               <div className="overflow-y-auto max-h-[656px]">
-                <div className='py-6 flex border-y border-grey-200 rounded'> {/*TODO */}
+                <div className="py-6 flex border-y border-grey-200 rounded">
+                  {" "}
+                  {/*TODO */}
                   <p className="text-[16px] text-black-400 font-medium w-[120px]">
                     جستجو های اخیر:
                   </p>
-
                   <ul className="flex items-center gap-3 pr-6 flex-1 overflow-x-scroll scrollbar-thin">
                     {recentSearches?.map((recentSearcheItem, index) => (
-                      <li key={index} className="flex items-center justify-between gap-2 text-grey-500 bg-black-50 rounded-[200px] min-w-[150px] h-[28px] px-[12px]">
-                        <p className="cursor-pointer line-clamp-1" onClick={() => handleSelectSearch(recentSearcheItem)}>{recentSearcheItem}</p>
-                        <span onClick={() => deleteRecentSearch(index)} className="isax isax-close-circle text-[16px] cursor-pointer"></span>
+                      <li
+                        key={index}
+                        className="flex items-center justify-between gap-2 text-grey-500 bg-black-50 rounded-[200px] min-w-[150px] h-[28px] px-[12px]"
+                      >
+                        <p
+                          className="cursor-pointer line-clamp-1"
+                          onClick={() => handleSelectSearch(recentSearcheItem)}
+                        >
+                          {recentSearcheItem}
+                        </p>
+                        <span
+                          onClick={() => deleteRecentSearch(index)}
+                          className="isax isax-close-circle text-[16px] cursor-pointer"
+                        ></span>
                       </li>
                     ))}
                   </ul>
