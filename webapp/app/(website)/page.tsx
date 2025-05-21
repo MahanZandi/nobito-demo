@@ -6,6 +6,7 @@ import HomeConsultantsSection from "@/components/website/HomeConsultantsSection"
 import HomePatientFeedBack from "@/components/website/HomePatientFeedBack";
 import HomeTopMedicsSection from "@/components/website/HomeTopMedicsSection";
 import HomeInsuranceBanner from "@/components/website/HomeInsuranBanner";
+import HomeInsuranSection from "@/components/website/HomeInsuranSection";
 import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
 import Footer from "@/components/website/Footer";
 

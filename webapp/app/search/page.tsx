@@ -284,10 +284,10 @@ const MobileSearchPage = () => {
                   {recentSearches?.map((recentSearcheItem, index) => (
                     <li
                       key={index}
-                      className="flex items-center gap-2 text-grey-500 bg-white rounded-[200px] min-w-[90px] h-[28px] px-[12px]"
+                      className="flex items-center gap-2 text-grey-500 bg-white rounded-[200px] min-w-[120px] h-[28px] px-[12px]"
                     >
                       <p
-                        className="cursor-pointer text-[14px]"
+                        className="cursor-pointer line-clamp-1 text-[14px]"
                         onClick={() => handleSelectSearch(recentSearcheItem)}
                       >
                         {recentSearcheItem}
