@@ -129,7 +129,13 @@
     -ms-overflow-style: none; /* Internet Explorer 10+ */
   }
 
-  .scrollbar-thin {
-    scrollbar-width: thin;
-  }
 }
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #e6e4e4 transparent;
+}
+
+
+
+

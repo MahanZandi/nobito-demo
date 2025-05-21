@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -125,15 +126,65 @@ const HomeSearchBox = () => {
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
       city: "تهران",
     },
+
+    {
+      id: 11,
+      name: " ابراهیمی",
+      image: "/images/doctor-6.jpeg",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
+    {
+      id: 12,
+      name: " محمدی",
+      image: "/images/doctor-8.png",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
+    {
+      id: 13,
+      name: " فربد",
+      image: "/images/doctor-9.png",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
+    {
+      id: 14,
+      name: "دکتر محمدی",
+      image: "/images/doctor-10.png",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
   ];
 
-  // city selection
+  // city selector
   const [showCities, setShowCities] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
 
+  // This code is to prevent duplicate city names
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
 
-  // handle clear city selection
+  // handle clear location filter
   const handleClearCityFilter = () => {
     setSelectedCity("");
     setShowCities(false);
@@ -142,6 +193,7 @@ const HomeSearchBox = () => {
   // for open our clode search box
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
+  // query for search input
   const [query, setQuery] = useState<string>("");
 
   // filter search data (name, specialization, city)
@@ -178,6 +230,37 @@ const HomeSearchBox = () => {
       </>
     );
   }
+
+  // for recent search
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+
+  useEffect(() => {
+    const storedSearches = localStorage.getItem("recentSearches");
+    if (storedSearches) {
+      setRecentSearches(JSON.parse(storedSearches));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  }, [recentSearches]);
+
+  // add recent search in input  by click on recent search button
+
+  const handleAddRecentSearch = (searchResult: string) => {
+  if (!recentSearches.includes(searchResult)) {
+    setRecentSearches([searchResult, ...recentSearches]);
+  }
+};
+
+
+  const deleteRecentSearch = (index: number) => {
+    setRecentSearches(recentSearches.filter((_, i) => i !== index));
+  };
+
+  const handleSelectSearch = (recentSearcheItem: string) => {
+    setQuery(recentSearcheItem);
+  };
 
   return (
     <>
@@ -244,57 +327,61 @@ const HomeSearchBox = () => {
                   )}
                 </span>
               </button>
-              {/* modal for selected city */}
-              {showCities && (
-                <div className="absolute text-black-400 z-[999] -left-51 top-0 mt-2 w-[200px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 shadow rounded-lg text-right">
-                  <div
-                    onClick={handleClearCityFilter}
-                    className="px-4 py-2 flex items-center gap-2 text-grey-400"
-                  >
-                    <span>برداشتن فیلتر</span>
-                    <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
-                  </div>
-                  {uniqueCities.map((city, index) => (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        setSelectedCity(city);
-                        setShowCities(false);
-                      }}
-                      className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                    >
-                      {city}
-                    </div>
-                  ))}
-                </div>
-              )}
             </label>
           </div>
         </div>
       </div>
 
       <div className="absolute w-full hidden xl:block">
+        {/* modal for selected city */}
+        {showCities && (
+          <div className="absolute text-black-400 z-[50] left-[35rem] -top-4 mt-2 w-[200px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 shadow rounded-lg text-right">
+            <div
+              onClick={handleClearCityFilter}
+              className="px-4 py-2 flex items-center gap-2 text-grey-400"
+            >
+              <span>برداشتن فیلتر</span>
+              <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
+            </div>
+            {uniqueCities.map((city, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  setSelectedCity(city);
+                  setShowCities(false);
+                }}
+                className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+              >
+                {city}
+              </div>
+            ))}
+          </div>
+        )}
         {isFocused && (
           <div>
             <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
-              <div className="overflow-y-auto  max-h-[656px]">
-                <div className="py-6 flex border-y border-grey-200 rounded">
+              <div className="overflow-y-auto max-h-[656px]">
+                <div className='py-6 flex border-y border-grey-200 rounded'> {/*TODO */}
                   <p className="text-[16px] text-black-400 font-medium w-[120px]">
                     جستجو های اخیر:
                   </p>
 
-                  <ul className="flex items-center gap-3 pr-6 overflow-x-auto flex-1">
-                    <li className="flex items-center gap-2 text-grey-500 bg-black-50 rounded-[200px] min-w-[90px] h-[28px] px-[12px]">
-                      <p>سالن انتظار</p>
-                      <span className="isax isax-close-circle text-[16px] cursor-pointer"></span>
-                    </li>
+                  <ul className="flex items-center gap-3 pr-6 flex-1 overflow-x-scroll scrollbar-thin">
+                    {recentSearches?.map((recentSearcheItem, index) => (
+                      <li key={index} className="flex items-center justify-between gap-2 text-grey-500 bg-black-50 rounded-[200px] min-w-[150px] h-[28px] px-[12px]">
+                        <p className="cursor-pointer line-clamp-1" onClick={() => handleSelectSearch(recentSearcheItem)}>{recentSearcheItem}</p>
+                        <span onClick={() => deleteRecentSearch(index)} className="isax isax-close-circle text-[16px] cursor-pointer"></span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px]">
                   نتایج جستجو:
                 </p>
                 {filterSearchData?.map((data) => (
-                  <div
+                  <Link
+                    href="#"
+                    onClick={() => handleAddRecentSearch(data.name)}
                     key={data.id}
                     className="flex justify-between pt-[24px] pb-[16px]"
                   >
@@ -327,7 +414,7 @@ const HomeSearchBox = () => {
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
