@@ -361,8 +361,6 @@ const HomeSearchBox = () => {
             <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
               <div className="overflow-y-auto max-h-[656px]">
                 <div className="py-6 flex border-y border-grey-200 rounded">
-                  {" "}
-                  {/*TODO */}
                   <p className="text-[16px] text-black-400 font-medium w-[120px]">
                     جستجو های اخیر:
                   </p>

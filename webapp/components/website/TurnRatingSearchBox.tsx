@@ -262,7 +262,7 @@ const TurnRatingSearchBox = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container pt-[48px]">
       <div className="hidden xl:block">
         <label
           form="search"
@@ -301,7 +301,7 @@ const TurnRatingSearchBox = () => {
       <div className="absolute w-full hidden xl:block container">
         {/* modal for selected city */}
         {showCities && (
-          <div className="absolute text-black-400 z-[50] left-[35rem] -top-4 mt-2 w-[200px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 shadow rounded-lg text-right">
+          <div className="absolute text-black-400 z-[50] left-[27rem] -top-4 mt-2 w-[200px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 shadow rounded-lg text-right">
             <div
               onClick={handleClearCityFilter}
               className="px-4 py-2 flex items-center gap-2 text-grey-400"
