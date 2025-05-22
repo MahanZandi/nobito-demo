@@ -161,19 +161,19 @@ const HomePatientFeedBack = () => {
                   className={`
                     flex-none
                     xl:w-[506px] xl:h-[260px] 
-                    w-[283px] h-[220px] 
+                    w-[320px] h-[190px] 
                     xl:transition-all xl:duration-600
                     bg-white border border-grey-200 rounded-xl
                     ${
                       isVisible
                         ? "opacity-100 scale-90"
-                        : "opacity-0 scale-90 pointer-events-none"
+                        : "opacity-50 scale-70 pointer-events-none"
                     }
                     ${
                       isVisible
                         ? isActive
                           ? "xl:w-[506px] xl:h-[260px] xl:scale-100 xl:opacity-100"
-                          : "  xl:opacity-60 xl:w-[506px] xl:h-[260px]"
+                          : "  xl:opacity-100 xl:w-[506px] xl:h-[260px]"
                         : ""
                     }
                   `}
@@ -207,28 +207,28 @@ const HomePatientFeedBack = () => {
                         </div>
                       </div>
 
-                      {/* comment */}
-                      <div
-                        className='pt-[16px] overflow-y-auto xl:h-[130px] h-[80px]'
-                      >
-                        <span className="text-[12px] text-grey-500 font-normal leading-[170%]">
-                          {feedback.comment}
-                        </span>
-                      </div>
-                      {/* suggest */}
-                      <div className="pt-[13px] flex items-end">
-                        <div className="flex gap-1 w-full">
-                          {feedback.suggest ? (
-                            <div className="pb-[16px] flex items-center text-primary-500 gap-1 w-full justify-end">
-                              <span className="isax isax-like-1 text-lg"></span>
-                              <span>پیشنهاد میکنم</span>
-                            </div>
-                          ) : (
-                            <div className="pb-[16px] flex items-center text-red-600 gap-1 w-full justify-end">
-                              <span className="isax isax-dislike text-lg"></span>
-                              <span>پیشنهاد نمیکنم</span>
-                            </div>
-                          )}
+                      <div className="flex flex-col justify-between">
+                        {/* comment */}
+                        <div className="pt-[16px] xl:h-[130px]">
+                          <span className="text-[12px] text-grey-500 font-normal line-clamp-3 leading-[170%]">
+                            {feedback.comment}
+                          </span>
+                        </div>
+                        {/* suggest */}
+                        <div className="flex items-end">
+                          <div className="flex gap-1 pt-[13px] w-full">
+                            {feedback.suggest ? (
+                              <div className="pb-[16px] flex items-center text-primary-500 gap-1 w-full justify-end">
+                                <span className="isax isax-like-1 text-lg"></span>
+                                <span>پیشنهاد میکنم</span>
+                              </div>
+                            ) : (
+                              <div className="pb-[16px] flex items-center text-red-600 gap-1 w-full justify-end">
+                                <span className="isax isax-dislike text-lg"></span>
+                                <span>پیشنهاد نمیکنم</span>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
