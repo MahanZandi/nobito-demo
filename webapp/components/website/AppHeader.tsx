@@ -33,7 +33,9 @@ interface SocialLinksProps {
 
 // 📌 Reusable component for navigation links
 const NavLinks: React.FC<NavLinksProps> = ({ links }) => {
-  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
+    null
+  );
   return (
     <>
       {/* Overlay for close dropdown */}
@@ -136,8 +138,6 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ socials }) => (
   </ul>
 );
 
-
-
 const AppHeader: React.FC = () => {
   const primaryLinks: NavLink[] = [
     { title: "نوبت دهی مطب", url: "#" },
@@ -218,7 +218,9 @@ const AppHeader: React.FC = () => {
 
             {/* sidebar and searchbar for mobile view */}
             <div className="flex text-2xl gap-3 xl:hidden">
-              <span className="isax isax-search-normal"></span>
+              <Link href="/search">
+                <span className="isax isax-search-normal"></span>
+              </Link>
               <span
                 className="isax isax-menu-1"
                 onClick={() => setIsOpen(true)}
