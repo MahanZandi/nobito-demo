@@ -140,7 +140,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ socials }) => (
 
 const AppHeader: React.FC = () => {
   const primaryLinks: NavLink[] = [
-    { title: "نوبت دهی مطب", url: "#" },
+    { title: "نوبت دهی مطب", url: "/turn-rating" },
     {
       title: "خدمات",
       url: "#",

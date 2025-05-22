@@ -32,7 +32,7 @@ const HomeInsuranSection: React.FC = () => {
             <button className="w-full lg:w-auto">
               <Link
                 className="text-black-500 lg:text-grey-500 border-black-500 lg:border-grey-500 text-[16px] rounded-lg border lg:w-[120px] h-[40px] flex justify-center items-center"
-                href="#"
+                href="/turn-rating"
               >
                 مطالعه بیشتر
               </Link>

@@ -116,7 +116,7 @@ const HomePopularSection = () => {
         <div className="flex flex-1 lg:hidden"></div>
 
         <Link
-          href="/"
+          href="/turn-rating"
           className="flex items-center gap-2 font-t2-regular text-grey-500"
         >
           مشاهده همه
