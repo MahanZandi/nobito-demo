@@ -3,7 +3,7 @@ import TurnRatingSearchBox from "@/components/website/TurnRatingSearchBox";
 const TurnRating = () => {
   return (
     <div>
-      <div className="py-[72px]">
+      <div className="py-[48px]">
         <TurnRatingSearchBox />
       </div>
     </div>
