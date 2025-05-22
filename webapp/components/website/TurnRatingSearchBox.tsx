@@ -262,7 +262,7 @@ const TurnRatingSearchBox = () => {
   };
 
   return (
-    <div className="container pt-[48px]">
+    <div className="container">
       <div className="hidden xl:block">
         <label
           form="search"
