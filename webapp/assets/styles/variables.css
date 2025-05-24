@@ -53,6 +53,7 @@
   --color-black-100: #b6b6b6;
   --color-black-200: #929292;
   --color-black-300: #606060;
+  --color-black-350: #4e4e4e;
   --color-black-400: #414141;
   --color-black-500: #121212;
   --color-black-600: #101010;
@@ -129,14 +130,9 @@
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
   }
-
 }
 
 .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: #e6e4e4 transparent;
 }
-
-
-
-
