@@ -193,7 +193,7 @@ const HomeTopMedicsSection = () => {
             <span className="isax isax-arrow-left-3 text-grey-500 text-2xl leading-6"></span>
           </Link>
         </div>
-        <div className="mt-14">
+        <div className="mt-6 xl:mt-14">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex items-center gap-2">
               {doctors?.map((doctor, index) => (
