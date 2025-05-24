@@ -276,8 +276,11 @@ const TurnRatingDoctorCard = () => {
                   <span>نشانی :</span>
                   <span>{doctorCard.location}</span>
                 </div>
-                <Link href="#">
-                  <button className="flex gap-2 text-white-500 bg-primary-500 rounded-md px-3 py-2">
+                <Link
+                  href="#"
+                  className="cursor-pointer text-white-500 bg-primary-500 rounded-md px-3 py-2"
+                >
+                  <button className="flex gap-2">
                     <span className="text-[16px] font-medium">دریافت نوبت</span>
                     <span className="isax isax-arrow-left text-2xl"></span>
                   </button>
