@@ -145,9 +145,9 @@ const HomePatientFeedBack = () => {
           <span className="isax isax-arrow-left-3 text-grey-500 text-2xl leading-6"></span>
         </Link>
       </div>
-      <div className="mt-14">
+      <div className="mt-6 xl:mt-14">
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex items-center xl:container xl:h-[260px]">
+          <div className="flex items-center gap-4 xl:container xl:h-[260px]">
             {feedbacks.map((feedback, index) => {
               const isActive = index === selectedIndex;
               const isVisible =
@@ -161,13 +161,13 @@ const HomePatientFeedBack = () => {
                   className={`
                     flex-none
                     xl:w-[506px] xl:h-[260px] 
-                    w-[320px] h-[190px] 
+                    w-[283px] h-[190px] 
                     xl:transition-all xl:duration-600
                     bg-white border border-grey-200 rounded-xl
                     ${
                       isVisible
-                        ? "opacity-100 scale-90"
-                        : "opacity-50 scale-70 pointer-events-none"
+                        ? "xl:opacity-100 xl:scale-90"
+                        : "xl:opacity-50 xl:scale-70 pointer-events-none"
                     }
                     ${
                       isVisible
@@ -209,21 +209,21 @@ const HomePatientFeedBack = () => {
 
                       <div className="flex flex-col justify-between">
                         {/* comment */}
-                        <div className="pt-[16px] xl:h-[130px]">
+                        <div className="pt-[16px] h-[60px] xl:h-[130px]">
                           <span className="text-[12px] text-grey-500 font-normal line-clamp-3 leading-[170%]">
                             {feedback.comment}
                           </span>
                         </div>
                         {/* suggest */}
-                        <div className="flex items-end">
-                          <div className="flex gap-1 pt-[13px] w-full">
+                        <div className="pt-[13px] flex items-end">
+                          <div className="flex gap-1 w-full">
                             {feedback.suggest ? (
-                              <div className="pb-[16px] flex items-center text-primary-500 gap-1 w-full justify-end">
+                              <div className="flex items-center text-primary-500 gap-1 w-full justify-end">
                                 <span className="isax isax-like-1 text-lg"></span>
                                 <span>پیشنهاد میکنم</span>
                               </div>
                             ) : (
-                              <div className="pb-[16px] flex items-center text-red-600 gap-1 w-full justify-end">
+                              <div className="flex items-center text-red-600 gap-1 w-full justify-end">
                                 <span className="isax isax-dislike text-lg"></span>
                                 <span>پیشنهاد نمیکنم</span>
                               </div>
