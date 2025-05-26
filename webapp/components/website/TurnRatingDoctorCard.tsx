@@ -148,14 +148,16 @@ const TurnRatingDoctorCard = () => {
   return (
     <div>
       {/* sorte filter in mobile view */}
-      <div className="bg-white-100 border-y border-grey-200 p-4 text-[14px] text-black-400 flex gap-3">
-        <div className="flex gap-2">
-          <span className="isax isax-filter text-2xl"></span>
-          <span>فیلتر کردن</span>
-        </div>
-        <div className="flex gap-2">
-          <span className="isax isax-sort text-2xl"></span>
-          <span>دسته بندی</span>
+      <div className="pb-[24px]">
+        <div className="bg-white-100 border-y border-grey-200 p-4 text-[14px] text-black-400 flex gap-3">
+          <div className="flex gap-2">
+            <span className="isax isax-filter text-2xl"></span>
+            <span>فیلتر کردن</span>
+          </div>
+          <div className="flex gap-2">
+            <span className="isax isax-sort text-2xl"></span>
+            <span>دسته بندی</span>
+          </div>
         </div>
       </div>
 
@@ -184,7 +186,7 @@ const TurnRatingDoctorCard = () => {
         <div className="xl:pt-[39px] flex flex-col gap-6">
           {doctors.map((doctorCard) => (
             <div key={doctorCard.id} className="bg-white-100 rounded-2xl p-6">
-              <div className="flex justify-between">
+              <div className="flex flex-col lg:flex-row justify-between">
                 <div className="flex gap-4">
                   <Image
                     className="rounded-full xl:size-[80px] size-[56px] object-cover"
@@ -204,7 +206,7 @@ const TurnRatingDoctorCard = () => {
                 </div>
                 <div>
                   {/* rating */}
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-row-reverse items-center justify-center lg:justify-start lg:items-start lg:flex-col gap-4 lg:gap-3">
                     <div className="flex items-center text-primary-500 text-[12px]">
                       <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
                         <span className="isax isax-like-1 text-lg"></span>
@@ -214,7 +216,7 @@ const TurnRatingDoctorCard = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="flex pt-[16px]">
+                    <div className="flex lg:pt-[16px]">
                       <div className="flex text-[12px] text-black-350 gap-1 items-center justify-end w-full">
                         <span className="isax isax-star-15 text-lg leading-[18px] text-secondary-500"></span>
                         <span>{doctorCard.rate}</span>
