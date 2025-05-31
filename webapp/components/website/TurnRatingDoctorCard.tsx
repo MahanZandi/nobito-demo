@@ -149,14 +149,16 @@ const TurnRatingDoctorCard = () => {
     <>
       {/* sorte filter in mobile view */}
       <div className="pb-[24px] xl:hidden">
-        <div className="bg-white-100 border-y border-grey-200 p-4 text-[14px] text-black-400 flex gap-3">
-          <div className="flex gap-2">
-            <span className="isax isax-filter text-2xl"></span>
-            <span>فیلتر کردن</span>
-          </div>
-          <div className="flex gap-2">
-            <span className="isax isax-sort text-2xl"></span>
-            <span>دسته بندی</span>
+        <div className="bg-white-100 border-y border-grey-200">
+          <div className="container py-4 text-[14px] text-black-400 flex gap-3">
+            <div className="flex gap-2">
+              <span className="isax isax-filter text-2xl"></span>
+              <span>فیلتر کردن</span>
+            </div>
+            <div className="flex gap-2">
+              <span className="isax isax-sort text-2xl"></span>
+              <span>دسته بندی</span>
+            </div>
           </div>
         </div>
       </div>
@@ -363,7 +365,7 @@ const TurnRatingDoctorCard = () => {
                 </div>
                 <div className="text-[12px] xl:text-[16px]">
                   <span className="font-normal text-grey-500">
-                  <span className="font-[700] text-black-400"> خدمات : </span>
+                    <span className="font-[700] text-black-400"> خدمات : </span>
                     {doctorCard.services}
                   </span>
                 </div>
