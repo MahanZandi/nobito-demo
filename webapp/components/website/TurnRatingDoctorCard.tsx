@@ -9,7 +9,14 @@ const TurnRatingDoctorCard = () => {
   const handelFilterSort = (text: string) => {
     setSelectFilter(text);
   };
-
+  
+  const filters = [
+    { title: "محبوب ترین ها" },
+    { title: "بیشترین امتیاز" },
+    { title: "سریع ترین نوبت" },
+    { title: "کم ترین معطلی در مطب" },
+  ];
+  
   const doctors = [
     {
       id: 1,
@@ -138,12 +145,6 @@ const TurnRatingDoctorCard = () => {
     },
   ];
 
-  const filters = [
-    { title: "محبوب ترین ها" },
-    { title: "بیشترین امتیاز" },
-    { title: "سریع ترین نوبت" },
-    { title: "کم ترین معطلی در مطب" },
-  ];
 
   return (
     <>
