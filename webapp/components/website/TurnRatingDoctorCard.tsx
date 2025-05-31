@@ -315,9 +315,9 @@ const TurnRatingDoctorCard = () => {
             ))}
           </div>
           {/* doctor card in desktop view*/}
-          <Link href="#" className="xl:pt-[39px] flex flex-col gap-6">
+          <div className="xl:pt-[39px] flex flex-col gap-6">
             {doctors.map((doctorCard) => (
-              <div key={doctorCard.id} className="bg-white-100 rounded-2xl p-6">
+              <Link href="#" key={doctorCard.id} className="bg-white-100 rounded-2xl p-6">
                 <div className="flex flex-col lg:flex-row justify-between">
                   <div className="flex gap-4">
                     <Image
@@ -429,9 +429,9 @@ const TurnRatingDoctorCard = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
-          </Link>
+          </div>
         </div>
       </div>
     </>
