@@ -85,7 +85,7 @@ const HomeDoctorsBanners = () => {
   return (
     <section className="text-white mx-2">
       <div className="overflow-x-auto hide-scrollbar overflow-y-hidden container">
-        <div className="flex gap-6">
+        <div className="flex 2xl:justify-center gap-6">
           {banners?.map((banner) => {
             return (
               <div key={banner.id}>
