@@ -138,20 +138,24 @@ const Footer: React.FC = () => {
           <div className="grid w-full xl:grid-cols-4 xl:gap-[64px]">
             {footerLinks.map((link, index) => (
               <div key={link.title} className="py-[16px]">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[16px] font-medium xl:text-[22px] leading-[155%] xl:font-semibold text-black-400">
-                    {link.title}
-                  </h3>
+                <div>
                   <button
                     onClick={() =>
                       setOpenDropdownIndex(
                         openDropdownIndex === index ? null : index
                       )
                     }
-                    className={`flex xl:hidden isax isax-arrow-down-1 text-2xl transition-all ${
-                      openDropdownIndex === index ? "rotate-180" : "rotate-0"
-                    }`}
-                  ></button>
+                    className="flex items-center justify-between w-full"
+                  >
+                    <h3 className="text-[16px] font-medium xl:text-[22px] leading-[155%] xl:font-semibold text-black-400">
+                      {link.title}
+                    </h3>
+                    <span
+                      className={`flex xl:hidden isax isax-arrow-down-1 text-2xl transition-all ${
+                        openDropdownIndex === index ? "rotate-180" : "rotate-0"
+                      }`}
+                    ></span>
+                  </button>
                 </div>
                 {/* footer links item in mobile view (dropdown) */}
                 <ul
@@ -187,11 +191,11 @@ const Footer: React.FC = () => {
             ))}
           </div>
           {/* Footer Form */}
-          <div className="flex flex-col items-center xl:pt-[70px]">
+          <div className="flex flex-col xl:pt-[70px]">
             <div>
-              <div>
+              <div className="flex flex-col gap-2 pb-4">
                 <h4 className="text-[16px]">خبرنامه</h4>
-                <p className="text-[12px] text-grey-500 pt-2 pb-4">
+                <p className="text-[12px] text-grey-500">
                   برای اینکه از جدیدترین اخبار نوبیتو جا نمونید...
                 </p>
               </div>
@@ -201,8 +205,16 @@ const Footer: React.FC = () => {
               >
                 <input
                   type="email"
-                  className={`rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] ${errors.email ? "border-red-500 placeholder-red-500" : "border-grey-400"}`}
-                  placeholder={`${errors.email ? errors.email.message : "ایمیل خود را اینجا وارد کنید"}`}
+                  className={`rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] ${
+                    errors.email
+                      ? "border-red-500 placeholder-red-500"
+                      : "border-grey-400"
+                  }`}
+                  placeholder={`${
+                    errors.email
+                      ? errors.email.message
+                      : "ایمیل خود را اینجا وارد کنید"
+                  }`}
                   {...register("email", {
                     required: "فرمت ایمیل شما نامعتبر است",
                     pattern: {
@@ -211,6 +223,10 @@ const Footer: React.FC = () => {
                     },
                   })}
                 />
+                  {/* text in mobile view */}
+                  <p className="py-2 xl:hidden text-[12px] text-grey-500">
+                    تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
+                  </p>
                 <div className="flex justify-end">
                   <button
                     type="submit"
@@ -221,10 +237,6 @@ const Footer: React.FC = () => {
                   </button>
                 </div>
 
-                {/* text in mobile view */}
-                <p className="py-2 xl:hidden text-[12px] text-grey-500">
-                  تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
-                </p>
               </form>
             </div>
             <p className="pt-2 hidden xl:block text-[12px] text-grey-500">
