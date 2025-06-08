@@ -402,7 +402,7 @@ const HomeSearchBox = () => {
                     ))}
                   </ul>
                 </div>
-                <p className="flex text-[16px] text-black-400 font-medium pt-[24px] justify-start">
+                <p className="flex text-[16px] text-black-400 font-medium pt-6 justify-start">
                   نتایج جستجو:
                 </p>
                 {filterSearchData?.map((data) => (
@@ -410,7 +410,7 @@ const HomeSearchBox = () => {
                     href="#"
                     onClick={() => handleAddRecentSearch(data.name)}
                     key={data.id}
-                    className="flex justify-between pt-[24px] pb-[16px]"
+                    className="flex justify-between pt-6 pb-4"
                   >
                     <div className="flex gap-4">
                       <Image

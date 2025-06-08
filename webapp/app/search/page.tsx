@@ -315,7 +315,7 @@ const MobileSearchPage = () => {
               </div>
               <div className="h-px bg-grey-200 mx-4"></div>
 
-              <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px] px-4">
+              <p className="flex justify-start text-[16px] text-black-400 font-medium pt-6 px-4">
                 نتایج جستجو:
               </p>
               {filterSearchData?.map((data) => (
@@ -323,7 +323,7 @@ const MobileSearchPage = () => {
                   href="#"
                   onClick={() => handleAddRecentSearch(data.name)}
                   key={data.id}
-                  className="flex justify-between pt-[24px] pb-[16px] px-4"
+                  className="flex justify-between pt-6 pb-4 px-4"
                 >
                   <div className="flex gap-4">
                     <Image
