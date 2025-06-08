@@ -322,6 +322,7 @@ const HomeSearchBox = () => {
               </button> */}
 
               <Select.Root
+                value={selectedCity || ""}
                 onValueChange={(value) => {
                   if (value === "clear") {
                     setSelectedCity("");

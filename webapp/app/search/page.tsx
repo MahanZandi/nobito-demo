@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import * as Select from "@radix-ui/react-select";
 
 const MobileSearchPage = () => {
   const searchData = [
@@ -129,16 +130,9 @@ const MobileSearchPage = () => {
   ];
 
   // city selection
-  const [showCities, setShowCities] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
 
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
-
-  // handle clear city selection
-  const handleClearCityFilter = () => {
-    setSelectedCity("");
-    setShowCities(false);
-  };
 
   const [query, setQuery] = useState<string>("");
 
@@ -216,7 +210,7 @@ const MobileSearchPage = () => {
         </Link>
       </div>
       <div className="container pt-[30px]">
-        <div className="px-4 lg:px-0">
+        <div>
           <div>
             <label
               form="search"
@@ -232,51 +226,70 @@ const MobileSearchPage = () => {
                 onChange={(e) => setQuery(e.target.value)}
               />
 
-              <button
-                onClick={() => setShowCities(!showCities)}
-                className="bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
+              <Select.Root
+                value={selectedCity || ""}
+                onValueChange={(value) => {
+                  if (value === "clear") {
+                    setSelectedCity("");
+                  } else {
+                    setSelectedCity(value);
+                  }
+                }}
               >
-                <span className="isax isax-location text-lg leading-6 text-primary-600"></span>
-                <span className={`${selectedCity ? "inline" : "hidden"}`}>
-                  {selectedCity}
-                </span>
-              </button>
-              {/* modal for selected city */}
-              {showCities && (
-                <div className="absolute text-black-400 z-50 left-0 top-8 mt-2 w-[150px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-lg text-right">
-                  <div
-                    onClick={handleClearCityFilter}
-                    className="px-4 py-2 flex items-center gap-2 text-grey-400"
-                  >
-                    <span>برداشتن فیلتر</span>
-                    <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
-                  </div>
-                  {uniqueCities.map((city, index) => (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        setSelectedCity(city);
-                        setShowCities(false);
-                      }}
-                      className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                    >
-                      {city}
-                    </div>
-                  ))}
-                </div>
-              )}
+                <Select.Trigger
+                  className="bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600
+            flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
+                  aria-label="انتخاب شهر"
+                >
+                  <span
+                    className={`isax isax-location text-lg leading-6 text-primary-600 ${
+                      selectedCity === "" ? "relative left-1" : ""
+                    }`}
+                  ></span>
+
+                  <Select.Value />
+                </Select.Trigger>
+
+                <Select.Portal>
+                  <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl z-50">
+                    <Select.ScrollUpButton />
+                    <Select.Viewport className="text-right">
+                      <Select.Separator />
+
+                      {/* بقیه شهرها */}
+                      {uniqueCities.map((city, idx) => (
+                        <Select.Item
+                          key={idx}
+                          value={city}
+                          className="cursor-pointer px-4 py-2 text-black-400 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        >
+                          <Select.ItemText>{city}</Select.ItemText>
+                        </Select.Item>
+                      ))}
+                      {/* آیتم حذف فیلتر */}
+                      <Select.Item
+                        value="clear"
+                        className="cursor-pointer px-4 py-2 text-gray-500 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                      >
+                        <Select.ItemText>برداشتن فیلتر</Select.ItemText>
+                      </Select.Item>
+                    </Select.Viewport>
+                    <Select.ScrollDownButton />
+                    <Select.Arrow />
+                  </Select.Content>
+                </Select.Portal>
+              </Select.Root>
             </label>
           </div>
         </div>
       </div>
 
-      <div className="container">
+      <div className="">
         <div>
-          <div className="container relative rounded-b-2xl">
+          <div className="relative rounded-b-2xl">
             <div className="overflow-y-auto ">
-              <div className="py-4 flex flex-col gap-4 border-b border-grey-200 rounded">
-                <p className="text-[14px] text-black-400 font-medium w-[120px]">
+              <div className="py-4 flex flex-col gap-4 ">
+                <p className="text-[14px] text-black-400 font-medium px-4">
                   جستجو های اخیر:
                 </p>
 
@@ -300,7 +313,9 @@ const MobileSearchPage = () => {
                   ))}
                 </ul>
               </div>
-              <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px]">
+              <div className="h-px bg-grey-200 mx-4"></div>
+
+              <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px] px-4">
                 نتایج جستجو:
               </p>
               {filterSearchData?.map((data) => (
@@ -308,7 +323,7 @@ const MobileSearchPage = () => {
                   href="#"
                   onClick={() => handleAddRecentSearch(data.name)}
                   key={data.id}
-                  className="flex justify-between pt-[24px] pb-[16px]"
+                  className="flex justify-between pt-[24px] pb-[16px] px-4"
                 >
                   <div className="flex gap-4">
                     <Image
@@ -344,13 +359,6 @@ const MobileSearchPage = () => {
           </div>
         </div>
       </div>
-
-      {showCities && (
-        <div
-          className="fixed z-10 inset-0"
-          onClick={() => setShowCities(false)}
-        />
-      )}
     </>
   );
 };
