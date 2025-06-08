@@ -224,7 +224,7 @@ const Footer: React.FC = () => {
                   })}
                 />
                   {/* text in mobile view */}
-                  <p className="py-2 xl:hidden text-[12px] text-grey-500">
+                  <p className="py-1 xl:py-2 xl:hidden text-[12px] text-grey-500">
                     تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
                   </p>
                 <div className="flex justify-end">
