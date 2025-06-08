@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useEffect } from "react";
+import * as Select from "@radix-ui/react-select";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -178,17 +179,10 @@ const HomeSearchBox = () => {
   ];
 
   // city selector
-  const [showCities, setShowCities] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
 
   // This code is to prevent duplicate city names
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
-
-  // handle clear location filter
-  const handleClearCityFilter = () => {
-    setSelectedCity("");
-    setShowCities(false);
-  };
 
   // for open our clode search box
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -312,7 +306,7 @@ const HomeSearchBox = () => {
                 onChange={(e) => setQuery(e.target.value)}
               />
 
-              <button
+              {/* <button
                 onClick={() => setShowCities(!showCities)}
                 className="p-2 px-4 xl:h-10 border text-primary-600 border-primary-600
             flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
@@ -325,41 +319,64 @@ const HomeSearchBox = () => {
                     <span className="hidden xl:block">انتخاب شهر</span>
                   )}
                 </span>
-              </button>
+              </button> */}
+
+              <Select.Root
+                onValueChange={(value) => {
+                  if (value === "clear") {
+                    setSelectedCity("");
+                  } else {
+                    setSelectedCity(value);
+                  }
+                }}
+              >
+                <Select.Trigger
+                  className="p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg min-w-[120px]"
+                  aria-label="انتخاب شهر"
+                >
+                  <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                  <Select.Value placeholder="انتخاب شهر" />
+                </Select.Trigger>
+
+                <Select.Portal>
+                  <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl z-50">
+                    <Select.ScrollUpButton />
+                    <Select.Viewport className="text-right">
+                      <Select.Separator />
+
+                      {/* بقیه شهرها */}
+                      {uniqueCities.map((city, idx) => (
+                        <Select.Item
+                          key={idx}
+                          value={city}
+                          className="cursor-pointer px-4 py-2 text-black-400 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        >
+                          <Select.ItemText>{city}</Select.ItemText>
+                        </Select.Item>
+                      ))}
+                      {/* آیتم حذف فیلتر */}
+                      <Select.Item
+                        value="clear"
+                        className="cursor-pointer px-4 py-2 text-gray-500 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                      >
+                        <Select.ItemText>برداشتن فیلتر</Select.ItemText>
+                      </Select.Item>
+                    </Select.Viewport>
+                    <Select.ScrollDownButton />
+                    <Select.Arrow />
+                  </Select.Content>
+                </Select.Portal>
+              </Select.Root>
             </label>
           </div>
         </div>
       </div>
 
       <div className="absolute w-full hidden xl:block">
-        {/* modal for selected city */}
-        {showCities && (
-          <div className="absolute text-black-400 z-[50] left-[35rem] -top-4 mt-2 w-[200px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 shadow rounded-lg text-right">
-            <div
-              onClick={handleClearCityFilter}
-              className="px-4 py-2 flex items-center gap-2 text-grey-400"
-            >
-              <span>برداشتن فیلتر</span>
-              <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
-            </div>
-            {uniqueCities.map((city, index) => (
-              <div
-                key={index}
-                onClick={() => {
-                  setSelectedCity(city);
-                  setShowCities(false);
-                }}
-                className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-              >
-                {city}
-              </div>
-            ))}
-          </div>
-        )}
         {isFocused && (
           <div>
-            <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
-              <div className="overflow-y-auto max-h-[656px]">
+            <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px] pb-6">
+              <div className="overflow-y-auto scrollbar-thin max-h-[656px]">
                 <div className="py-6 flex border-y border-grey-200 rounded">
                   <p className="text-[16px] text-black-400 font-medium w-[120px]">
                     جستجو های اخیر:
@@ -384,7 +401,7 @@ const HomeSearchBox = () => {
                     ))}
                   </ul>
                 </div>
-                <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px]">
+                <p className="flex text-[16px] text-black-400 font-medium pt-[24px] justify-start">
                   نتایج جستجو:
                 </p>
                 {filterSearchData?.map((data) => (
@@ -435,12 +452,6 @@ const HomeSearchBox = () => {
           <div
             className="fixed z-10 inset-0"
             onClick={() => setIsFocused(false)}
-          />
-        )}
-        {showCities && (
-          <div
-            className="fixed z-10 inset-0"
-            onClick={() => setShowCities(false)}
           />
         )}
       </div>
