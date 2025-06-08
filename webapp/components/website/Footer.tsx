@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col xl:flex-row xl:justify-between gap-[70px]">
           <div className="grid w-full xl:grid-cols-4 xl:gap-[64px]">
             {footerLinks.map((link, index) => (
-              <div key={link.title} className="py-[16px]">
+              <div key={link.title} className="pt-[16px]">
                 <div>
                   <button
                     onClick={() =>
@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
                   className={`flex xl:hidden flex-col transition-all duration-400 gap-4 ${
                     openDropdownIndex === index
                       ? "max-h-[500px] opacity-100 pt-[16px]"
-                      : "max-h-0 opacity-0"
+                      : "max-h-0 hidden"
                   }`}
                 >
                   {link.links.map((item) => (
