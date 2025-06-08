@@ -241,13 +241,12 @@ const MobileSearchPage = () => {
             flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
                   aria-label="انتخاب شهر"
                 >
+                  <Select.Value />
                   <span
                     className={`isax isax-location text-lg leading-6 text-primary-600 ${
-                      selectedCity === "" ? "relative left-1" : ""
+                      selectedCity === "" ? "relative right-1" : ""
                     }`}
                   ></span>
-
-                  <Select.Value />
                 </Select.Trigger>
 
                 <Select.Portal>
@@ -327,9 +326,9 @@ const MobileSearchPage = () => {
                 >
                   <div className="flex gap-4">
                     <Image
-                      className="size-[74px] object-cover rounded-full"
-                      width={74}
-                      height={74}
+                      className="size-[56px] object-cover rounded-full"
+                      width={56}
+                      height={56}
                       alt="پروفایل دکتر"
                       src={data.image}
                     />
