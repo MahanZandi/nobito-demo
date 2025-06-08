@@ -1,0 +1,25 @@
+@layer components {
+  .embla {
+    --slide-spacing: 2rem;
+    @apply mt-6 xl:mt-14;
+  }
+  .embla__viewport {
+    overflow: hidden;
+    @apply mx-auto;
+  }
+  .embla__container {
+    margin-right: calc(var(--slide-spacing) * -1);
+    @apply flex;
+  }
+  .embla__slide {
+    flex: 0 0 25%;
+    min-width: 0;
+    transform: translate3d(0, 0, 0);
+    margin-left: var(--slide-spacing);
+    @apply min-w-0;
+  }
+  .embla__slide__number {
+    user-select: none;
+    @apply xl:w-[400px] xl:h-[260px]  2xl:w-[500px] 2xl:h-[260px] bg-white border border-grey-200 rounded-xl;
+  }
+}
