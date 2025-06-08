@@ -205,7 +205,7 @@ const Footer: React.FC = () => {
               >
                 <input
                   type="email"
-                  className={`rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] ${
+                  className={`rounded-xl border h-[48px] xl:w-[336px] text-[12px] px-[12px] ${
                     errors.email
                       ? "border-red-500 placeholder-red-500"
                       : "border-grey-400"
