@@ -118,11 +118,11 @@ const Footer: React.FC = () => {
             height={178}
             className="w-[112px] h-[178px]"
           />
-          <div className="flex flex-col gap-6 pb-[48px]">
+          <div className="flex flex-col gap-6">
             <h3 className="text-[20px] leading-[155%] font-semibold text-black-400 text-center xl:text-start">
               تلاش ما دسترسی آسان تر به خدمات پزشکی است
             </h3>
-            <p className="text-[16px] leading-[155%] text-grey-500 text-center xl:text-start">
+            <p className="text-4 leading-[155%] text-grey-500 text-center xl:text-start">
               با افتخار به شما پلتفرم نوبیتو را معرفی میکنیم. ما با افتخار به
               عنوان یک پلتفرم جامع ارائه دهنده خدمات پزشکی مثل نوبت‌دهی آنلاین،
               خدمات مشاوره حضوری و غیرحضوری و خدمات پزشکی در منزل را ارائه
@@ -134,10 +134,10 @@ const Footer: React.FC = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col xl:flex-row xl:justify-between gap-[70px]">
-          <div className="grid w-full xl:grid-cols-4 xl:gap-[64px]">
+        <div className="flex flex-col xl:flex-row xl:justify-between gap-10 lg:gap-[70px] mt-12">
+          <div className="grid w-full xl:grid-cols-4 xl:gap-16">
             {footerLinks.map((link, index) => (
-              <div key={link.title} className="py-[16px]">
+              <div key={link.title} className="pt-4">
                 <div>
                   <button
                     onClick={() =>
@@ -147,7 +147,7 @@ const Footer: React.FC = () => {
                     }
                     className="flex items-center justify-between w-full"
                   >
-                    <h3 className="text-[16px] font-medium xl:text-[22px] leading-[155%] xl:font-semibold text-black-400">
+                    <h3 className="text-base font-medium xl:text-[22px] leading-[155%] xl:font-semibold text-black-400">
                       {link.title}
                     </h3>
                     <span
@@ -161,14 +161,14 @@ const Footer: React.FC = () => {
                 <ul
                   className={`flex xl:hidden flex-col transition-all duration-400 gap-4 ${
                     openDropdownIndex === index
-                      ? "max-h-[500px] opacity-100 pt-[16px]"
-                      : "max-h-0 opacity-0"
+                      ? "max-h-[500px] opacity-100 pt-4"
+                      : "max-h-0 hidden"
                   }`}
                 >
                   {link.links.map((item) => (
                     <li
                       key={item.title}
-                      className="text-[14px] leading-[155%] text-grey-500"
+                      className="text-sm leading-[155%] text-grey-500"
                     >
                       <Link href={item.url} className="hover:underline">
                         {item.title}
@@ -177,8 +177,8 @@ const Footer: React.FC = () => {
                   ))}
                 </ul>
                 {/* horizontal line between footer links in mobile view */}
-                <div className="xl:hidden h-px mt-[16px] bg-grey-200"></div>
-                <ul className="hidden xl:flex flex-col gap-[16px] text-[16px] leading-[155%] text-grey-500 pt-[32px]">
+                <div className="xl:hidden h-px mt-4 bg-grey-200"></div>
+                <ul className="hidden xl:flex flex-col gap-4 text-base leading-[155%] text-grey-500 pt-8">
                   {link.links.map((item) => (
                     <li key={item.title}>
                       <Link href={item.url} className="hover:underline">
@@ -194,8 +194,8 @@ const Footer: React.FC = () => {
           <div className="flex flex-col xl:pt-[70px]">
             <div>
               <div className="flex flex-col gap-2 pb-4">
-                <h4 className="text-[16px]">خبرنامه</h4>
-                <p className="text-[12px] text-grey-500">
+                <h4 className="text-4">خبرنامه</h4>
+                <p className="text-xs text-grey-500">
                   برای اینکه از جدیدترین اخبار نوبیتو جا نمونید...
                 </p>
               </div>
@@ -205,7 +205,7 @@ const Footer: React.FC = () => {
               >
                 <input
                   type="email"
-                  className={`rounded-xl border h-[48px] w-[336px] text-[12px] px-[12px] ${
+                  className={`rounded-xl border h-[48px] xl:w-[336px] text-xs px-3 ${
                     errors.email
                       ? "border-red-500 placeholder-red-500"
                       : "border-grey-400"
@@ -224,13 +224,13 @@ const Footer: React.FC = () => {
                   })}
                 />
                   {/* text in mobile view */}
-                  <p className="py-1 xl:py-2 xl:hidden text-[12px] text-grey-500">
+                  <p className="py-1 xl:py-2 xl:hidden text-xs text-grey-500">
                     تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
                   </p>
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="flex w-[100px] cursor-pointer bg-primary-500 text-white-500 gap-2 py-[12px] px-[16px] rounded-lg"
+                    className="flex w-[100px] cursor-pointer bg-primary-500 text-white-500 gap-2 py-3 px-4 rounded-lg"
                   >
                     <span>ارسال</span>
                     <span className="isax isax-arrow-left-3 text-2xl"></span>
@@ -239,7 +239,7 @@ const Footer: React.FC = () => {
 
               </form>
             </div>
-            <p className="pt-2 hidden xl:block text-[12px] text-grey-500">
+            <p className="pt-2 hidden xl:block text-xs text-grey-500">
               تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
             </p>
           </div>
@@ -250,42 +250,42 @@ const Footer: React.FC = () => {
           <div>
             <div className="flex justify-center xl:justify-start gap-6">
               <Image
-                className="xl:size-[80px] size-[64px]"
+                className="xl:size-20 size-16"
                 alt="نماد های اعتماد"
                 src={"/images/footer-1.png"}
                 width={64}
                 height={64}
               />
               <Image
-                className="xl:size-[80px] size-[64px]"
+                className="xl:size-20 size-16"
                 alt="نماد های اعتماد"
                 src={"/images/footer-2.png"}
                 width={64}
                 height={64}
               />
               <Image
-                className="xl:size-[80px] size-[64px]"
+                className="xl:size-20 size-16"
                 alt="نماد های اعتماد"
                 src={"/images/footer-3.png"}
                 width={64}
                 height={64}
               />
               <Image
-                className="xl:size-[80px] size-[64px]"
+                className="xl:size-20 size-16"
                 alt="نماد های اعتماد"
                 src={"/images/footer-4.png"}
                 width={64}
                 height={64}
               />
             </div>
-            <p className="text-[14px] xl:text-[16px] text-grey-500 leading-[155%] xl:w-[422px] pt-[24px] xl:text-start text-center">
+            <p className="text-[14px] xl:text-4 text-grey-500 leading-[155%] xl:w-[422px] pt-6 xl:text-start text-center">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
               استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه
             </p>
           </div>
           {/* contact information */}
           <div className="flex-col flex items-center">
-            <div className="grid xl:gap-[32px] gap-6 text-black-400">
+            <div className="grid xl:gap-8 gap-6 text-black-400">
               <div className="gap-2 flex items-center">
                 <span className="isax isax-call-calling5 text-2xl text-primary-500"></span>
                 <p>تماس با پشتیبانی : ۱۲۳۴۵۶۷۸-۰۲۱</p>
@@ -305,16 +305,16 @@ const Footer: React.FC = () => {
         {/* social links */}
         <div className="flex flex-col-reverse xl:flex-row justify-between items-center">
           <div className="text-grey-500 ">
-            <div className="pt-[24px]">
+            <div className="pt-6">
               <div className="h-px bg-grey-400 xl:hidden block"></div>
-              <p className="pt-[24px] xl:p-0">
+              <p className="pt-6 xl:p-0">
                 تمامی حقوق این وبسایت متعلق به شرکت نوبیتو است
               </p>
             </div>
           </div>
 
           <div className="flex w-[272px] xl:w-auto justify-between xl:justify-center gap-4 pt-6">
-            <Link href="#" className="size-[32px]">
+            <Link href="#" className="size-8">
               <Image
                 width={32}
                 height={32}
@@ -322,7 +322,7 @@ const Footer: React.FC = () => {
                 src={"/images/png-icons/instagram.png"}
               />
             </Link>
-            <Link href="#" className="size-[32px]">
+            <Link href="#" className="size-8">
               <Image
                 width={32}
                 height={32}
@@ -330,7 +330,7 @@ const Footer: React.FC = () => {
                 src={"/images/png-icons/instagram.png"}
               />
             </Link>
-            <Link href="#" className="size-[32px]">
+            <Link href="#" className="size-8">
               <Image
                 width={32}
                 height={32}
@@ -338,7 +338,7 @@ const Footer: React.FC = () => {
                 src={"/images/png-icons/Linkdin.png"}
               />
             </Link>
-            <Link href="#" className="size-[32px]">
+            <Link href="#" className="size-8">
               <Image
                 width={32}
                 height={32}
