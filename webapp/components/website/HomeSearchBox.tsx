@@ -384,8 +384,8 @@ const HomeSearchBox = () => {
       <div className="absolute w-full hidden xl:block">
         {isFocused && (
           <div>
-            <div className="container relative z-20 bg-white rounded-b-2xl shadow lg:w-[798px] pb-6">
-              <div className="overflow-y-auto scrollbar-thin max-h-[656px]">
+            <div className="mx-auto relative bg-grey-50 pt-[24px] overflow-y-auto scrollbar-thin z-20 rounded-b-2xl shadow lg:w-[798px] pb-12 px-12">
+              <div className="max-h-[656px]">
                 <div className="py-6 flex border-y border-grey-200 rounded">
                   <p className="text-[16px] text-black-400 font-medium w-[120px]">
                     جستجو های اخیر:
@@ -405,7 +405,7 @@ const HomeSearchBox = () => {
                         <span
                           onClick={() => deleteRecentSearch(index)}
                           className="isax isax-close-circle text-[16px] cursor-pointer"
-                        ></span>
+                        ></span>                        
                       </li>
                     ))}
                   </ul>
@@ -418,7 +418,7 @@ const HomeSearchBox = () => {
                     href="#"
                     onClick={() => handleAddRecentSearch(data.name)}
                     key={data.id}
-                    className="flex justify-between pt-6 pb-4"
+                    className="flex justify-between pt-6 pb-4 border-b border-grey-200"
                   >
                     <div className="flex gap-4">
                       <Image
