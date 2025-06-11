@@ -237,8 +237,7 @@ const MobileSearchPage = () => {
                 }}
               >
                 <Select.Trigger
-                  className="bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
+                  className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
                   aria-label="انتخاب شهر"
                 >
                   <Select.Value />
@@ -260,7 +259,9 @@ const MobileSearchPage = () => {
                         <Select.Item
                           key={idx}
                           value={city}
-                          className="cursor-pointer px-4 py-2 text-black-400 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          className="cursor-pointer select-none rounded-md px-4 py-2 text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                           focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                            transition-colors text-gray-500"
                         >
                           <Select.ItemText>{city}</Select.ItemText>
                         </Select.Item>
@@ -268,7 +269,9 @@ const MobileSearchPage = () => {
                       {/* آیتم حذف فیلتر */}
                       <Select.Item
                         value="clear"
-                        className="cursor-pointer px-4 py-2 text-gray-500 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        className="select-none rounded-md text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                           focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                           cursor-pointer px-4 py-2 text-gray-500 transition-colors"
                       >
                         <Select.ItemText>برداشتن فیلتر</Select.ItemText>
                       </Select.Item>

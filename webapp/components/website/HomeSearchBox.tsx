@@ -332,11 +332,11 @@ const HomeSearchBox = () => {
                 }}
               >
                 <Select.Trigger
-                  className="p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg min-w-[120px]"
+                  className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
                   aria-label="انتخاب شهر"
                 >
-                  <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
                   <Select.Value placeholder="انتخاب شهر" />
+                  <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
                 </Select.Trigger>
 
                 <Select.Portal>
@@ -350,7 +350,11 @@ const HomeSearchBox = () => {
                         <Select.Item
                           key={idx}
                           value={city}
-                          className="cursor-pointer px-4 py-2 text-black-400 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          className="
+                           cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
+                          data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                          focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                          transition-colors"
                         >
                           <Select.ItemText>{city}</Select.ItemText>
                         </Select.Item>
@@ -358,7 +362,11 @@ const HomeSearchBox = () => {
                       {/* آیتم حذف فیلتر */}
                       <Select.Item
                         value="clear"
-                        className="cursor-pointer px-4 py-2 text-gray-500 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        className="cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
+                          data-[state=checked]:bg-primary-50 data-[state=checked]:text-primary-600
+                          data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                          focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                          transition-colors"
                       >
                         <Select.ItemText>برداشتن فیلتر</Select.ItemText>
                       </Select.Item>
