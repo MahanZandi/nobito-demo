@@ -255,12 +255,35 @@ const HomeSearchBox = () => {
     setQuery(recentSearcheItem);
   };
 
+  // handel mobile search open and close
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState<boolean>(false);
+
+  const openMobileSearch = () => {
+    setIsMobileSearchOpen(true);
+  };
+
+  const closeMobileSearch = () => {
+    setIsMobileSearchOpen(false);
+  };
+
+  useEffect(() => {
+    if (isMobileSearchOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileSearchOpen]);
+
   return (
     <>
       <div>
         <div className="px-4 xl:px-0">
           {/*this input for mobile becouse we have a search page in mobile view and linke worked in mobile view */}
-          <Link className="xl:hidden" href="/search">
+          <div className="xl:hidden" onClick={openMobileSearch}>
             <label
               form="search"
               className={`lg:w-[798px] lg:h-20 bg-white-50 relative z-20 -mt-10 p-5
@@ -286,7 +309,7 @@ const HomeSearchBox = () => {
                 <span className="hidden xl:block">انتخاب شهر</span>
               </button>
             </label>
-          </Link>
+          </div>
           {/* this input for desktop view becouse we have a search box in desktop */}
           <div className="hidden xl:block">
             <label
@@ -305,21 +328,6 @@ const HomeSearchBox = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
-
-              {/* <button
-                onClick={() => setShowCities(!showCities)}
-                className="p-2 px-4 xl:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
-              >
-                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-                <span>
-                  {selectedCity ? (
-                    selectedCity
-                  ) : (
-                    <span className="hidden xl:block">انتخاب شهر</span>
-                  )}
-                </span>
-              </button> */}
 
               <Select.Root
                 value={selectedCity || ""}
@@ -405,7 +413,7 @@ const HomeSearchBox = () => {
                         <span
                           onClick={() => deleteRecentSearch(index)}
                           className="isax isax-close-circle text-[16px] cursor-pointer"
-                        ></span>                        
+                        ></span>
                       </li>
                     ))}
                   </ul>
@@ -463,6 +471,172 @@ const HomeSearchBox = () => {
             onClick={() => setIsFocused(false)}
           />
         )}
+      </div>
+
+      {/* this overlay for mobile view */}
+      <div
+        className={`bg-white overflow-y-scroll fixed transition-transform duration-300 inset-0 z-50 ${
+          isMobileSearchOpen ? "translate-0" : "translate-x-full"
+        }`}
+      >
+        <div className="bg-white text-[22px] font-medium text-black py-3 flex items-center px-4">
+          <p className="flex justify-center mx-auto">جستجو</p>
+          <div onClick={closeMobileSearch}>
+            <span className="isax isax-arrow-left text-2xl flex"></span>
+          </div>
+        </div>
+        <div className="container pt-[30px]">
+          <div>
+            <div>
+              <label
+                form="search"
+                className="h-[48px] bg-white-50 relative z-20 p-3
+                      flex items-center gap-2 justify-center rounded-lg"
+              >
+                <span className="isax isax-search-normal text-[18px] leading-8 text-grey-400 flex-1"></span>
+                <input
+                  id="search"
+                  className="absolute inset-0 outline-none flex-1 p-5 pr-[38px] text-black-400 text-[14px]"
+                  placeholder="جستجو پزشک،درمانگر،کلینیک..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+
+                <Select.Root
+                  value={selectedCity || ""}
+                  onValueChange={(value) => {
+                    if (value === "clear") {
+                      setSelectedCity("");
+                    } else {
+                      setSelectedCity(value);
+                    }
+                  }}
+                >
+                  <Select.Trigger
+                    className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
+                    aria-label="انتخاب شهر"
+                  >
+                    <Select.Value />
+                    <span
+                      className={`isax isax-location text-lg leading-6 text-primary-600 ${
+                        selectedCity === "" ? "relative right-1" : ""
+                      }`}
+                    ></span>
+                  </Select.Trigger>
+
+                  <Select.Portal>
+                    <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl z-50">
+                      <Select.ScrollUpButton />
+                      <Select.Viewport className="text-right">
+                        <Select.Separator />
+
+                        {/* بقیه شهرها */}
+                        {uniqueCities.map((city, idx) => (
+                          <Select.Item
+                            key={idx}
+                            value={city}
+                            className="cursor-pointer select-none rounded-md px-4 py-2 text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                                     focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                                      transition-colors text-gray-500"
+                          >
+                            <Select.ItemText>{city}</Select.ItemText>
+                          </Select.Item>
+                        ))}
+                        {/* آیتم حذف فیلتر */}
+                        <Select.Item
+                          value="clear"
+                          className="select-none rounded-md text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                                     focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                                     cursor-pointer px-4 py-2 text-gray-500 transition-colors"
+                        >
+                          <Select.ItemText>برداشتن فیلتر</Select.ItemText>
+                        </Select.Item>
+                      </Select.Viewport>
+                      <Select.ScrollDownButton />
+                      <Select.Arrow />
+                    </Select.Content>
+                  </Select.Portal>
+                </Select.Root>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <div className="relative rounded-b-2xl">
+              <div className="overflow-y-auto ">
+                <div className="py-4 flex flex-col gap-4 ">
+                  <p className="text-[14px] text-black-400 font-medium px-4">
+                    جستجو های اخیر:
+                  </p>
+
+                  <ul className="flex items-center gap-3 overflow-x-auto flex-1">
+                    {recentSearches?.map((recentSearcheItem, index) => (
+                      <li
+                        key={index}
+                        className="flex items-center gap-2 text-grey-500 bg-white rounded-[200px] min-w-[120px] h-[28px] px-[12px]"
+                      >
+                        <p
+                          className="cursor-pointer line-clamp-1 text-[14px]"
+                          onClick={() => handleSelectSearch(recentSearcheItem)}
+                        >
+                          {recentSearcheItem}
+                        </p>
+                        <span
+                          onClick={() => deleteRecentSearch(index)}
+                          className="isax isax-close-circle text-[18px] cursor-pointer"
+                        ></span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="h-px bg-grey-200 mx-4"></div>
+
+                <p className="flex justify-start text-[16px] text-black-400 font-medium pt-6 px-4">
+                  نتایج جستجو:
+                </p>
+                {filterSearchData?.map((data) => (
+                  <Link
+                    href="#"
+                    onClick={() => handleAddRecentSearch(data.name)}
+                    key={data.id}
+                    className="flex justify-between pt-6 pb-4 px-4"
+                  >
+                    <div className="flex gap-4">
+                      <Image
+                        className="size-[56px] object-cover rounded-full"
+                        width={56}
+                        height={56}
+                        alt="پروفایل دکتر"
+                        src={data.image}
+                      />
+                      <div className="flex flex-col gap-3">
+                        <p className="text-black-400 text-[16px]">
+                          <HighlightedText text={data.name} query={query} />
+                        </p>
+                        <p className="text-grey-500 text-[12px]">
+                          <HighlightedText
+                            text={data.specialization}
+                            query={query}
+                          />
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-end text-primary-500">
+                      <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
+                        <span className="isax isax-like-1 text-lg"></span>
+                        <span>
+                          <span> {data.happyPatientsPercentage} </span>
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
