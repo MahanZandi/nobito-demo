@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import Sidebar from "./SideBar";
+import MobileSearchOverlay from "./MobileSearchOverlay";
 
 interface NavLink {
   title: string;
@@ -174,6 +175,13 @@ const AppHeader: React.FC = () => {
   // states for mobile side bar menu
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  // for search in mobile view
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState<boolean>(false);
+
+  const openMobileSearch = () => {
+    setIsMobileSearchOpen(true);
+  };
+
   return (
     <header className="bg-white-100 py-2 xl:pt-6 xl:pb-4">
       <div className="container">
@@ -218,9 +226,9 @@ const AppHeader: React.FC = () => {
 
             {/* sidebar and searchbar for mobile view */}
             <div className="flex text-2xl gap-3 xl:hidden">
-              <Link href="/search">
+              <div onClick={openMobileSearch}>
                 <span className="isax isax-search-normal"></span>
-              </Link>
+              </div>
               <span
                 className="isax isax-menu-1"
                 onClick={() => setIsOpen(true)}
@@ -240,6 +248,7 @@ const AppHeader: React.FC = () => {
       </div>
 
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MobileSearchOverlay isMobileSearchOpen={isMobileSearchOpen} setIsMobileSearchOpen={setIsMobileSearchOpen} />
     </header>
   );
 };
