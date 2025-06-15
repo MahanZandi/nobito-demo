@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useEffect } from "react";
+import * as Select from "@radix-ui/react-select";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -281,20 +282,61 @@ const TurnRatingSearchBox = () => {
             onChange={(e) => setQuery(e.target.value)}
           />
 
-          <button
-            onClick={() => setShowCities(!showCities)}
-            className="p-2 px-4 xl:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+          <Select.Root
+            value={selectedCity || ""}
+            onValueChange={(value) => {
+              if (value === "clear") {
+                setSelectedCity("");
+              } else {
+                setSelectedCity(value);
+              }
+            }}
           >
-            <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-            <span>
-              {selectedCity ? (
-                selectedCity
-              ) : (
-                <span className="hidden xl:block">انتخاب شهر</span>
-              )}
-            </span>
-          </button>
+            <Select.Trigger
+              className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+              aria-label="انتخاب شهر"
+            >
+              <Select.Value placeholder="انتخاب شهر" />
+              <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+            </Select.Trigger>
+
+            <Select.Portal>
+              <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl z-50">
+                <Select.ScrollUpButton />
+                <Select.Viewport className="text-right">
+                  <Select.Separator />
+
+                  {/* بقیه شهرها */}
+                  {uniqueCities.map((city, idx) => (
+                    <Select.Item
+                      key={idx}
+                      value={city}
+                      className="
+                           cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
+                          data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                          focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                          transition-colors"
+                    >
+                      <Select.ItemText>{city}</Select.ItemText>
+                    </Select.Item>
+                  ))}
+                  {/* آیتم حذف فیلتر */}
+                  <Select.Item
+                    value="clear"
+                    className="cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
+                          data-[state=checked]:bg-primary-50 data-[state=checked]:text-primary-600
+                          data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                          focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                          transition-colors"
+                  >
+                    <Select.ItemText>برداشتن فیلتر</Select.ItemText>
+                  </Select.Item>
+                </Select.Viewport>
+                <Select.ScrollDownButton />
+                <Select.Arrow />
+              </Select.Content>
+            </Select.Portal>
+          </Select.Root>
         </label>
       </div>
 
@@ -325,8 +367,8 @@ const TurnRatingSearchBox = () => {
         )}
         {isFocused && (
           <div>
-            <div className="relative left-4 z-20 bg-white rounded-b-2xl shadow lg:w-[798px]">
-              <div className="overflow-y-auto max-h-[656px]">
+            <div className="relative left-4 z-20 pt-6 bg-grey-50 overflow-y-auto scrollbar-thin rounded-b-2xl shadow lg:w-[798px] pb-12">
+              <div className="px-12 max-h-[656px]">
                 <div className="py-6 flex border-y border-grey-200 rounded">
                   <p className="text-[16px] text-black-400 font-medium w-[180px] pr-[48px]">
                     جستجو های اخیر:
