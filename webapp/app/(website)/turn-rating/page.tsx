@@ -7,7 +7,7 @@ const TurnRating = () => {
       <div className="xl:py-[48px]">
         <TurnRatingSearchBox />
       </div>
-      <div className="xl:flex gap-[24px]">
+      <div className="xl:container w- xl:flex gap-[24px]">
         {/* this div just to cover the space for next component(filter component) */}
         <div className="w-[405px] rounded-2xl bg-white-100 h-[1000px] hidden xl:block"></div>
         <TurnRatingDoctorCard />
