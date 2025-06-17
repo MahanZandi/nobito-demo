@@ -1,10 +1,17 @@
-"use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as Select from "@radix-ui/react-select";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
 
-const MobileSearchPage = () => {
+interface MobileSearchOverlayProps {
+  isMobileSearchOpen: boolean;
+  setIsMobileSearchOpen: (isOpen: boolean) => void;
+}
+
+const MobileSearchOverlay: React.FC<MobileSearchOverlayProps> = ({
+  isMobileSearchOpen,
+  setIsMobileSearchOpen,
+}) => {
   const searchData = [
     {
       id: 1,
@@ -126,20 +133,64 @@ const MobileSearchPage = () => {
       location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
       city: "تهران",
     },
+
+    {
+      id: 11,
+      name: " ابراهیمی",
+      image: "/images/doctor-6.jpeg",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
+    {
+      id: 12,
+      name: " محمدی",
+      image: "/images/doctor-8.png",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
+    {
+      id: 13,
+      name: " فربد",
+      image: "/images/doctor-9.png",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
+    {
+      id: 14,
+      name: "دکتر محمدی",
+      image: "/images/doctor-10.png",
+      rate: "4/5",
+      specialization: "متخصص قلب و عروق",
+      happyPatients: "2374",
+      happyPatientsPercentage: "97%",
+      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+      city: "تهران",
+    },
   ];
 
-  // city selection
-  const [showCities, setShowCities] = useState(false);
+  // city selector
   const [selectedCity, setSelectedCity] = useState("");
 
+  // This code is to prevent duplicate city names
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
 
-  // handle clear city selection
-  const handleClearCityFilter = () => {
-    setSelectedCity("");
-    setShowCities(false);
-  };
-
+  // query for search input
   const [query, setQuery] = useState<string>("");
 
   // filter search data (name, specialization, city)
@@ -207,21 +258,42 @@ const MobileSearchPage = () => {
     setQuery(recentSearcheItem);
   };
 
+  const closeMobileSearch = () => {
+    setIsMobileSearchOpen(false);
+  };
+
+  useEffect(() => {
+    if (isMobileSearchOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileSearchOpen]);
+
+  
   return (
-    <>
+    <div
+      className={`bg-white overflow-y-scroll fixed transition-transform duration-300 inset-0 z-50 xl:hidden block ${
+        isMobileSearchOpen ? "translate-0" : "translate-x-full"
+      }`}
+    >
       <div className="bg-white text-[22px] font-medium text-black py-3 flex items-center px-4">
         <p className="flex justify-center mx-auto">جستجو</p>
-        <Link href="/">
+        <div onClick={closeMobileSearch}>
           <span className="isax isax-arrow-left text-2xl flex"></span>
-        </Link>
+        </div>
       </div>
       <div className="container pt-[30px]">
-        <div className="px-4 lg:px-0">
+        <div>
           <div>
             <label
               form="search"
               className="h-[48px] bg-white-50 relative z-20 p-3
-            flex items-center gap-2 justify-center rounded-lg"
+                      flex items-center gap-2 justify-center rounded-lg"
             >
               <span className="isax isax-search-normal text-[18px] leading-8 text-grey-400 flex-1"></span>
               <input
@@ -232,51 +304,72 @@ const MobileSearchPage = () => {
                 onChange={(e) => setQuery(e.target.value)}
               />
 
-              <button
-                onClick={() => setShowCities(!showCities)}
-                className="bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
+              <Select.Root
+                value={selectedCity || ""}
+                onValueChange={(value) => {
+                  if (value === "clear") {
+                    setSelectedCity("");
+                  } else {
+                    setSelectedCity(value);
+                  }
+                }}
               >
-                <span className="isax isax-location text-lg leading-6 text-primary-600"></span>
-                <span className={`${selectedCity ? "inline" : "hidden"}`}>
-                  {selectedCity}
-                </span>
-              </button>
-              {/* modal for selected city */}
-              {showCities && (
-                <div className="absolute text-black-400 z-50 left-0 top-8 mt-2 w-[150px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-lg text-right">
-                  <div
-                    onClick={handleClearCityFilter}
-                    className="px-4 py-2 flex items-center gap-2 text-grey-400"
-                  >
-                    <span>برداشتن فیلتر</span>
-                    <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
-                  </div>
-                  {uniqueCities.map((city, index) => (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        setSelectedCity(city);
-                        setShowCities(false);
-                      }}
-                      className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                    >
-                      {city}
-                    </div>
-                  ))}
-                </div>
-              )}
+                <Select.Trigger
+                  className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
+                  aria-label="انتخاب شهر"
+                >
+                  <Select.Value />
+                  <span
+                    className={`isax isax-location text-lg leading-6 text-primary-600 ${
+                      selectedCity === "" ? "relative right-1" : ""
+                    }`}
+                  ></span>
+                </Select.Trigger>
+
+                <Select.Portal>
+                  <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl z-50">
+                    <Select.ScrollUpButton />
+                    <Select.Viewport className="text-right">
+                      <Select.Separator />
+
+                      {/* بقیه شهرها */}
+                      {uniqueCities.map((city, idx) => (
+                        <Select.Item
+                          key={idx}
+                          value={city}
+                          className="cursor-pointer select-none rounded-md px-4 py-2 text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                                     focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                                      transition-colors text-gray-500"
+                        >
+                          <Select.ItemText>{city}</Select.ItemText>
+                        </Select.Item>
+                      ))}
+                      {/* آیتم حذف فیلتر */}
+                      <Select.Item
+                        value="clear"
+                        className="select-none rounded-md text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                                     focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                                     cursor-pointer px-4 py-2 text-gray-500 transition-colors"
+                      >
+                        <Select.ItemText>برداشتن فیلتر</Select.ItemText>
+                      </Select.Item>
+                    </Select.Viewport>
+                    <Select.ScrollDownButton />
+                    <Select.Arrow />
+                  </Select.Content>
+                </Select.Portal>
+              </Select.Root>
             </label>
           </div>
         </div>
       </div>
 
-      <div className="container">
+      <div>
         <div>
-          <div className="container relative rounded-b-2xl">
+          <div className="relative rounded-b-2xl">
             <div className="overflow-y-auto ">
-              <div className="py-4 flex flex-col gap-4 border-b border-grey-200 rounded">
-                <p className="text-[14px] text-black-400 font-medium w-[120px]">
+              <div className="py-4 flex flex-col gap-4 ">
+                <p className="text-[14px] text-black-400 font-medium px-4">
                   جستجو های اخیر:
                 </p>
 
@@ -300,7 +393,9 @@ const MobileSearchPage = () => {
                   ))}
                 </ul>
               </div>
-              <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px]">
+              <div className="h-px bg-grey-200 mx-4"></div>
+
+              <p className="flex justify-start text-[16px] text-black-400 font-medium pt-6 px-4">
                 نتایج جستجو:
               </p>
               {filterSearchData?.map((data) => (
@@ -308,13 +403,13 @@ const MobileSearchPage = () => {
                   href="#"
                   onClick={() => handleAddRecentSearch(data.name)}
                   key={data.id}
-                  className="flex justify-between pt-[24px] pb-[16px]"
+                  className="flex justify-between pt-6 pb-4 px-4"
                 >
                   <div className="flex gap-4">
                     <Image
-                      className="size-[74px] object-cover rounded-full"
-                      width={74}
-                      height={74}
+                      className="size-[56px] object-cover rounded-full"
+                      width={56}
+                      height={56}
                       alt="پروفایل دکتر"
                       src={data.image}
                     />
@@ -344,15 +439,8 @@ const MobileSearchPage = () => {
           </div>
         </div>
       </div>
-
-      {showCities && (
-        <div
-          className="fixed z-10 inset-0"
-          onClick={() => setShowCities(false)}
-        />
-      )}
-    </>
+    </div>
   );
 };
 
-export default MobileSearchPage;
+export default MobileSearchOverlay;
