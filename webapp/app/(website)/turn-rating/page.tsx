@@ -8,7 +8,7 @@ const TurnRating = () => {
       <div className="xl:py-[48px]">
         <TurnRatingSearchBox />
       </div>
-      <div className="flex gap-6">
+      <div className="xl:flex gap-6">
         <TurnRatingFilterCard />
         <TurnRatingDoctorCard />
       </div>
