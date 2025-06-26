@@ -309,7 +309,7 @@ const TurnRatingDoctorCard = () => {
                         href="#"
                         className="cursor-pointer hidden xl:block text-white-500 bg-primary-500 rounded-md px-3 py-2"
                       >
-                        <button className="flex gap-2">
+                        <button className="flex cursor-pointer gap-2">
                           <span className="text-[16px] font-medium">
                             دریافت نوبت
                           </span>
