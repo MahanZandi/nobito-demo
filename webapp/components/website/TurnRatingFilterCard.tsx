@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import * as Accordion from "@radix-ui/react-accordion";
 
 const TurnRatingFilterCard = () => {
   type ConsultationMethod = "calling" | "online" | "in-person" | "";
@@ -129,6 +130,25 @@ const TurnRatingFilterCard = () => {
             </p>
           </div>
         </div>
+        <div className="h-px bg-grey-250 my-6"></div>
+        <Accordion.Root type="single" collapsible>
+          <Accordion.Item value="item-1" className="border border-grey-200 rounded-lg w-full p-3 bg-white-100">
+            <Accordion.Header>
+              <Accordion.Trigger className="flex w-full group">
+                <div className="flex-1 flex">
+                  <p className="text-black-400 font-medium text-[16px]">تخصص</p>
+                  <span></span> {/* TODO create ping with animation when we have a Expertise*/}
+                </div>
+                <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span> 
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="p-4">
+              <p> {/* TODO create the contents */}
+                و فرعون گفت: برای درهم کوبیدن این دو نفر هر جادوگر دانا و زبردستی را نزد من آورید.
+              </p>
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
       </div>
     </div>
   );

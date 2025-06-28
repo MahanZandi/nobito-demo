@@ -3,6 +3,8 @@ import TurnRatingDoctorCard from "@/components/website/TurnRatingDoctorCard";
 import TurnRatingFilterCard from "@/components/website/TurnRatingFilterCard";
 import Footer from "@/components/website/Footer";
 
+// TODO تمامی اطلاعات دکتر را در اینجا بگذارم و  در  کامپوننت های زیر استفاده کنم
+
 const TurnRating = () => {
   return (
     <>
