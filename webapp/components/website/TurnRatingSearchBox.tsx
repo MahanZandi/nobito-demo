@@ -5,178 +5,22 @@ import * as Select from "@radix-ui/react-select";
 import Image from "next/image";
 import Link from "next/link";
 
-const TurnRatingSearchBox = () => {
-  const searchData = [
-    {
-      id: 1,
-      name: "عباس میراحمدی",
-      image: "/images/doctor-1.png",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "گرگان - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "گرگان",
-    },
-    {
-      id: 2,
-      name: "دکتر محمدی",
-      image: "/images/doctor-2.jpeg",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "آبادان - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "آبادان",
-    },
-    {
-      id: 3,
-      name: "مهران مهام",
-      image: "/images/doctor-3.jpeg",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 4,
-      name: "لیلا میرزایی",
-      image: "/images/doctor-4.jpeg",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 5,
-      name: "دکتر محمدی",
-      image: "/images/doctor-5.jpeg",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 6,
-      name: "محمد ابراهیمی",
-      image: "/images/doctor-6.jpeg",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 7,
-      name: "دکتر محمدی",
-      image: "/images/doctor-7.jpeg",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 8,
-      name: "دکتر محمدی",
-      image: "/images/doctor-8.png",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 9,
-      name: "امیرحسین فربد",
-      image: "/images/doctor-9.png",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 10,
-      name: "دکتر محمدی",
-      image: "/images/doctor-10.png",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
+interface TurnRatingSearchBoxProps {
+  searchData: {
+    id: number;
+    name: string;
+    image: string;
+    rate: string;
+    specialization: string;
+    happyPatients: string;
+    happyPatientsPercentage: string;
+    skills: string[];
+    location: string;
+    city: string;
+  }[];
+}
 
-    {
-      id: 11,
-      name: " ابراهیمی",
-      image: "/images/doctor-6.jpeg",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 12,
-      name: " محمدی",
-      image: "/images/doctor-8.png",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 13,
-      name: " فربد",
-      image: "/images/doctor-9.png",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-    {
-      id: 14,
-      name: "دکتر محمدی",
-      image: "/images/doctor-10.png",
-      rate: "4/5",
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-      city: "تهران",
-    },
-  ];
+const TurnRatingSearchBox:React.FC<TurnRatingSearchBoxProps> = ({searchData}) => {
 
   // city selector
   const [showCities, setShowCities] = useState(false);

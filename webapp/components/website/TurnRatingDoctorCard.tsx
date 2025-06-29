@@ -3,149 +3,42 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const TurnRatingDoctorCard = () => {
+interface TurnRatingDoctorCardProps {
+  doctors: {
+    id: number;
+    name: string;
+    image: string;
+    rate: string;
+    comment: string;
+    services: string;
+    takeTurns: {
+      title: string;
+      icon: string;
+    }[];
+    specialization: string;
+    happyPatients: string;
+    successfulTurn: string;
+    happyPatientsPercentage: string;
+    skills: string[];
+    city: string;
+    features: string[];
+    workingHours: string;
+    location: string;
+  }[];
+
+  filtersSort: {
+    title: string;
+  }[];
+}
+
+const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, filtersSort }) => {
   const [selectFilter, setSelectFilter] = useState<string>("");
 
   const handelFilterSort = (text: string) => {
     setSelectFilter(text);
   };
   
-  const filters = [
-    { title: "محبوب ترین ها" },
-    { title: "بیشترین امتیاز" },
-    { title: "سریع ترین نوبت" },
-    { title: "کم ترین معطلی در مطب" },
-  ];
   
-  const doctors = [
-    {
-      id: 1,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-9.png",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-
-    {
-      id: 2,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-2.jpeg",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-    {
-      id: 3,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-10.png",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-    {
-      id: 4,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-8.png",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-  ];
-
-
   return (
     <>
       {/* sorte filter in mobile view */}
@@ -172,7 +65,7 @@ const TurnRatingDoctorCard = () => {
               <span className="text-[32px] isax isax-sort"></span>
               <span className="text-xl font-semibold">دسته بندی :</span>
               <ul className="pr-[40px] flex gap-[24px] text-[14px] font-normal text-grey-350">
-                {filters.map((item) => (
+                {filtersSort.map((item) => (
                   <li
                     key={item.title}
                     onClick={() => handelFilterSort(item.title)}
