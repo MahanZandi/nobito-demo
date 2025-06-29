@@ -1,5 +1,5 @@
 import HomeHeroSection from "@/components/website/HomeHeroSection";
-import HomeSearchBox from "@/components/website/HomeSearchBox";
+import PageSearchBox from "@/components/website/PageSearchBox";
 import HomeStatistics from "@/components/website/HomeStatistics";
 import HomePopularSection from "@/components/website/HomePopularSection";
 import HomeConsultantsSection from "@/components/website/HomeConsultantsSection";
@@ -16,7 +16,12 @@ const Home = () => {
       <HomeHeroSection />
 
       <div className="pb-[36px] xl:pb-[72px]">
-        <HomeSearchBox />
+        <PageSearchBox
+          lableStyle="lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
+            flex items-center gap-2 mx-auto"
+          mobileInput={true}
+          container="px-4 xl:px-0"
+        />
       </div>
 
       <div className="py-[36px] xl:my-[72px]">

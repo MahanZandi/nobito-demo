@@ -1,10 +1,15 @@
-import TurnRatingSearchBox from "@/components/website/TurnRatingSearchBox";
+import PageSearchBox from "@/components/website/PageSearchBox";
 
 const TurnRating = () => {
   return (
     <div>
       <div className="py-[48px]">
-        <TurnRatingSearchBox />
+        <PageSearchBox
+          lableStyle="lg:w-[798px] h-20 bg-white-50 relative z-20 p-5
+            flex items-center gap-2"
+          mobileInput={false}
+          container="container"
+        />
       </div>
     </div>
   );

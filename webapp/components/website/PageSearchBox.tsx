@@ -2,10 +2,21 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import * as Select from "@radix-ui/react-select";
+import MobileSearchOverlay from "./MobileSearchOverlay";
 import Image from "next/image";
 import Link from "next/link";
 
-const TurnRatingSearchBox = () => {
+interface SearchBoxProps {
+  container: string;
+  mobileInput: boolean;
+  lableStyle: string;
+}
+
+const PageSearchBox = ({
+  container,
+  mobileInput,
+  lableStyle,
+}: SearchBoxProps) => {
   const searchData = [
     {
       id: 1,
@@ -179,17 +190,10 @@ const TurnRatingSearchBox = () => {
   ];
 
   // city selector
-  const [showCities, setShowCities] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
 
   // This code is to prevent duplicate city names
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
-
-  // handle clear location filter
-  const handleClearCityFilter = () => {
-    setSelectedCity("");
-    setShowCities(false);
-  };
 
   // for open our clode search box
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -262,118 +266,144 @@ const TurnRatingSearchBox = () => {
     setQuery(recentSearcheItem);
   };
 
+  // handel mobile search open and close
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState<boolean>(false);
+
+  const openMobileSearch = () => {
+    setIsMobileSearchOpen(true);
+  };
+
+  useEffect(() => {
+    if (isMobileSearchOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileSearchOpen]);
+
   return (
-    <div className="container">
-      <div className="hidden xl:block">
-        <label
-          form="search"
-          className={`lg:w-[798px] h-20 bg-white-50 relative z-20 p-5
-            flex items-center gap-2 ${
+    <>
+      <div className={container}>
+        {/*this input for mobile becouse we have a search page in mobile view and linke worked in mobile view */}
+        <div
+          className={`xl:hidden ${mobileInput ? "block" : "hidden"}`}
+          onClick={openMobileSearch}
+        >
+          <label
+            form="search"
+            className={`lg:w-[798px] lg:h-20 bg-white-50 relative z-20 -mt-10 p-5
+            flex items-center gap-2 mx-auto ${
               isFocused ? "rounded-t-2xl" : "rounded-2xl"
             }`}
-        >
-          <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
-          <input
-            id="search"
-            onFocus={() => setIsFocused(true)}
-            className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-            placeholder="جستجو پزشک،درمانگر،کلینیک..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-
-          <Select.Root
-            value={selectedCity || ""}
-            onValueChange={(value) => {
-              if (value === "clear") {
-                setSelectedCity("");
-              } else {
-                setSelectedCity(value);
-              }
-            }}
           >
-            <Select.Trigger
-              className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
-              aria-label="انتخاب شهر"
+            <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+            <input
+              id="search"
+              onFocus={() => setIsFocused(true)}
+              className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+              placeholder="جستجو پزشک،درمانگر،کلینیک..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+
+            <button
+              className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
+            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
             >
-              <Select.Value placeholder="انتخاب شهر" />
               <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-            </Select.Trigger>
+              <span className="hidden xl:block">انتخاب شهر</span>
+            </button>
+          </label>
+        </div>
+        {/* this input for desktop view becouse we have a search box in desktop */}
+        <div className="hidden xl:block">
+          <label
+            form="search"
+            className={`${isFocused ? "rounded-t-2xl" : "rounded-2xl"} ${lableStyle}`}
+          >
+            <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+            <input
+              id="search"
+              onFocus={() => setIsFocused(true)}
+              className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+              placeholder="جستجو پزشک،درمانگر،کلینیک..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
 
-            <Select.Portal>
-              <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl z-50">
-                <Select.ScrollUpButton />
-                <Select.Viewport className="text-right">
-                  <Select.Separator />
+            <Select.Root
+              value={selectedCity || ""}
+              onValueChange={(value) => {
+                if (value === "clear") {
+                  setSelectedCity("");
+                } else {
+                  setSelectedCity(value);
+                }
+              }}
+            >
+              <Select.Trigger
+                className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+                aria-label="انتخاب شهر"
+              >
+                <Select.Value placeholder="انتخاب شهر" />
+                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+              </Select.Trigger>
 
-                  {/* بقیه شهرها */}
-                  {uniqueCities.map((city, idx) => (
-                    <Select.Item
-                      key={idx}
-                      value={city}
-                      className="
+              <Select.Portal>
+                <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl z-50">
+                  <Select.ScrollUpButton />
+                  <Select.Viewport className="text-right">
+                    <Select.Separator />
+
+                    {/* بقیه شهرها */}
+                    {uniqueCities.map((city, idx) => (
+                      <Select.Item
+                        key={idx}
+                        value={city}
+                        className="
                            cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
                           data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
                           focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
                           transition-colors"
-                    >
-                      <Select.ItemText>{city}</Select.ItemText>
-                    </Select.Item>
-                  ))}
-                  {/* آیتم حذف فیلتر */}
-                  <Select.Item
-                    value="clear"
-                    className="cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
+                      >
+                        <Select.ItemText>{city}</Select.ItemText>
+                      </Select.Item>
+                    ))}
+                    {/* آیتم حذف فیلتر */}
+                    <Select.Item
+                      value="clear"
+                      className="cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
                           data-[state=checked]:bg-primary-50 data-[state=checked]:text-primary-600
                           data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
                           focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
                           transition-colors"
-                  >
-                    <Select.ItemText>برداشتن فیلتر</Select.ItemText>
-                  </Select.Item>
-                </Select.Viewport>
-                <Select.ScrollDownButton />
-                <Select.Arrow />
-              </Select.Content>
-            </Select.Portal>
-          </Select.Root>
-        </label>
+                    >
+                      <Select.ItemText>برداشتن فیلتر</Select.ItemText>
+                    </Select.Item>
+                  </Select.Viewport>
+                  <Select.ScrollDownButton />
+                  <Select.Arrow />
+                </Select.Content>
+              </Select.Portal>
+            </Select.Root>
+          </label>
+        </div>
       </div>
 
-      <div className="absolute w-full hidden xl:block container">
-        {/* modal for selected city */}
-        {showCities && (
-          <div className="absolute text-black-400 z-[50] left-[27rem] -top-4 mt-2 w-[200px] max-h-[150px] overflow-y-auto bg-white border border-gray-200 shadow rounded-lg text-right">
-            <div
-              onClick={handleClearCityFilter}
-              className="px-4 py-2 flex items-center gap-2 text-grey-400"
-            >
-              <span>برداشتن فیلتر</span>
-              <span className="isax isax-close-circle text-[18px] cursor-pointer"></span>
-            </div>
-            {uniqueCities.map((city, index) => (
-              <div
-                key={index}
-                onClick={() => {
-                  setSelectedCity(city);
-                  setShowCities(false);
-                }}
-                className="cursor-pointer px-4 py-2 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-              >
-                {city}
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="absolute w-full hidden xl:block">
         {isFocused && (
           <div>
-            <div className="relative left-4 z-20 pt-6 bg-grey-50 overflow-y-auto scrollbar-thin rounded-b-2xl shadow lg:w-[798px] pb-12">
-              <div className="px-12 max-h-[656px]">
+            <div className="mx-auto relative bg-grey-50 pt-6 overflow-y-auto scrollbar-thin z-20 rounded-b-2xl shadow lg:w-[798px] pb-12 px-12">
+              <div className="max-h-[656px]">
                 <div className="py-6 flex border-y border-grey-200 rounded">
-                  <p className="text-[16px] text-black-400 font-medium w-[180px] pr-[48px]">
+                  <p className="text-[16px] text-black-400 font-medium w-[120px]">
                     جستجو های اخیر:
                   </p>
-                  <ul className="flex items-center gap-3 pr-6 flex-1 overflow-x-scroll scrollbar-thin pl-[48px]">
+                  <ul className="flex items-center gap-3 pr-6 flex-1 overflow-x-scroll scrollbar-thin">
                     {recentSearches?.map((recentSearcheItem, index) => (
                       <li
                         key={index}
@@ -393,7 +423,7 @@ const TurnRatingSearchBox = () => {
                     ))}
                   </ul>
                 </div>
-                <p className="flex justify-start text-[16px] text-black-400 font-medium pt-[24px] px-[48px]">
+                <p className="flex text-[16px] text-black-400 font-medium pt-6 justify-start">
                   نتایج جستجو:
                 </p>
                 {filterSearchData?.map((data) => (
@@ -401,7 +431,7 @@ const TurnRatingSearchBox = () => {
                     href="#"
                     onClick={() => handleAddRecentSearch(data.name)}
                     key={data.id}
-                    className="flex justify-between pt-[24px] pb-[16px] px-[48px]"
+                    className="flex justify-between pt-6 pb-4 border-b border-grey-200"
                   >
                     <div className="flex gap-4">
                       <Image
@@ -446,15 +476,15 @@ const TurnRatingSearchBox = () => {
             onClick={() => setIsFocused(false)}
           />
         )}
-        {showCities && (
-          <div
-            className="fixed z-10 inset-0"
-            onClick={() => setShowCities(false)}
-          />
-        )}
       </div>
-    </div>
+
+      {/* this overlay for mobile view */}
+      <MobileSearchOverlay
+        isMobileSearchOpen={isMobileSearchOpen}
+        setIsMobileSearchOpen={setIsMobileSearchOpen}
+      />
+    </>
   );
 };
 
-export default TurnRatingSearchBox;
+export default PageSearchBox;
