@@ -155,6 +155,14 @@ const filterExpertise = [
   { title: "زنان و زایمان" },
 ];
 
+const servises = [
+  {title: "جراحی مغز"},
+  {title: "درمان میگرن"},
+  {title: "عصب شناسی"},
+  {title: "نورولوژی"},
+  {title: "ستون فقرات"},
+]
+
 const TurnRating = () => {
   return (
     <>
@@ -163,7 +171,7 @@ const TurnRating = () => {
           <TurnRatingSearchBox searchData={doctors} />
         </div>
         <div className="xl:flex gap-6">
-          <TurnRatingFilterCard filterExpertise={filterExpertise} />
+          <TurnRatingFilterCard doctors={doctors} servises={servises} filterExpertise={filterExpertise} />
           <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
         </div>
       </div>

@@ -5,14 +5,42 @@ import * as Checkbox from "@radix-ui/react-checkbox";
 
 type ConsultationMethod = "calling" | "online" | "in-person" | "";
 
+interface DoctorType {
+  id?: number;
+  name?: string;
+  image?: string;
+  rate?: string;
+  comment?: string;
+  services?: string;
+  takeTurns?: {
+    title: string;
+    icon: string;
+  }[];
+  specialization?: string;
+  happyPatients?: string;
+  successfulTurn?: string;
+  happyPatientsPercentage?: string;
+  skills?: string[];
+  city?: string;
+  features?: string[];
+  workingHours?: string;
+  location?: string;
+}
+
 interface TurnRatingFilterCardProps {
   filterExpertise: {
     title: string;
   }[];
+  servises: {
+    title: string;
+  }[];
+  doctors: DoctorType[];
 }
 
 const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   filterExpertise,
+  servises,
+  doctors,
 }) => {
   const [consultationMethod, setConsultationMethod] =
     useState<ConsultationMethod>("");
@@ -29,29 +57,50 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   // query for search input
   const [query, setQuery] = useState<string>("");
 
-  // filter search data (name, specialization, city)
-  const filterSearchData = filterExpertise.filter((searchItem) => {
-    const matchesQuery = searchItem.title
-      .toLowerCase()
-      .includes(query.toLowerCase());
+  const filterExpertiseData = filterExpertise.filter((item) =>
+    item.title.toLowerCase().includes(query.toLowerCase())
+  );
 
-    return matchesQuery;
-  });
+  const filterServicesData = servises.filter((item) =>
+    item.title.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // const filterCityData = Array.from(
+  //   new Set(
+  //     doctors
+  //       .filter((item) =>
+  //         item.city?.toLowerCase().includes(query.toLowerCase())
+  //       )
+  //       .map((item) => item.city)
+  //   )
+  // );
 
   const [selectedExpertise, setSelectedExpertise] = useState<string[]>([]);
 
-  const handleExpertiseChange = (
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+
+  const [selectedCitys, setSelectedCitys] = useState<string[]>([]);
+
+  const handleFilterChange = (
     title: string,
-    checked: boolean | "indeterminate"
+    checked: boolean | "indeterminate",
+    type: "expertise" | "services" | "city"
   ) => {
-    if (checked === true) {
-      setSelectedExpertise((prev) => [...prev, title]);
-      console.log(`Expertise added: ${title}`);
-    } else {
-      setSelectedExpertise((prev) => prev.filter((item) => item !== title));
-      console.log(`Expertise removed: ${title}`);
+    if (type === "expertise") {
+      if (checked === true) {
+        setSelectedExpertise((prev) => [...prev, title]);
+      } else {
+        setSelectedExpertise((prev) => prev.filter((item) => item !== title));
+      }
+    } else if (type === "services") {
+      if (checked === true) {
+        setSelectedServices((prev) => [...prev, title]);
+      } else {
+        setSelectedServices((prev) => prev.filter((item) => item !== title));
+      }
     }
   };
+
   return (
     <div className="w-[505px] rounded-2xl bg-white-100 hidden xl:block">
       <div className="py-10 px-6">
@@ -166,6 +215,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             </p>
           </div>
         </div>
+        {/* expertise accordion */}
         <div className="h-px bg-grey-250 my-6"></div>
         <Accordion.Root type="single" collapsible>
           <Accordion.Item
@@ -195,7 +245,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             <Accordion.Content className="flex flex-col">
               <label
                 form="search"
-                className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded"
+                className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-md"
               >
                 <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
                 <input
@@ -208,7 +258,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
               </label>
 
               <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
-                {filterSearchData.map((item) => (
+                {filterExpertiseData.map((item) => (
                   <div
                     key={item.title}
                     className="text-black-400 flex flex-col pt-4"
@@ -218,7 +268,374 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                       <Checkbox.Root
                         checked={selectedExpertise.includes(item.title)}
                         onCheckedChange={(checked) =>
-                          handleExpertiseChange(item.title, checked)
+                          handleFilterChange(item.title, checked, "expertise")
+                        }
+                        className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
+                      >
+                        <Checkbox.Indicator className="flex items-center justify-center">
+                          {/* svg for check icon font awesome */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="14"
+                            width="12.25"
+                            viewBox="0 0 448 512"
+                          >
+                            <path
+                              fill="#ffffff"
+                              d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                            />
+                          </svg>
+                        </Checkbox.Indicator>
+                      </Checkbox.Root>
+                      <p
+                        className={`flex pr-2 ${
+                          selectedExpertise.includes(item.title)
+                            ? "text-primary-500"
+                            : ""
+                        }`}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                    <div className="pt-4">
+                      <div className="h-px bg-grey-50 w-full"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
+
+        {/* services accordion */}
+        <div className="h-px bg-grey-250 my-6"></div>
+        <Accordion.Root type="single" collapsible>
+          <Accordion.Item
+            value="item-1"
+            className="border border-grey-200 rounded-lg w-full p-3 bg-white-100"
+          >
+            <Accordion.Header>
+              <Accordion.Trigger className="flex w-full group">
+                <div className="flex-1 flex items-center">
+                  <p className="text-black-400 font-medium text-[16px] pl-2">
+                    خدمات
+                  </p>
+                  {/* blue circle */}
+                  {selectedServices.length > 0 && (
+                    <span className="size-1.5 bg-sky-600 rounded-full"></span>
+                  )}
+                </div>
+                <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span>
+              </Accordion.Trigger>
+              {/* selected services */}
+              {selectedServices.length > 0 && (
+                <p className="text-grey-400 text-[12px] pt-2 line-clamp-1">
+                  {selectedServices.join(", ")}
+                </p>
+              )}
+            </Accordion.Header>
+            <Accordion.Content className="flex flex-col">
+              <label
+                form="search"
+                className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-lg"
+              >
+                <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
+                <input
+                  id="search"
+                  className="outline-none text-black-400"
+                  placeholder="جستجو"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </label>
+
+              <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
+                {filterServicesData.map((item) => (
+                  <div
+                    key={item.title}
+                    className="text-black-400 flex flex-col pt-4"
+                  >
+                    <div className="flex">
+                      {/* check box radix ui */}
+                      <Checkbox.Root
+                        checked={selectedServices.includes(item.title)}
+                        onCheckedChange={(checked) =>
+                          handleFilterChange(item.title, checked, "services")
+                        }
+                        className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
+                      >
+                        <Checkbox.Indicator className="flex items-center justify-center">
+                          {/* svg for check icon font awesome */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="14"
+                            width="12.25"
+                            viewBox="0 0 448 512"
+                          >
+                            <path
+                              fill="#ffffff"
+                              d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                            />
+                          </svg>
+                        </Checkbox.Indicator>
+                      </Checkbox.Root>
+                      <p
+                        className={`flex pr-2 ${
+                          selectedExpertise.includes(item.title)
+                            ? "text-primary-500"
+                            : ""
+                        }`}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                    <div className="pt-4">
+                      <div className="h-px bg-grey-50 w-full"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
+
+        {/* TODO  */}
+        <div className="h-px bg-grey-250 my-6"></div>
+        <div className="grid grid-cols-2 gap-[17px]">
+          {/* citys accordion */}
+          <Accordion.Root type="single" collapsible>
+            <Accordion.Item
+              value="item-1"
+              className="border border-grey-200 rounded-lg w-full p-3 bg-white-100"
+            >
+              <Accordion.Header>
+                <Accordion.Trigger className="flex w-full group">
+                  <div className="flex-1 flex items-center">
+                    <p className="text-black-400 font-medium text-[16px] pl-2">
+                      خدمات
+                    </p>
+                    {/* blue circle */}
+                    {selectedServices.length > 0 && (
+                      <span className="size-1.5 bg-sky-600 rounded-full"></span>
+                    )}
+                  </div>
+                  <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span>
+                </Accordion.Trigger>
+                {/* selected citys */}
+                {selectedServices.length > 0 && (
+                  <p className="text-grey-400 text-[12px] pt-2 line-clamp-1">
+                    {selectedServices.join(", ")}
+                  </p>
+                )}
+              </Accordion.Header>
+              <Accordion.Content className="flex flex-col">
+                <label
+                  form="search"
+                  className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-lg"
+                >
+                  <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
+                  <input
+                    id="search"
+                    className="outline-none text-black-400"
+                    placeholder="جستجو"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                  />
+                </label>
+
+                <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
+                  {filterServicesData.map((item) => (
+                    <div
+                      key={item.title}
+                      className="text-black-400 flex flex-col pt-4"
+                    >
+                      <div className="flex">
+                        {/* check box radix ui */}
+                        <Checkbox.Root
+                          checked={selectedServices.includes(item.title)}
+                          onCheckedChange={(checked) =>
+                            handleFilterChange(item.title, checked, "services")
+                          }
+                          className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
+                        >
+                          <Checkbox.Indicator className="flex items-center justify-center">
+                            {/* svg for check icon font awesome */}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="14"
+                              width="12.25"
+                              viewBox="0 0 448 512"
+                            >
+                              <path
+                                fill="#ffffff"
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                              />
+                            </svg>
+                          </Checkbox.Indicator>
+                        </Checkbox.Root>
+                        <p
+                          className={`flex pr-2 ${
+                            selectedExpertise.includes(item.title)
+                              ? "text-primary-500"
+                              : ""
+                          }`}
+                        >
+                          {item.title}
+                        </p>
+                      </div>
+                      <div className="pt-4">
+                        <div className="h-px bg-grey-50 w-full"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Accordion.Content>
+            </Accordion.Item>
+          </Accordion.Root>
+
+          <Accordion.Root type="single" collapsible>
+            <Accordion.Item
+              value="item-1"
+              className="border border-grey-200 rounded-lg w-full p-3 bg-white-100"
+            >
+              <Accordion.Header>
+                <Accordion.Trigger className="flex w-full group">
+                  <div className="flex-1 flex items-center">
+                    <p className="text-black-400 font-medium text-[16px] pl-2">
+                      خدمات
+                    </p>
+                    {/* blue circle */}
+                    {selectedServices.length > 0 && (
+                      <span className="size-1.5 bg-sky-600 rounded-full"></span>
+                    )}
+                  </div>
+                  <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span>
+                </Accordion.Trigger>
+                {/* selected services */}
+                {selectedServices.length > 0 && (
+                  <p className="text-grey-400 text-[12px] pt-2 line-clamp-1">
+                    {selectedServices.join(", ")}
+                  </p>
+                )}
+              </Accordion.Header>
+              <Accordion.Content className="flex flex-col">
+                <label
+                  form="search"
+                  className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-lg"
+                >
+                  <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
+                  <input
+                    id="search"
+                    className="outline-none text-black-400"
+                    placeholder="جستجو"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                  />
+                </label>
+
+                <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
+                  {filterServicesData.map((item) => (
+                    <div
+                      key={item.title}
+                      className="text-black-400 flex flex-col pt-4"
+                    >
+                      <div className="flex">
+                        {/* check box radix ui */}
+                        <Checkbox.Root
+                          checked={selectedServices.includes(item.title)}
+                          onCheckedChange={(checked) =>
+                            handleFilterChange(item.title, checked, "services")
+                          }
+                          className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
+                        >
+                          <Checkbox.Indicator className="flex items-center justify-center">
+                            {/* svg for check icon font awesome */}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="14"
+                              width="12.25"
+                              viewBox="0 0 448 512"
+                            >
+                              <path
+                                fill="#ffffff"
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                              />
+                            </svg>
+                          </Checkbox.Indicator>
+                        </Checkbox.Root>
+                        <p
+                          className={`flex pr-2 ${
+                            selectedExpertise.includes(item.title)
+                              ? "text-primary-500"
+                              : ""
+                          }`}
+                        >
+                          {item.title}
+                        </p>
+                      </div>
+                      <div className="pt-4">
+                        <div className="h-px bg-grey-50 w-full"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Accordion.Content>
+            </Accordion.Item>
+          </Accordion.Root>
+        </div>
+        <div className="h-px bg-grey-250 my-6"></div>
+        <Accordion.Root type="single" collapsible>
+          <Accordion.Item
+            value="item-1"
+            className="border border-grey-200 rounded-lg w-full p-3 bg-white-100"
+          >
+            <Accordion.Header>
+              <Accordion.Trigger className="flex w-full group">
+                <div className="flex-1 flex items-center">
+                  <p className="text-black-400 font-medium text-[16px] pl-2">
+                    خدمات
+                  </p>
+                  {/* blue circle */}
+                  {selectedServices.length > 0 && (
+                    <span className="size-1.5 bg-sky-600 rounded-full"></span>
+                  )}
+                </div>
+                <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span>
+              </Accordion.Trigger>
+              {/* selected services */}
+              {selectedServices.length > 0 && (
+                <p className="text-grey-400 text-[12px] pt-2 line-clamp-1">
+                  {selectedServices.join(", ")}
+                </p>
+              )}
+            </Accordion.Header>
+            <Accordion.Content className="flex flex-col">
+              <label
+                form="search"
+                className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-lg"
+              >
+                <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
+                <input
+                  id="search"
+                  className="outline-none text-black-400"
+                  placeholder="جستجو"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </label>
+
+              <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
+                {filterServicesData.map((item) => (
+                  <div
+                    key={item.title}
+                    className="text-black-400 flex flex-col pt-4"
+                  >
+                    <div className="flex">
+                      {/* check box radix ui */}
+                      <Checkbox.Root
+                        checked={selectedServices.includes(item.title)}
+                        onCheckedChange={(checked) =>
+                          handleFilterChange(item.title, checked, "services")
                         }
                         className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
                       >
