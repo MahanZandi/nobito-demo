@@ -5,7 +5,7 @@ const TurnRating = () => {
     <div>
       <div className="py-[48px]">
         <PageSearchBox
-          lableStyle="lg:w-[798px] h-20 bg-white-50 relative z-20 p-5
+          lableStyle="lg:w-[798px] h-20 bg-white-50 relative p-5
             flex items-center gap-2"
           mobileInput={false}
           container="container"

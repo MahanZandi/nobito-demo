@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-select": "^2.2.5",
     "@tailwindcss/postcss": "^4.0.14",
     "embla-carousel-react": "^8.5.2",
