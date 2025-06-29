@@ -173,13 +173,25 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
           >
             <Accordion.Header>
               <Accordion.Trigger className="flex w-full group">
-                <div className="flex-1 flex">
-                  <p className="text-black-400 font-medium text-[16px]">تخصص</p>
-                  <span></span>
-                  {/* TODO create ping with animation when we have a Expertise*/}
+                <div className="flex-1 flex items-center">
+                  <p className="text-black-400 font-medium text-[16px] pl-2">
+                    تخصص
+                  </p>
+                  {/* blue circle */}
+                  {selectedExpertise.length > 0 && (
+                    <span className="size-1.5 bg-sky-600 rounded-full">
+                      {selectedExpertise.length}
+                    </span>
+                  )} 
                 </div>
                 <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span>
               </Accordion.Trigger>
+              {/* selected expertise */}
+              {selectedExpertise.length > 0 && (
+                <p className="text-grey-400 text-[12px] pt-2 line-clamp-1">
+                  {selectedExpertise.join(", ")}
+                </p>
+              )}
             </Accordion.Header>
             <Accordion.Content className="flex flex-col">
               <label
@@ -198,7 +210,10 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
 
               <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
                 {filterSearchData.map((item) => (
-                  <div key={item.title} className="text-black-400 flex flex-col pt-4">
+                  <div
+                    key={item.title}
+                    className="text-black-400 flex flex-col pt-4"
+                  >
                     <div className="flex">
                       {/* check box radix ui */}
                       <Checkbox.Root
