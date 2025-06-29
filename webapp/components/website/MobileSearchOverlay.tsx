@@ -1,12 +1,17 @@
-"use client";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as Select from "@radix-ui/react-select";
-import MobileSearchOverlay from "./MobileSearchOverlay";
 import Image from "next/image";
 import Link from "next/link";
 
-const HomeSearchBox = () => {
+interface MobileSearchOverlayProps {
+  isMobileSearchOpen: boolean;
+  setIsMobileSearchOpen: (isOpen: boolean) => void;
+}
+
+const MobileSearchOverlay: React.FC<MobileSearchOverlayProps> = ({
+  isMobileSearchOpen,
+  setIsMobileSearchOpen,
+}) => {
   const searchData = [
     {
       id: 1,
@@ -185,9 +190,6 @@ const HomeSearchBox = () => {
   // This code is to prevent duplicate city names
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
 
-  // for open our clode search box
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-
   // query for search input
   const [query, setQuery] = useState<string>("");
 
@@ -256,11 +258,8 @@ const HomeSearchBox = () => {
     setQuery(recentSearcheItem);
   };
 
-  // handel mobile search open and close
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState<boolean>(false);
-
-  const openMobileSearch = () => {
-    setIsMobileSearchOpen(true);
+  const closeMobileSearch = () => {
+    setIsMobileSearchOpen(false);
   };
 
   useEffect(() => {
@@ -275,52 +274,31 @@ const HomeSearchBox = () => {
     };
   }, [isMobileSearchOpen]);
 
+  
   return (
-    <>
-      <div>
-        <div className="px-4 xl:px-0">
-          {/*this input for mobile becouse we have a search page in mobile view and linke worked in mobile view */}
-          <div className="xl:hidden" onClick={openMobileSearch}>
+    <div
+      className={`bg-white overflow-y-scroll fixed transition-transform duration-300 inset-0 z-50 xl:hidden block ${
+        isMobileSearchOpen ? "translate-0" : "translate-x-full"
+      }`}
+    >
+      <div className="bg-white text-[22px] font-medium text-black py-3 flex items-center px-4">
+        <p className="flex justify-center mx-auto">جستجو</p>
+        <div onClick={closeMobileSearch}>
+          <span className="isax isax-arrow-left text-2xl flex"></span>
+        </div>
+      </div>
+      <div className="container pt-[30px]">
+        <div>
+          <div>
             <label
               form="search"
-              className={`lg:w-[798px] lg:h-20 bg-white-50 relative z-20 -mt-10 p-5
-            flex items-center gap-2 mx-auto ${
-              isFocused ? "rounded-t-2xl" : "rounded-2xl"
-            }`}
+              className="h-[48px] bg-white-50 relative z-20 p-3
+                      flex items-center gap-2 justify-center rounded-lg"
             >
-              <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+              <span className="isax isax-search-normal text-[18px] leading-8 text-grey-400 flex-1"></span>
               <input
                 id="search"
-                onFocus={() => setIsFocused(true)}
-                className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-                placeholder="جستجو پزشک،درمانگر،کلینیک..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-
-              <button
-                className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
-            flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
-              >
-                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-                <span className="hidden xl:block">انتخاب شهر</span>
-              </button>
-            </label>
-          </div>
-          {/* this input for desktop view becouse we have a search box in desktop */}
-          <div className="hidden xl:block">
-            <label
-              form="search"
-              className={`lg:w-[798px] h-20 bg-white-50 relative z-20 -mt-10 p-5
-            flex items-center gap-2 mx-auto ${
-              isFocused ? "rounded-t-2xl" : "rounded-2xl"
-            }`}
-            >
-              <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
-              <input
-                id="search"
-                onFocus={() => setIsFocused(true)}
-                className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+                className="absolute inset-0 outline-none flex-1 p-5 pr-[38px] text-black-400 text-[14px]"
                 placeholder="جستجو پزشک،درمانگر،کلینیک..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -337,11 +315,15 @@ const HomeSearchBox = () => {
                 }}
               >
                 <Select.Trigger
-                  className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+                  className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none bg-primary-50 p-1.5 lg:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-sm"
                   aria-label="انتخاب شهر"
                 >
-                  <Select.Value placeholder="انتخاب شهر" />
-                  <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                  <Select.Value />
+                  <span
+                    className={`isax isax-location text-lg leading-6 text-primary-600 ${
+                      selectedCity === "" ? "relative right-1" : ""
+                    }`}
+                  ></span>
                 </Select.Trigger>
 
                 <Select.Portal>
@@ -355,11 +337,9 @@ const HomeSearchBox = () => {
                         <Select.Item
                           key={idx}
                           value={city}
-                          className="
-                           cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
-                          data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
-                          focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
-                          transition-colors"
+                          className="cursor-pointer select-none rounded-md px-4 py-2 text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                                     focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                                      transition-colors text-gray-500"
                         >
                           <Select.ItemText>{city}</Select.ItemText>
                         </Select.Item>
@@ -367,11 +347,9 @@ const HomeSearchBox = () => {
                       {/* آیتم حذف فیلتر */}
                       <Select.Item
                         value="clear"
-                        className="cursor-pointer select-none rounded-md px-4 py-2 text-right text-gray-600
-                          data-[state=checked]:bg-primary-50 data-[state=checked]:text-primary-600
-                          data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
-                          focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
-                          transition-colors"
+                        className="select-none rounded-md text-right data-[highlighted]:bg-gray-200 data-[highlighted]:text-primary-700
+                                     focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none
+                                     cursor-pointer px-4 py-2 text-gray-500 transition-colors"
                       >
                         <Select.ItemText>برداشتن فیلتر</Select.ItemText>
                       </Select.Item>
@@ -386,97 +364,83 @@ const HomeSearchBox = () => {
         </div>
       </div>
 
-      <div className="absolute w-full hidden xl:block">
-        {isFocused && (
-          <div>
-            <div className="mx-auto relative bg-grey-50 pt-[24px] overflow-y-auto scrollbar-thin z-20 rounded-b-2xl shadow lg:w-[798px] pb-12 px-12">
-              <div className="max-h-[656px]">
-                <div className="py-6 flex border-y border-grey-200 rounded">
-                  <p className="text-[16px] text-black-400 font-medium w-[120px]">
-                    جستجو های اخیر:
-                  </p>
-                  <ul className="flex items-center gap-3 pr-6 flex-1 overflow-x-scroll scrollbar-thin">
-                    {recentSearches?.map((recentSearcheItem, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center justify-between gap-2 text-grey-500 bg-black-50 rounded-[200px] min-w-[150px] h-[28px] px-[12px]"
-                      >
-                        <p
-                          className="cursor-pointer line-clamp-1"
-                          onClick={() => handleSelectSearch(recentSearcheItem)}
-                        >
-                          {recentSearcheItem}
-                        </p>
-                        <span
-                          onClick={() => deleteRecentSearch(index)}
-                          className="isax isax-close-circle text-[16px] cursor-pointer"
-                        ></span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <p className="flex text-[16px] text-black-400 font-medium pt-6 justify-start">
-                  نتایج جستجو:
+      <div>
+        <div>
+          <div className="relative rounded-b-2xl">
+            <div className="overflow-y-auto ">
+              <div className="py-4 flex flex-col gap-4 ">
+                <p className="text-[14px] text-black-400 font-medium px-4">
+                  جستجو های اخیر:
                 </p>
-                {filterSearchData?.map((data) => (
-                  <Link
-                    href="#"
-                    onClick={() => handleAddRecentSearch(data.name)}
-                    key={data.id}
-                    className="flex justify-between pt-6 pb-4 border-b border-grey-200"
-                  >
-                    <div className="flex gap-4">
-                      <Image
-                        className="size-[74px] object-cover rounded-full"
-                        width={74}
-                        height={74}
-                        alt="پروفایل دکتر"
-                        src={data.image}
-                      />
-                      <div className="flex flex-col gap-3">
-                        <p className="text-black-400 text-[20px]">
-                          <HighlightedText text={data.name} query={query} />
-                        </p>
-                        <p className="text-grey-500 text-[14px]">
-                          <HighlightedText
-                            text={data.specialization}
-                            query={query}
-                          />
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-end text-primary-500">
-                      <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
-                        <span className="isax isax-like-1 text-lg"></span>
-                        <span>
-                          <span> {data.happyPatientsPercentage} </span>
-                          <span>پیشنهاد کاربران</span>
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+
+                <ul className="flex items-center gap-3 overflow-x-auto flex-1">
+                  {recentSearches?.map((recentSearcheItem, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center gap-2 text-grey-500 bg-white rounded-[200px] min-w-[120px] h-[28px] px-[12px]"
+                    >
+                      <p
+                        className="cursor-pointer line-clamp-1 text-[14px]"
+                        onClick={() => handleSelectSearch(recentSearcheItem)}
+                      >
+                        {recentSearcheItem}
+                      </p>
+                      <span
+                        onClick={() => deleteRecentSearch(index)}
+                        className="isax isax-close-circle text-[18px] cursor-pointer"
+                      ></span>
+                    </li>
+                  ))}
+                </ul>
               </div>
+              <div className="h-px bg-grey-200 mx-4"></div>
+
+              <p className="flex justify-start text-[16px] text-black-400 font-medium pt-6 px-4">
+                نتایج جستجو:
+              </p>
+              {filterSearchData?.map((data) => (
+                <Link
+                  href="#"
+                  onClick={() => handleAddRecentSearch(data.name)}
+                  key={data.id}
+                  className="flex justify-between pt-6 pb-4 px-4"
+                >
+                  <div className="flex gap-4">
+                    <Image
+                      className="size-[56px] object-cover rounded-full"
+                      width={56}
+                      height={56}
+                      alt="پروفایل دکتر"
+                      src={data.image}
+                    />
+                    <div className="flex flex-col gap-3">
+                      <p className="text-black-400 text-[16px]">
+                        <HighlightedText text={data.name} query={query} />
+                      </p>
+                      <p className="text-grey-500 text-[12px]">
+                        <HighlightedText
+                          text={data.specialization}
+                          query={query}
+                        />
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-end text-primary-500">
+                    <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
+                      <span className="isax isax-like-1 text-lg"></span>
+                      <span>
+                        <span> {data.happyPatientsPercentage} </span>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
-        )}
-
-        {/* overlay for close search box*/}
-        {isFocused && (
-          <div
-            className="fixed z-10 inset-0"
-            onClick={() => setIsFocused(false)}
-          />
-        )}
+        </div>
       </div>
-
-      {/* this overlay for mobile view */}
-      <MobileSearchOverlay
-        isMobileSearchOpen={isMobileSearchOpen}
-        setIsMobileSearchOpen={setIsMobileSearchOpen}
-      />
-    </>
+    </div>
   );
 };
 
-export default HomeSearchBox;
+export default MobileSearchOverlay;
