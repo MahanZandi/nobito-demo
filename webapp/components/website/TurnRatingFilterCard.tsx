@@ -1,8 +1,17 @@
 "use client";
 import { useState } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
+import * as Checkbox from "@radix-ui/react-checkbox";
 
-const TurnRatingFilterCard = () => {
+interface TurnRatingFilterCardProps {
+  filterExpertise: {
+    title: string;
+  }[];
+}
+
+const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
+  filterExpertise,
+}) => {
   type ConsultationMethod = "calling" | "online" | "in-person" | "";
 
   const [consultationMethod, setConsultationMethod] =
@@ -16,6 +25,32 @@ const TurnRatingFilterCard = () => {
   const online = () => setConsultationMethod("online");
   const inPerson = () => setConsultationMethod("in-person");
 
+  // query for search input
+  const [query, setQuery] = useState<string>("");
+
+  // filter search data (name, specialization, city)
+  const filterSearchData = filterExpertise.filter((searchItem) => {
+    const matchesQuery = searchItem.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
+
+    return matchesQuery;
+  });
+
+  const [selectedExpertise, setSelectedExpertise] = useState<string[]>([]);
+
+  const handleExpertiseChange = (
+    title: string,
+    checked: boolean | "indeterminate"
+  ) => {
+    if (checked === true) {
+      setSelectedExpertise((prev) => [...prev, title]);
+      console.log(`Expertise added: ${title}`);
+    } else {
+      setSelectedExpertise((prev) => prev.filter((item) => item !== title));
+      console.log(`Expertise removed: ${title}`);
+    }
+  };
   return (
     <div className="w-[505px] rounded-2xl bg-white-100 hidden xl:block">
       <div className="py-10 px-6">
@@ -34,8 +69,8 @@ const TurnRatingFilterCard = () => {
           </div>
         </div>
       </div>
-      {/* Medical consultation method */}
       <div className=" pb-6 px-6">
+        {/* Medical consultation method */}
         <div className="pb-8">
           <p className="text-black-400 text-[16px]">
             شیوه مشاوره پزشکی خود را انتخاب کنید
@@ -132,20 +167,78 @@ const TurnRatingFilterCard = () => {
         </div>
         <div className="h-px bg-grey-250 my-6"></div>
         <Accordion.Root type="single" collapsible>
-          <Accordion.Item value="item-1" className="border border-grey-200 rounded-lg w-full p-3 bg-white-100">
+          <Accordion.Item
+            value="item-1"
+            className="border border-grey-200 rounded-lg w-full p-3 bg-white-100"
+          >
             <Accordion.Header>
               <Accordion.Trigger className="flex w-full group">
                 <div className="flex-1 flex">
                   <p className="text-black-400 font-medium text-[16px]">تخصص</p>
-                  <span></span> {/* TODO create ping with animation when we have a Expertise*/}
+                  <span></span>
+                  {/* TODO create ping with animation when we have a Expertise*/}
                 </div>
-                <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span> 
+                <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span>
               </Accordion.Trigger>
             </Accordion.Header>
-            <Accordion.Content className="p-4">
-              <p> {/* TODO create the contents */}
-                و فرعون گفت: برای درهم کوبیدن این دو نفر هر جادوگر دانا و زبردستی را نزد من آورید.
-              </p>
+            <Accordion.Content className="flex flex-col">
+              <label
+                form="search"
+                className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded"
+              >
+                <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
+                <input
+                  id="search"
+                  className="outline-none text-black-400"
+                  placeholder="جستجو"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </label>
+
+              <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
+                {filterSearchData.map((item) => (
+                  <div key={item.title} className="text-black-400 flex flex-col pt-4">
+                    <div className="flex">
+                      {/* check box radix ui */}
+                      <Checkbox.Root
+                        checked={selectedExpertise.includes(item.title)}
+                        onCheckedChange={(checked) =>
+                          handleExpertiseChange(item.title, checked)
+                        }
+                        className="size-6 rounded-md border border-gray-300 data-[state=checked]:bg-primary-500"
+                      >
+                        <Checkbox.Indicator className="flex items-center justify-center">
+                          {/* svg for check icon font awesome */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="14"
+                            width="12.25"
+                            viewBox="0 0 448 512"
+                          >
+                            <path
+                              fill="#ffffff"
+                              d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                            />
+                          </svg>
+                        </Checkbox.Indicator>
+                      </Checkbox.Root>
+                      <p
+                        className={`flex pr-2 ${
+                          selectedExpertise.includes(item.title)
+                            ? "text-primary-500"
+                            : ""
+                        }`}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                    <div className="pt-4">
+                      <div className="h-px bg-grey-50 w-full"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </Accordion.Content>
           </Accordion.Item>
         </Accordion.Root>

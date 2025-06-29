@@ -26,12 +26,12 @@ interface TurnRatingDoctorCardProps {
     location: string;
   }[];
 
-  filtersSort: {
+  sortOptions: {
     title: string;
   }[];
 }
 
-const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, filtersSort }) => {
+const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sortOptions }) => {
   const [selectFilter, setSelectFilter] = useState<string>("");
 
   const handelFilterSort = (text: string) => {
@@ -65,7 +65,7 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, fil
               <span className="text-[32px] isax isax-sort"></span>
               <span className="text-xl font-semibold">دسته بندی :</span>
               <ul className="pr-[40px] flex gap-[24px] text-[14px] font-normal text-grey-350">
-                {filtersSort.map((item) => (
+                {sortOptions.map((item) => (
                   <li
                     key={item.title}
                     onClick={() => handelFilterSort(item.title)}

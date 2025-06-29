@@ -131,12 +131,29 @@ const doctors = [
   },
 ];
 
-const filtersSort = [
+const sortOptions = [
   { title: "محبوب ترین ها" },
   { title: "بیشترین امتیاز" },
   { title: "سریع ترین نوبت" },
   { title: "کم ترین معطلی در مطب" },
 ];
+
+const filterExpertise = [
+  {title: "جراحی قلب"},
+  {title: "آنجوگرافی"},
+  {title: "تست ورزش"},
+  {title: "فیزیوتراپی"},
+  {title: "روانشناسی"},
+  {title: "متخصص مغز و اعصاب"},
+  {title: "داخلی"},
+  {title: "پوست و مو"},
+  {title: "ارتوپدی"},
+  {title: "گوارش"},
+  {title: "اطفال"},
+  {title: "چشم پزشکی"},
+  {title: "گوش و حلق و بینی"},
+  {title: "زنان و زایمان"}
+]
 
 const TurnRating = () => {
   return (
@@ -146,8 +163,8 @@ const TurnRating = () => {
           <TurnRatingSearchBox searchData={doctors} />
         </div>
         <div className="xl:flex gap-6">
-          <TurnRatingFilterCard />
-          <TurnRatingDoctorCard filtersSort={filtersSort} doctors={doctors} />
+          <TurnRatingFilterCard filterExpertise={filterExpertise} />
+          <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
         </div>
       </div>
       <div className="pt-[36px] xl:pt-[72px]">
