@@ -3,6 +3,8 @@ import { useState } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
 import * as Checkbox from "@radix-ui/react-checkbox";
 
+type ConsultationMethod = "calling" | "online" | "in-person" | "";
+
 interface TurnRatingFilterCardProps {
   filterExpertise: {
     title: string;
@@ -12,13 +14,12 @@ interface TurnRatingFilterCardProps {
 const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   filterExpertise,
 }) => {
-  type ConsultationMethod = "calling" | "online" | "in-person" | "";
-
   const [consultationMethod, setConsultationMethod] =
     useState<ConsultationMethod>("");
 
   const handelDeleteFilter = () => {
     setConsultationMethod("");
+    setSelectedExpertise([]);
   };
 
   const calling = () => setConsultationMethod("calling");
@@ -179,10 +180,8 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                   </p>
                   {/* blue circle */}
                   {selectedExpertise.length > 0 && (
-                    <span className="size-1.5 bg-sky-600 rounded-full">
-                      {selectedExpertise.length}
-                    </span>
-                  )} 
+                    <span className="size-1.5 bg-sky-600 rounded-full"></span>
+                  )}
                 </div>
                 <span className="isax isax-arrow-down-1 text-2xl text-black-400 transition-all group-data-[state=open]:rotate-180"></span>
               </Accordion.Trigger>
@@ -221,7 +220,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                         onCheckedChange={(checked) =>
                           handleExpertiseChange(item.title, checked)
                         }
-                        className="size-6 rounded-md border border-gray-300 data-[state=checked]:bg-primary-500"
+                        className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
                       >
                         <Checkbox.Indicator className="flex items-center justify-center">
                           {/* svg for check icon font awesome */}
