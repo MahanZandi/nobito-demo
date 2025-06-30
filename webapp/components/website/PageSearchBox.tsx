@@ -324,22 +324,19 @@ const PageSearchBox = ({
         <Dialog.Root>
           <Dialog.Trigger asChild>
             <div className="hidden xl:block">
-              <label
-                form="search"
-                className={`rounded-2xl ${lableStyle}`}
-              >
+              <label form="search" className={`rounded-2xl ${lableStyle}`}>
                 <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
                 <input
                   id="search"
+                  autoComplete="off"
                   onFocus={() => setIsFocused(true)}
                   className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
                   placeholder="جستجو پزشک،درمانگر،کلینیک..."
                 />
 
-                <Select.Root
-                >
+                <Select.Root>
                   <Select.Trigger
-                    className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
+                    className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 cursor-pointer rounded-lg"
                     aria-label="انتخاب شهر"
                   >
                     <Select.Value placeholder="انتخاب شهر" />
@@ -350,8 +347,6 @@ const PageSearchBox = ({
                       <Select.ScrollUpButton />
                       <Select.Viewport className="text-right">
                         <Select.Separator />
-
-                       
                       </Select.Viewport>
                       <Select.ScrollDownButton />
                       <Select.Arrow />
@@ -369,9 +364,8 @@ const PageSearchBox = ({
               <Dialog.Title></Dialog.Title>
               <div>
                 <div>
-                  {/* FIXME fixed the scroll  */}
-                  <div className=" bg-grey-50 pt-6 overflow-y-auto scrollbar-thin z-20 rounded-2xl shadow lg:w-[900px] pb-12 px-12">
-                    <div className="max-h-[606px]">
+                  <div className=" bg-grey-50 pt-6 z-20 rounded-2xl shadow lg:w-[900px] pb-12 px-12">
+                    <div>
                       <div className="hidden xl:block">
                         <label
                           form="search"
@@ -380,6 +374,7 @@ const PageSearchBox = ({
                           <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
                           <input
                             id="search"
+                            autoComplete="off"
                             onFocus={() => setIsFocused(true)}
                             className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
                             placeholder="جستجو پزشک،درمانگر،کلینیک..."
@@ -450,7 +445,7 @@ const PageSearchBox = ({
                         <p className="text-[16px] text-black-400 font-medium w-[120px]">
                           جستجو های اخیر:
                         </p>
-                        <ul className="flex items-center gap-3 pr-6 flex-1 overflow-x-scroll scrollbar-thin">
+                        <ul className="flex items-center gap-3 pr-6 flex-1 overflow-y-scroll scrollbar-thin">
                           {recentSearches?.map((recentSearcheItem, index) => (
                             <li
                               key={index}
@@ -475,47 +470,49 @@ const PageSearchBox = ({
                       <p className="flex text-[16px] text-black-400 font-medium pt-6 justify-start">
                         نتایج جستجو:
                       </p>
-                      {filterSearchData?.map((data) => (
-                        <Link
-                          href="#"
-                          onClick={() => handleAddRecentSearch(data.name)}
-                          key={data.id}
-                          className="flex justify-between pt-6 pb-4 border-b border-grey-200"
-                        >
-                          <div className="flex gap-4">
-                            <Image
-                              className="size-[74px] object-cover rounded-full"
-                              width={74}
-                              height={74}
-                              alt="پروفایل دکتر"
-                              src={data.image}
-                            />
-                            <div className="flex flex-col gap-3">
-                              <p className="text-black-400 text-[20px]">
-                                <HighlightedText
-                                  text={data.name}
-                                  query={query}
-                                />
-                              </p>
-                              <p className="text-grey-500 text-[14px]">
-                                <HighlightedText
-                                  text={data.specialization}
-                                  query={query}
-                                />
-                              </p>
+                      <div className="max-h-[300px] overflow-y-scroll scrollbar-thin">
+                        {filterSearchData?.map((data) => (
+                          <Link
+                            href="#"
+                            onClick={() => handleAddRecentSearch(data.name)}
+                            key={data.id}
+                            className="flex justify-between pt-6 pb-4 border-b border-grey-200"
+                          >
+                            <div className="flex gap-4">
+                              <Image
+                                className="size-[74px] object-cover rounded-full"
+                                width={74}
+                                height={74}
+                                alt="پروفایل دکتر"
+                                src={data.image}
+                              />
+                              <div className="flex flex-col gap-3">
+                                <p className="text-black-400 text-[20px]">
+                                  <HighlightedText
+                                    text={data.name}
+                                    query={query}
+                                  />
+                                </p>
+                                <p className="text-grey-500 text-[14px]">
+                                  <HighlightedText
+                                    text={data.specialization}
+                                    query={query}
+                                  />
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex items-end text-primary-500">
-                            <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
-                              <span className="isax isax-like-1 text-lg"></span>
-                              <span>
-                                <span> {data.happyPatientsPercentage} </span>
-                                <span>پیشنهاد کاربران</span>
-                              </span>
+                            <div className="flex items-end text-primary-500">
+                              <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
+                                <span className="isax isax-like-1 text-lg"></span>
+                                <span>
+                                  <span> {data.happyPatientsPercentage} </span>
+                                  <span>پیشنهاد کاربران</span>
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                        </Link>
-                      ))}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
