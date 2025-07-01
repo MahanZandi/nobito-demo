@@ -1,4 +1,4 @@
-import TurnRatingSearchBox from "@/components/website/TurnRatingSearchBox";
+import PageSearchBox from "@/components/website/PageSearchBox";
 import TurnRatingDoctorCard from "@/components/website/TurnRatingDoctorCard";
 import TurnRatingFilterCard from "@/components/website/TurnRatingFilterCard";
 import Footer from "@/components/website/Footer";
@@ -168,16 +168,24 @@ const TurnRating = () => {
     <>
       <div className="xl:container">
         <div className="xl:py-[48px]">
-          <TurnRatingSearchBox searchData={doctors} />
+          <PageSearchBox
+            lableStyle="lg:w-[798px] h-20 bg-white-50 relative p-5
+              flex items-center gap-2"
+            mobileInput={false}
+            container="container"
+          />
         </div>
         <div className="xl:flex gap-6">
           <TurnRatingFilterCard doctors={doctors} servises={servises} filterExpertise={filterExpertise} />
           <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
         </div>
+          <div className="pt-[36px] xl:pt-[72px]">
+        <Footer />
+      </div>
       </div>
       <div className="pt-[36px] xl:pt-[72px]">
         <Footer />
-      </div>
+        </div>
     </>
   );
 };
