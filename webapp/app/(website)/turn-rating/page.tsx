@@ -8,128 +8,95 @@ const doctors = [
     id: 1,
     name: "محمد میرزایی",
     image: "/images/doctor-9.png",
-    rate: "4/5",
-    comment: "360 نظر",
-    services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
+    rate: "4.7/5",
+    comment: "420 نظر",
+    services: "جراحی مغز",
     takeTurns: [
-      {
-        title: "گفتگو تلفنی",
-        icon: "isax isax-call-calling",
-      },
-      {
-        title: "جلسه آنلاین",
-        icon: "isax isax-monitor-mobbile",
-      },
-      {
-        title: "ویزیت حضوری",
-        icon: "isax isax-buliding",
-      },
+      { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
-    specialization: "متخصص قلب و عروق",
-    happyPatients: "2374",
-    successfulTurn: "1222",
-    happyPatientsPercentage: "97%",
-    skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-    city: "تهران",
-    features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-    workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-    location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+    specialization: "جراح مغز و اعصاب",
+    happyPatients: "3120",
+    successfulTurn: "1980",
+    happyPatientsPercentage: "95%",
+    skills: ["برداشتن تومور مغزی", "درمان صرع", "میکروجراحی"],
+    city: "تبریز",
+    features: ["پارکینگ اختصاصی", "آسانسور", "تخت بیمار", "کافه بیمارستان"],
+    workingHours: "یکشنبه تا چهارشنبه 10 صبح تا 4 عصر",
+    location: "چهارراه شریعتی - خیابان شمس تبریزی",
   },
 
   {
     id: 2,
-    name: "علی میرزایی",
+    name: "علی رضایی",
     image: "/images/doctor-2.jpeg",
-    rate: "4/5",
-    comment: "360 نظر",
-    services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
+    rate: "4.2/5",
+    comment: "280 نظر",
+    services: "درمان ام‌اس",
     takeTurns: [
-      {
-        title: "گفتگو تلفنی",
-        icon: "isax isax-call-calling",
-      },
-      {
-        title: "جلسه آنلاین",
-        icon: "isax isax-monitor-mobbile",
-      },
-      {
-        title: "ویزیت حضوری",
-        icon: "isax isax-buliding",
-      },
+      { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
-    specialization: "متخصص قلب و عروق",
-    happyPatients: "2374",
-    successfulTurn: "1222",
-    happyPatientsPercentage: "97%",
-    skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
+    specialization: "نورولوژیست",
+    happyPatients: "1740",
+    successfulTurn: "890",
+    happyPatientsPercentage: "92%",
+    skills: ["درمان سکته مغزی", "ام‌اس", "اختلالات خواب"],
     city: "تهران",
-    features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-    workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-    location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+    features: ["سالن انتظار", "پارکینگ", "دستیار پزشکی"],
+    workingHours: "شنبه تا سه‌شنبه 9 صبح تا 5 عصر",
+    location: "بلوار کشاورز - خیابان حجاب - پلاک ۲۰",
   },
+
   {
     id: 3,
-    name: "بهرام میرزایی",
+    name: "سارا احمدی",
     image: "/images/doctor-10.png",
-    rate: "4/5",
-    comment: "360 نظر",
-    services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
+    rate: "4.9/5",
+    comment: "510 نظر",
+    services: "بیماری‌های حرکتی",
     takeTurns: [
-      {
-        title: "گفتگو تلفنی",
-        icon: "isax isax-call-calling",
-      },
-      {
-        title: "جلسه آنلاین",
-        icon: "isax isax-monitor-mobbile",
-      },
-      {
-        title: "ویزیت حضوری",
-        icon: "isax isax-buliding",
-      },
+      { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
-    specialization: "متخصص قلب و عروق",
-    happyPatients: "2374",
-    successfulTurn: "1222",
-    happyPatientsPercentage: "97%",
-    skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-    city: "تهران",
-    features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-    workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-    location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+    specialization: "متخصص مغز و اعصاب کودکان",
+    happyPatients: "2890",
+    successfulTurn: "1750",
+    happyPatientsPercentage: "98%",
+    skills: ["فلج مغزی", "تشنج در کودکان", "درمان اختلال یادگیری"],
+    city: "شیراز",
+    features: ["آسانسور", "بازی‌درمانگر", "اتاق کودک"],
+    workingHours: "دوشنبه و چهارشنبه 8 صبح تا 2 بعدازظهر",
+    location: "خیابان قصردشت - کوچه ۱۵ - ساختمان سلامت",
   },
+
   {
     id: 4,
-    name: "بهرام میرزایی",
+    name: "مینا کریمی",
     image: "/images/doctor-8.png",
-    rate: "4/5",
-    comment: "360 نظر",
-    services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
+    rate: "4.6/5",
+    comment: "330 نظر",
+    services: "درمان سکته مغزی",
     takeTurns: [
-      {
-        title: "گفتگو تلفنی",
-        icon: "isax isax-call-calling",
-      },
-      {
-        title: "جلسه آنلاین",
-        icon: "isax isax-monitor-mobbile",
-      },
-      {
-        title: "ویزیت حضوری",
-        icon: "isax isax-buliding",
-      },
+      { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
-    specialization: "متخصص قلب و عروق",
-    happyPatients: "2374",
-    successfulTurn: "1222",
-    happyPatientsPercentage: "97%",
-    skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-    city: "تهران",
-    features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-    workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-    location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
+    specialization: "متخصص نورولوژی و سکته مغزی",
+    happyPatients: "2460",
+    successfulTurn: "1300",
+    happyPatientsPercentage: "94%",
+    skills: ["آزمایش نوار مغز", "سونوگرافی مغز", "فیزیوتراپی سکته"],
+    city: "رشت",
+    features: ["تخت بیمار", "پارکینگ", "سالن انتظار", "وای‌فای رایگان"],
+    workingHours: "شنبه تا چهارشنبه 11 صبح تا 7 عصر",
+    location: "میدان شهرداری - ابتدای خیابان سعدی - پلاک ۴۸",
   },
 ];
+
 
 const sortOptions = [
   { title: "محبوب ترین ها" },
@@ -137,31 +104,6 @@ const sortOptions = [
   { title: "سریع ترین نوبت" },
   { title: "کم ترین معطلی در مطب" },
 ];
-
-const filterExpertise = [
-  { title: "جراحی قلب" },
-  { title: "آنجوگرافی" },
-  { title: "تست ورزش" },
-  { title: "فیزیوتراپی" },
-  { title: "روانشناسی" },
-  { title: "متخصص مغز و اعصاب" },
-  { title: "داخلی" },
-  { title: "پوست و مو" },
-  { title: "ارتوپدی" },
-  { title: "گوارش" },
-  { title: "اطفال" },
-  { title: "چشم پزشکی" },
-  { title: "گوش و حلق و بینی" },
-  { title: "زنان و زایمان" },
-];
-
-const servises = [
-  {title: "جراحی مغز"},
-  {title: "درمان میگرن"},
-  {title: "عصب شناسی"},
-  {title: "نورولوژی"},
-  {title: "ستون فقرات"},
-]
 
 const TurnRating = () => {
   return (
@@ -176,7 +118,7 @@ const TurnRating = () => {
           />
         </div>
         <div className="xl:flex gap-6">
-          <TurnRatingFilterCard doctors={doctors} servises={servises} filterExpertise={filterExpertise} />
+          <TurnRatingFilterCard doctors={doctors} />
           <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
         </div>
           <div className="pt-[36px] xl:pt-[72px]">
