@@ -1,11 +1,16 @@
-import TurnRatingSearchBox from "@/components/website/TurnRatingSearchBox";
+import PageSearchBox from "@/components/website/PageSearchBox";
 import TurnRatingDoctorCard from "@/components/website/TurnRatingDoctorCard";
 
 const TurnRating = () => {
   return (
     <div className="xl:container">
       <div className="xl:py-[48px]">
-        <TurnRatingSearchBox />
+        <PageSearchBox
+          lableStyle="lg:w-[798px] h-20 bg-white-50 relative p-5
+            flex items-center gap-2"
+          mobileInput={false}
+          container="container"
+        />
       </div>
       <div className="xl:container w- xl:flex gap-[24px]">
         {/* this div just to cover the space for next component(filter component) */}
