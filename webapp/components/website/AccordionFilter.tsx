@@ -22,9 +22,10 @@ interface DoctorType {
   features?: string[];
   workingHours?: string;
   location: string;
+  insurance: string;
 }
 
-type filterType = "specialization" | "services" | "city" | "location";
+type filterType = "specialization" | "services" | "city" | "location" | "insurance";
 
 interface AccordionFilterProps {
   filterState: string[];
@@ -32,6 +33,7 @@ interface AccordionFilterProps {
   filterTypeData: filterType;
   data: DoctorType[];
   triggerTitle: string;
+  searchBox: boolean;
 }
 
 const AccordionFilter: React.FC<AccordionFilterProps> = ({
@@ -40,6 +42,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
   filterTypeData,
   data,
   triggerTitle,
+  searchBox,
 }) => {
   const [query, setQuery] = useState<string>("");
 
@@ -96,7 +99,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
         <Accordion.Content className="flex flex-col">
           <label
             form="search"
-            className="bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-md"
+            className={`${searchBox ? "" : "hidden"} bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-md`}
           >
             <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
             <input
@@ -136,13 +139,15 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                       </svg>
                     </Checkbox.Indicator>
                   </Checkbox.Root>
-                  <p
+                  <div
                     className={`flex pr-2 ${
                       filterState.includes(item) ? "text-primary-500" : ""
                     }`}
                   >
-                    {item}
-                  </p>
+                    <p className="line-clamp-2">
+                      {item}
+                    </p>
+                  </div>
                 </div>
                 <div className="pt-4">
                   <div className="h-px bg-grey-50 w-full"></div>

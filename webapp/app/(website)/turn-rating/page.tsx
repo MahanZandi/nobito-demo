@@ -7,7 +7,7 @@ const doctors = [
   {
     id: 1,
     name: "محمد میرزایی",
-    image: "/images/doctor-9.png",
+    image: "/images/doctor-10.png",
     rate: "4.7/5",
     comment: "420 نظر",
     services: "جراحی مغز",
@@ -25,6 +25,8 @@ const doctors = [
     features: ["پارکینگ اختصاصی", "آسانسور", "تخت بیمار", "کافه بیمارستان"],
     workingHours: "یکشنبه تا چهارشنبه 10 صبح تا 4 عصر",
     location: "چهارراه شریعتی - خیابان شمس تبریزی",
+    insurance:"بیمه ایران",
+    gender: "men"
   },
 
   {
@@ -48,12 +50,14 @@ const doctors = [
     features: ["سالن انتظار", "پارکینگ", "دستیار پزشکی"],
     workingHours: "شنبه تا سه‌شنبه 9 صبح تا 5 عصر",
     location: "بلوار کشاورز - خیابان حجاب - پلاک ۲۰",
+    insurance:"بیمه نوین",
+    gender: "men"
   },
 
   {
     id: 3,
     name: "سارا احمدی",
-    image: "/images/doctor-10.png",
+    image: "/images/doctor-9.png",
     rate: "4.9/5",
     comment: "510 نظر",
     services: "بیماری‌های حرکتی",
@@ -71,12 +75,14 @@ const doctors = [
     features: ["آسانسور", "بازی‌درمانگر", "اتاق کودک"],
     workingHours: "دوشنبه و چهارشنبه 8 صبح تا 2 بعدازظهر",
     location: "خیابان قصردشت - کوچه ۱۵ - ساختمان سلامت",
+    insurance:"بیمه البرز",
+    gender: "woman"
   },
 
   {
     id: 4,
     name: "مینا کریمی",
-    image: "/images/doctor-8.png",
+    image: "/images/doctor-9.png",
     rate: "4.6/5",
     comment: "330 نظر",
     services: "درمان سکته مغزی",
@@ -94,6 +100,8 @@ const doctors = [
     features: ["تخت بیمار", "پارکینگ", "سالن انتظار", "وای‌فای رایگان"],
     workingHours: "شنبه تا چهارشنبه 11 صبح تا 7 عصر",
     location: "میدان شهرداری - ابتدای خیابان سعدی - پلاک ۴۸",
+    insurance:"بیمه سامان",
+    gender: "woman"
   },
 ];
 

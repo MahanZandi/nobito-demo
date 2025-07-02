@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import * as Checkbox from "@radix-ui/react-checkbox";
 import AccordionFilter from "@/components/website/AccordionFilter";
 
 type ConsultationMethod = "calling" | "online" | "in-person" | "";
@@ -24,6 +25,8 @@ interface DoctorType {
   features?: string[];
   workingHours?: string;
   location: string;
+  insurance: string;
+  gender: string;
 }
 
 interface TurnRatingFilterCardProps {
@@ -39,6 +42,10 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   const handelDeleteFilter = () => {
     setConsultationMethod("");
     setSelectedSpecialization([]);
+    setSelectedServices([]);
+    setSelectedCitys([]);
+    setSelectedLocation([]);
+    setSelectedInsurance([]);
   };
 
   const calling = () => setConsultationMethod("calling");
@@ -54,6 +61,8 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   const [selectedCitys, setSelectedCitys] = useState<string[]>([]);
 
   const [selectedLocation, setSelectedLocation] = useState<string[]>([]);
+
+  const [selectedInsurance, setSelectedInsurance] = useState<string[]>([]);
 
   return (
     <div className="w-[505px] rounded-2xl bg-white-100 hidden xl:block">
@@ -173,6 +182,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
         <div className="h-px bg-grey-250 my-6"></div>
         <AccordionFilter
           triggerTitle="تخصص"
+          searchBox={true}
           filterTypeData="specialization"
           data={doctors}
           filterState={selectedSpecialization}
@@ -183,6 +193,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
         <div className="h-px bg-grey-250 my-6"></div>
         <AccordionFilter
           triggerTitle="خدمات"
+          searchBox={true}
           filterTypeData="services"
           data={doctors}
           filterState={selectedServices}
@@ -194,28 +205,64 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
           {/* citys accordion */}
           <AccordionFilter
             triggerTitle="شهر"
+            searchBox={true}
             filterTypeData="city"
             data={doctors}
             filterState={selectedCitys}
             setFilterState={setSelectedCitys}
           />
-          {/* location accordion */}
+          {/* insurance accordion */}
           <AccordionFilter
-            triggerTitle="محله"
-            filterTypeData="location"
+            triggerTitle="بیمه"
+            searchBox={true}
+            filterTypeData="insurance"
             data={doctors}
-            filterState={selectedLocation}
-            setFilterState={setSelectedLocation}
+            filterState={selectedInsurance}
+            setFilterState={setSelectedInsurance}
           />
         </div>
         <div className="h-px bg-grey-250 my-6"></div>
+        {/* location accordion */}
         <AccordionFilter
-          triggerTitle="تخصص"
-          filterTypeData="specialization"
+          triggerTitle="محله"
+          searchBox={true}
+          filterTypeData="location"
           data={doctors}
-          filterState={selectedSpecialization}
-          setFilterState={setSelectedSpecialization}
+          filterState={selectedLocation}
+          setFilterState={setSelectedLocation}
         />
+        <div className="h-px bg-grey-250 my-6"></div>
+        <div className="flex gap-10">
+          <div>
+            <p> جنسیت پزشک: </p>
+          </div>
+          <div className="flex gap-6">
+            <div className="flex gap-1.5 items-center">
+              <Checkbox.Root className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500">
+                <Checkbox.Indicator className="flex justify-center items-center">
+                  <span className="bg-white-100 size-1.5 rounded-full"></span>
+                </Checkbox.Indicator>
+              </Checkbox.Root>
+              <p>هردو</p>
+            </div>
+            <div className="flex gap-1.5 items-center">
+              <Checkbox.Root className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500">
+                <Checkbox.Indicator className="flex justify-center items-center">
+                  <span className="bg-white-100 size-1.5 rounded-full"></span>
+                </Checkbox.Indicator>
+              </Checkbox.Root>
+              <p>مرد</p>
+            </div>
+            <div className="flex gap-1.5 items-center">
+              <Checkbox.Root className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500">
+                <Checkbox.Indicator className="flex justify-center items-center">
+                  <span className="bg-white-100 size-1.5 rounded-full"></span>
+                </Checkbox.Indicator>
+              </Checkbox.Root>
+              <p>زن</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
