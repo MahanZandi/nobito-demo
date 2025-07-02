@@ -65,7 +65,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   const [selectedInsurance, setSelectedInsurance] = useState<string[]>([]);
 
   return (
-    <div className="w-[505px] rounded-2xl bg-white-100 hidden xl:block">
+    <div className="w-[605px] rounded-2xl bg-white-100 hidden xl:block">
       <div className="py-10 px-6">
         <div className="flex items-center">
           <div className="flex text-black-400 gap-2 items-center flex-1">
