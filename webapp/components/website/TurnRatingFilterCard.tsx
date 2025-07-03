@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import * as Checkbox from "@radix-ui/react-checkbox";
+import * as RadioGroup from "@radix-ui/react-radio-group";
 import AccordionFilter from "@/components/website/AccordionFilter";
 
 type ConsultationMethod = "calling" | "online" | "in-person" | "";
@@ -52,6 +52,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   const online = () => setConsultationMethod("online");
   const inPerson = () => setConsultationMethod("in-person");
 
+  // state for accordions
   const [selectedSpecialization, setSelectedSpecialization] = useState<
     string[]
   >([]);
@@ -64,8 +65,13 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
 
   const [selectedInsurance, setSelectedInsurance] = useState<string[]>([]);
 
+  // state for genders selection
+  const [selectedGender, setSelectedGender] = useState<
+    "both" | "male" | "female"
+  >("both");
+
   return (
-    <div className="w-[605px] rounded-2xl bg-white-100 hidden xl:block">
+    <div className="w-[505px] rounded-2xl bg-white-100 hidden xl:block">
       <div className="py-10 px-6">
         <div className="flex items-center">
           <div className="flex text-black-400 gap-2 items-center flex-1">
@@ -232,36 +238,54 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
           setFilterState={setSelectedLocation}
         />
         <div className="h-px bg-grey-250 my-6"></div>
-        <div className="flex gap-10">
-          <div>
-            <p> جنسیت پزشک: </p>
+        {/* gender selection */}
+        <div className="flex">
+          <div className="flex flex-1">
+            <p className="text-black-400">جنسیت پزشک:</p>
           </div>
-          <div className="flex gap-6">
+          <RadioGroup.Root
+            className="flex gap-6 flex-row-reverse"
+            value={selectedGender}
+            onValueChange={(value) =>
+              setSelectedGender(value as "both" | "male" | "female")
+            }
+          >
             <div className="flex gap-1.5 items-center">
-              <Checkbox.Root className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500">
-                <Checkbox.Indicator className="flex justify-center items-center">
-                  <span className="bg-white-100 size-1.5 rounded-full"></span>
-                </Checkbox.Indicator>
-              </Checkbox.Root>
-              <p>هردو</p>
+              <RadioGroup.Item
+                value="both"
+                className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500"
+              >
+                <RadioGroup.Indicator className="flex justify-center items-center">
+                  <span className="bg-white-100 size-1.5 rounded-full" />
+                </RadioGroup.Indicator>
+              </RadioGroup.Item>
+              <p className="text-black-400 text-[16px]">هردو</p>
             </div>
+
             <div className="flex gap-1.5 items-center">
-              <Checkbox.Root className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500">
-                <Checkbox.Indicator className="flex justify-center items-center">
-                  <span className="bg-white-100 size-1.5 rounded-full"></span>
-                </Checkbox.Indicator>
-              </Checkbox.Root>
-              <p>مرد</p>
+              <RadioGroup.Item
+                value="male"
+                className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500"
+              >
+                <RadioGroup.Indicator className="flex justify-center items-center">
+                  <span className="bg-white-100 size-1.5 rounded-full" />
+                </RadioGroup.Indicator>
+              </RadioGroup.Item>
+              <p className="text-black-400 text-[16px]">مرد</p>
             </div>
+
             <div className="flex gap-1.5 items-center">
-              <Checkbox.Root className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500">
-                <Checkbox.Indicator className="flex justify-center items-center">
-                  <span className="bg-white-100 size-1.5 rounded-full"></span>
-                </Checkbox.Indicator>
-              </Checkbox.Root>
-              <p>زن</p>
+              <RadioGroup.Item
+                value="female"
+                className="size-[18px] rounded-full border cursor-pointer border-gray-500 data-[state=checked]:bg-primary-500"
+              >
+                <RadioGroup.Indicator className="flex justify-center items-center">
+                  <span className="bg-white-100 size-1.5 rounded-full" />
+                </RadioGroup.Indicator>
+              </RadioGroup.Item>
+              <p className="text-black-400 text-[16px]">زن</p>
             </div>
-          </div>
+          </RadioGroup.Root>
         </div>
       </div>
     </div>

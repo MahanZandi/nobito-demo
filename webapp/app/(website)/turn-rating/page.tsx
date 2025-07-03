@@ -26,7 +26,7 @@ const doctors = [
     workingHours: "یکشنبه تا چهارشنبه 10 صبح تا 4 عصر",
     location: "چهارراه شریعتی - خیابان شمس تبریزی",
     insurance:"بیمه ایران",
-    gender: "men"
+    gender: "male"
   },
 
   {
@@ -51,7 +51,7 @@ const doctors = [
     workingHours: "شنبه تا سه‌شنبه 9 صبح تا 5 عصر",
     location: "بلوار کشاورز - خیابان حجاب - پلاک ۲۰",
     insurance:"بیمه نوین",
-    gender: "men"
+    gender: "male"
   },
 
   {
@@ -76,7 +76,7 @@ const doctors = [
     workingHours: "دوشنبه و چهارشنبه 8 صبح تا 2 بعدازظهر",
     location: "خیابان قصردشت - کوچه ۱۵ - ساختمان سلامت",
     insurance:"بیمه البرز",
-    gender: "woman"
+    gender: "female"
   },
 
   {
@@ -101,7 +101,7 @@ const doctors = [
     workingHours: "شنبه تا چهارشنبه 11 صبح تا 7 عصر",
     location: "میدان شهرداری - ابتدای خیابان سعدی - پلاک ۴۸",
     insurance:"بیمه سامان",
-    gender: "woman"
+    gender: "female"
   },
 ];
 
