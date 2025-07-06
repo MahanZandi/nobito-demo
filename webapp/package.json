@@ -19,8 +19,10 @@
     "next": "15.2.2",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
+    "react-date-object": "^2.1.9",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.57.0",
+    "react-multi-date-picker": "^4.5.2",
     "tailwindcss": "^4.0.14"
   },
   "devDependencies": {

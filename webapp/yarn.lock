@@ -3610,6 +3610,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-date-object@npm:^2.1.8, react-date-object@npm:^2.1.9":
+  version: 2.1.9
+  resolution: "react-date-object@npm:2.1.9"
+  checksum: 10c0/bcf39a1120c09b10ad9294ec5300c106ff9bdaf21f33584f22876ee1b1615efab894e69dd5317cfaa469b8b61b50d2178afd6baf496b6dd8a446337a9fbba3a8
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:^19.0.0":
   version: 19.0.0
   resolution: "react-dom@npm:19.0.0"
@@ -3618,6 +3625,16 @@ __metadata:
   peerDependencies:
     react: ^19.0.0
   checksum: 10c0/a36ce7ab507b237ae2759c984cdaad4af4096d8199fb65b3815c16825e5cfeb7293da790a3fc2184b52bfba7ba3ff31c058c01947aff6fd1a3701632aabaa6a9
+  languageName: node
+  linkType: hard
+
+"react-element-popper@npm:^2.1.6":
+  version: 2.1.7
+  resolution: "react-element-popper@npm:2.1.7"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/da840daaf8829516b7c1646a76d92dd64e5f4dc73bf29afea00d6bd665235e7480305dae75572bc7b17802bccb1434166711b828e5c90a7d172160520ea61fcb
   languageName: node
   linkType: hard
 
@@ -3634,6 +3651,19 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
+  languageName: node
+  linkType: hard
+
+"react-multi-date-picker@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "react-multi-date-picker@npm:4.5.2"
+  dependencies:
+    react-date-object: "npm:^2.1.8"
+    react-element-popper: "npm:^2.1.6"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/cb860dcb1b621bd33546b7e6fada6431b72ad3a0992916c39edac769fcde5fb6f8c541f6d8975b5768286b2fa43929a29659ad802852e31ef22ed2b16c164133
   languageName: node
   linkType: hard
 
@@ -4414,8 +4444,10 @@ __metadata:
     next: "npm:15.2.2"
     postcss: "npm:^8.5.3"
     react: "npm:^19.0.0"
+    react-date-object: "npm:^2.1.9"
     react-dom: "npm:^19.0.0"
     react-hook-form: "npm:^7.57.0"
+    react-multi-date-picker: "npm:^4.5.2"
     tailwindcss: "npm:^4.0.14"
     typescript: "npm:^5"
   languageName: unknown

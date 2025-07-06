@@ -137,3 +137,23 @@
   scrollbar-width: thin;
   scrollbar-color: #e6e4e4 transparent;
 }
+
+/* .rmdp-day.rmdp-selected span:not(.highlight) {
+  @apply bg-primary-500;
+} */
+
+  /* Calendar popup animation */
+.rmdp-wrapper {
+  animation: fadeIn 0.3s ease-in-out;
+  padding: 10px;
+  border-radius: 16px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
