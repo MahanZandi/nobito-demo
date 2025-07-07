@@ -47,6 +47,8 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
     setSelectedCitys([]);
     setSelectedLocation([]);
     setSelectedInsurance([]);
+    setStartDate([]);
+    setEndDate([]);
   };
 
   const calling = () => setConsultationMethod("calling");
@@ -66,13 +68,18 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
 
   const [selectedInsurance, setSelectedInsurance] = useState<string[]>([]);
 
+  // eslint-disable-next-line
+  const [startDate, setStartDate] = useState<any>(null);
+  // eslint-disable-next-line
+  const [endDate, setEndDate] = useState<any>(null);
+
   // state for genders selection
   const [selectedGender, setSelectedGender] = useState<
     "both" | "male" | "female"
   >("both");
 
   return (
-    <div className="w-[505px] rounded-2xl bg-white-100 hidden xl:block">
+    <div className="w-[405px] rounded-2xl bg-white-100 hidden xl:block">
       <div className="py-10 px-6">
         <div className="flex items-center">
           <div className="flex text-black-400 gap-2 items-center flex-1">
@@ -289,7 +296,17 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
           </RadioGroup.Root>
         </div>
         <div className="h-px bg-grey-250 my-6"></div>
-        <Calendar />
+        <p className="text-[16px] font-medium text-black-400 mb-3">
+          تعیین روز :
+        </p>
+        <div className="flex gap-4">
+          <Calendar
+            text="از تاریخ"
+            value={startDate}
+            onChange={setStartDate}
+          />
+          <Calendar text="تا تاریخ" value={endDate} onChange={setEndDate} />
+        </div>
       </div>
     </div>
   );

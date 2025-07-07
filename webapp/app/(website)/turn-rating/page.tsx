@@ -25,8 +25,8 @@ const doctors = [
     features: ["پارکینگ اختصاصی", "آسانسور", "تخت بیمار", "کافه بیمارستان"],
     workingHours: "یکشنبه تا چهارشنبه 10 صبح تا 4 عصر",
     location: "چهارراه شریعتی - خیابان شمس تبریزی",
-    insurance:"بیمه ایران",
-    gender: "male"
+    insurance: "بیمه ایران",
+    gender: "male",
   },
 
   {
@@ -50,8 +50,8 @@ const doctors = [
     features: ["سالن انتظار", "پارکینگ", "دستیار پزشکی"],
     workingHours: "شنبه تا سه‌شنبه 9 صبح تا 5 عصر",
     location: "بلوار کشاورز - خیابان حجاب - پلاک ۲۰",
-    insurance:"بیمه نوین",
-    gender: "male"
+    insurance: "بیمه نوین",
+    gender: "male",
   },
 
   {
@@ -75,8 +75,8 @@ const doctors = [
     features: ["آسانسور", "بازی‌درمانگر", "اتاق کودک"],
     workingHours: "دوشنبه و چهارشنبه 8 صبح تا 2 بعدازظهر",
     location: "خیابان قصردشت - کوچه ۱۵ - ساختمان سلامت",
-    insurance:"بیمه البرز",
-    gender: "female"
+    insurance: "بیمه البرز",
+    gender: "female",
   },
 
   {
@@ -100,11 +100,10 @@ const doctors = [
     features: ["تخت بیمار", "پارکینگ", "سالن انتظار", "وای‌فای رایگان"],
     workingHours: "شنبه تا چهارشنبه 11 صبح تا 7 عصر",
     location: "میدان شهرداری - ابتدای خیابان سعدی - پلاک ۴۸",
-    insurance:"بیمه سامان",
-    gender: "female"
+    insurance: "بیمه سامان",
+    gender: "female",
   },
 ];
-
 
 const sortOptions = [
   { title: "محبوب ترین ها" },
@@ -129,13 +128,13 @@ const TurnRating = () => {
           <TurnRatingFilterCard doctors={doctors} />
           <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
         </div>
-          <div className="pt-[36px] xl:pt-[72px]">
-        <Footer />
-      </div>
+        <div className="pt-[36px] xl:pt-[72px]">
+          <Footer />
+        </div>
       </div>
       <div className="pt-[36px] xl:pt-[72px]">
         <Footer />
-        </div>
+      </div>
     </>
   );
 };
