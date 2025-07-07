@@ -58,8 +58,8 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sor
       </div>
 
       {/* sorte filter in desktop view*/}
-      <div className="container">
-        <div className="pb-[39px] xl:min-w-[771px] 2xl:w-[1000px]">
+      <div className="">
+        <div className="pb-[39px] xl:min-w-[771px] ">
           <div className="hidden xl:flex items-center">
             <div className="flex gap-2 items-center">
               <span className="text-[32px] isax isax-sort"></span>
@@ -81,7 +81,7 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sor
           </div>
           <div>
             {/* doctor card in desktop view*/}
-            <div className="xl:pt-[39px] hidden xl:flex flex-col gap-6">
+            <div className="xl:pt-[39px] xl:w-[771px] 2xl:w-full hidden xl:flex flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <div
                   key={doctorCard.id}
