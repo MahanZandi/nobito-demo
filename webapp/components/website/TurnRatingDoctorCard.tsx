@@ -187,7 +187,7 @@ const TurnRatingDoctorCard = () => {
           </div>
           <div>
             {/* doctor card in desktop view*/}
-            <div className="xl:pt-[39px] hidden xl:flex flex-col gap-6">
+            <div className="xl:pt-[39px] xl:w-[771px] 2xl:w-full hidden xl:flex flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <div
                   key={doctorCard.id}
