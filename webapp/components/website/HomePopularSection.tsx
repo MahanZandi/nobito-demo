@@ -185,7 +185,7 @@ const HomePopularSection = () => {
             <div className='h-px bg-grey-200 flex-1 hidden lg:block'></div> 
             <div className="flex flex-1 lg:hidden"></div>
 
-            <Link href='/' className='flex items-center gap-2 font-t2-regular text-grey-500'>
+            <Link href='/turn-rating' className='flex items-center gap-2 font-t2-regular text-grey-500'>
                 مشاهده همه
                 <span className='isax isax-arrow-left-3 text-grey-500 text-2xl leading-6'></span>
             </Link>

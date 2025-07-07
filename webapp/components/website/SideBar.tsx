@@ -235,7 +235,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ socials }) => (
 // side bar for app header
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const primaryLinks: SideBarLinks[] = [
-    { title: "نوبت دهی مطب", url: "#" },
+    { title: "نوبت دهی مطب", url: "/turn-rating" },
     {
       title: "خدمات",
       url: "#",
