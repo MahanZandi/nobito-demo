@@ -164,8 +164,8 @@ const TurnRatingDoctorCard = () => {
       </div>
 
       {/* sorte filter in desktop view*/}
-      <div className="container">
-        <div className="pb-[39px] xl:min-w-[771px] 2xl:w-[1000px]">
+      <div className="">
+        <div className="pb-[39px] xl:min-w-[771px] ">
           <div className="hidden xl:flex items-center">
             <div className="flex gap-2 items-center">
               <span className="text-[32px] isax isax-sort"></span>
