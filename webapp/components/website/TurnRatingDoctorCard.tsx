@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MobileTurnRatingFilterCard from "./MobileTurnRatingFilterCard";
+import * as Select from "@radix-ui/react-select";
 
 interface TurnRatingDoctorCardProps {
   doctors: {
@@ -59,10 +60,37 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
               <span className="isax isax-filter text-2xl"></span>
               <span onClick={openFilterCard}>فیلتر کردن</span>
             </div>
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
               <span className="isax isax-sort text-2xl"></span>
               <span>دسته بندی</span>
-            </div>
+            </div> */}
+            <Select.Root>
+              <Select.Trigger className="flex gap-2 text-black-400">
+                <Select.Value placeholder="دسته بندی" />
+                <Select.Icon>
+                  <span className="isax isax-sort text-2xl"></span>
+                </Select.Icon>
+              </Select.Trigger>
+
+              <Select.Portal>
+                <Select.Content
+                  dir="rtl"
+                  className="bg-white w-[160px] text-black-400 rounded-md border border-gray-200 z-50"
+                >
+                  <Select.Viewport>
+                    {sortOptions.map((option) => (
+                      <Select.Item
+                        key={option.title}
+                        value={option.title}
+                        className="cursor-pointer px-2 text-xs py-2 rounded-lg flex items-center"
+                      >
+                        <Select.ItemText>{option.title}</Select.ItemText>
+                      </Select.Item>
+                    ))}
+                  </Select.Viewport>
+                </Select.Content>
+              </Select.Portal>
+            </Select.Root>
           </div>
         </div>
       </div>
