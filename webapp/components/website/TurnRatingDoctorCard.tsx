@@ -60,10 +60,6 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
               <span className="isax isax-filter text-2xl"></span>
               <span onClick={openFilterCard}>فیلتر کردن</span>
             </div>
-            {/* <div className="flex gap-2">
-              <span className="isax isax-sort text-2xl"></span>
-              <span>دسته بندی</span>
-            </div> */}
             <Select.Root>
               <Select.Trigger className="flex gap-2 text-black-400">
                 <Select.Value placeholder="دسته بندی" />
