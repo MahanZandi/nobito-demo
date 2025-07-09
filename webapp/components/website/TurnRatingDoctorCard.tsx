@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MobileTurnRatingFilterCard from "./MobileTurnRatingFilterCard";
+import TurnRatingBanner from "./TurnRatingBanner";
 import * as Select from "@radix-ui/react-select";
 
 interface TurnRatingDoctorCardProps {
@@ -91,6 +92,10 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
         </div>
       </div>
 
+      {/* Bimito Banner */}
+      <div className="xl:hidden container mb-6">
+        <TurnRatingBanner />
+      </div>
       {/* sorte filter in desktop view*/}
       <div>
         <div className="pb-[39px] xl:min-w-[771px] ">
