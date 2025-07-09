@@ -470,7 +470,12 @@ const PageSearchBox = ({
                       <p className="flex text-[16px] text-black-400 font-medium pt-6 justify-start">
                         نتایج جستجو:
                       </p>
-                      <div className="max-h-[300px] overflow-y-scroll scrollbar-thin">
+                      <div className="h-[300px] overflow-y-scroll scrollbar-thin">
+                        {filterSearchData.length === 0 && (
+                          <p className="text-center text-grey-500">
+                            نتیجه‌ای یافت نشد
+                          </p>
+                        )}
                         {filterSearchData?.map((data) => (
                           <Link
                             href="#"
