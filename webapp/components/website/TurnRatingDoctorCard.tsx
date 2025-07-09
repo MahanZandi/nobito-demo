@@ -68,7 +68,7 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
       </div>
 
       {/* sorte filter in desktop view*/}
-      <div className="">
+      <div>
         <div className="pb-[39px] xl:min-w-[771px] ">
           <div className="hidden xl:flex items-center">
             <div className="flex gap-2 items-center">
@@ -222,13 +222,13 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
                 </div>
               ))}
             </div>
-            {/* doctor card in desktop view*/}
+            {/* doctor card in mobile view*/}
             <div className="xl:pt-[39px] flex container flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <Link
                   href="#"
                   key={doctorCard.id}
-                  className="bg-white-100 rounded-2xl p-6"
+                  className="bg-white-100 rounded-2xl p-3"
                 >
                   <div className="flex flex-col lg:flex-row justify-between">
                     <div className="flex gap-4">
@@ -255,10 +255,7 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
                           <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
                             <span className="isax isax-like-1 text-lg"></span>
                             <span className="flex gap-1.5">
-                              <span>
-                                {" "}
-                                {doctorCard.happyPatientsPercentage}{" "}
-                              </span>
+                              <span>{doctorCard.happyPatientsPercentage}</span>
                               <span>پیشنهاد کاربران</span>
                             </span>
                           </div>
@@ -280,10 +277,7 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
                   </div>
                   <div className="text-[12px] xl:text-[16px]">
                     <span className="font-normal text-grey-500">
-                      <span className="font-[700] text-black-400">
-                        {" "}
-                        خدمات :{" "}
-                      </span>
+                      <span className="font-[700] text-black-400">خدمات :</span>
                       {doctorCard.services}
                     </span>
                   </div>
@@ -311,9 +305,9 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
                     <span className="text-black-400 text-[12px] xl:text-[16px] hidden xl:inline-block">
                       شاخصه ها:
                     </span>
-                    {doctorCard.features?.map((feature) => (
+                    {doctorCard.features?.slice(0, 3).map((feature) => (
                       <span
-                        className="text-primary-500 border justify-center w-[100px] flex border-primary-500 px-3 py-[5px] rounded-[200px] text-[12px]"
+                        className="text-primary-500 border justify-center min-w-[88px] h-[28px] items-center flex border-primary-500 px-3 rounded-[200px] text-[12px]"
                         key={feature}
                       >
                         {feature}
