@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import MobileTurnRatingFilterCard from "./MobileTurnRatingFilterCard";
 
 interface TurnRatingDoctorCardProps {
   doctors: {
@@ -24,6 +25,7 @@ interface TurnRatingDoctorCardProps {
     features: string[];
     workingHours: string;
     location: string;
+    insurance: string;
   }[];
 
   sortOptions: {
@@ -31,14 +33,22 @@ interface TurnRatingDoctorCardProps {
   }[];
 }
 
-const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sortOptions }) => {
+const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
+  doctors,
+  sortOptions,
+}) => {
   const [selectFilter, setSelectFilter] = useState<string>("");
+
+  const [isMobileFilterCard, setIsMobileFilterCard] = useState<boolean>(false);
+
+  const openFilterCard = () => {
+    setIsMobileFilterCard(true);
+  };
 
   const handelFilterSort = (text: string) => {
     setSelectFilter(text);
   };
-  
-  
+
   return (
     <>
       {/* sorte filter in mobile view */}
@@ -47,7 +57,7 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sor
           <div className="container py-4 text-[14px] text-black-400 flex gap-3">
             <div className="flex gap-2">
               <span className="isax isax-filter text-2xl"></span>
-              <span>فیلتر کردن</span>
+              <span onClick={openFilterCard}>فیلتر کردن</span>
             </div>
             <div className="flex gap-2">
               <span className="isax isax-sort text-2xl"></span>
@@ -112,10 +122,7 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sor
                           <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
                             <span className="isax isax-like-1 text-lg"></span>
                             <span className="flex gap-1.5">
-                              <span>
-                                {" "}
-                                {doctorCard.happyPatientsPercentage}{" "}
-                              </span>
+                              <span>{doctorCard.happyPatientsPercentage}</span>
                               <span>پیشنهاد کاربران</span>
                             </span>
                           </div>
@@ -216,7 +223,7 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sor
               ))}
             </div>
             {/* doctor card in desktop view*/}
-            <div className="xl:pt-[39px] flex flex-col gap-6">
+            <div className="xl:pt-[39px] flex container flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <Link
                   href="#"
@@ -306,7 +313,7 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sor
                     </span>
                     {doctorCard.features?.map((feature) => (
                       <span
-                        className="text-primary-500 border border-primary-500 px-3 py-[5px] rounded-[200px] text-[12px]"
+                        className="text-primary-500 border justify-center w-[100px] flex border-primary-500 px-3 py-[5px] rounded-[200px] text-[12px]"
                         key={feature}
                       >
                         {feature}
@@ -346,6 +353,12 @@ const TurnRatingDoctorCard:React.FC<TurnRatingDoctorCardProps> = ({ doctors, sor
           </div>
         </div>
       </div>
+
+      <MobileTurnRatingFilterCard
+        doctors={doctors}
+        isMobileFilterCard={isMobileFilterCard}
+        setIsMobileFilterCard={setIsMobileFilterCard}
+      />
     </>
   );
 };

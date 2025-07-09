@@ -35,7 +35,7 @@ const Calendar: React.FC<CalendarProps> = ({ text, value, onChange }) => {
           return (
             <div
               onClick={openCalendarFn}
-              className="cursor-pointer text-grey-500 border border-grey-200 p-3 flex rounded-lg w-[170px]"
+              className="cursor-pointer text-grey-500 border border-grey-200 p-3 flex rounded-lg w-[160px] xl:w-[170px]"
             >
               <span className="flex font-medium flex-1">{text}</span>
               <span className="isax isax-calendar-1 text-2xl"></span>

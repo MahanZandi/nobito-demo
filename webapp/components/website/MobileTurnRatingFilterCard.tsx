@@ -26,12 +26,13 @@ interface DoctorType {
   features?: string[];
   workingHours?: string;
   location: string;
-  insurance: string;
-  gender: string;
+  insurance: string; 
 }
 
 interface TurnRatingFilterCardProps {
   doctors: DoctorType[];
+  isMobileFilterCard?: boolean;
+  setIsMobileFilterCard?: (value: boolean) => void;
 }
 
 type FacilityItem =
@@ -43,8 +44,10 @@ type FacilityItem =
   | "آسانسور"
   | "سالن انتظار";
 
-const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
+const MobileTurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   doctors,
+  isMobileFilterCard,
+  setIsMobileFilterCard,
 }) => {
   const [consultationMethod, setConsultationMethod] =
     useState<ConsultationMethod>("");
@@ -102,19 +105,33 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
     toggleFacilitiesItem(item);
   };
 
+  const closeMobileFilter = () => {
+    setIsMobileFilterCard?.(false);
+  };
+
   return (
     <>
-    {/* filter component */}
-      <div className="w-[405px] rounded-2xl max-h-[1140px] bg-white-100 hidden xl:block">
-        <div className="py-10 px-6">
+      {/* filter component */}
+      <div
+        className={`${
+          isMobileFilterCard ? "translate-0" : "translate-x-full"
+        } bg-white-100 overflow-y-scroll fixed transition-transform duration-300 inset-0 z-50 xl:hidden `}
+      >
+      <div className="bg-white text-[22px] font-medium text-black py-3 flex items-center px-4">
+        <p className="flex justify-center mx-auto">اعمال فیلتر</p>
+        <div onClick={closeMobileFilter}>
+          <span className="isax isax-arrow-left text-2xl flex"></span>
+        </div>
+      </div>
+        <div className="py-8 px-4">
           <div className="flex items-center">
             <div className="flex text-black-400 gap-2 items-center flex-1">
-              <span className="isax-filter isax text-[32px]"></span>
-              <span className="text-[22px] font-medium">فیلتر کردن</span>
+              <span className="isax-filter isax text-2xl"></span>
+              <span className="text-xl font-medium">فیلتر کردن</span>
             </div>
             <div>
               <span
-                className="text-grey-400 text-sm cursor-pointer"
+                className="text-grey-400 text-xs cursor-pointer"
                 onClick={handelDeleteFilter}
               >
                 حذف فیلتر
@@ -122,10 +139,10 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             </div>
           </div>
         </div>
-        <div className=" pb-6 px-6">
+        <div className="pb-6 px-4">
           {/* Medical consultation method */}
-          <div className="pb-8">
-            <p className="text-black-400 text-[16px]">
+          <div className="pb-6">
+            <p className="text-black-400 text-sm">
               شیوه مشاوره پزشکی خود را انتخاب کنید
             </p>
           </div>
@@ -141,7 +158,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                 onClick={calling}
               >
                 <span
-                  className={`text-[40px] isax isax-call-calling ${
+                  className={`text-[32px] isax isax-call-calling ${
                     consultationMethod === "calling"
                       ? "text-body"
                       : "text-black-500"
@@ -149,7 +166,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                 ></span>
               </div>
               <p
-                className={`text-black-500 text-[20px] cursor-pointer ${
+                className={`text-black-500 text-lg cursor-pointer ${
                   consultationMethod === "calling"
                     ? "text-primary-500"
                     : "text-black-500"
@@ -170,7 +187,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                 onClick={online}
               >
                 <span
-                  className={`text-[40px] isax isax-monitor-mobbile ${
+                  className={`text-[32px] isax isax-monitor-mobbile ${
                     consultationMethod === "online"
                       ? "text-body"
                       : "text-black-500"
@@ -178,7 +195,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                 ></span>
               </div>
               <p
-                className={`text-black-500 text-[20px] cursor-pointer ${
+                className={`text-black-500 text-lg cursor-pointer ${
                   consultationMethod === "online"
                     ? "text-primary-500"
                     : "text-black-500"
@@ -199,7 +216,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                 onClick={inPerson}
               >
                 <span
-                  className={`text-[40px] isax isax-hospital ${
+                  className={`text-[32px] isax isax-hospital ${
                     consultationMethod === "in-person"
                       ? "text-body"
                       : "text-black-500"
@@ -207,7 +224,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                 ></span>
               </div>
               <p
-                className={`text-black-500 text-[20px] cursor-pointer ${
+                className={`text-black-500 text-lg cursor-pointer ${
                   consultationMethod === "in-person"
                     ? "text-primary-500"
                     : "text-black-500"
@@ -415,4 +432,4 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
   );
 };
 
-export default TurnRatingFilterCard;
+export default MobileTurnRatingFilterCard;
