@@ -2,148 +2,54 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import MobileTurnRatingFilterCard from "./MobileTurnRatingFilterCard";
+import TurnRatingBanner from "./TurnRatingBanner";
+import * as Select from "@radix-ui/react-select";
 
-const TurnRatingDoctorCard = () => {
+interface TurnRatingDoctorCardProps {
+  doctors: {
+    id: number;
+    name: string;
+    image: string;
+    rate: string;
+    comment: string;
+    services: string;
+    takeTurns: {
+      title: string;
+      icon: string;
+    }[];
+    specialization: string;
+    happyPatients: string;
+    successfulTurn: string;
+    happyPatientsPercentage: string;
+    skills: string[];
+    city: string;
+    features: string[];
+    workingHours: string;
+    location: string;
+    insurance: string;
+  }[];
+
+  sortOptions: {
+    title: string;
+  }[];
+}
+
+const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
+  doctors,
+  sortOptions,
+}) => {
   const [selectFilter, setSelectFilter] = useState<string>("");
+
+  const [isMobileFilterCard, setIsMobileFilterCard] = useState<boolean>(false);
+
+  const openFilterCard = () => {
+    setIsMobileFilterCard(true);
+  };
 
   const handelFilterSort = (text: string) => {
     setSelectFilter(text);
   };
-
-  const doctors = [
-    {
-      id: 1,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-9.png",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-
-    {
-      id: 2,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-2.jpeg",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-    {
-      id: 3,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-10.png",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-    {
-      id: 4,
-      name: "بهرام میرزایی",
-      image: "/images/doctor-8.png",
-      rate: "4/5",
-      comment: "360 نظر",
-      services: "جراحی مغز/درمان میگرن/عصب شناسی/نورولوژی/ستون فقرات",
-      takeTurns: [
-        {
-          title: "گفتگو تلفنی",
-          icon: "isax isax-call-calling",
-        },
-        {
-          title: "جلسه آنلاین",
-          icon: "isax isax-monitor-mobbile",
-        },
-        {
-          title: "ویزیت حضوری",
-          icon: "isax isax-buliding",
-        },
-      ],
-      specialization: "متخصص قلب و عروق",
-      happyPatients: "2374",
-      successfulTurn: "1222",
-      happyPatientsPercentage: "97%",
-      skills: ["جراحی قلب", "آنجوگرافی", "تست ورزش"],
-      city: "تهران",
-      features: ["سالن انتظار", "آسانسور", "پارکینگ", "تخت بیمار"],
-      workingHours: "شنبه تا چهارشنبه 9صبح تا 6 عصر",
-      location: "تهران - میدان آرژانتین-خیابان چهارم کوچه پنجم",
-    },
-  ];
-
-  const filters = [
-    { title: "محبوب ترین ها" },
-    { title: "بیشترین امتیاز" },
-    { title: "سریع ترین نوبت" },
-    { title: "کم ترین معطلی در مطب" },
-  ];
 
   return (
     <>
@@ -153,25 +59,52 @@ const TurnRatingDoctorCard = () => {
           <div className="container py-4 text-[14px] text-black-400 flex gap-3">
             <div className="flex gap-2">
               <span className="isax isax-filter text-2xl"></span>
-              <span>فیلتر کردن</span>
+              <span onClick={openFilterCard}>فیلتر کردن</span>
             </div>
-            <div className="flex gap-2">
-              <span className="isax isax-sort text-2xl"></span>
-              <span>دسته بندی</span>
-            </div>
+            <Select.Root>
+              <Select.Trigger className="flex gap-2 text-black-400">
+                <Select.Value placeholder="دسته بندی" />
+                <Select.Icon>
+                  <span className="isax isax-sort text-2xl"></span>
+                </Select.Icon>
+              </Select.Trigger>
+
+              <Select.Portal>
+                <Select.Content
+                  dir="rtl"
+                  className="bg-white w-[160px] text-black-400 rounded-md border border-gray-200 z-50"
+                >
+                  <Select.Viewport>
+                    {sortOptions.map((option) => (
+                      <Select.Item
+                        key={option.title}
+                        value={option.title}
+                        className="cursor-pointer px-2 text-xs py-2 rounded-lg flex items-center"
+                      >
+                        <Select.ItemText>{option.title}</Select.ItemText>
+                      </Select.Item>
+                    ))}
+                  </Select.Viewport>
+                </Select.Content>
+              </Select.Portal>
+            </Select.Root>
           </div>
         </div>
       </div>
 
+      {/* Bimito Banner */}
+      <div className="xl:hidden container mb-6">
+        <TurnRatingBanner />
+      </div>
       {/* sorte filter in desktop view*/}
-      <div className="">
+      <div>
         <div className="pb-[39px] xl:min-w-[771px] ">
           <div className="hidden xl:flex items-center">
             <div className="flex gap-2 items-center">
               <span className="text-[32px] isax isax-sort"></span>
               <span className="text-xl font-semibold">دسته بندی :</span>
               <ul className="pr-[40px] flex gap-[24px] text-[14px] font-normal text-grey-350">
-                {filters.map((item) => (
+                {sortOptions.map((item) => (
                   <li
                     key={item.title}
                     onClick={() => handelFilterSort(item.title)}
@@ -218,10 +151,7 @@ const TurnRatingDoctorCard = () => {
                           <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
                             <span className="isax isax-like-1 text-lg"></span>
                             <span className="flex gap-1.5">
-                              <span>
-                                {" "}
-                                {doctorCard.happyPatientsPercentage}{" "}
-                              </span>
+                              <span>{doctorCard.happyPatientsPercentage}</span>
                               <span>پیشنهاد کاربران</span>
                             </span>
                           </div>
@@ -321,13 +251,13 @@ const TurnRatingDoctorCard = () => {
                 </div>
               ))}
             </div>
-            {/* doctor card in desktop view*/}
-            <div className="xl:pt-[39px] flex flex-col gap-6">
+            {/* doctor card in mobile view*/}
+            <div className="xl:pt-[39px] flex container flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <Link
                   href="#"
                   key={doctorCard.id}
-                  className="bg-white-100 rounded-2xl p-6"
+                  className="bg-white-100 rounded-2xl p-3"
                 >
                   <div className="flex flex-col lg:flex-row justify-between">
                     <div className="flex gap-4">
@@ -354,10 +284,7 @@ const TurnRatingDoctorCard = () => {
                           <div className="bg-white-150 rounded-sm py-1 px-2 flex gap-2">
                             <span className="isax isax-like-1 text-lg"></span>
                             <span className="flex gap-1.5">
-                              <span>
-                                {" "}
-                                {doctorCard.happyPatientsPercentage}{" "}
-                              </span>
+                              <span>{doctorCard.happyPatientsPercentage}</span>
                               <span>پیشنهاد کاربران</span>
                             </span>
                           </div>
@@ -379,10 +306,7 @@ const TurnRatingDoctorCard = () => {
                   </div>
                   <div className="text-[12px] xl:text-[16px]">
                     <span className="font-normal text-grey-500">
-                      <span className="font-[700] text-black-400">
-                        {" "}
-                        خدمات :{" "}
-                      </span>
+                      <span className="font-[700] text-black-400">خدمات :</span>
                       {doctorCard.services}
                     </span>
                   </div>
@@ -410,9 +334,9 @@ const TurnRatingDoctorCard = () => {
                     <span className="text-black-400 text-[12px] xl:text-[16px] hidden xl:inline-block">
                       شاخصه ها:
                     </span>
-                    {doctorCard.features?.map((feature) => (
+                    {doctorCard.features?.slice(0, 3).map((feature) => (
                       <span
-                        className="text-primary-500 border border-primary-500 px-3 py-[5px] rounded-[200px] text-[12px]"
+                        className="text-primary-500 border justify-center min-w-[88px] h-[28px] items-center flex border-primary-500 px-3 rounded-[200px] text-[12px]"
                         key={feature}
                       >
                         {feature}
@@ -452,6 +376,12 @@ const TurnRatingDoctorCard = () => {
           </div>
         </div>
       </div>
+
+      <MobileTurnRatingFilterCard
+        doctors={doctors}
+        isMobileFilterCard={isMobileFilterCard}
+        setIsMobileFilterCard={setIsMobileFilterCard}
+      />
     </>
   );
 };
