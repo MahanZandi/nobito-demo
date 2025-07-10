@@ -1,15 +1,21 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 import AppHeader from "@/components/website/AppHeader";
+import Footer from "@/components/website/Footer";
 
 interface Props {
-    children: ReactNode
+  children: ReactNode;
 }
 
-const WebsiteLayout = ({children}: Props) => {
-    return <>
-        <AppHeader />
-        {children}
+const WebsiteLayout = ({ children }: Props) => {
+  return (
+    <>
+      <AppHeader />
+      {children}
+      <div className="pt-[36px] xl:pt-[72px]">
+        <Footer />
+      </div>
     </>
-}
+  );
+};
 
-export default WebsiteLayout
+export default WebsiteLayout;

@@ -441,7 +441,7 @@ const PageSearchBox = ({
                           </Select.Root>
                         </label>
                       </div>
-                      <div className="py-6 flex border-y border-grey-200 rounded">
+                      <div className="py-6 flex border-y border-grey-200">
                         <p className="text-[16px] text-black-400 font-medium w-[120px]">
                           جستجو های اخیر:
                         </p>
