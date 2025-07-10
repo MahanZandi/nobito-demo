@@ -430,7 +430,7 @@ const HomePatientFeedBack = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1232px)");
+    const mediaQuery = window.matchMedia("(max-width: 1340px)");
     const handelChange = () => {
       setIsMobile(mediaQuery.matches);
     };

@@ -1,7 +1,6 @@
 import PageSearchBox from "@/components/website/PageSearchBox";
 import TurnRatingDoctorCard from "@/components/website/TurnRatingDoctorCard";
 import TurnRatingFilterCard from "@/components/website/TurnRatingFilterCard";
-import Footer from "@/components/website/Footer";
 
 const doctors = [
   {
@@ -126,14 +125,11 @@ const TurnRating = () => {
         </div>
         <div className="xl:flex gap-6">
           <TurnRatingFilterCard doctors={doctors} />
-          <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
+          <div className="xl:flex xl:flex-1 ">
+            <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
+          </div>
         </div>
-        <div className="pt-[36px] xl:pt-[72px]">
-          <Footer />
-        </div>
-      </div>
-      <div className="pt-[36px] xl:pt-[72px]">
-        <Footer />
+
       </div>
     </>
   );

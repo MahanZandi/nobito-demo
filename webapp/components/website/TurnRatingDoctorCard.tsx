@@ -97,8 +97,8 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
         <TurnRatingBanner />
       </div>
       {/* sorte filter in desktop view*/}
-      <div>
-        <div className="pb-[39px] xl:min-w-[771px] ">
+      <div className="w-full">
+        <div className="pb-[39px]">
           <div className="hidden xl:flex items-center">
             <div className="flex gap-2 items-center">
               <span className="text-[32px] isax isax-sort"></span>
@@ -120,11 +120,11 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
           </div>
           <div>
             {/* doctor card in desktop view*/}
-            <div className="xl:pt-[39px] flex-1 hidden xl:flex flex-col gap-6">
+            <div className="xl:pt-[39px] hidden xl:flex flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <div
                   key={doctorCard.id}
-                  className="bg-white-100 w-full rounded-2xl p-6"
+                  className="bg-white-100 rounded-2xl p-6"
                 >
                   <div className="flex flex-col lg:flex-row justify-between">
                     <div className="flex gap-4">
@@ -252,7 +252,7 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
               ))}
             </div>
             {/* doctor card in mobile view*/}
-            <div className="xl:pt-[39px] flex container flex-col gap-6">
+            <div className="xl:pt-[39px] flex xl:hidden container flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <Link
                   href="#"

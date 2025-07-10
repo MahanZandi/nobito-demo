@@ -3,6 +3,7 @@ import LogoTitle from "@/public/logo-title.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useEffect, useCallback } from "react";
 
 interface SideBarLinks {
   title: string;
@@ -291,9 +292,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
     { title: "لینکدین", url: "#", icon: "icon-linkedin" },
   ];
 
-  const closeSidebar = () => {
-    setIsOpen(false);
+const closeSidebar = useCallback(() => {
+  setIsOpen(false);
+}, [setIsOpen]);
+
+useEffect(() => {
+  const handleResize = () => {
+    if (window.innerWidth >= 1240) {
+      closeSidebar();
+    }
   };
+
+  handleResize();
+
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, [closeSidebar]);
 
   return (
     <nav>

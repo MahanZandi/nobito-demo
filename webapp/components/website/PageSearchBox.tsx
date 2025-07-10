@@ -369,7 +369,7 @@ const PageSearchBox = ({
                       <div className="hidden xl:block">
                         <label
                           form="search"
-                          className="lg:w-[798px] h-20 bg-white-50 relative p-5 flex items-center gap-2 rounded-2xl mb-6 mt-12"
+                          className=" h-20 bg-white-50 relative p-5 flex items-center gap-2 rounded-2xl mb-6 mt-12"
                         >
                           <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
                           <input
