@@ -14,14 +14,14 @@ const HomeStatistics = () => {
 
             <div className="h-8 bg-primary-500 w-[85%] rounded-tl-md rounded-bl-[50px]"></div>
 
-            <ul className="py-4 xl:w-[936px] mx-auto flex items-center justify-between">
+            <ul className="py-4 xl:w-[936px] mx-auto lg:flex lg:items-center grid grid-cols-2 gap-x-[103px] gap-y-[40px] lg:gap-0 justify-between bg-statistics lg:bg-transparent">
                 {stats.map((stat, index) => (
                     <li
                         key={index}
-                        className="flex flex-col items-center text-right gap-4 text-black-400 font-vazir-farsi"
+                        className="flex flex-col items-center text-right gap-3 lg:gap-4 text-black-400 font-vazir-farsi"
                     >
-                        <strong className="font-h1-medium" dir="ltr">{stat.number}</strong>
-                        <span className="font-b1-regular">{stat.label}</span>
+                        <strong className="text-xl leading-normal font-semibold lg:text-[32px] lg:leading-[155%] lg:font-medium" dir="ltr">{stat.number}</strong>
+                        <span className="lg:text-xl leading-normal font-normal">{stat.label}</span>
                     </li>
                 ))}
             </ul>
