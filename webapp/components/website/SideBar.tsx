@@ -3,6 +3,7 @@ import LogoTitle from "@/public/logo-title.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useEffect, useCallback } from "react";
 
 interface SideBarLinks {
   title: string;
@@ -14,6 +15,7 @@ interface SideBarLinks {
 
 interface SideBarLinksProps {
   links: SideBarLinks[];
+  closeSidebar: () => void;
 }
 
 interface DropDownType {
@@ -34,13 +36,19 @@ interface SocialLink {
 
 interface SocialLinksProps {
   socials: SocialLink[];
+  closeSidebar: () => void;
 }
 
 // 📌 Primary links
-const PrimaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
+const PrimaryLinks: React.FC<SideBarLinksProps> = ({ links, closeSidebar }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
   );
+
+  const closeAccordion = () => {
+    setOpenDropdownIndex(null);
+    closeSidebar();
+  };
 
   return (
     <>
@@ -88,6 +96,7 @@ const PrimaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
                     <Link
                       href={item.link}
                       key={item.label}
+                      onClick={closeAccordion}
                       className="text-gray-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
                     >
                       <li>{item.label}</li>
@@ -98,6 +107,7 @@ const PrimaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
             ) : (
               <Link
                 href={link.url}
+                onClick={closeSidebar}
                 className="font-t2-regular text-grey-500 flex items-center gap-2 h-6"
                 aria-label={link.title}
               >
@@ -124,7 +134,10 @@ const PrimaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
 };
 
 // 📌 Secondary links
-const SecondaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
+const SecondaryLinks: React.FC<SideBarLinksProps> = ({
+  links,
+  closeSidebar,
+}) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
   );
@@ -175,6 +188,7 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
                     <Link
                       href={item.link}
                       key={item.label}
+                      onClick={closeSidebar}
                       className="text-grey-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
                     >
                       <li>{item.label}</li>
@@ -185,6 +199,7 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
             ) : (
               <Link
                 href={link.url}
+                onClick={closeSidebar}
                 className="font-t2-regular text-grey-500 flex items-center gap-2 h-6"
                 aria-label={link.title}
               >
@@ -211,12 +226,13 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({ links }) => {
 };
 
 // 📌 Social links
-const SocialLinks: React.FC<SocialLinksProps> = ({ socials }) => (
+const SocialLinks: React.FC<SocialLinksProps> = ({ socials, closeSidebar }) => (
   <div className="">
     <ul className="flex items-center justify-center gap-8">
       {socials.map((social) => (
         <li key={social.title}>
           <Link
+            onClick={closeSidebar}
             href={social.url}
             className="font-t2-regular text-grey-500 flex items-center gap-2"
             aria-label={social.title}
@@ -276,12 +292,29 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
     { title: "لینکدین", url: "#", icon: "icon-linkedin" },
   ];
 
+const closeSidebar = useCallback(() => {
+  setIsOpen(false);
+}, [setIsOpen]);
+
+useEffect(() => {
+  const handleResize = () => {
+    if (window.innerWidth >= 1240) {
+      closeSidebar();
+    }
+  };
+
+  handleResize();
+
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, [closeSidebar]);
+
   return (
     <nav>
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40"
-          onClick={() => setIsOpen(false)}
+          onClick={closeSidebar}
         ></div>
       )}
       <div
@@ -296,14 +329,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
             </div>
             <div className="h-px bg-grey-200"></div> {/* horizontal line */}
             <div>
-              <PrimaryLinks links={primaryLinks} />
+              <PrimaryLinks closeSidebar={closeSidebar} links={primaryLinks} />
             </div>
             <div className="h-px bg-grey-200"></div> {/* horizontal line */}
             <div>
-              <SecondaryLinks links={secondaryLinks} />
+              <SecondaryLinks
+                closeSidebar={closeSidebar}
+                links={secondaryLinks}
+              />
             </div>
             <div className="mt-auto pb-6">
-              <SocialLinks socials={socialLinks} />
+              <SocialLinks closeSidebar={closeSidebar} socials={socialLinks} />
             </div>
             <div className="h-px bg-grey-200"></div> {/* horizontal line */}
             <span className="text-grey-500 pt-4">

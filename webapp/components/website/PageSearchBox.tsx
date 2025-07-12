@@ -369,7 +369,7 @@ const PageSearchBox = ({
                       <div className="hidden xl:block">
                         <label
                           form="search"
-                          className="lg:w-[798px] h-20 bg-white-50 relative p-5 flex items-center gap-2 rounded-2xl mb-6 mt-12"
+                          className=" h-20 bg-white-50 relative p-5 flex items-center gap-2 rounded-2xl mb-6 mt-12"
                         >
                           <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
                           <input
@@ -441,7 +441,7 @@ const PageSearchBox = ({
                           </Select.Root>
                         </label>
                       </div>
-                      <div className="py-6 flex border-y border-grey-200 rounded">
+                      <div className="py-6 flex border-y border-grey-200">
                         <p className="text-[16px] text-black-400 font-medium w-[120px]">
                           جستجو های اخیر:
                         </p>
@@ -470,7 +470,12 @@ const PageSearchBox = ({
                       <p className="flex text-[16px] text-black-400 font-medium pt-6 justify-start">
                         نتایج جستجو:
                       </p>
-                      <div className="max-h-[300px] overflow-y-scroll scrollbar-thin">
+                      <div className="h-[300px] overflow-y-scroll scrollbar-thin">
+                        {filterSearchData.length === 0 && (
+                          <p className="text-center text-grey-500">
+                            نتیجه‌ای یافت نشد
+                          </p>
+                        )}
                         {filterSearchData?.map((data) => (
                           <Link
                             href="#"
