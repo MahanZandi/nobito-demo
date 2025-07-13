@@ -25,7 +25,12 @@ interface DoctorType {
   insurance: string;
 }
 
-type filterType = "specialization" | "services" | "city" | "location" | "insurance";
+type filterType =
+  | "specialization"
+  | "services"
+  | "city"
+  | "location"
+  | "insurance";
 
 interface AccordionFilterProps {
   filterState: string[];
@@ -99,7 +104,9 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
         <Accordion.Content className="flex flex-col">
           <label
             form="search"
-            className={`${searchBox ? "" : "hidden"} bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-md`}
+            className={`${
+              searchBox ? "" : "hidden"
+            } bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-md`}
           >
             <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
             <input
@@ -112,48 +119,59 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
             />
           </label>
 
-          <div className="flex flex-col  max-h-[304px] overflow-auto scrollbar-thin">
-            {filterData.map((item) => (
-              <div key={item} className="text-black-400 flex flex-col pt-4">
-                <div className="flex">
-                  {/* check box radix ui */}
-                  <Checkbox.Root
-                    checked={filterState.includes(item)}
-                    onCheckedChange={(checked) =>
-                      handleFilterChange(item, checked, filterTypeData)
-                    }
-                    className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
-                  >
-                    <Checkbox.Indicator className="flex items-center justify-center">
-                      {/* svg for check icon font awesome */}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="14"
-                        width="12.25"
-                        viewBox="0 0 448 512"
-                      >
-                        <path
-                          fill="#ffffff"
-                          d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
-                        />
-                      </svg>
-                    </Checkbox.Indicator>
-                  </Checkbox.Root>
-                  <div
-                    className={`flex pr-2 ${
-                      filterState.includes(item) ? "text-primary-500" : ""
-                    }`}
-                  >
-                    <p className="line-clamp-2">
-                      {item}
-                    </p>
+          <div className="flex flex-col max-h-[304px] overflow-auto scrollbar-thin">
+            {filterData.map((item) => {
+              const isChecked = filterState.includes(item);
+              const handleCheckBox = () => {
+                handleFilterChange(item, !isChecked, filterTypeData);
+              };
+
+              return (
+                <div key={item} className="text-black-400 flex flex-col pt-4">
+                  <div className="flex">
+                    {/* check box radix ui */}
+                    <Checkbox.Root
+                      checked={isChecked}
+                      onCheckedChange={(checked) =>
+                        handleFilterChange(item, checked, filterTypeData)
+                      }
+                      className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
+                    >
+                      <Checkbox.Indicator className="flex items-center justify-center">
+                        {/* svg for check icon font awesome */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="14"
+                          width="12.25"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#ffffff"
+                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                          />
+                        </svg>
+                      </Checkbox.Indicator>
+                    </Checkbox.Root>
+                    <div
+                      className={`flex pr-2 ${
+                        filterState.includes(item) ? "text-primary-500" : ""
+                      }`}
+                    >
+                      <p onClick={handleCheckBox} className="line-clamp-2 cursor-pointer">
+                        {item}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pt-4">
+                    <div className="h-px bg-grey-50 w-full"></div>
                   </div>
                 </div>
-                <div className="pt-4">
-                  <div className="h-px bg-grey-50 w-full"></div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
+
+            {filterData.length === 0 && (
+              <p className="text-grey-400 text-center py-4">نتیجه ای یافت نشد</p>
+            )}
           </div>
         </Accordion.Content>
       </Accordion.Item>
