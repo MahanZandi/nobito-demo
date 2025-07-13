@@ -17,6 +17,7 @@ interface DoctorProfileInfoProps {
     description: string;
     happyComment: number;
     badComment: number;
+    skills: string[];
   };
 }
 
@@ -78,6 +79,26 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
         <p className="xl:mt-6 text-grey-500 xl:text-[16px] xl:leading-[144%]">
           {doctor.description}
         </p>
+      </div>
+      <div className="my-10 flex items-center gap-2">
+        <Image
+          className="xl:size-10"
+          src="/images/png-icons/health.png"
+          width={40}
+          height={40}
+          alt="healthy icon"
+        />
+        <div className="text-[20px]">
+          <span className="text-grey-400 ">تخصص پزشکی : </span>
+          <span className="text-primary-500">{doctor.specialization}</span>
+        </div>
+      </div>
+      <div className="flex gap-4">
+        {doctor.skills.map((skill, index) => (
+          <div key={index} className="py-[5px] px-3 text-grey-500 rounded-[200px] text-sm border border-grey-500">
+            {skill}
+          </div>
+        ))}
       </div>
     </div>
   );
