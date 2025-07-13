@@ -1,0 +1,86 @@
+import Image from "next/image";
+
+interface DoctorProfileInfoProps {
+  doctor: {
+    id: number;
+    name: string;
+    image: string;
+    rate: string;
+    comment: string;
+    services: string;
+    specialization: string;
+    city: string;
+    workingHours: string;
+    location: string;
+    insurance: string;
+    star: number;
+    description: string;
+    happyComment: number;
+    badComment: number;
+  };
+}
+
+const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
+  const fullStars = Math.round(doctor.star);
+  const emptyStars = 5 - fullStars;
+
+  const comment: number = doctor.happyComment + doctor.badComment;
+
+  return (
+    <div className="flex flex-col xl:flex-1">
+      <div className="flex gap-4">
+        {/* Image */}
+        <div className="rounded-full border p-2">
+          <Image
+            src={doctor.image}
+            alt={doctor.name}
+            width={178}
+            height={178}
+            className="rounded-full xl:size-[176px] object-cover"
+          />
+        </div>
+
+        <div className="flex flex-col gap-6">
+          <h2 className="text-2xl font-medium text-black-400">{doctor.name}</h2>
+          <p className="text-[16px] text-grey-500">{doctor.specialization}</p>
+          <p className="text-[16px] text-grey-500">{doctor.city}</p>
+          <div className="flex gap-[68px]">
+            <p className="text-[22px] font-medium text-black-400">
+              کد نظام پزشکی: {doctor.id}
+            </p>
+            <div className="flex gap-2 text-2xl">
+              {[...Array(emptyStars)].map((_, i) => (
+                <span key={i} className="isax isax-star4 text-grey-500"></span>
+              ))}
+              {[...Array(fullStars)].map((_, i) => (
+                <span
+                  key={i}
+                  className="isax isax-star-15 text-yellow-500"
+                ></span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Doctor about */}
+      <div className="xl:mt-20 xl:max-w-[622px]">
+        <div className="flex ">
+          <h3 className="xl:text-[28px] font-medium text-black-400 flex xl:flex-1">
+            درباره پزشک
+          </h3>
+          <div className="text-grey-500 xl:text-[16px] flex items-center gap-2">
+            <span className="isax isax-like-1 text-primary-500 text-2xl"></span>
+            <p>
+              {doctor.happyComment} نفر از {comment} از پزشک راضی بوده اند
+            </p>
+          </div>
+        </div>
+        <p className="xl:mt-6 text-grey-500 xl:text-[16px] xl:leading-[144%]">
+          {doctor.description}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default DoctorProfileInfo;

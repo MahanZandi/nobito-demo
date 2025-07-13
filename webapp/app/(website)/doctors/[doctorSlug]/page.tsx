@@ -1,4 +1,5 @@
-import Image from "next/image";
+import DoctorProfileInfo from "@/components/website/DoctorProfileInfo";
+import { notFound } from "next/navigation";
 
 const doctors = [
   {
@@ -7,7 +8,10 @@ const doctors = [
     image: "/images/doctor-10.png",
     slug: "mohammad-mirzaei",
     rate: "4.7/5",
+    star: 3.3,
     comment: "420 نظر",
+    happyComment: 390,
+    badComment: 30,
     services: "جراحی مغز",
     takeTurns: [
       { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
@@ -25,6 +29,7 @@ const doctors = [
     location: "چهارراه شریعتی - خیابان شمس تبریزی",
     insurance: "بیمه ایران",
     gender: "male",
+    description: `دکتر محمد میرزایی جراح مغز و اعصاب با بیش از ۱۵ سال سابقه فعالیت تخصصی در زمینه جراحی‌های پیچیده مغز و ستون فقرات است. ایشان در درمان انواع تومورهای مغزی، صرع و انجام میکروجراحی‌های پیشرفته تخصص دارد. دکتر میرزایی با بهره‌گیری از جدیدترین تکنولوژی‌های پزشکی، موفق به انجام بیش از ۳۰۰۰ عمل موفق شده است. بیماران ایشان از دقت، مهارت و اخلاق حرفه‌ای وی رضایت بالایی دارند. همکاری با مراکز درمانی معتبر و ارائه مشاوره تخصصی از دیگر ویژگی‌های حرفه‌ای ایشان است. دکتر میرزایی همواره در تلاش برای ارتقای سطح سلامت بیماران و آموزش به کادر درمانی می‌باشد.`
   },
 
   {
@@ -33,7 +38,10 @@ const doctors = [
     image: "/images/doctor-2.jpeg",
     slug: "ali-rezaei",
     rate: "4.2/5",
+    star: 3.5,
     comment: "280 نظر",
+    happyComment: 250,
+    badComment: 30,
     services: "درمان ام‌اس",
     takeTurns: [
       { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
@@ -51,6 +59,7 @@ const doctors = [
     location: "بلوار کشاورز - خیابان حجاب - پلاک ۲۰",
     insurance: "بیمه نوین",
     gender: "male",
+    description: `دکتر علی رضایی متخصص نورولوژی با تجربه‌ای بیش از ۱۰ سال در درمان بیماری‌های مغز و اعصاب فعالیت دارد. ایشان در زمینه درمان ام‌اس، سکته مغزی و اختلالات خواب تخصص ویژه‌ای دارد و با رویکردی علمی و انسانی به بیماران خود خدمات ارائه می‌دهد. دکتر رضایی با شرکت در دوره‌های بین‌المللی و همکاری با مراکز درمانی معتبر، همواره دانش خود را به‌روز نگه می‌دارد. بیماران ایشان از دقت، صبر و توجه به جزئیات درمانی رضایت بالایی دارند. وی در آموزش و ارتقای سطح سلامت جامعه نیز فعال است و مقالات علمی متعددی منتشر کرده است.`
   },
 
   {
@@ -59,7 +68,10 @@ const doctors = [
     image: "/images/doctor-9.png",
     slug: "sara-ahmadi",
     rate: "4.9/5",
+    star: 4.2,
     comment: "510 نظر",
+    happyComment: 500,
+    badComment: 10,
     services: "بیماری‌های حرکتی",
     takeTurns: [
       { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
@@ -77,6 +89,7 @@ const doctors = [
     location: "خیابان قصردشت - کوچه ۱۵ - ساختمان سلامت",
     insurance: "بیمه البرز",
     gender: "female",
+    description: `دکتر سارا احمدی متخصص مغز و اعصاب کودکان با بیش از ۱۲ سال سابقه درمان بیماری‌های حرکتی و عصبی در کودکان است. ایشان در زمینه درمان فلج مغزی، تشنج و اختلالات یادگیری تخصص دارد و با رویکردی دلسوزانه و علمی به کودکان و خانواده‌هایشان خدمات ارائه می‌دهد. دکتر احمدی با استفاده از روش‌های نوین درمانی و همکاری با تیم‌های توانبخشی، موفق به بهبود وضعیت بسیاری از بیماران شده است. وی در آموزش والدین و ارتقای سطح آگاهی جامعه نقش فعالی دارد و همواره در تلاش برای بهبود کیفیت زندگی کودکان می‌باشد.`
   },
 
   {
@@ -85,7 +98,10 @@ const doctors = [
     image: "/images/doctor-9.png",
     slug: "mina-karimi",
     rate: "4.6/5",
+    star: 3.7,
     comment: "330 نظر",
+    happyComment: 310,
+    badComment: 20,
     services: "درمان سکته مغزی",
     takeTurns: [
       { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
@@ -103,6 +119,7 @@ const doctors = [
     location: "میدان شهرداری - ابتدای خیابان سعدی - پلاک ۴۸",
     insurance: "بیمه سامان",
     gender: "female",
+    description: `دکتر مینا کریمی متخصص نورولوژی و درمان سکته مغزی با بیش از ۱۳ سال سابقه فعالیت در مراکز درمانی معتبر است. ایشان در زمینه آزمایش نوار مغز، سونوگرافی مغز و فیزیوتراپی بیماران سکته مغزی تخصص دارد. دکتر کریمی با رویکردی علمی و انسانی، بیماران را در مسیر درمان و توانبخشی همراهی می‌کند. وی با ارائه مشاوره‌های تخصصی و همکاری با تیم‌های پزشکی، موفق به بهبود وضعیت بسیاری از بیماران شده است. اخلاق حرفه‌ای، دقت در تشخیص و توجه به نیازهای بیماران از ویژگی‌های بارز ایشان است.`
   },
 ];
 
@@ -112,27 +129,16 @@ interface DoctorProfilePageProps {
   };
 }
 
-const DoctorProfilePage: React.FC<DoctorProfilePageProps> = ({ params }) => {
+const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({ params }) => {
   const { doctorSlug } = params;
 
   const doctor = doctors.find((d) => d.slug === doctorSlug);
+  if (!doctor) return notFound();
 
   return (
-    <div>
-      <h1>Doctor Profile</h1>
-      {doctor && (
-        <div>
-          <h2>{doctor.name}</h2>
-          <p>Rate: {doctor.rate}</p>
-          <p>Comment: {doctor.comment}</p>
-          <p>Services: {doctor.services}</p>
-          <p>Specialization: {doctor.specialization}</p>
-          <p>City: {doctor.city}</p>
-          <p>Working Hours: {doctor.workingHours}</p>
-          <p>Location: {doctor.location}</p>
-          <p>Insurance: {doctor.insurance}</p>
-        </div>
-      )}
+    <div className="container flex xl:gap-8 xl:flex-row xl:mt-12 mt-6">
+      <DoctorProfileInfo doctor={doctor} />
+      <div className="bg-white xl:w-[520px] h-[1003px]"></div>
     </div>
   );
 };
