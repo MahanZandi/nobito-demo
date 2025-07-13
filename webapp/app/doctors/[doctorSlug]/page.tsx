@@ -1,6 +1,4 @@
-import PageSearchBox from "@/components/website/PageSearchBox";
-import TurnRatingDoctorCard from "@/components/website/TurnRatingDoctorCard";
-import TurnRatingFilterCard from "@/components/website/TurnRatingFilterCard";
+import Image from "next/image";
 
 const doctors = [
   {
@@ -59,7 +57,7 @@ const doctors = [
     id: 3,
     name: "سارا احمدی",
     image: "/images/doctor-9.png",
-    slug:"sara-ahmadi",
+    slug: "sara-ahmadi",
     rate: "4.9/5",
     comment: "510 نظر",
     services: "بیماری‌های حرکتی",
@@ -85,7 +83,7 @@ const doctors = [
     id: 4,
     name: "مینا کریمی",
     image: "/images/doctor-9.png",
-    slug:"mina-karimi",
+    slug: "mina-karimi",
     rate: "4.6/5",
     comment: "330 نظر",
     services: "درمان سکته مغزی",
@@ -108,35 +106,35 @@ const doctors = [
   },
 ];
 
-const sortOptions = [
-  { title: "محبوب ترین ها" },
-  { title: "بیشترین امتیاز" },
-  { title: "سریع ترین نوبت" },
-  { title: "کم ترین معطلی در مطب" },
-];
+interface DoctorProfilePageProps {
+  params: {
+    doctorSlug: string;
+  };
+}
 
-const TurnRating = () => {
+const DoctorProfilePage: React.FC<DoctorProfilePageProps> = ({ params }) => {
+  const { doctorSlug } = params;
+
+  const doctor = doctors.find((d) => d.slug === doctorSlug);
+
   return (
-    <>
-      <div className="xl:container">
-        <div className="xl:py-[48px]">
-          <PageSearchBox
-            lableStyle="lg:w-[798px] h-20 bg-white-50 relative p-5
-              flex items-center gap-2"
-            mobileInput={false}
-            container="container"
-          />
+    <div>
+      <h1>Doctor Profile</h1>
+      {doctor && (
+        <div>
+          <h2>{doctor.name}</h2>
+          <p>Rate: {doctor.rate}</p>
+          <p>Comment: {doctor.comment}</p>
+          <p>Services: {doctor.services}</p>
+          <p>Specialization: {doctor.specialization}</p>
+          <p>City: {doctor.city}</p>
+          <p>Working Hours: {doctor.workingHours}</p>
+          <p>Location: {doctor.location}</p>
+          <p>Insurance: {doctor.insurance}</p>
         </div>
-        <div className="xl:flex gap-6">
-          <TurnRatingFilterCard doctors={doctors} />
-          <div className="xl:flex xl:flex-1 ">
-            <TurnRatingDoctorCard sortOptions={sortOptions} doctors={doctors} />
-          </div>
-        </div>
-
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
-export default TurnRating;
+export default DoctorProfilePage;
