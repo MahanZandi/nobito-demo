@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface DoctorProfileInfoProps {
   doctor: {
@@ -17,7 +18,10 @@ interface DoctorProfileInfoProps {
     description: string;
     happyComment: number;
     badComment: number;
+    locationLink: string;
     skills: string[];
+    firstPhoneNumber: string;
+    secandPhoneNumber: string;
   };
 }
 
@@ -64,7 +68,7 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
         </div>
       </div>
       {/* Doctor about */}
-      <div className="xl:mt-20 xl:max-w-[622px]">
+      <div className="xl:mt-20 ">
         <div className="flex ">
           <h3 className="xl:text-[28px] font-medium text-black-400 flex xl:flex-1">
             درباره پزشک
@@ -80,7 +84,7 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
           {doctor.description}
         </p>
       </div>
-      <div className="my-10 flex items-center gap-2">
+      <div className="mt-10 flex items-center gap-2">
         <Image
           className="xl:size-10"
           src="/images/png-icons/health.png"
@@ -93,12 +97,68 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
           <span className="text-primary-500">{doctor.specialization}</span>
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-10">
         {doctor.skills.map((skill, index) => (
-          <div key={index} className="py-[5px] px-3 text-grey-500 rounded-[200px] text-sm border border-grey-500">
+          <div
+            key={index}
+            className="py-[5px] px-3 text-grey-500 rounded-[200px] text-sm border border-grey-500"
+          >
             {skill}
           </div>
         ))}
+      </div>
+      <div className="bg-grey-200 h-px mt-10"></div>
+
+      <div className="mt-10">
+        <p className="text-[28px] text-black-400 font-medium mb-6">
+          موقعیت مکانی مطب
+        </p>
+        <div className="flex gap-4">
+          <Link
+            className="px-[7.2px] py-2 border border-grey-500 rounded-[200px] cursor-pointer"
+            href={doctor.locationLink}
+          >
+            <Image
+              className="w-[144px] h-[240px]"
+              alt="map"
+              src="/images/map.png"
+              width={144}
+              height={240}
+            />
+          </Link>
+          <div className="flex flex-col gap-4">
+            <p className="text-2xl font-medium text-black-400">آدرس :</p>
+            <p className="text-grey-500">{doctor.location}.</p>
+            <div className="flex text-[20px] items-center">
+              <p className="text-black-400">تلفن :</p>
+              <span className="text-grey-500">
+                {doctor.firstPhoneNumber} | {doctor.secandPhoneNumber}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 bg-grey-200 h-px"></div>
+        <div className="mt-10">
+          <p className="text-[28px] font-medium text-black-400">
+            تجربیات کاربران
+          </p>
+          <p className="mt-10 text-grey-500">
+            در ادامه می‌توانید تجربه مراجعه‌ی کاربران دیگر به دکتر {doctor.name}{" "}
+            را بخوانید.در صورتی که شما هم از بیماران دکتر {doctor.name} بوده‌اید
+            می‌توانید نظر خود را ثبت کنید.
+          </p>
+        </div>
+        <div className="mt-8 justify-end flex">
+          <Link
+            href="#"
+            className="cursor-pointer w-[157px] h-[48px] hidden text-white-500 bg-primary-500 rounded-lg px-3 xl:flex justify-center items-center"
+          >
+            <button className="flex cursor-pointer gap-2">
+              <span className="text-[16px] font-medium">دریافت نوبت</span>
+              <span className="isax isax-arrow-left text-2xl"></span>
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
