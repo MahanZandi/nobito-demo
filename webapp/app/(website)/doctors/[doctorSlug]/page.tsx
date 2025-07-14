@@ -8,7 +8,7 @@ const doctors = [
     image: "/images/doctor-10.png",
     slug: "mohammad-mirzaei",
     rate: "4.7/5",
-    star: 3.3,
+    star: 4.3,
     locationLink: "https://www.google.com/maps?q=location",
     comment: "420 نظر",
     happyComment: 390,
@@ -20,9 +20,9 @@ const doctors = [
       { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
     specialization: "جراح مغز و اعصاب",
-    happyPatients: "3120",
-    successfulTurn: "1980",
-    happyPatientsPercentage: "95%",
+    happyPatients: 3120,
+    successfulTurn: 1980, // نوبت موفق
+    happyPatientsPercentage: 95,
     skills: ["برداشتن تومور مغزی", "درمان صرع", "میکروجراحی"],
     city: "تبریز",
     features: ["پارکینگ", "آسانسور", "تخت بیمار", "کافه بیمارستان"],
@@ -32,7 +32,14 @@ const doctors = [
     gender: "male",
     description: `دکتر محمد میرزایی جراح مغز و اعصاب با بیش از ۱۵ سال سابقه فعالیت تخصصی در زمینه جراحی‌های پیچیده مغز و ستون فقرات است. ایشان در درمان انواع تومورهای مغزی، صرع و انجام میکروجراحی‌های پیشرفته تخصص دارد. دکتر میرزایی با بهره‌گیری از جدیدترین تکنولوژی‌های پزشکی، موفق به انجام بیش از ۳۰۰۰ عمل موفق شده است. بیماران ایشان از دقت، مهارت و اخلاق حرفه‌ای وی رضایت بالایی دارند. همکاری با مراکز درمانی معتبر و ارائه مشاوره تخصصی از دیگر ویژگی‌های حرفه‌ای ایشان است. دکتر میرزایی همواره در تلاش برای ارتقای سطح سلامت بیماران و آموزش به کادر درمانی می‌باشد.`,
     firstPhoneNumber: "09120000001",
-    secandPhoneNumber: "09120000002"
+    secandPhoneNumber: "09120000002",
+    waitingTime: 85, // زمان انتظار در مطب
+    correctDiagnosis: 92,
+    facilities: 90,
+    cleanliness: 93,
+    goodBehavior: 96,
+    treatedPatients: 2500, // بیماران درمان شده
+    recommendedByUsers: 2100 //پیشنهاد شده
   },
 
   {
@@ -53,9 +60,9 @@ const doctors = [
       { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
     specialization: "نورولوژیست",
-    happyPatients: "1740",
-    successfulTurn: "890",
-    happyPatientsPercentage: "92%",
+    happyPatients: 1740,
+    successfulTurn: 890,
+    happyPatientsPercentage: 92,
     skills: ["درمان سکته مغزی", "ام‌اس", "اختلالات خواب"],
     city: "تهران",
     features: ["سالن انتظار", "پارکینگ", "دستیار پزشکی"],
@@ -65,7 +72,14 @@ const doctors = [
     gender: "male",
     description: `دکتر علی رضایی متخصص نورولوژی با تجربه‌ای بیش از ۱۰ سال در درمان بیماری‌های مغز و اعصاب فعالیت دارد. ایشان در زمینه درمان ام‌اس، سکته مغزی و اختلالات خواب تخصص ویژه‌ای دارد و با رویکردی علمی و انسانی به بیماران خود خدمات ارائه می‌دهد. دکتر رضایی با شرکت در دوره‌های بین‌المللی و همکاری با مراکز درمانی معتبر، همواره دانش خود را به‌روز نگه می‌دارد. بیماران ایشان از دقت، صبر و توجه به جزئیات درمانی رضایت بالایی دارند. وی در آموزش و ارتقای سطح سلامت جامعه نیز فعال است و مقالات علمی متعددی منتشر کرده است.`,
     firstPhoneNumber: "09120000003",
-    secandPhoneNumber: "09120000004"
+    secandPhoneNumber: "09120000004",
+    waitingTime: 80,
+    correctDiagnosis: 88,
+    facilities: 85,
+    cleanliness: 90,
+    goodBehavior: 94,
+    treatedPatients: 1200,
+    recommendedByUsers: 950
   },
 
   {
@@ -86,9 +100,9 @@ const doctors = [
       { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
     specialization: "متخصص مغز و اعصاب کودکان",
-    happyPatients: "2890",
-    successfulTurn: "1750",
-    happyPatientsPercentage: "98%",
+    happyPatients: 2890,
+    successfulTurn: 1750,
+    happyPatientsPercentage: 98,
     skills: ["فلج مغزی", "تشنج در کودکان", "درمان اختلال یادگیری"],
     city: "شیراز",
     features: ["آسانسور", "بازی‌درمانگر", "اتاق کودک"],
@@ -98,7 +112,14 @@ const doctors = [
     gender: "female",
     description: `دکتر سارا احمدی متخصص مغز و اعصاب کودکان با بیش از ۱۲ سال سابقه درمان بیماری‌های حرکتی و عصبی در کودکان است. ایشان در زمینه درمان فلج مغزی، تشنج و اختلالات یادگیری تخصص دارد و با رویکردی دلسوزانه و علمی به کودکان و خانواده‌هایشان خدمات ارائه می‌دهد. دکتر احمدی با استفاده از روش‌های نوین درمانی و همکاری با تیم‌های توانبخشی، موفق به بهبود وضعیت بسیاری از بیماران شده است. وی در آموزش والدین و ارتقای سطح آگاهی جامعه نقش فعالی دارد و همواره در تلاش برای بهبود کیفیت زندگی کودکان می‌باشد.`,
     firstPhoneNumber: "09120000005",
-    secandPhoneNumber: "09120000006"
+    secandPhoneNumber: "09120000006",
+    waitingTime: 92,
+    correctDiagnosis: 97,
+    facilities: 95,
+    cleanliness: 98,
+    goodBehavior: 99,
+    treatedPatients: 1800,
+    recommendedByUsers: 1600
   },
 
   {
@@ -119,9 +140,9 @@ const doctors = [
       { title: "ویزیت حضوری", icon: "isax isax-buliding" },
     ],
     specialization: "متخصص نورولوژی و سکته مغزی",
-    happyPatients: "2460",
-    successfulTurn: "1300",
-    happyPatientsPercentage: "94%",
+    happyPatients: 2460,
+    successfulTurn: 1300,
+    happyPatientsPercentage: 94,
     skills: ["آزمایش نوار مغز", "سونوگرافی مغز", "فیزیوتراپی سکته"],
     city: "رشت",
     features: ["تخت بیمار", "پارکینگ", "سالن انتظار", "وای‌فای رایگان"],
@@ -131,7 +152,14 @@ const doctors = [
     gender: "female",
     description: `دکتر مینا کریمی متخصص نورولوژی و درمان سکته مغزی با بیش از ۱۳ سال سابقه فعالیت در مراکز درمانی معتبر است. ایشان در زمینه آزمایش نوار مغز، سونوگرافی مغز و فیزیوتراپی بیماران سکته مغزی تخصص دارد. دکتر کریمی با رویکردی علمی و انسانی، بیماران را در مسیر درمان و توانبخشی همراهی می‌کند. وی با ارائه مشاوره‌های تخصصی و همکاری با تیم‌های پزشکی، موفق به بهبود وضعیت بسیاری از بیماران شده است. اخلاق حرفه‌ای، دقت در تشخیص و توجه به نیازهای بیماران از ویژگی‌های بارز ایشان است.`,
     firstPhoneNumber: "09120000007",
-    secandPhoneNumber: "09120000008"
+    secandPhoneNumber: "09120000008",
+    waitingTime: 87,
+    correctDiagnosis: 93,
+    facilities: 91,
+    cleanliness: 95,
+    goodBehavior: 97,
+    treatedPatients: 1400,
+    recommendedByUsers: 1200
   },
 ];
 
@@ -142,7 +170,7 @@ interface DoctorProfilePageProps {
 }
 
 const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({ params }) => {
-  const { doctorSlug } = params;
+  const { doctorSlug } = await params;
 
   const doctor = doctors.find((d) => d.slug === doctorSlug);
   if (!doctor) return notFound();
