@@ -1,6 +1,7 @@
 import DoctorProfileInfo from "@/components/website/DoctorProfileInfo";
 import DoctorVisitType from "@/components/website/DoctorVisitType";
 import DoctorConsultCard from "@/components/website/DoctorConsultCard";
+import DoctorProfileBanner from "@/components/website/DoctorProfileBanner";
 import { notFound } from "next/navigation";
 
 const doctors = [
@@ -293,6 +294,7 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
             <DoctorConsultCard title={item.title} date={item.date} time={item.time} price={item.price} />
           </div>
         ))}
+        <DoctorProfileBanner/>
       </div>
     </div>
   );
