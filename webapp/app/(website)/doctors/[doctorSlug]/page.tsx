@@ -295,6 +295,12 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
           </div>
         ))}
         <DoctorProfileBanner/>
+        <div className="mt-2">
+          <p className="text-[28px] text-black-400">روز مشاوره خود را پیدا کنید</p>
+          <p className="pt-8 leading-[170%] text-grey-500">
+            هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها را بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان که پرستیدنش مایه سعادت
+          </p>
+        </div>
       </div>
     </div>
   );
