@@ -1,5 +1,6 @@
 import DoctorProfileInfo from "@/components/website/DoctorProfileInfo";
-import DoctorProfileVisitType from "@/components/website/DoctorProfileVisitType";
+import DoctorVisitType from "@/components/website/DoctorVisitType";
+import DoctorConsultCard from "@/components/website/DoctorConsultCard";
 import { notFound } from "next/navigation";
 
 const doctors = [
@@ -22,7 +23,7 @@ const doctors = [
     ],
     specialization: "جراح مغز و اعصاب",
     happyPatients: 3120,
-    successfulTurn: 1980, // نوبت موفق
+    successfulTurn: 1980,
     happyPatientsPercentage: 95,
     skills: ["برداشتن تومور مغزی", "درمان صرع", "میکروجراحی"],
     city: "تبریز",
@@ -34,13 +35,39 @@ const doctors = [
     description: `دکتر محمد میرزایی جراح مغز و اعصاب با بیش از ۱۵ سال سابقه فعالیت تخصصی در زمینه جراحی‌های پیچیده مغز و ستون فقرات است. ایشان در درمان انواع تومورهای مغزی، صرع و انجام میکروجراحی‌های پیشرفته تخصص دارد. دکتر میرزایی با بهره‌گیری از جدیدترین تکنولوژی‌های پزشکی، موفق به انجام بیش از ۳۰۰۰ عمل موفق شده است. بیماران ایشان از دقت، مهارت و اخلاق حرفه‌ای وی رضایت بالایی دارند. همکاری با مراکز درمانی معتبر و ارائه مشاوره تخصصی از دیگر ویژگی‌های حرفه‌ای ایشان است. دکتر میرزایی همواره در تلاش برای ارتقای سطح سلامت بیماران و آموزش به کادر درمانی می‌باشد.`,
     firstPhoneNumber: "09120000001",
     secandPhoneNumber: "09120000002",
-    waitingTime: 85, // زمان انتظار در مطب
+    waitingTime: 85,
     correctDiagnosis: 92,
     facilities: 90,
     cleanliness: 93,
     goodBehavior: 96,
-    treatedPatients: 2500, // بیماران درمان شده
-    recommendedByUsers: 2100 //پیشنهاد شده
+    treatedPatients: 2500,
+    recommendedByUsers: 2100,
+    consultation: [
+      {
+        title: "اولین نوبت خالی",
+        date: "دوشنبه 3 آذر (14:30)",
+        time: "25 دقیقه",
+        price: 120000,
+      },
+      {
+        title: "دومین نوبت خالی",
+        date: "دوشنبه 3 آذر (15:15)",
+        time: "25 دقیقه",
+        price: 150000,
+      },
+      {
+        title: "سومین نوبت خالی",
+        date: "دوشنبه 3 آذر (16:00)",
+        time: "25 دقیقه",
+        price: 180000,
+      },
+      {
+        title: "چهارمین نوبت خالی",
+        date: "دوشنبه 3 آذر (16:45)",
+        time: "25 دقیقه",
+        price: 200000,
+      },
+    ],
   },
 
   {
@@ -80,7 +107,33 @@ const doctors = [
     cleanliness: 90,
     goodBehavior: 94,
     treatedPatients: 1200,
-    recommendedByUsers: 950
+    recommendedByUsers: 950,
+    consultation: [
+      {
+        title: "اولین نوبت خالی",
+        date: "شنبه 5 آذر (09:30)",
+        time: "25 دقیقه",
+        price: 110000,
+      },
+      {
+        title: "دومین نوبت خالی",
+        date: "شنبه 5 آذر (10:15)",
+        time: "25 دقیقه",
+        price: 130000,
+      },
+      {
+        title: "سومین نوبت خالی",
+        date: "شنبه 5 آذر (11:00)",
+        time: "25 دقیقه",
+        price: 160000,
+      },
+      {
+        title: "چهارمین نوبت خالی",
+        date: "شنبه 5 آذر (11:45)",
+        time: "25 دقیقه",
+        price: 190000,
+      },
+    ],
   },
 
   {
@@ -120,7 +173,33 @@ const doctors = [
     cleanliness: 98,
     goodBehavior: 99,
     treatedPatients: 1800,
-    recommendedByUsers: 1600
+    recommendedByUsers: 1600,
+    consultation: [
+      {
+        title: "اولین نوبت خالی",
+        date: "دوشنبه 7 آذر (08:30)",
+        time: "25 دقیقه",
+        price: 140000,
+      },
+      {
+        title: "دومین نوبت خالی",
+        date: "دوشنبه 7 آذر (09:15)",
+        time: "25 دقیقه",
+        price: 170000,
+      },
+      {
+        title: "سومین نوبت خالی",
+        date: "دوشنبه 7 آذر (10:00)",
+        time: "25 دقیقه",
+        price: 210000,
+      },
+      {
+        title: "چهارمین نوبت خالی",
+        date: "دوشنبه 7 آذر (10:45)",
+        time: "25 دقیقه",
+        price: 250000,
+      },
+    ],
   },
 
   {
@@ -160,7 +239,33 @@ const doctors = [
     cleanliness: 95,
     goodBehavior: 97,
     treatedPatients: 1400,
-    recommendedByUsers: 1200
+    recommendedByUsers: 1200,
+    consultation: [
+      {
+        title: "اولین نوبت خالی",
+        date: "شنبه 10 آذر (11:30)",
+        time: "25 دقیقه",
+        price: 160000,
+      },
+      {
+        title: "دومین نوبت خالی",
+        date: "شنبه 10 آذر (12:15)",
+        time: "25 دقیقه",
+        price: 200000,
+      },
+      {
+        title: "سومین نوبت خالی",
+        date: "شنبه 10 آذر (13:00)",
+        time: "25 دقیقه",
+        price: 300000,
+      },
+      {
+        title: "چهارمین نوبت خالی",
+        date: "شنبه 10 آذر (13:45)",
+        time: "25 دقیقه",
+        price: 400000,
+      },
+    ],
   },
 ];
 
@@ -170,7 +275,9 @@ interface DoctorProfilePageProps {
   };
 }
 
-const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({ params }) => {
+const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
+  params,
+}) => {
   const { doctorSlug } = await params;
 
   const doctor = doctors.find((d) => d.slug === doctorSlug);
@@ -179,8 +286,13 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({ params }) =
   return (
     <div className="container flex xl:gap-8 xl:flex-row xl:mt-12 mt-6">
       <DoctorProfileInfo doctor={doctor} />
-      <div className="xl:w-[520px]">
-        <DoctorProfileVisitType />
+      <div className="xl:w-[520px] flex flex-col gap-[40px]">
+        <DoctorVisitType />
+        {doctor.consultation.map((item) => (
+          <div key={item.title}>
+            <DoctorConsultCard title={item.title} date={item.date} time={item.time} price={item.price} />
+          </div>
+        ))}
       </div>
     </div>
   );

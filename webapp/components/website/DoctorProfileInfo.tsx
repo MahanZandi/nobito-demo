@@ -31,6 +31,11 @@ interface DoctorProfileInfoProps {
     goodBehavior: number;
     treatedPatients: number;
     recommendedByUsers: number;
+    consultation: {
+      title: string;
+      date: string;
+      time: string;
+    }[];
   };
 }
 

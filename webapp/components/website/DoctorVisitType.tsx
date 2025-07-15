@@ -3,7 +3,7 @@ import { useState } from "react";
 
 type VisitMethodType = "calling" | "in-person" | "text" | "online" | "";
 
-const DoctorProfileVisitType = () => {
+const DoctorVisitType = () => {
   const [visitMethod, setVisitMethod] = useState<VisitMethodType>("");
 
   const calling = () => setVisitMethod("calling");
@@ -92,4 +92,4 @@ const DoctorProfileVisitType = () => {
   );
 };
 
-export default DoctorProfileVisitType;
+export default DoctorVisitType;
