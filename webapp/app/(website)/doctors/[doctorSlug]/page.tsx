@@ -1,4 +1,5 @@
 import DoctorProfileInfo from "@/components/website/DoctorProfileInfo";
+import DoctorProfileVisitType from "@/components/website/DoctorProfileVisitType";
 import { notFound } from "next/navigation";
 
 const doctors = [
@@ -178,7 +179,9 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({ params }) =
   return (
     <div className="container flex xl:gap-8 xl:flex-row xl:mt-12 mt-6">
       <DoctorProfileInfo doctor={doctor} />
-      <div className="bg-white xl:w-[520px] h-[1003px]"></div>
+      <div className="xl:w-[520px]">
+        <DoctorProfileVisitType />
+      </div>
     </div>
   );
 };
