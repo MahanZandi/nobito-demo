@@ -2,7 +2,7 @@
 import { useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import AccordionFilter from "@/components/website/AccordionFilter";
-import Calendar from "@/components/website/Calendar";
+import TurnRatingCalendar from "@/components/website/TurnRatingCalendar";
 import TurnRatingBanner from "./TurnRatingBanner";
 
 type ConsultationMethod = "calling" | "online" | "in-person" | "";
@@ -328,12 +328,12 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
               تعیین روز نوبت :
             </p>
             <div className="flex gap-4">
-              <Calendar
+              <TurnRatingCalendar
                 text="از تاریخ"
                 value={startDate}
                 onChange={setStartDate}
               />
-              <Calendar text="تا تاریخ" value={endDate} onChange={setEndDate} />
+              <TurnRatingCalendar text="تا تاریخ" value={endDate} onChange={setEndDate} />
             </div>
             <div className="h-px bg-grey-250 my-6"></div>
             <p className="text-[16px] font-medium text-black-400 mb-4">

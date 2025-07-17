@@ -6,13 +6,13 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/colors/teal.css";
 import weekends from "react-multi-date-picker/plugins/highlight_weekends";
 
-interface CalendarProps {
+interface TurnRatingCalendarProps {
   text: string;
   value: DateObject | null;
   onChange: (date: DateObject | null) => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ text, value, onChange }) => {
+const TurnRatingCalendar: React.FC<TurnRatingCalendarProps> = ({ text, value, onChange }) => {
   const datePickerRef = useRef(null);
   const today = new DateObject({ calendar: persian });
 
@@ -47,4 +47,4 @@ const Calendar: React.FC<CalendarProps> = ({ text, value, onChange }) => {
   );
 };
 
-export default Calendar;
+export default TurnRatingCalendar;
