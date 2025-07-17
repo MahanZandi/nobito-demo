@@ -141,22 +141,18 @@
   scrollbar-color: #e6e4e4 transparent;
 }
 
-/* .rmdp-day.rmdp-selected span:not(.highlight) {
-  @apply bg-primary-500;
-} */
-
-/* Calendar popup animation */
-.rmdp-wrapper {
-  animation: fadeIn 0.3s ease-in-out;
-  padding: 10px;
-  border-radius: 16px;
+.custom-calendar {
+  box-shadow: none !important;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.custom-calendar .rmdp-container,
+.custom-calendar .rmdp-shadow {
+  box-shadow: none !important;
 }
+
+.custom-calendar .rmdp-month {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+

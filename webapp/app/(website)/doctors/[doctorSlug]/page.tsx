@@ -2,6 +2,7 @@ import DoctorProfileInfo from "@/components/website/DoctorProfileInfo";
 import DoctorVisitType from "@/components/website/DoctorVisitType";
 import DoctorConsultCard from "@/components/website/DoctorConsultCard";
 import DoctorProfileBanner from "@/components/website/DoctorProfileBanner";
+import Calendar from "@/components/website/CalendarDate";
 import { notFound } from "next/navigation";
 
 const doctors = [
@@ -291,16 +292,26 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
         <DoctorVisitType />
         {doctor.consultation.map((item) => (
           <div key={item.title}>
-            <DoctorConsultCard title={item.title} date={item.date} time={item.time} price={item.price} />
+            <DoctorConsultCard
+              title={item.title}
+              date={item.date}
+              time={item.time}
+              price={item.price}
+            />
           </div>
         ))}
-        <DoctorProfileBanner/>
+        <DoctorProfileBanner />
         <div className="mt-2">
-          <p className="text-[28px] text-black-400">روز مشاوره خود را پیدا کنید</p>
+          <p className="text-[28px] text-black-400">
+            روز مشاوره خود را پیدا کنید
+          </p>
           <p className="pt-8 leading-[170%] text-grey-500">
-            هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها را بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان که پرستیدنش مایه سعادت
+            هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها را
+            بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان که
+            پرستیدنش مایه سعادت
           </p>
         </div>
+        <Calendar pageCalender={true} />
       </div>
     </div>
   );
