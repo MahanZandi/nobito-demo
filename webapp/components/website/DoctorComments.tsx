@@ -39,28 +39,28 @@ const DoctorComments: React.FC<DoctorCommentProps> = ({ comments }) => {
             className="bg-white-100 border-grey-200 border rounded-2xl p-6"
           >
             <div className="flex justify-between">
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-4 ">
                 <Image
                   src={comment.image}
                   alt={comment.name}
                   width={80}
                   height={80}
-                  className="rounded-full"
+                  className="rounded-full xl:size-20 size-14"
                 />
                 <div className="flex flex-col gap-3">
-                  <p className="xl:text-[22px] text-black-400">
+                  <p className="xl:text-[22px] text-[16px] text-black-400">
                     {comment.name}
                   </p>
-                  <span className="text-grey-500">{comment.date}</span>
+                  <span className="text-grey-500 text-[12px] xl:text-[14px]">{comment.date}</span>
                 </div>
               </div>
               <div className="flex flex-col justify-center">
-                <div className="border min-w-[122px] h-[34px] px-3 gap-2 text-primary-500 py-[6.5px] flex justify-center items-center border-primary-500 rounded-[200px]">
-                  <span className={`${comment.takeTurns.icon} text-2xl`}></span>
-                  <span>{comment.takeTurns.title}</span>
+                <div className="border min-w-[107px] xl:min-w-[122px] h-[28px] xl:h-[34px] px-3 gap-2 text-primary-500 py-[6.5px] flex justify-center items-center border-primary-500 rounded-[200px]">
+                  <span className={`${comment.takeTurns.icon} text-[18px] xl:text-2xl`}></span>
+                  <span className="text-[12px] xl:text-[16px]">{comment.takeTurns.title}</span>
                 </div>
                 <div className="pt-4 flex gap-1 justify-end items-center">
-                  <span className="font-medium text-[22px] text-black-400">
+                  <span className="font-medium text-[16px] xl:text-[22px] text-black-400">
                     {comment.star}
                   </span>
                   <span className="isax isax-star-15 text-yellow-500 text-2xl"></span>
@@ -68,7 +68,7 @@ const DoctorComments: React.FC<DoctorCommentProps> = ({ comments }) => {
               </div>
             </div>
             <div className="py-6">
-              <p className="leading-[155%] text-grey-500">{comment.comment}</p>
+              <p className="leading-[155%] text-grey-500 xl:text-[16px] text-[14px]">{comment.comment}</p>
             </div>
             <div className="h-px bg-grey-200 w-full mb-6"></div>
 
@@ -88,7 +88,7 @@ const DoctorComments: React.FC<DoctorCommentProps> = ({ comments }) => {
                   <p
                     className={`${
                       comment.suggest ? "text-primary-500" : "text-error-500"
-                    } text-[16px] flex-1`}
+                    } text-[14px] xl:text-[16px] flex-1`}
                   >
                     {comment.suggest
                       ? "این پزشک را پیشنهاد می‌کنم"
@@ -98,7 +98,7 @@ const DoctorComments: React.FC<DoctorCommentProps> = ({ comments }) => {
 
                 <div className="flex gap-2">
                   <span className="isax isax-clock text-2xl text-grey-500"></span>
-                  <p className="text-grey-500 text-[16px] ">
+                  <p className="text-grey-500 text-[14px] xl:text-[16px] ">
                     زمان انتظار : {comment.waitingTime}
                   </p>
                 </div>
