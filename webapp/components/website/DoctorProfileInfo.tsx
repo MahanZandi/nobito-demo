@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProgressBarBox from "./ProgressBarBox";
 import DoctorVisitType from "./DoctorVisitType";
+import DoctorComments from "./DoctorComments";
 
 interface DoctorProfileInfoProps {
   doctor: {
@@ -35,6 +36,20 @@ interface DoctorProfileInfoProps {
       title: string;
       date: string;
       time: string;
+    }[];
+    comments: {
+      id: number;
+      name: string;
+      star: number;
+      date: string;
+      comment: string;
+      suggest: boolean;
+      image: string;
+      waitingTime: string;
+      takeTurns: {
+        title: string;
+        icon: string;
+      };
     }[];
   };
 }
@@ -99,7 +114,6 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
     );
   };
 
-
   const DoctorLocation = () => {
     return (
       <div className="mt-10">
@@ -146,10 +160,12 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
             href="#"
             className="cursor-pointer w-[157px] h-[48px] hidden text-white-500 bg-primary-500 rounded-lg px-3 xl:flex justify-center items-center"
           >
-            <button className="flex cursor-pointer gap-2">
-              <span className="text-[16px] font-medium">دریافت نوبت</span>
-              <span className="isax isax-arrow-left text-2xl"></span>
-            </button>
+            <div className="flex cursor-pointer gap-2">
+              <button className="flex cursor-pointer gap-2">
+                <span className="text-[16px] font-medium">دریافت نوبت</span>
+                <span className="isax isax-arrow-left text-2xl"></span>
+              </button>
+            </div>
           </Link>
         </div>
       </div>
@@ -218,9 +234,8 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
       <div className="bg-grey-200 h-px mt-10 xl:block hidden"></div>
       <div className="xl:block hidden">
         <DoctorLocation />
-      </div>
-      <div className="xl:block hidden">
-        <ProgressBarBox doctor={doctor}/>
+        <ProgressBarBox doctor={doctor} />
+        <DoctorComments comments={doctor.comments} />
       </div>
       <div className="xl:hidden my-6">
         <DoctorVisitType />
