@@ -3,7 +3,7 @@ import DoctorVisitType from "@/components/website/DoctorVisitType";
 import DoctorConsultCard from "@/components/website/DoctorConsultCard";
 import DoctorProfileBanner from "@/components/website/DoctorProfileBanner";
 import ProgressBarBox from "@/components/website/ProgressBarBox";
-import Calendar from "@/components/website/CalendarDate";
+import CalendarDate from "@/components/website/CalendarDate";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -432,7 +432,7 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
               که پرستیدنش مایه سعادت
             </p>
           </div>
-          <Calendar pageCalender={true} />
+          <CalendarDate pageCalender={true} />
         </div>
         <div className="block xl:hidden">
           <DoctorInfo />
