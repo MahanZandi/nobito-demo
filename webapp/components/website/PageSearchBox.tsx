@@ -360,11 +360,11 @@ const PageSearchBox = ({
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0 bg-black/30 z-10 " />
 
-            <Dialog.Content className="fixed left-1/2 top-1/2 max-h-[85vh] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-md bg-gray p-[25px] focus:outline-none data-[state=open]:animate-contentShow z-20">
+            <Dialog.Content className="fixed left-1/2 top-1/2 max-h-[80vh] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-2xl  focus:outline-none data-[state=open]:animate-contentShow z-20">
               <Dialog.Title></Dialog.Title>
               <div>
                 <div>
-                  <div className=" bg-grey-50 pt-6 z-20 rounded-2xl shadow lg:w-[900px] pb-12 px-12">
+                  <div className="bg-grey-50 z-20 rounded-2xl py-1 px-12">
                     <div>
                       <div className="hidden xl:block">
                         <label

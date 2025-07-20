@@ -2,7 +2,7 @@
 import { useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import AccordionFilter from "@/components/website/AccordionFilter";
-import Calendar from "@/components/website/Calendar";
+import CalendarDate from "@/components/website/CalendarDate";
 
 type ConsultationMethod = "calling" | "online" | "in-person" | "";
 
@@ -26,7 +26,7 @@ interface DoctorType {
   features?: string[];
   workingHours?: string;
   location: string;
-  insurance: string; 
+  insurance: string;
 }
 
 interface TurnRatingFilterCardProps {
@@ -117,12 +117,12 @@ const MobileTurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
           isMobileFilterCard ? "translate-0" : "translate-x-full"
         } bg-white-100 overflow-y-scroll fixed transition-transform duration-300 inset-0 z-50 xl:hidden `}
       >
-      <div className="bg-white text-[22px] font-medium text-black py-3 flex items-center px-4">
-        <p className="flex justify-center mx-auto">اعمال فیلتر</p>
-        <div onClick={closeMobileFilter}>
-          <span className="isax isax-arrow-left text-2xl flex"></span>
+        <div className="bg-white text-[22px] font-medium text-black py-3 flex items-center px-4">
+          <p className="flex justify-center mx-auto">اعمال فیلتر</p>
+          <div onClick={closeMobileFilter}>
+            <span className="isax isax-arrow-left text-2xl flex"></span>
+          </div>
         </div>
-      </div>
         <div className="py-8 px-4">
           <div className="flex items-center">
             <div className="flex text-black-400 gap-2 items-center flex-1">
@@ -343,12 +343,18 @@ const MobileTurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             تعیین روز نوبت :
           </p>
           <div className="flex gap-4">
-            <Calendar
+            <CalendarDate
+              inputCalender={true}
               text="از تاریخ"
               value={startDate}
               onChange={setStartDate}
             />
-            <Calendar text="تا تاریخ" value={endDate} onChange={setEndDate} />
+            <CalendarDate
+              inputCalender={true}
+              text="تا تاریخ"
+              value={endDate}
+              onChange={setEndDate}
+            />
           </div>
           <div className="h-px bg-grey-250 my-6"></div>
           <p className="text-[16px] font-medium text-black-400 mb-4">
