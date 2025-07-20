@@ -2,7 +2,10 @@ import DoctorProfileInfo from "@/components/website/DoctorProfileInfo";
 import DoctorVisitType from "@/components/website/DoctorVisitType";
 import DoctorConsultCard from "@/components/website/DoctorConsultCard";
 import DoctorProfileBanner from "@/components/website/DoctorProfileBanner";
+import ProgressBarBox from "@/components/website/ProgressBarBox";
 import Calendar from "@/components/website/CalendarDate";
+import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 const doctors = [
@@ -285,10 +288,125 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
   const doctor = doctors.find((d) => d.slug === doctorSlug);
   if (!doctor) return notFound();
 
+  const comment: number = doctor.happyComment + doctor.badComment;
+
+  // small components
+
+  // this component for mobile view
+  const DoctorInfo = () => {
+    return (
+      <div className="xl:hidden mt-2">
+        <div className="flex flex-col items-center gap-6">
+          <h3 className="text-2xl font-medium text-black-400 flex">
+            درباره پزشک
+          </h3>
+          <div className="text-grey-500 text-[16px] flex items-center gap-2">
+            <span className="isax isax-like-1 text-primary-500 text-2xl"></span>
+            <p>
+              {doctor.happyComment} نفر از {comment} از پزشک راضی بوده اند
+            </p>
+          </div>
+        </div>
+        <p className="mt-6 text-grey-500 text-[14px] leading-[144%]">
+          {doctor.description}
+        </p>
+      </div>
+    );
+  };
+
+  // this component for mobile view
+  const DoctorSkills = () => {
+    return (
+      <>
+        <div className="mt-10 xl:flex items-center gap-2">
+          <div className="flex flex-col items-center gap-4">
+            <Image
+              className="size-14"
+              src="/images/png-icons/healthRounded.png"
+              width={40}
+              height={40}
+              alt="healthy icon"
+            />
+            <div className="text-[20px]">
+              <span className="text-grey-400 ">تخصص پزشکی : </span>
+              <span className="text-primary-500 font-medium">
+                {doctor.specialization}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(134px,1fr))] gap-4 mt-10">
+          {doctor.skills.map((skill, index) => (
+            <div
+              key={index}
+              className="py-[5px] px-3 text-grey-500 justify-center flex rounded-[200px] text-sm border border-grey-500"
+            >
+              {skill}
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  };
+
+  // this component for mobile view
+  const DoctorLocation = () => {
+    return (
+      <div className="mt-10">
+        <p className="text-[28px] text-black-400 font-medium mb-6">
+          موقعیت مکانی مطب
+        </p>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
+            <p className="text-[20px] font-medium text-black-400">آدرس :</p>
+            <p className="text-grey-500">{doctor.location}.</p>
+            <div className="flex flex-col gap-4">
+              <p className="text-black-400 text-[20px]">تلفن :</p>
+              <span className="text-grey-500">
+                {doctor.firstPhoneNumber} | {doctor.secandPhoneNumber}
+              </span>
+            </div>
+          </div>
+        </div>
+        <Link
+          className="p-2 mt-8 w-[328px] h-[120px] border flex justify-center items-center border-grey-500 rounded-[200px] cursor-pointer"
+          href={doctor.locationLink}
+        >
+          <Image
+            alt="map"
+            src="/images/mapHorizon.png"
+            width={312}
+            height={104}
+          />
+        </Link>
+        <div className="mt-6 bg-grey-200 h-px"></div>
+        <div className="mt-6">
+          <p className="text-2xl font-medium text-black-400">تجربیات کاربران</p>
+          <p className="mt-6 text-grey-500">
+            در ادامه می‌توانید تجربه مراجعه‌ی کاربران دیگر به دکتر {doctor.name}{" "}
+            را بخوانید.در صورتی که شما هم از بیماران دکتر {doctor.name} بوده‌اید
+            می‌توانید نظر خود را ثبت کنید.
+          </p>
+        </div>
+        <div className="mt-6 justify-end flex">
+          <Link
+            href="#"
+            className="cursor-pointer w-[157px] h-[48px] text-white-500 bg-primary-500 rounded-lg px-3 flex justify-center items-center"
+          >
+            <button className="flex cursor-pointer gap-2">
+              <span className="text-[16px] font-medium">دریافت نوبت</span>
+              <span className="isax isax-arrow-left text-2xl"></span>
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="container flex xl:gap-8 xl:flex-row flex-col xl:mt-12 mt-6">
       <DoctorProfileInfo doctor={doctor} />
-      <div className="xl:w-[520px] flex flex-col gap-[40px]">
+      <div className="xl:w-[520px] flex flex-col gap-10">
         <div className="xl:block hidden">
           <DoctorVisitType />
         </div>
@@ -303,17 +421,25 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
           </div>
         ))}
         <DoctorProfileBanner />
-        <div className="mt-2">
-          <p className="text-[28px] text-black-400">
-            روز مشاوره خود را پیدا کنید
-          </p>
-          <p className="pt-8 leading-[170%] text-grey-500">
-            هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها را
-            بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان که
-            پرستیدنش مایه سعادت
-          </p>
+        <div className="xl:block hidden">
+          <div className="mt-2 mb-10">
+            <p className="text-[28px] text-black-400">
+              روز مشاوره خود را پیدا کنید
+            </p>
+            <p className="pt-8 leading-[170%] text-grey-500">
+              هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها
+              را بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان
+              که پرستیدنش مایه سعادت
+            </p>
+          </div>
+          <Calendar pageCalender={true} />
         </div>
-        <Calendar pageCalender={true} />
+        <div className="block xl:hidden">
+          <DoctorInfo />
+          <DoctorSkills />
+          <DoctorLocation />
+          <ProgressBarBox doctor={doctor} />
+        </div>
       </div>
     </div>
   );

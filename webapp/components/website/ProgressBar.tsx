@@ -41,7 +41,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ percentage }) => {
 
   return (
     <div ref={barRef} className="w-full">
-      <div className="relative w-full h-[11px] bg-gray-200 rounded-full overflow-hidden">
+      <div className="relative w-full h-2 xl:h-[11px] bg-gray-200 rounded-full overflow-hidden">
         <div
           className="absolute h-full bg-primary-500 transition-all duration-500 ease-in-out rounded-full"
           style={{ width: `${progress}%` }}

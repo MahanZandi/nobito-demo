@@ -42,7 +42,7 @@ const ProgressRing: React.FC<ProgressRingProps> = ({ percentage }) => {
   const circleDasharray = `${(progress / 100) * 283.5} 283.5`;
 
   return (
-    <div ref={ringRef} className="flex justify-center items-center">
+    <div ref={ringRef} className="flex justify-center items-center size-[128px] xl:size-auto">
       <svg className="transform w-full h-full" viewBox="0 0 100 100">
         <circle
           className="stroke-gray-200 stroke-9"
