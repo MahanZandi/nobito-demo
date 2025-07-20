@@ -121,6 +121,7 @@ const TurnRating = () => {
       <div className="xl:container">
         <div className="xl:py-[48px]">
           <PageSearchBox
+          trigerWidth="w-[798px]"
             lableStyle="lg:w-[798px] h-20 bg-white-50 relative p-5
               flex items-center gap-2"
             mobileInput={false}

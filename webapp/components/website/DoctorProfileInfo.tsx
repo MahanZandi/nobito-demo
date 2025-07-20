@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProgressBarBox from "./ProgressBarBox";
 import DoctorVisitType from "./DoctorVisitType";
+import DoctorComments from "./DoctorComments";
 
 interface DoctorProfileInfoProps {
   doctor: {
@@ -35,6 +36,20 @@ interface DoctorProfileInfoProps {
       title: string;
       date: string;
       time: string;
+    }[];
+    comments: {
+      id: number;
+      name: string;
+      star: number;
+      date: string;
+      comment: string;
+      suggest: boolean;
+      image: string;
+      waitingTime: string;
+      takeTurns: {
+        title: string;
+        icon: string;
+      };
     }[];
   };
 }
@@ -98,7 +113,6 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
       </>
     );
   };
-
 
   const DoctorLocation = () => {
     return (
@@ -218,9 +232,8 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
       <div className="bg-grey-200 h-px mt-10 xl:block hidden"></div>
       <div className="xl:block hidden">
         <DoctorLocation />
-      </div>
-      <div className="xl:block hidden">
-        <ProgressBarBox doctor={doctor}/>
+        <ProgressBarBox doctor={doctor} />
+        <DoctorComments comments={doctor.comments} />
       </div>
       <div className="xl:hidden my-6">
         <DoctorVisitType />

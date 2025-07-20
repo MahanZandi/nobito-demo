@@ -4,6 +4,8 @@ import DoctorConsultCard from "@/components/website/DoctorConsultCard";
 import DoctorProfileBanner from "@/components/website/DoctorProfileBanner";
 import ProgressBarBox from "@/components/website/ProgressBarBox";
 import CalendarDate from "@/components/website/CalendarDate";
+import DoctorComments from "@/components/website/DoctorComments";
+import SimilarDoctors from "@/components/website/SimilarDoctors";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -56,7 +58,7 @@ const doctors = [
       },
       {
         title: "دومین نوبت خالی",
-        date: "دوشنبه 3 آذر (15:15)",
+        date: "دوشنبه 3 آذر ( Mainly 15:15)",
         time: "25 دقیقه",
         price: 150000,
       },
@@ -73,8 +75,107 @@ const doctors = [
         price: 200000,
       },
     ],
+    comments: [
+      {
+        id: 1,
+        name: "زهرا احمدی",
+        star: 4,
+        date: "۱۵/۸/۱۴۰۲",
+        comment:
+          "پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران توصیه می‌کنم. روند درمانم خیلی سریع پیش رفت و از دقت و توجه ایشان بسیار راضی بودم. حتی بعد از ویزیت هم پیگیر وضعیت من بودند و این برایم ارزشمند بود.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۵ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 2,
+        name: "علی محمدی",
+        star: 5,
+        date: "۲۰/۸/۱۴۰۲",
+        comment:
+          "خیلی دقیق و با حوصله به صحبت‌های من گوش دادند و روند درمان عالی بود. محیط مطب آرام و تمیز بود و پرسنل هم رفتار خوبی داشتند. من از نتیجه درمان کاملاً راضی هستم و قطعاً دوباره مراجعه خواهم کرد.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۰ دقیقه",
+        takeTurns: { title: "ویزیت حضوری", icon: "isax isax-buliding" },
+      },
+      {
+        id: 3,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 4,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 5,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 6,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+    ],
+    similarDoctors: [
+      {
+        slug: "mohammad-mirzaei",
+        name: "محمد میرزایی",
+        image: "/images/doctor-10.png",
+        specialization: "جراح مغز و اعصاب",
+      },
+      {
+        slug: "ali-rezaei",
+        name: "علی رضایی",
+        image: "/images/doctor-2.jpeg",
+        specialization: "نورولوژیست",
+      },
+      {
+        slug: "sara-ahmadi",
+        name: "سارا احمدی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص مغز و اعصاب کودکان",
+      },
+      {
+        slug: "mina-karimi",
+        name: "مینا کریمی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص نورولوژی و سکته مغزی",
+      },
+    ],
   },
-
   {
     id: 2,
     name: "علی رضایی",
@@ -139,8 +240,107 @@ const doctors = [
         price: 190000,
       },
     ],
+    comments: [
+      {
+        id: 1,
+        name: "زهرا احمدی",
+        star: 4,
+        date: "۱۵/۸/۱۴۰۲",
+        comment:
+          "پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران توصیه می‌کنم. روند درمانم خیلی سریع پیش رفت و از دقت و توجه ایشان بسیار راضی بودم. حتی بعد از ویزیت هم پیگیر وضعیت من بودند و این برایم ارزشمند بود.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۵ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 2,
+        name: "علی محمدی",
+        star: 5,
+        date: "۲۰/۸/۱۴۰۲",
+        comment:
+          "خیلی دقیق و با حوصله به صحبت‌های من گوش دادند و روند درمان عالی بود. محیط مطب آرام و تمیز بود و پرسنل هم رفتار خوبی داشتند. من از نتیجه درمان کاملاً راضی هستم و قطعاً دوباره مراجعه خواهم کرد.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۰ دقیقه",
+        takeTurns: { title: "ویزیت حضوری", icon: "isax isax-buliding" },
+      },
+      {
+        id: 3,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 4,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 5,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 6,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+    ],
+    similarDoctors: [
+      {
+        slug: "mohammad-mirzaei",
+        name: "محمد میرزایی",
+        image: "/images/doctor-10.png",
+        specialization: "جراح مغز و اعصاب",
+      },
+      {
+        slug: "ali-rezaei",
+        name: "علی رضایی",
+        image: "/images/doctor-2.jpeg",
+        specialization: "نورولوژیست",
+      },
+      {
+        slug: "sara-ahmadi",
+        name: "سارا احمدی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص مغز و اعصاب کودکان",
+      },
+      {
+        slug: "mina-karimi",
+        name: "مینا کریمی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص نورولوژی و سکته مغزی",
+      },
+    ],
   },
-
   {
     id: 3,
     name: "سارا احمدی",
@@ -205,8 +405,107 @@ const doctors = [
         price: 250000,
       },
     ],
+    comments: [
+      {
+        id: 1,
+        name: "زهرا احمدی",
+        star: 4,
+        date: "۱۵/۸/۱۴۰۲",
+        comment:
+          "پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران توصیه می‌کنم. روند درمانم خیلی سریع پیش رفت و از دقت و توجه ایشان بسیار راضی بودم. حتی بعد از ویزیت هم پیگیر وضعیت من بودند و این برایم ارزشمند بود.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۵ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 2,
+        name: "علی محمدی",
+        star: 5,
+        date: "۲۰/۸/۱۴۰۲",
+        comment:
+          "خیلی دقیق و با حوصله به صحبت‌های من گوش دادند و روند درمان عالی بود. محیط مطب آرام و تمیز بود و پرسنل هم رفتار خوبی داشتند. من از نتیجه درمان کاملاً راضی هستم و قطعاً دوباره مراجعه خواهم کرد.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۰ دقیقه",
+        takeTurns: { title: "ویزیت حضوری", icon: "isax isax-buliding" },
+      },
+      {
+        id: 3,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 4,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 5,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 6,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+    ],
+    similarDoctors: [
+      {
+        slug: "mohammad-mirzaei",
+        name: "محمد میرزایی",
+        image: "/images/doctor-10.png",
+        specialization: "جراح مغز و اعصاب",
+      },
+      {
+        slug: "ali-rezaei",
+        name: "علی رضایی",
+        image: "/images/doctor-2.jpeg",
+        specialization: "نورولوژیست",
+      },
+      {
+        slug: "sara-ahmadi",
+        name: "سارا احمدی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص مغز و اعصاب کودکان",
+      },
+      {
+        slug: "mina-karimi",
+        name: "مینا کریمی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص نورولوژی و سکته مغزی",
+      },
+    ],
   },
-
   {
     id: 4,
     name: "مینا کریمی",
@@ -269,6 +568,106 @@ const doctors = [
         date: "شنبه 10 آذر (13:45)",
         time: "25 دقیقه",
         price: 400000,
+      },
+    ],
+    comments: [
+      {
+        id: 1,
+        name: "زهرا احمدی",
+        star: 4,
+        date: "۱۵/۸/۱۴۰۲",
+        comment:
+          "پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران توصیه می‌کنم. روند درمانم خیلی سریع پیش رفت و از دقت و توجه ایشان بسیار راضی بودم. حتی بعد از ویزیت هم پیگیر وضعیت من بودند و این برایم ارزشمند بود.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۵ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 2,
+        name: "علی محمدی",
+        star: 5,
+        date: "۲۰/۸/۱۴۰۲",
+        comment:
+          "خیلی دقیق و با حوصله به صحبت‌های من گوش دادند و روند درمان عالی بود. محیط مطب آرام و تمیز بود و پرسنل هم رفتار خوبی داشتند. من از نتیجه درمان کاملاً راضی هستم و قطعاً دوباره مراجعه خواهم کرد.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۱۰ دقیقه",
+        takeTurns: { title: "ویزیت حضوری", icon: "isax isax-buliding" },
+      },
+      {
+        id: 3,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 4,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+      {
+        id: 5,
+        name: "مریم رضایی",
+        star: 4,
+        date: "۲۲/۸/۱۴۰۲",
+        comment:
+          "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
+        suggest: true,
+        image: "/images/comment-1.png",
+        waitingTime: "۲۰ دقیقه",
+        takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
+      },
+      {
+        id: 6,
+        name: "حسین عباسی",
+        star: 3,
+        date: "۲۵/۸/۱۴۰۲",
+        comment:
+          "در مجموع راضی بودم اما زمان انتظار کمی طولانی بود. دکتر همیشه صبر کرد و با حوصله به سوالاتم پاسخ داد. به نظرم می‌توانستند زمان‌بندی بهتری داشته باشند اما از نظر تخصصی مشکلی نبود.",
+        suggest: false,
+        image: "/images/comment-1.png",
+        waitingTime: "۳۰ دقیقه",
+        takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
+      },
+    ],
+    similarDoctors: [
+      {
+        slug: "mohammad-mirzaei",
+        name: "محمد میرزایی",
+        image: "/images/doctor-10.png",
+        specialization: "جراح مغز و اعصاب",
+      },
+      {
+        slug: "ali-rezaei",
+        name: "علی رضایی",
+        image: "/images/doctor-2.jpeg",
+        specialization: "نورولوژیست",
+      },
+      {
+        slug: "sara-ahmadi",
+        name: "سارا احمدی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص مغز و اعصاب کودکان",
+      },
+      {
+        slug: "mina-karimi",
+        name: "مینا کریمی",
+        image: "/images/doctor-9.png",
+        specialization: "متخصص نورولوژی و سکته مغزی",
       },
     ],
   },
@@ -404,44 +803,50 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
   };
 
   return (
-    <div className="container flex xl:gap-8 xl:flex-row flex-col xl:mt-12 mt-6">
-      <DoctorProfileInfo doctor={doctor} />
-      <div className="xl:w-[520px] flex flex-col gap-10">
-        <div className="xl:block hidden">
-          <DoctorVisitType />
-        </div>
-        {doctor.consultation.map((item) => (
-          <div key={item.title}>
-            <DoctorConsultCard
-              title={item.title}
-              date={item.date}
-              time={item.time}
-              price={item.price}
-            />
+    <>
+      <div className="container flex xl:gap-8 xl:flex-row flex-col xl:mt-12 mt-6">
+        <DoctorProfileInfo doctor={doctor} />
+        <div className="xl:w-[520px] flex flex-col gap-10">
+          <div className="xl:block hidden">
+            <DoctorVisitType />
           </div>
-        ))}
-        <DoctorProfileBanner />
-        <div className="xl:block hidden">
-          <div className="mt-2 mb-10">
-            <p className="text-[28px] text-black-400">
-              روز مشاوره خود را پیدا کنید
-            </p>
-            <p className="pt-8 leading-[170%] text-grey-500">
-              هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها
-              را بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان
-              که پرستیدنش مایه سعادت
-            </p>
+          {doctor.consultation.map((item) => (
+            <div key={item.title}>
+              <DoctorConsultCard
+                title={item.title}
+                date={item.date}
+                time={item.time}
+                price={item.price}
+              />
+            </div>
+          ))}
+          <DoctorProfileBanner />
+          <div className="xl:block hidden">
+            <div className="mt-2 mb-10">
+              <p className="text-[28px] text-black-400">
+                روز مشاوره خود را پیدا کنید
+              </p>
+              <p className="pt-8 leading-[170%] text-grey-500">
+                هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها
+                را بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان
+                که پرستیدنش مایه سعادت
+              </p>
+            </div>
+            <CalendarDate pageCalender={true} />
           </div>
-          <CalendarDate pageCalender={true} />
-        </div>
-        <div className="block xl:hidden">
-          <DoctorInfo />
-          <DoctorSkills />
-          <DoctorLocation />
-          <ProgressBarBox doctor={doctor} />
+          <div className="block xl:hidden">
+            <DoctorInfo />
+            <DoctorSkills />
+            <DoctorLocation />
+            <ProgressBarBox doctor={doctor} />
+            <DoctorComments comments={doctor.comments} />
+          </div>
         </div>
       </div>
-    </div>
+      <div className="xl:mt-[144px] mt-16">
+        <SimilarDoctors />
+      </div>
+    </>
   );
 };
 

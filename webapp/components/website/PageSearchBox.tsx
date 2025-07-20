@@ -11,12 +11,14 @@ interface SearchBoxProps {
   container: string;
   mobileInput: boolean;
   lableStyle: string;
+  trigerWidth: string;
 }
 
 const PageSearchBox = ({
   container,
   mobileInput,
   lableStyle,
+  trigerWidth,
 }: SearchBoxProps) => {
   const searchData = [
     {
@@ -322,40 +324,42 @@ const PageSearchBox = ({
         </div>
         {/* this input for desktop view becouse we have a search box in desktop */}
         <Dialog.Root>
-          <Dialog.Trigger asChild>
-            <div className="hidden xl:block">
-              <label form="search" className={`rounded-2xl ${lableStyle}`}>
-                <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
-                <input
-                  id="search"
-                  autoComplete="off"
-                  onFocus={() => setIsFocused(true)}
-                  className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-                  placeholder="جستجو پزشک،درمانگر،کلینیک..."
-                />
+          <div className="w-full">
+            <Dialog.Trigger className={`${trigerWidth} rounded-2xl`} asChild>
+              <div className="hidden xl:block">
+                <label form="search" className={`rounded-2xl ${lableStyle}`}>
+                  <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+                  <input
+                    id="search"
+                    autoComplete="off"
+                    onFocus={() => setIsFocused(true)}
+                    className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+                    placeholder="جستجو پزشک،درمانگر،کلینیک..."
+                  />
 
-                <Select.Root>
-                  <Select.Trigger
-                    className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 cursor-pointer rounded-lg"
-                    aria-label="انتخاب شهر"
-                  >
-                    <Select.Value placeholder="انتخاب شهر" />
-                    <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-                  </Select.Trigger>
-                  <Select.Portal>
-                    <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl">
-                      <Select.ScrollUpButton />
-                      <Select.Viewport className="text-right">
-                        <Select.Separator />
-                      </Select.Viewport>
-                      <Select.ScrollDownButton />
-                      <Select.Arrow />
-                    </Select.Content>
-                  </Select.Portal>
-                </Select.Root>
-              </label>
-            </div>
-          </Dialog.Trigger>
+                  <Select.Root>
+                    <Select.Trigger
+                      className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 cursor-pointer rounded-lg"
+                      aria-label="انتخاب شهر"
+                    >
+                      <Select.Value placeholder="انتخاب شهر" />
+                      <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                    </Select.Trigger>
+                    <Select.Portal>
+                      <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl">
+                        <Select.ScrollUpButton />
+                        <Select.Viewport className="text-right">
+                          <Select.Separator />
+                        </Select.Viewport>
+                        <Select.ScrollDownButton />
+                        <Select.Arrow />
+                      </Select.Content>
+                    </Select.Portal>
+                  </Select.Root>
+                </label>
+              </div>
+            </Dialog.Trigger>
+          </div>
 
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0 bg-black/30 z-10 " />
