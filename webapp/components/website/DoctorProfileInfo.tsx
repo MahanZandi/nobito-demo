@@ -160,10 +160,12 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
             href="#"
             className="cursor-pointer w-[157px] h-[48px] hidden text-white-500 bg-primary-500 rounded-lg px-3 xl:flex justify-center items-center"
           >
-            <button className="flex cursor-pointer gap-2">
-              <span className="text-[16px] font-medium">دریافت نوبت</span>
-              <span className="isax isax-arrow-left text-2xl"></span>
-            </button>
+            <div className="flex cursor-pointer gap-2">
+              <button className="flex cursor-pointer gap-2">
+                <span className="text-[16px] font-medium">دریافت نوبت</span>
+                <span className="isax isax-arrow-left text-2xl"></span>
+              </button>
+            </div>
           </Link>
         </div>
       </div>

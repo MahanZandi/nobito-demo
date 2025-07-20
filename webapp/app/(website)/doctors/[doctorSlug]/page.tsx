@@ -793,7 +793,7 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
             className="cursor-pointer w-[157px] h-[48px] text-white-500 bg-primary-500 rounded-lg px-3 flex justify-center items-center"
           >
             <button className="flex cursor-pointer gap-2">
-              <span className="text-[16px] font-medium">دریافت نوبت</span>
+              <span className="text-[16px] font-medium">ثبت بازخورد</span>
               <span className="isax isax-arrow-left text-2xl"></span>
             </button>
           </Link>
