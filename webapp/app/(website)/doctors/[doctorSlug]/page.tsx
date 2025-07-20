@@ -286,10 +286,12 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
   if (!doctor) return notFound();
 
   return (
-    <div className="container flex xl:gap-8 xl:flex-row xl:mt-12 mt-6">
+    <div className="container flex xl:gap-8 xl:flex-row flex-col xl:mt-12 mt-6">
       <DoctorProfileInfo doctor={doctor} />
       <div className="xl:w-[520px] flex flex-col gap-[40px]">
-        <DoctorVisitType />
+        <div className="xl:block hidden">
+          <DoctorVisitType />
+        </div>
         {doctor.consultation.map((item) => (
           <div key={item.title}>
             <DoctorConsultCard

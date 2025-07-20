@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProgressRing from "./ProgressRing";
 import ProgressBar from "./ProgressBar";
+import DoctorVisitType from "./DoctorVisitType";
 
 interface DoctorProfileInfoProps {
   doctor: {
@@ -52,49 +53,17 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
     if (total === 0) return 0;
 
     const percent = (happy / total) * 100;
-    return Math.round(percent); 
+    return Math.round(percent);
   }
 
-  const satisfactionPercent = getSatisfactionPercent(doctor.happyComment, doctor.badComment);
-  
+  const satisfactionPercent = getSatisfactionPercent(
+    doctor.happyComment,
+    doctor.badComment
+  );
 
-  return (
-    <div className="flex flex-col xl:flex-1">
-      <div className="flex gap-4">
-        {/* Image */}
-        <div className="rounded-full border p-2">
-          <Image
-            src={doctor.image}
-            alt={doctor.name}
-            width={178}
-            height={178}
-            className="rounded-full xl:size-[176px] object-cover"
-          />
-        </div>
-
-        <div className="flex flex-col gap-6">
-          <h2 className="text-2xl font-medium text-black-400">{doctor.name}</h2>
-          <p className="text-[16px] text-grey-500">{doctor.specialization}</p>
-          <p className="text-[16px] text-grey-500">{doctor.city}</p>
-          <div className="flex gap-[68px]">
-            <p className="text-[22px] font-medium text-black-400">
-              کد نظام پزشکی: {doctor.id}
-            </p>
-            <div className="flex gap-2 text-2xl">
-              {[...Array(emptyStars)].map((_, i) => (
-                <span key={i} className="isax isax-star4 text-grey-500"></span>
-              ))}
-              {[...Array(fullStars)].map((_, i) => (
-                <span
-                  key={i}
-                  className="isax isax-star-15 text-yellow-500"
-                ></span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Doctor about */}
+  // small components
+  const DoctorInfo = () => {
+    return (
       <div className="xl:mt-20 ">
         <div className="flex ">
           <h3 className="xl:text-[28px] font-medium text-black-400 flex xl:flex-1">
@@ -111,31 +80,41 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
           {doctor.description}
         </p>
       </div>
-      <div className="mt-10 flex items-center gap-2">
-        <Image
-          className="xl:size-10"
-          src="/images/png-icons/health.png"
-          width={40}
-          height={40}
-          alt="healthy icon"
-        />
-        <div className="text-[20px]">
-          <span className="text-grey-400 ">تخصص پزشکی : </span>
-          <span className="text-primary-500">{doctor.specialization}</span>
-        </div>
-      </div>
-      <div className="flex gap-4 mt-10">
-        {doctor.skills.map((skill, index) => (
-          <div
-            key={index}
-            className="py-[5px] px-3 text-grey-500 rounded-[200px] text-sm border border-grey-500"
-          >
-            {skill}
-          </div>
-        ))}
-      </div>
-      <div className="bg-grey-200 h-px mt-10"></div>
+    );
+  };
 
+  const DoctorSkills = () => {
+    return (
+      <>
+        <div className="mt-10 xl:flex items-center gap-2">
+          <Image
+            className="xl:size-10"
+            src="/images/png-icons/health.png"
+            width={40}
+            height={40}
+            alt="healthy icon"
+          />
+          <div className="text-[20px]">
+            <span className="text-grey-400 ">تخصص پزشکی : </span>
+            <span className="text-primary-500">{doctor.specialization}</span>
+          </div>
+        </div>
+        <div className="flex gap-4 mt-10">
+          {doctor.skills.map((skill, index) => (
+            <div
+              key={index}
+              className="py-[5px] px-3 text-grey-500 rounded-[200px] text-sm border border-grey-500"
+            >
+              {skill}
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  };
+
+  const DoctorLocation = () => {
+    return (
       <div className="mt-10">
         <p className="text-[28px] text-black-400 font-medium mb-6">
           موقعیت مکانی مطب
@@ -223,7 +202,7 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
           <div className="my-6 h-px bg-grey-200"></div>
           <div className="flex">
             <p className="text-[20px] flex-1 text-black-400">
-               {satisfactionPercent + "%"} کاربر این پزشک را پیشنهاد می کنند.
+              {satisfactionPercent + "%"} کاربر این پزشک را پیشنهاد می کنند.
             </p>
             <div className="flex gap-2 text-2xl">
               {[...Array(emptyStars)].map((_, i) => (
@@ -238,6 +217,75 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="flex flex-col xl:flex-1">
+      <div className="flex items-center xl:items-start xl:flex-row flex-col gap-4">
+        {/* Image */}
+        <div className="rounded-full size-[128px] xl:size-[192px] flex justify-center items-center border p-2">
+          <Image
+            src={doctor.image}
+            alt={doctor.name}
+            width={178}
+            height={178}
+            className="rounded-full size-[112px] xl:size-[176px] object-cover"
+          />
+        </div>
+
+        <div className="flex items-center xl:items-start flex-col gap-6">
+          <h2 className="xl:text-2xl text-[20px] font-medium text-black-400">
+            {doctor.name}{" "}
+            <span className="text-grey-500 text-sm xl:hidden">
+              ({doctor.specialization})
+            </span>
+          </h2>
+
+          <h2 className="text-[16px] text-grey-500 xl:block hidden">
+            {doctor.specialization}
+          </h2>
+          <p className="text-[16px] font-medium text-black-400">
+            {/* doctor id mobile view */}
+            کد نظام پزشکی: {doctor.id}
+          </p>
+          <p className="text-[20px] xl:text-[16px] text-grey-500">
+            {doctor.city}
+          </p>
+          <div className="flex xl:gap-[68px]">
+            <p className="text-[22px] font-medium text-black-400 hidden xl:block">
+              {/* doctor id desktop view */}
+              کد نظام پزشکی: {doctor.id}
+            </p>
+            <div className="flex gap-2 text-2xl">
+              {[...Array(emptyStars)].map((_, i) => (
+                <span key={i} className="isax isax-star4 text-grey-500"></span>
+              ))}
+              {[...Array(fullStars)].map((_, i) => (
+                <span
+                  key={i}
+                  className="isax isax-star-15 text-yellow-500"
+                ></span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Doctor about component desktop view*/}
+      <div className="xl:block hidden">
+        <DoctorInfo />
+      </div>
+      {/* Doctor skills component desktop view*/}
+      <div className="hidden xl:block">
+        <DoctorSkills />
+      </div>
+      <div className="bg-grey-200 h-px mt-10 xl:block hidden"></div>
+      <div className="xl:block hidden">
+        <DoctorLocation />
+      </div>
+      <div className="xl:hidden my-6">
+        <DoctorVisitType />
       </div>
     </div>
   );

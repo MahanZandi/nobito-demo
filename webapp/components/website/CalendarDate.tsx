@@ -62,7 +62,7 @@ const CalendarDate: React.FC<CalendarProps> = ({
         />
       )}
       {pageCalender && (
-        <div className="w-[300px] grid place-items-center px-6 py-2 bg-white rounded-2xl border border-grey-200">
+        <div className="inline-block p-2 bg-white shadow-md rounded-2xl border border-grey-200">
           <Calendar
             multiple
             calendar={persian}

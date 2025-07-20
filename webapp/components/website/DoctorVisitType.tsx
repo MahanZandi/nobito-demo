@@ -12,21 +12,21 @@ const DoctorVisitType = () => {
   const text = () => setVisitMethod("text");
 
   return (
-    <div className="py-8 px-4 gap-8 flex flex-col items-center border border-grey-200 rounded-3xl">
-      <p className="text-[32px] text-black-400">ملاقات با پزشک</p>
-      <div className="flex gap-6">
-        <div className="text-grey-400 flex flex-col gap-4">
+    <div className="py-6 xl:py-8 px-4 gap-8 flex flex-col items-center border border-grey-200 rounded-3xl">
+      <p className="text-2xl xl:text-[32px] text-black-400">ملاقات با پزشک</p>
+      <div className="flex gap-4 xl:gap-6">
+        <div className="text-grey-400 flex flex-col gap-[13px] xl:gap-4">
           <div
             onClick={calling}
             className={`${
               visitMethod === "calling" ? "bg-primary-500 text-body" : ""
-            } transition-all cursor-pointer size-[104px] rounded-[10px] p-5 border border-grey-400`}
+            } transition-all cursor-pointer xl:size-[104px] size-[62px] rounded-[10px] p-[11px] xl:p-5 border border-grey-400`}
           >
-            <span className="isax isax-call-calling text-[64px] "></span>
+            <span className="isax isax-call-calling text-[40px] xl:text-[64px] "></span>
           </div>
           <p
             onClick={calling}
-            className={`cursor-pointer text-2xl text-center ${
+            className={`cursor-pointer text-[16px] xl:text-2xl text-center ${
               visitMethod === "calling" ? "text-primary-500" : "text-grey-400"
             }`}
           >
@@ -38,13 +38,13 @@ const DoctorVisitType = () => {
             onClick={inPerson}
             className={`${
               visitMethod === "in-person" ? "bg-primary-500 text-body" : ""
-            } transition-all cursor-pointer size-[104px] rounded-[10px] p-5 border border-grey-400`}
+            } transition-all cursor-pointer xl:size-[104px] size-[62px] rounded-[10px] p-[11px] xl:p-5 border border-grey-400`}
           >
-            <span className="isax isax-frame-1 text-[64px] "></span>
+            <span className="isax isax-frame-1 text-[40px] xl:text-[64px] "></span>
           </div>
           <p
             onClick={inPerson}
-            className={`cursor-pointer text-2xl text-center ${
+            className={`cursor-pointer text-[16px] xl:text-2xl text-center ${
               visitMethod === "in-person" ? "text-primary-500" : "text-grey-400"
             }`}
           >
@@ -56,13 +56,13 @@ const DoctorVisitType = () => {
             onClick={online}
             className={`${
               visitMethod === "online" ? "bg-primary-500 text-body" : ""
-            } transition-all cursor-pointer size-[104px] rounded-[10px] p-5 border border-grey-400`}
+            } transition-all cursor-pointer xl:size-[104px] size-[62px] rounded-[10px] p-[11px] xl:p-5 border border-grey-400`}
           >
-            <span className="isax isax-monitor-mobbile text-[64px] "></span>
+            <span className="isax isax-monitor-mobbile text-[40px] xl:text-[64px] "></span>
           </div>
           <p
             onClick={online}
-            className={`cursor-pointer text-2xl text-center ${
+            className={`cursor-pointer text-[16px] xl:text-2xl text-center ${
               visitMethod === "online" ? "text-primary-500" : "text-grey-400"
             }`}
           >
@@ -74,13 +74,13 @@ const DoctorVisitType = () => {
             onClick={text}
             className={`${
               visitMethod === "text" ? "bg-primary-500 text-body" : ""
-            } transition-all cursor-pointer size-[104px] rounded-[10px] p-5 border border-grey-400`}
+            } transition-all cursor-pointer xl:size-[104px] size-[62px] rounded-[10px] p-[11px] xl:p-5 border border-grey-400`}
           >
-            <span className="isax isax-messages text-[64px] "></span>
+            <span className="isax isax-messages text-[40px] xl:text-[64px] "></span>
           </div>
           <p
             onClick={text}
-            className={`cursor-pointer text-2xl text-center ${
+            className={`cursor-pointer text-[16px] xl:text-2xl text-center ${
               visitMethod === "text" ? "text-primary-500" : "text-grey-400"
             }`}
           >
