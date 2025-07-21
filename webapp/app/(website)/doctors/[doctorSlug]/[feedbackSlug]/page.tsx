@@ -1,14 +1,8 @@
-import DoctorProfileInfo from "@/components/website/DoctorProfileInfo";
-import DoctorVisitType from "@/components/website/DoctorVisitType";
-import DoctorConsultCard from "@/components/website/DoctorConsultCard";
-import DoctorProfileBanner from "@/components/website/DoctorProfileBanner";
-import ProgressBarBox from "@/components/website/ProgressBarBox";
-import CalendarDate from "@/components/website/CalendarDate";
-import DoctorComments from "@/components/website/DoctorComments";
-import SimilarDoctors from "@/components/website/SimilarDoctors";
-import Link from "next/link";
-import Image from "next/image";
+"use client";
 import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useState } from "react";
+import Image from "next/image";
 
 const doctors = [
   {
@@ -677,181 +671,68 @@ const doctors = [
   },
 ];
 
-interface DoctorProfilePageProps {
-  params: {
-    doctorSlug: string;
-  };
-}
+const FeedbackPage = () => {
+  const { feedbackSlug } = useParams();
 
-const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
-  params,
-}) => {
-  const { doctorSlug } = await params;
-
-  const doctor = doctors.find((d) => d.slug === doctorSlug);
+  const doctor = doctors.find((d) => d.feedbackSlug === feedbackSlug);
   if (!doctor) return notFound();
 
-  const comment: number = doctor.happyComment + doctor.badComment;
+  function StarRating() {
+    const [rating, setRating] = useState(0);
 
-  // small components
+    const handleClick = (star: number) => {
+      if (rating === star) {
+        setRating(0);
+      } else {
+        setRating(star);
+      }
+    };
 
-  // this component for mobile view
-  const DoctorInfo = () => {
     return (
-      <div className="xl:hidden mt-2">
-        <div className="flex flex-col items-center gap-6">
-          <h3 className="text-2xl font-medium text-black-400 flex">
-            درباره پزشک
-          </h3>
-          <div className="text-grey-500 text-[16px] flex items-center gap-2">
-            <span className="isax isax-like-1 text-primary-500 text-2xl"></span>
-            <p>
-              {doctor.happyComment} نفر از {comment} از پزشک راضی بوده اند
-            </p>
-          </div>
-        </div>
-        <p className="mt-6 text-grey-500 text-[14px] leading-[144%]">
-          {doctor.description}
-        </p>
-      </div>
-    );
-  };
-
-  // this component for mobile view
-  const DoctorSkills = () => {
-    return (
-      <>
-        <div className="mt-10 xl:flex items-center gap-2">
-          <div className="flex flex-col items-center gap-4">
-            <Image
-              className="size-14"
-              src="/images/png-icons/healthRounded.png"
-              width={40}
-              height={40}
-              alt="healthy icon"
-            />
-            <div className="text-[20px]">
-              <span className="text-grey-400 ">تخصص پزشکی : </span>
-              <span className="text-primary-500 font-medium">
-                {doctor.specialization}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(134px,1fr))] gap-4 mt-10">
-          {doctor.skills.map((skill, index) => (
-            <div
-              key={index}
-              className="py-[5px] px-3 text-grey-500 justify-center flex rounded-[200px] text-sm border border-grey-500"
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
-      </>
-    );
-  };
-
-  // this component for mobile view
-  const DoctorLocation = () => {
-    return (
-      <div className="mt-10">
-        <p className="text-[28px] text-black-400 font-medium mb-6">
-          موقعیت مکانی مطب
-        </p>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-4">
-            <p className="text-[20px] font-medium text-black-400">آدرس :</p>
-            <p className="text-grey-500">{doctor.location}.</p>
-            <div className="flex flex-col gap-4">
-              <p className="text-black-400 text-[20px]">تلفن :</p>
-              <span className="text-grey-500">
-                {doctor.firstPhoneNumber} | {doctor.secandPhoneNumber}
-              </span>
-            </div>
-          </div>
-        </div>
-        <Link
-          className="p-2 mt-8 w-[328px] h-[120px] border flex justify-center items-center border-grey-500 rounded-[200px] cursor-pointer"
-          href={doctor.locationLink}
-        >
-          <Image
-            alt="map"
-            src="/images/mapHorizon.png"
-            width={312}
-            height={104}
-          />
-        </Link>
-        <div className="mt-6 bg-grey-200 h-px"></div>
-        <div className="mt-6">
-          <p className="text-2xl font-medium text-black-400">تجربیات کاربران</p>
-          <p className="mt-6 text-grey-500">
-            در ادامه می‌توانید تجربه مراجعه‌ی کاربران دیگر به دکتر {doctor.name}{" "}
-            را بخوانید.در صورتی که شما هم از بیماران دکتر {doctor.name} بوده‌اید
-            می‌توانید نظر خود را ثبت کنید.
-          </p>
-        </div>
-        <div className="mt-6 justify-end flex">
-          <Link
-            href={`/doctors/${doctor.slug}/${doctor.feedbackSlug}`}
-            className="cursor-pointer w-[157px] h-[48px] text-white-500 bg-primary-500 rounded-lg px-3 flex justify-center items-center"
+      <div className="flex flex-row-reverse justify-center gap-2 mt-6 xl:mt-[40px] ">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <svg
+            key={star}
+            onClick={() => handleClick(star)}
+            viewBox="0 0 24 24"
+            fill={(rating) >= star ? "gold" : "lightgray"}
+            className="cursor-pointer transition-all text-[32px] xl:size-[48px]"
           >
-            <button className="flex cursor-pointer gap-2">
-              <span className="text-[16px] font-medium">ثبت بازخورد</span>
-              <span className="isax isax-arrow-left text-2xl"></span>
-            </button>
-          </Link>
-        </div>
+            <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" />
+          </svg>
+        ))}
       </div>
     );
-  };
+  }
 
   return (
-    <>
-      <div className="container flex xl:gap-8 xl:flex-row flex-col xl:mt-12 mt-6">
-        <DoctorProfileInfo doctor={doctor} />
-        <div className="xl:w-[520px] flex flex-col gap-10">
-          <div className="xl:block hidden">
-            <DoctorVisitType />
+    <div className="container pt-[24px] px-4 xl:px-0 xl:pt-[72px]">
+      <div className="xl:bg-white xl:border border-grey-200 rounded-4xl xl:py-10 xl:px-20 ">
+        <div className="flex-col gap-4 xl:gap-6 flex items-center">
+          <div className="rounded-full size-[112px] xl:size-[144px] flex justify-center items-center border p-2 border-grey-400">
+            <Image
+              src={doctor.image}
+              alt={doctor.name}
+              width={128}
+              height={128}
+              className="rounded-full size-[96px] xl:size-[128px] object-cover"
+            />
           </div>
-          {doctor.consultation.map((item) => (
-            <div key={item.title}>
-              <DoctorConsultCard
-                title={item.title}
-                date={item.date}
-                time={item.time}
-                price={item.price}
-              />
-            </div>
-          ))}
-          <DoctorProfileBanner />
-          <div className="xl:block hidden">
-            <div className="mt-2 mb-10">
-              <p className="text-[28px] text-black-400">
-                روز مشاوره خود را پیدا کنید
-              </p>
-              <p className="pt-8 leading-[170%] text-grey-500">
-                هم شما و هم پدران پیشین شما هم آنان قطعاً دشمن منند چون اگر آنها
-                را بپرستم، مرا دچار عذاب جاودانه خواهند کرد، جز پروردگار جهانیان
-                که پرستیدنش مایه سعادت
-              </p>
-            </div>
-            <CalendarDate pageCalender={true} />
+          <div className="flex items-center flex-col gap-4">
+            <p className="text-2xl xl:text-[28px] text-black-500 font-medium">
+              {doctor.name}
+            </p>
+            <p className="text-[16px] xl:text-xl text-grey-400">{doctor.specialization}</p>
           </div>
-          <div className="block xl:hidden">
-            <DoctorInfo />
-            <DoctorSkills />
-            <DoctorLocation />
-            <ProgressBarBox doctor={doctor} />
-            <DoctorComments comments={doctor.comments} />
-          </div>
+          <p className="text-[14px] xl:text-xl text-grey-400">
+            کاربر گرامی ضمن آرزوی سلامتی برای شما ؛ لطفا امتیاز خود را نسبت به
+            خدمات دکتر {doctor.name} ثبت
+          </p>
         </div>
+        <StarRating />
       </div>
-      <div className="xl:mt-[144px] mt-16">
-        <SimilarDoctors />
-      </div>
-    </>
+    </div>
   );
 };
 
-export default DoctorProfilePage;
+export default FeedbackPage;
