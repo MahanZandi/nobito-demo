@@ -671,13 +671,24 @@ const doctors = [
   },
 ];
 
+type pointsType = "good-points" | "bad-points";
+
 const FeedbackPage = () => {
   const { feedbackSlug } = useParams();
+
+  const [points, setPoints] = useState<pointsType>("good-points");
+  const goodPoint = () => {
+    setPoints("good-points");
+  };
+  const badPoint = () => {
+    setPoints("bad-points");
+  };
 
   const doctor = doctors.find((d) => d.feedbackSlug === feedbackSlug);
   if (!doctor) return notFound();
 
-  function StarRating() {
+  // stars component
+  const StarRating = () => {
     const [rating, setRating] = useState(0);
 
     const handleClick = (star: number) => {
@@ -695,7 +706,7 @@ const FeedbackPage = () => {
             key={star}
             onClick={() => handleClick(star)}
             viewBox="0 0 24 24"
-            fill={(rating) >= star ? "gold" : "lightgray"}
+            fill={rating >= star ? "gold" : "lightgray"}
             className="cursor-pointer transition-all text-[32px] xl:size-[48px]"
           >
             <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" />
@@ -703,7 +714,7 @@ const FeedbackPage = () => {
         ))}
       </div>
     );
-  }
+  };
 
   return (
     <div className="container pt-[24px] px-4 xl:px-0 xl:pt-[72px]">
@@ -722,7 +733,9 @@ const FeedbackPage = () => {
             <p className="text-2xl xl:text-[28px] text-black-500 font-medium">
               {doctor.name}
             </p>
-            <p className="text-[16px] xl:text-xl text-grey-400">{doctor.specialization}</p>
+            <p className="text-[16px] xl:text-xl text-grey-400">
+              {doctor.specialization}
+            </p>
           </div>
           <p className="text-[14px] xl:text-xl text-grey-400">
             کاربر گرامی ضمن آرزوی سلامتی برای شما ؛ لطفا امتیاز خود را نسبت به
@@ -730,6 +743,44 @@ const FeedbackPage = () => {
           </p>
         </div>
         <StarRating />
+        <div className="xl:mt-10 grid grid-cols-2">
+          <div>
+            <div
+              onClick={goodPoint}
+              className={`${
+                points === "good-points" ? "text-primary-500" : "text-grey-400"
+              } flex justify-center cursor-pointer gap-2 pb-2`}
+            >
+              <span className="isax isax-like-1 text-[32px]"></span>
+              <span className="xl:text-[22px]">نقاط قوت</span>
+            </div>
+            <div
+              className={`${
+                points === "good-points"
+                  ? "bg-primary-500 h-1"
+                  : "bg-grey-200 h-px"
+              } `}
+            ></div>
+          </div>
+          <div>
+            <div
+              onClick={badPoint}
+              className={`${
+                points === "bad-points" ? "text-error-500" : "text-grey-400"
+              } flex justify-center cursor-pointer gap-2 pb-2`}
+            >
+              <span className="isax isax-dislike text-[32px]"></span>
+              <span className="xl:text-[22px]">نقاط ضعف</span>
+            </div>
+            <div
+              className={`${
+                points === "bad-points"
+                  ? "bg-error-500 h-1"
+                  : "bg-grey-200 h-px"
+              } `}
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
   );
