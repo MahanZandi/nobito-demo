@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const doctors = [
   {
@@ -671,6 +672,15 @@ const doctors = [
   },
 ];
 
+const options = [
+  { title: "تشخیص درست" },
+  { title: "امکانات رفاهی" },
+  { title: "نظافت مطب" },
+  { title: "زمان انتظار در مطب" },
+  { title: "رفتار مناسب" },
+  { title: "نسخه الکترونیکی" },
+];
+
 type pointsType = "good-points" | "bad-points";
 
 const FeedbackPage = () => {
@@ -707,7 +717,7 @@ const FeedbackPage = () => {
             onClick={() => handleClick(star)}
             viewBox="0 0 24 24"
             fill={rating >= star ? "gold" : "lightgray"}
-            className="cursor-pointer transition-all text-[32px] xl:size-[48px]"
+            className="cursor-pointer transition-all size-[32px] xl:size-[48px]"
           >
             <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" />
           </svg>
@@ -733,7 +743,7 @@ const FeedbackPage = () => {
             <p className="text-2xl xl:text-[28px] text-black-500 font-medium">
               {doctor.name}
             </p>
-            <p className="text-[16px] xl:text-xl text-grey-400">
+            <p className="text-[16px] xl:text-xl text-grey-400 text-center">
               {doctor.specialization}
             </p>
           </div>
@@ -743,7 +753,7 @@ const FeedbackPage = () => {
           </p>
         </div>
         <StarRating />
-        <div className="xl:mt-10 grid grid-cols-2">
+        <div className="xl:mt-10 mt-8 grid grid-cols-2">
           <div>
             <div
               onClick={goodPoint}
@@ -780,6 +790,34 @@ const FeedbackPage = () => {
               } `}
             ></div>
           </div>
+        </div>
+        <div className="xl:mt-[62px] mt-10 flex flex-col items-center xl:gap-12 gap-10">
+          <p className="w-full flex justify-center font-medium text-xl text-black-500">
+            {points === "good-points"
+              ? "از کدام موارد رضایت داشته اید؟"
+              : "از کدام موارد رضایت نداشته اید؟"}
+          </p>
+          <div className="grid grid-cols-2 xl:grid-cols-3 gap-3">
+            {options.map((option, index) => (
+              <div
+                key={index}
+                className="xl:min-w-[238px] min-w-[158px] cursor-pointer rounded-[120px] border border-black-500 text-black-500 py-2 flex justify-center font-medium text-[16px]"
+              >
+                <span>{option.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="xl:grid grid-cols-6 gap-4 xl:mt-[62px] hidden">
+          <Link
+            className="bg-primary-500 rounded-[10px] text-white-500 py-3 grid col-span-4"
+            href="#"
+          >
+            <button>ثبت بازخورد</button>
+          </Link>
+          <Link className="grid col-span-2 text-black-500 py-3 rounded-[10px] border border-black-500" href="#">
+            <button>نگارش نظر</button>
+          </Link>
         </div>
       </div>
     </div>
