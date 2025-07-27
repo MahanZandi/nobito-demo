@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 interface FormValues {
   number: string;
@@ -62,13 +63,14 @@ const SignInPage = () => {
           لطفا این بخش را خالی نگذارید
         </div>
         <div className="w-full mt-6">
-          <button
-            type="submit"
-            className="bg-primary-500 py-3 w-full rounded-[10px] cursor-pointer text-white-500"
-            
-          >
-            ورود/ثبت نام
-          </button>
+          <Link href="/user-dashboard">
+            <button
+              type="submit"
+              className="bg-primary-500 py-3 w-full rounded-[10px] cursor-pointer text-white-500"
+            >
+              ورود/ثبت نام
+            </button>
+          </Link>
         </div>
         <p className="mt-6 text-[14px] text-grey-400 text-center">
           ورود شما به معنای پذیرش شرایط و{" "}
