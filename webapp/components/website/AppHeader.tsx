@@ -218,7 +218,7 @@ const AppHeader: React.FC = () => {
 
             {/* Auth Button (for descktop view) */}
             <Link
-              href="/"
+              href="/sign-in"
               className="bg-primary-500 w-[117px] h-12 hidden xl:flex items-center justify-center text-white-500 font-t2-medium rounded-lg"
             >
               ورود/ثبت نام
