@@ -110,7 +110,10 @@
   --color-body: #f5f5f5;
 
   --color-sky-150: #eaf7ff;
+  --color-sky-250: #e0eefb;
+  --color-sky-550: #78beff;
   --color-sky-650: #157eb9;
+  --color-sky-850: #136cbf;
 
   --default-font-family: "Vazirmatn UI";
   --font-vazir-farsi: "Vazirmatn UI FD";
@@ -154,5 +157,3 @@
   display: flex !important;
   flex-wrap: wrap !important;
 }
-
-

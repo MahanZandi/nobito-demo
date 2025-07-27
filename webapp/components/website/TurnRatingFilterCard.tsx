@@ -223,6 +223,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             {/* specialization accordion */}
             <div className="h-px bg-grey-250 my-6"></div>
             <AccordionFilter
+              style="filterCard"
               triggerTitle="تخصص"
               searchBox={true}
               filterTypeData="specialization"
@@ -234,6 +235,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             {/* services accordion */}
             <div className="h-px bg-grey-250 my-6"></div>
             <AccordionFilter
+              style="filterCard"
               triggerTitle="خدمات"
               searchBox={true}
               filterTypeData="services"
@@ -246,6 +248,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             <div className="grid grid-cols-2 gap-[17px]">
               {/* citys accordion */}
               <AccordionFilter
+                style="filterCard"
                 triggerTitle="شهر"
                 searchBox={true}
                 filterTypeData="city"
@@ -255,6 +258,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
               />
               {/* insurance accordion */}
               <AccordionFilter
+                style="filterCard"
                 triggerTitle="بیمه"
                 searchBox={true}
                 filterTypeData="insurance"
@@ -266,6 +270,7 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             <div className="h-px bg-grey-250 my-6"></div>
             {/* location accordion */}
             <AccordionFilter
+              style="filterCard"
               triggerTitle="محله"
               searchBox={true}
               filterTypeData="location"

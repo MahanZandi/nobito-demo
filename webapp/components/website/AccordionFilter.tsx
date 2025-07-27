@@ -25,6 +25,11 @@ interface DoctorType {
   insurance: string;
 }
 
+interface CitysType {
+  id: number;
+  name: string;
+}
+
 type filterType =
   | "specialization"
   | "services"
@@ -36,9 +41,10 @@ interface AccordionFilterProps {
   filterState: string[];
   setFilterState: React.Dispatch<React.SetStateAction<string[]>>;
   filterTypeData: filterType;
-  data: DoctorType[];
-  triggerTitle: string;
+  data: DoctorType[] | CitysType[];
+  triggerTitle?: string;
   searchBox: boolean;
+  style: "dashboard" | "filterCard";
 }
 
 const AccordionFilter: React.FC<AccordionFilterProps> = ({
@@ -48,6 +54,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
   data,
   triggerTitle,
   searchBox,
+  style,
 }) => {
   const [query, setQuery] = useState<string>("");
 
@@ -65,21 +72,38 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
     }
   };
 
-  const filterData = Array.from(
-    new Set(
-      data
-        .filter((item) =>
-          item[filterTypeData]?.toLowerCase().includes(query.toLowerCase())
+  const filterData =
+    filterTypeData === "city"
+      ? Array.from(
+          new Set(
+            (data as CitysType[])
+              .filter((item) =>
+                item.name.toLowerCase().includes(query.toLowerCase())
+              )
+              .map((item) => item.name)
+          )
         )
-        .map((item) => item[filterTypeData])
-    )
-  );
+      : Array.from(
+          new Set(
+            (data as DoctorType[])
+              .filter((item) =>
+                (item[filterTypeData] as string)
+                  ?.toLowerCase()
+                  .includes(query.toLowerCase())
+              )
+              .map((item) => item[filterTypeData] as string)
+          )
+        );
 
   return (
     <Accordion.Root type="single" collapsible>
       <Accordion.Item
         value="item-1"
-        className="border border-grey-200 rounded-lg w-full p-3 bg-white-100"
+        className={`${
+          style === "filterCard"
+            ? "border border-grey-200 rounded-lg w-full p-3 bg-white-100"
+            : "bg-grey-50 rounded-lg w-full p-3"
+        }`}
       >
         <Accordion.Header>
           <Accordion.Trigger className="flex w-full group">
@@ -104,9 +128,11 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
         <Accordion.Content className="flex flex-col">
           <label
             form="search"
-            className={`${
-              searchBox ? "" : "hidden"
-            } bg-grey-50 flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-md`}
+            className={`${searchBox ? "" : "hidden"} ${
+              style === "filterCard"
+                ? "bg-grey-50 "
+                : "bg-white-100 border-grey-200 border "
+            } flex items-center gap-3 h-10 mt-3 mb-2 p-2 rounded-md`}
           >
             <span className="isax isax-search-normal text-2xl leading-8 text-grey-400"></span>
             <input
@@ -157,7 +183,10 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                         filterState.includes(item) ? "text-primary-500" : ""
                       }`}
                     >
-                      <p onClick={handleCheckBox} className="line-clamp-2 cursor-pointer">
+                      <p
+                        onClick={handleCheckBox}
+                        className="line-clamp-2 cursor-pointer"
+                      >
                         {item}
                       </p>
                     </div>
@@ -170,7 +199,9 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
             })}
 
             {filterData.length === 0 && (
-              <p className="text-grey-400 text-center py-4">نتیجه ای یافت نشد</p>
+              <p className="text-grey-400 text-center py-4">
+                نتیجه ای یافت نشد
+              </p>
             )}
           </div>
         </Accordion.Content>

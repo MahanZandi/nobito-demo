@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import AccountInfo from "@/components/website/AccountInfo";
 
 interface BeardCrumbsProps {
   activeTab: string;
@@ -45,16 +46,16 @@ const UserDashboard = () => {
 
     return (
       <div className="bg-primary-500 text-white-500 xl:py-3 py-2">
-        <ul className="flex container gap-4 text-xl">
-          <li className="flex gap-4 items-center">
+        <ul className="flex container gap-2 xl:gap-4 text-xs xl:text-xl">
+          <li className="flex gap-2 items-center">
             <span>نوبیتو</span>
-            <span className="isax isax-arrow-left-2 text-2xl"></span>
+            <span className="isax isax-arrow-left-2"></span>
           </li>
-          <li className="flex gap-4 items-center">
+          <li className="flex gap-2 items-center">
             <span>حساب شخصی</span>
-            <span className="isax isax-arrow-left-2 text-2xl"></span>
+            <span className="isax isax-arrow-left-2"></span>
           </li>
-          <li className="flex gap-4 items-center">
+          <li className="flex gap-2 items-center">
             <span className="font-bold">{activeTabsText()}</span>
           </li>
         </ul>
@@ -103,8 +104,8 @@ const UserDashboard = () => {
   return (
     <div>
       <BeardCrumbs activeTab={activeTab} />
-      <aside className="mt-10 container">
-        <div className="w-[384px] bg-white-100  rounded-2xl border border-grey-100">
+      <div className="mt-6 xl:mt-10 container flex gap-6">
+        <aside className="lg:block hidden w-[384px] bg-white-100  rounded-2xl border border-grey-100">
           <div className="p-6">
             <div className="bg-[url('/banner.png')] h-[120px] w-full rounded-xl flex justify-center">
               <div className="rounded-full bg-body p-6 size-[144px] mt-12">
@@ -142,9 +143,7 @@ const UserDashboard = () => {
                     } py-6 flex items-center gap-2 `}
                   >
                     {activeTab === link.link && (
-                      
-                        <div className="rounded-tl-[6px] rounded-bl-[6px] w-2 h-[53px] absolute bg-primary-500 "></div>
-                      
+                      <div className="rounded-tl-[6px] rounded-bl-[6px] w-2 h-[53px] absolute bg-primary-500 "></div>
                     )}
                     <div className="pr-6 flex items-center gap-2">
                       <span className={link.icon}></span>
@@ -155,8 +154,17 @@ const UserDashboard = () => {
               </div>
             ))}
           </ul>
-        </div>
-      </aside>
+        </aside>
+
+        <main className="flex flex-1">
+          {activeTab === "account-information" && <AccountInfo />}
+          {/* {activeTab === "history-of-turns" && <HistoryOfTurns />}
+          {activeTab === "messages" && <Messages />}
+          {activeTab === "medical-files" && <MedicalFiles />}
+          {activeTab === "feedbacks" && <Feedbacks />}
+          {activeTab === "password" && <Password />} */}
+        </main>
+      </div>
     </div>
   );
 };
