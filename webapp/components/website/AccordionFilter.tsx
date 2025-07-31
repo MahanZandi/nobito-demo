@@ -100,9 +100,9 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
       <Accordion.Item
         value="item-1"
         className={`${
-          style === "filterCard"
-            ? "border border-grey-200 rounded-lg w-full p-3 bg-white-100"
-            : "bg-grey-50 rounded-lg w-full p-3"
+          style === "dashboard"
+            ? "bg-grey-50 rounded-lg w-full p-3"
+            : "border border-grey-200 rounded-lg w-full p-3 bg-white-100"
         }`}
       >
         <Accordion.Header>
@@ -161,7 +161,9 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                       onCheckedChange={(checked) =>
                         handleFilterChange(item, checked, filterTypeData)
                       }
-                      className="size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500"
+                      className={`${
+                        style === "dashboard" ? "bg-white" : ""
+                      } size-6 rounded-md border cursor-pointer border-gray-300 data-[state=checked]:bg-primary-500`}
                     >
                       <Checkbox.Indicator className="flex items-center justify-center">
                         {/* svg for check icon font awesome */}

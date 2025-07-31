@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import AccountInfo from "@/components/website/AccountInfo";
+import HistoryOfTurns from "@/components/website/HistoryOfTurns";
 
 interface BeardCrumbsProps {
   activeTab: string;
@@ -158,11 +159,11 @@ const UserDashboard = () => {
 
         <main className="flex flex-1">
           {activeTab === "account-information" && <AccountInfo />}
-          {/* {activeTab === "history-of-turns" && <HistoryOfTurns />}
-          {activeTab === "messages" && <Messages />}
-          {activeTab === "medical-files" && <MedicalFiles />}
-          {activeTab === "feedbacks" && <Feedbacks />}
-          {activeTab === "password" && <Password />} */}
+          {activeTab === "history-of-turns" && <HistoryOfTurns />}
+          {/* {activeTab === "messages" && <Messages />} */}
+          {/* {activeTab === "medical-files" && <MedicalFiles />} */}
+          {/* {activeTab === "feedbacks" && <Feedbacks />} */}
+          {/* {activeTab === "password" && <Password />}  */}
         </main>
       </div>
     </div>

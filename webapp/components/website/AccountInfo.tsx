@@ -158,7 +158,7 @@ const AccountInfo = () => {
               <input
                 id="fName"
                 type="text"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.fName ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("fName", {
@@ -181,7 +181,7 @@ const AccountInfo = () => {
               <input
                 id="lName"
                 type="text"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.lName ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("lName", {
@@ -204,7 +204,7 @@ const AccountInfo = () => {
               <input
                 id="nationalCode"
                 type="text"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.nationalCode ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("nationalCode", {
@@ -229,7 +229,7 @@ const AccountInfo = () => {
               <input
                 id="phone"
                 type="number"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.phone ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("phone", {
