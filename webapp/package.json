@@ -23,7 +23,8 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.57.0",
     "react-multi-date-picker": "^4.5.2",
-    "tailwindcss": "^4.0.14"
+    "tailwindcss": "^4.0.14",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

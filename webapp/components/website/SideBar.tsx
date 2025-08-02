@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useEffect, useCallback } from "react";
-
+import useStore from "@/lib/store";
 interface SideBarLinks {
   title: string;
   url: string;
@@ -19,8 +19,9 @@ interface SideBarLinksProps {
 }
 
 interface DropDownType {
-  label: string;
+  title: string;
   link: string;
+  icon?: string;
 }
 
 interface SidebarProps {
@@ -95,11 +96,11 @@ const PrimaryLinks: React.FC<SideBarLinksProps> = ({ links, closeSidebar }) => {
                   {link.dropdownItems.map((item) => (
                     <Link
                       href={item.link}
-                      key={item.label}
+                      key={item.title}
                       onClick={closeAccordion}
                       className="text-gray-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
                     >
-                      <li>{item.label}</li>
+                      <li>{item.title}</li>
                     </Link>
                   ))}
                 </ul>
@@ -142,6 +143,22 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({
     null
   );
 
+  const { setActiveTab } = useStore();
+
+  type ActiveTabsType =
+    | "account-information"
+    | "history-of-turns"
+    | "messages"
+    | "medical-files"
+    | "feedbacks"
+    | "password"
+    | "logout";
+
+  const changeTabs = (tab: ActiveTabsType) => {
+    setActiveTab(tab);
+    closeSidebar();
+  };
+
   return (
     <>
       <ul className="flex flex-col py-6 gap-6 z-10 font-t2-regular">
@@ -176,23 +193,19 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({
 
                 <ul
                   className={`
-                    rounded-xl transition-all duration-300 flex flex-col overflow-hidden
-                    ${
-                      openDropdownIndex === index
-                        ? "max-h-[500px] opacity-100"
-                        : "max-h-0 opacity-0"
-                    }
+                    transition-all duration-300 flex flex-col gap-2 pt-3 overflow-hidden
+                    ${openDropdownIndex === index ? "max-h-[500px]" : "hidden"}
                   `}
                 >
                   {link.dropdownItems.map((item) => (
-                    <Link
-                      href={item.link}
-                      key={item.label}
-                      onClick={closeSidebar}
-                      className="text-grey-500 border-b border-b-gray-300 hover:bg-gray-100 p-2"
+                    <div
+                      key={item.title}
+                      onClick={() => changeTabs(item.link as ActiveTabsType)}
+                      className="text-grey-500 border-b border-b-gray-300 hover:bg-gray-100 py-2 flex gap-2"
                     >
-                      <li>{item.label}</li>
-                    </Link>
+                      {item.icon && <span className={`${item.icon}`}></span>}
+                      <li>{item.title}</li>
+                    </div>
                   ))}
                 </ul>
               </div>
@@ -257,10 +270,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       url: "#",
       icon: "isax isax-arrow-down-1",
       dropdownItems: [
-        { label: "ایتم ۱", link: "#" },
-        { label: "ایتم ۲", link: "#" },
-        { label: "ایتم ۳", link: "#" },
-        { label: "ایتم ۴", link: "#" },
+        { title: "ایتم ۱", link: "#" },
+        { title: "ایتم ۲", link: "#" },
+        { title: "ایتم ۳", link: "#" },
+        { title: "ایتم ۴", link: "#" },
       ],
     },
     { title: "مشاوره آنلاین", url: "#" },
@@ -274,10 +287,41 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       url: "#",
       icon: "isax isax-arrow-down-1",
       dropdownItems: [
-        { label: "ایتم ۱", link: "#" },
-        { label: "ایتم ۲", link: "#" },
-        { label: "ایتم ۳", link: "#" },
-        { label: "ایتم ۴", link: "#" },
+        {
+          title: "اطلاعات حساب کاربری",
+          icon: "isax isax-frame-1 text-2xl",
+          link: "account-information",
+        },
+        {
+          title: "تاریخچه نوبت ها",
+          icon: "isax isax-note-text text-2xl",
+          link: "history-of-turns",
+        },
+        {
+          title: "پیغام ها",
+          icon: "isax isax-sms text-xl",
+          link: "messages",
+        },
+        {
+          title: "پرونده های پزشکی",
+          icon: "isax isax-folder-2 text-xl",
+          link: "medical-files",
+        },
+        {
+          title: "بازخورد ها",
+          icon: "isax isax-message text-xl",
+          link: "feedbacks",
+        },
+        {
+          title: "رمز عبور",
+          icon: "isax isax-key text-xl",
+          link: "password",
+        },
+        {
+          title: "خروج از حساب کاربری",
+          icon: "isax isax-login text-xl",
+          link: "logout",
+        },
       ],
     },
     { title: "درباره ما", url: "#" },
@@ -292,22 +336,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
     { title: "لینکدین", url: "#", icon: "icon-linkedin" },
   ];
 
-const closeSidebar = useCallback(() => {
-  setIsOpen(false);
-}, [setIsOpen]);
+  const closeSidebar = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
-useEffect(() => {
-  const handleResize = () => {
-    if (window.innerWidth >= 1240) {
-      closeSidebar();
-    }
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1240) {
+        closeSidebar();
+      }
+    };
 
-  handleResize();
+    handleResize();
 
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, [closeSidebar]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [closeSidebar]);
 
   return (
     <nav>

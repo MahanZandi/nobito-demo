@@ -1,23 +1,24 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import useStore from "@/lib/store";
 import AccountInfo from "@/components/website/AccountInfo";
 import HistoryOfTurns from "@/components/website/HistoryOfTurns";
 
 interface BeardCrumbsProps {
-  activeTab: string;
+  activeTab: ActiveTabsType;
 }
 
+type ActiveTabsType =
+  | "account-information"
+  | "history-of-turns"
+  | "messages"
+  | "medical-files"
+  | "feedbacks"
+  | "password"
+  | "logout";
+
 const UserDashboard = () => {
-  const [activeTab, setActiveTab] = useState<
-    | "account-information"
-    | "history-of-turns"
-    | "messages"
-    | "medical-files"
-    | "feedbacks"
-    | "password"
-    | "logout"
-  >("account-information");
+  const {activeTab, setActiveTab} = useStore();
 
   const changeTabs = (tab: typeof activeTab) => {
     setActiveTab(tab);
