@@ -16,6 +16,7 @@ const Home = () => {
 
       <div className="pb-[36px] xl:pb-[72px]">
         <PageSearchBox
+          trigerWidth="mx-auto w-[798px]"
           lableStyle="lg:w-[798px] h-20 bg-white-50 relative -mt-10 p-5
             flex items-center gap-2 mx-auto"
           mobileInput={true}

@@ -28,6 +28,7 @@ interface TurnRatingDoctorCardProps {
     workingHours: string;
     location: string;
     insurance: string;
+    slug: string;
   }[];
 
   sortOptions: {
@@ -236,7 +237,7 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
                         </span>
                       </div>
                       <Link
-                        href="#"
+                        href={`/doctors/${doctorCard.slug}`}
                         className="cursor-pointer hidden xl:block text-white-500 bg-primary-500 rounded-md px-3 py-2"
                       >
                         <button className="flex cursor-pointer gap-2">
@@ -255,7 +256,7 @@ const TurnRatingDoctorCard: React.FC<TurnRatingDoctorCardProps> = ({
             <div className="xl:pt-[39px] flex xl:hidden container flex-col gap-6">
               {doctors.map((doctorCard) => (
                 <Link
-                  href="#"
+                  href={`/doctors/${doctorCard.slug}`}
                   key={doctorCard.id}
                   className="bg-white-100 rounded-2xl p-3"
                 >
