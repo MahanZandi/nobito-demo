@@ -9,6 +9,8 @@ interface DoctorProfileInfoProps {
     id: number;
     name: string;
     image: string;
+    slug: string;
+    feedbackSlug: string;
     rate: string;
     comment: string;
     services: string;
@@ -157,12 +159,12 @@ const DoctorProfileInfo: React.FC<DoctorProfileInfoProps> = ({ doctor }) => {
         </div>
         <div className="mt-8 justify-end flex">
           <Link
-            href="#"
+            href={`/doctors/${doctor.slug}/${doctor.feedbackSlug}`}
             className="cursor-pointer w-[157px] h-[48px] hidden text-white-500 bg-primary-500 rounded-lg px-3 xl:flex justify-center items-center"
           >
             <div className="flex cursor-pointer gap-2">
               <button className="flex cursor-pointer gap-2">
-                <span className="text-[16px] font-medium">دریافت نوبت</span>
+                <span className="text-[16px] font-medium">ثبت بازخورد</span>
                 <span className="isax isax-arrow-left text-2xl"></span>
               </button>
             </div>
