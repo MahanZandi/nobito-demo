@@ -12,11 +12,15 @@ type ActiveTabsType =
 interface StoreState {
   activeTab: ActiveTabsType;
   setActiveTab: (tab: ActiveTabsType) => void;
+  isModalOpen: boolean;
+  setIsModalOpen: (isOpen: boolean) => void;
 }
 
 const useStore = create<StoreState>((set) => ({
   activeTab: "account-information", 
   setActiveTab: (tab: ActiveTabsType) => set({ activeTab: tab }),
+  isModalOpen: false,
+  setIsModalOpen: (isOpen) => set({ isModalOpen: isOpen }),
 }));
 
 export default useStore;

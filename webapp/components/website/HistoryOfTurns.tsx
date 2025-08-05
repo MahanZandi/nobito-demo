@@ -176,7 +176,7 @@ const HistoryOfTurns = () => {
 
   return (
     <div className="w-full">
-      <div className="lg:bg-white-100 lg:border border-grey-100 lg:rounded-2xl pt-6 lg:px-6 ">
+      <div className="lg:bg-white-100 lg:border border-grey-100 lg:rounded-2xl pt-6 lg:px-6">
         <h1 className="text-[22px] text-black-400">تاریخچه نوبت ها</h1>
         <ul className="border-b border-grey-200 flex justify-between xl:justify-start gap-8 mt-6 text-[16px]">
           <li

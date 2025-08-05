@@ -228,7 +228,6 @@ const AccountInfo = () => {
               </label>
               <input
                 id="phone"
-                type="number"
                 className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.phone ? "outline-red-500 outline-1" : ""
                 }`}
@@ -246,8 +245,7 @@ const AccountInfo = () => {
             <div className="flex-col flex gap-2">
               <p className="text-grey-400">شهر</p>
               <AccordionFilter
-                style="dashboard"
-                searchBox={true}
+                type="single"
                 filterTypeData="city"
                 filterState={selectedCity}
                 setFilterState={setSelectedCity}
@@ -257,8 +255,7 @@ const AccountInfo = () => {
             <div className="flex-col flex gap-2">
               <p className="text-grey-400">استان</p>
               <AccordionFilter
-                style="dashboard"
-                searchBox={true}
+                type="single"
                 filterTypeData="city"
                 filterState={selectedProvince}
                 setFilterState={setSelectedProvince}

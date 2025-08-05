@@ -143,7 +143,7 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({
     null
   );
 
-  const { setActiveTab } = useStore();
+  const { setActiveTab, setIsModalOpen } = useStore();
 
   type ActiveTabsType =
     | "account-information"
@@ -156,6 +156,9 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({
 
   const changeTabs = (tab: ActiveTabsType) => {
     setActiveTab(tab);
+    if (tab === "logout") {
+      setIsModalOpen(true);
+    }
     closeSidebar();
   };
 
