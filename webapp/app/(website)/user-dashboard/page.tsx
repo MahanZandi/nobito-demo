@@ -4,7 +4,7 @@ import useStore from "@/lib/store";
 import AccountInfo from "@/components/website/AccountInfo";
 import HistoryOfTurns from "@/components/website/HistoryOfTurns";
 import DashboardMessages from "@/components/website/DashboardMessages";
-import MedicalFiles from "@/components/website/MedicalFiles";
+import MedicalFile from "@/components/website/MedicalFile";
 import DashboardFeedbacks from "@/components/website/DashboardFeedbacks";
 import DashboardPassword from "@/components/website/DashboardPassword";
 import Modal from "@/components/website/Modal";
@@ -127,7 +127,7 @@ const UserDashboard = () => {
     <div>
       <BeardCrumbs activeTab={activeTab} />
       <div className="mt-6 xl:mt-10 container flex gap-6">
-        <aside className="lg:block hidden w-[384px] bg-white-100 xl:max-h-[890px] rounded-2xl border border-grey-100">
+        <aside className="lg:block hidden w-[384px] bg-white-100 lg:max-h-[890px] rounded-2xl border border-grey-100">
           <div className="p-6">
             <div className="bg-[url('/banner.png')] h-[120px] w-full rounded-xl flex justify-center">
               <div className="rounded-full bg-body p-6 size-[144px] mt-12">
@@ -184,12 +184,11 @@ const UserDashboard = () => {
         <main className="flex flex-1">
           {activeTab === "account-information" && <AccountInfo />}
           {activeTab === "history-of-turns" && <HistoryOfTurns />}
-          {/* TODO create <DashboardMessages /> 1 */}
           {activeTab === "messages" && <DashboardMessages />}
-          {activeTab === "medical-files" && <MedicalFiles />}
+          {/* TODO create medical files */}
+          {activeTab === "medical-files" && <MedicalFile />}
           {activeTab === "feedbacks" && <DashboardFeedbacks />}
           {activeTab === "password" && <DashboardPassword />}
-          {/* TODO create Logout modal 2*/}
           {activeTab === "logout" && (
             <Modal
               title="خروج از حساب کاربری"

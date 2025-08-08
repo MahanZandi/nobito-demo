@@ -212,8 +212,8 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
     return (
       <>
         <Select.Root value={selectedValue} onValueChange={handleSelectChange}>
-          <Select.Trigger className="h-10 focus:outline-none">
-            <div className="flex items-center justify-between w-full p-3 rounded-lg text-black-400 border-gray-200 bg-grey-50">
+          <Select.Trigger className=" focus:outline-none">
+            <div className="flex items-center justify-between w-full p-3 rounded-lg text-black-400 border-gray-200 h-12 bg-grey-50">
               <Select.Value />
               <Select.Icon className="text-xl text-black-400">
                 <span className="isax isax-arrow-down-1"></span>

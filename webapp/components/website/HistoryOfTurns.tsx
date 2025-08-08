@@ -169,7 +169,7 @@ const HistoryOfTurns = () => {
         <div
           className={`${isLastItem ? "" : "h-px bg-grey-200"} lg:block hidden`}
         ></div>
-        <div className="bg-grey-200 h-px xl:hidden block"></div>
+        <div className="bg-grey-200 h-px lg:hidden block"></div>
       </>
     );
   };
