@@ -8,7 +8,7 @@ interface Props {
 const Layout = ({children}: Props) => {
     return (
         <html>
-            <body dir='rtl'>
+            <body dir='rtl' className="rtl:font-vazir-farsi">
                 {children}
             </body>
         </html>
