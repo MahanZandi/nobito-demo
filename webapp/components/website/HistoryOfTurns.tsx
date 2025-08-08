@@ -185,7 +185,7 @@ const HistoryOfTurns = () => {
               activeTab === "جاری"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
-            }`}
+            } cursor-pointer`}
           >
             جاری
           </li>
@@ -195,7 +195,7 @@ const HistoryOfTurns = () => {
               activeTab === "انجام شده"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
-            }`}
+            } cursor-pointer`}
           >
             انجام شده
           </li>
@@ -205,7 +205,7 @@ const HistoryOfTurns = () => {
               activeTab === "لغو شده"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
-            }`}
+            } cursor-pointer`}
           >
             لغو شده
           </li>
