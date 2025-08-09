@@ -1,6 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
-import AccordionFilter from "./AccordionFilter";
+import SelectBox from "./SelectBox";
 import { useState } from "react";
 
 type FormValues = {
@@ -150,42 +150,42 @@ const AccountInfo = () => {
   const [selectedProvince, setSelectedProvince] = useState<string[]>([]);
 
   const provinceToCities: { [province: string]: string[] } = {
-    "تهران": ["تهران", "کرج", "ری", "شمیرانات"],
+    تهران: ["تهران", "کرج", "ری", "شمیرانات"],
     "آذربایجان شرقی": ["تبریز", "مراغه", "مرند"],
     "آذربایجان غربی": ["ارومیه", "مهاباد"],
     "خراسان رضوی": ["مشهد", "سبزوار"],
-    "فارس": ["شیراز", "مرودشت", "کازرون"],
-    "اصفهان": ["اصفهان", "کاشان"],
-    "هرمزگان": ["بندرعباس", "قشم", "کیش"],
-    "بوشهر": ["بوشهر", "آبادان"],
-    "یزد": ["یزد"],
-    "کرمان": ["کرمان"],
-    "کرمانشاه": ["کرمانشاه", "سنندج"],
-    "لرستان": ["خرم‌آباد", "بروجرد"],
-    "گیلان": ["رشت", "بندر انزلی"],
-    "مازندران": ["ساری", "آمل", "بابل"],
-    "زنجان": ["زنجان"],
-    "سمنان": ["سمنان", "شاهرود"],
-    "قم": ["قم"],
-    "قزوین": ["قزوین"],
-    "ایلام": ["ایلام"],
+    فارس: ["شیراز", "مرودشت", "کازرون"],
+    اصفهان: ["اصفهان", "کاشان"],
+    هرمزگان: ["بندرعباس", "قشم", "کیش"],
+    بوشهر: ["بوشهر", "آبادان"],
+    یزد: ["یزد"],
+    کرمان: ["کرمان"],
+    کرمانشاه: ["کرمانشاه", "سنندج"],
+    لرستان: ["خرم‌آباد", "بروجرد"],
+    گیلان: ["رشت", "بندر انزلی"],
+    مازندران: ["ساری", "آمل", "بابل"],
+    زنجان: ["زنجان"],
+    سمنان: ["سمنان", "شاهرود"],
+    قم: ["قم"],
+    قزوین: ["قزوین"],
+    ایلام: ["ایلام"],
     "کهگیلویه و بویراحمد": ["یاسوج"],
-    "مرکزی": ["اراک", "ساوه"],
+    مرکزی: ["اراک", "ساوه"],
     "خراسان شمالی": ["بجنورد"],
     "خراسان جنوبی": ["بیرجند"],
-    "گلستان": ["گرگان"],
-    "همدان": ["همدان", "ملایر"],
+    گلستان: ["گرگان"],
+    همدان: ["همدان", "ملایر"],
     "سیستان و بلوچستان": ["زاهدان", "ایرانشهر"],
-    "اردبیل": ["اردبیل"],
+    اردبیل: ["اردبیل"],
     "چهارمحال و بختیاری": ["شهرکرد"],
-    "البرز": ["کرج"],
-    "اهواز": ["اهواز", "دزفول", "شوشتر", "شوش"],
+    البرز: ["کرج"],
+    اهواز: ["اهواز", "دزفول", "شوشتر", "شوش"],
     // سایر استان‌ها را می‌توانید اضافه کنید
   };
 
   const getCitiesForProvince = (province: string): CitysType[] => {
     const cities = provinceToCities[province] || [];
-    return cityData.filter(city => cities.includes(city.name));
+    return cityData.filter((city) => cities.includes(city.name));
   };
 
   return (
@@ -305,22 +305,32 @@ const AccountInfo = () => {
             </div>
             <div className="flex-col flex gap-2">
               <p className="text-grey-400">استان</p>
-              <AccordionFilter
-                type="single"
-                filterTypeData="city"
-                filterState={selectedProvince}
-                setFilterState={setSelectedProvince}
-                data={provinceData}
+              <SelectBox
+                styleType="user-dashboard"
+                options={provinceData.map((province) => province.name)}
+                onChange={(value) =>
+                  setSelectedProvince(Array.isArray(value) ? value : [value])
+                }
+                value={selectedProvince}
+                triggerTitle="استان"
+                placeholder="استان"
+                multiple={false}
               />
             </div>
             <div className="flex-col flex gap-2">
               <p className="text-grey-400">شهر</p>
-              <AccordionFilter
-                type="single"
-                filterTypeData="city"
-                filterState={selectedCity}
-                setFilterState={setSelectedCity}
-                data={getCitiesForProvince(selectedProvince[0] || "")}
+              <SelectBox
+                styleType="user-dashboard"
+                options={getCitiesForProvince(selectedProvince[0] || "").map(
+                  (city) => city.name
+                )}
+                onChange={(value) =>
+                  setSelectedCity(Array.isArray(value) ? value : [value])
+                }
+                value={selectedCity}
+                triggerTitle="شهر"
+                placeholder="شهر"
+                multiple={false}
               />
             </div>
           </div>

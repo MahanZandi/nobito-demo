@@ -3,7 +3,7 @@ import { useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import CalendarDate from "@/components/website/CalendarDate";
 import TurnRatingBanner from "./TurnRatingBanner";
-import MultiSelect from "./MultiSelect";
+import SelectBox from "./SelectBox";
 
 type ConsultationMethod = "calling" | "online" | "in-person" | "";
 
@@ -222,7 +222,8 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             </div>
             {/* specialization accordion */}
             <div className="h-px bg-grey-250 my-6"></div>
-            <MultiSelect
+            <SelectBox
+              styleType="filter-card"
               options={doctors.map((doctor) => doctor.specialization)}
               multiple={true}
               value={selectedSpecialization}
@@ -236,7 +237,8 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             />
             {/* services accordion */}
             <div className="h-px bg-grey-250 my-6"></div>
-            <MultiSelect
+            <SelectBox
+              styleType="filter-card"
               options={doctors.map((doctor) => doctor.services)}
               multiple={true}
               value={selectedServices}
@@ -247,9 +249,10 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
               triggerTitle="خدمات"
             />
             <div className="h-px bg-grey-250 my-6"></div>
-            <div className="grid grid-cols-2 gap-[17px] min-h-12">
+            <div className="grid grid-cols-2 gap-[17px]">
               {/* citys selection */}
-              <MultiSelect
+              <SelectBox
+                styleType="filter-card"
                 options={doctors.map((doctor) => doctor.city)}
                 multiple={true}
                 value={selectedCitys}
@@ -260,7 +263,8 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
                 triggerTitle="شهر"
               />
               {/* insurance selection */}
-              <MultiSelect
+              <SelectBox
+                styleType="filter-card"
                 options={doctors.map((doctor) => doctor.insurance)}
                 multiple={true}
                 value={selectedInsurance}
@@ -273,7 +277,8 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             </div>
             <div className="h-px bg-grey-250 my-6"></div>
             {/* location accordion */}
-            <MultiSelect
+            <SelectBox
+              styleType="filter-card"
               options={doctors.map((doctor) => doctor.location)}
               multiple={true}
               value={selectedLocation}
