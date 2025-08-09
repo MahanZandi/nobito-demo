@@ -712,8 +712,8 @@ const FeedbackPage = () => {
   const { feedbackSlug } = useParams();
 
   const [activeItem, setActiveItem] = useState<
-    GoodPointType | BadPointType | null
-  >(null);
+    Array<GoodPointType | BadPointType>
+  >([]);
 
   const [points, setPoints] = useState<pointsType>("good-points");
   const goodPoint = () => {
@@ -829,13 +829,18 @@ const FeedbackPage = () => {
           <div className="grid grid-cols-2 xl:grid-cols-3 gap-3">
             {(points === "good-points" ? goodOptions : badOptions).map(
               (option, index) => {
-                const isActive = activeItem === option;
+                const isActive = activeItem.includes(option as GoodPointType | BadPointType);
                 return (
                   <div
                     key={index}
-                    onClick={() =>
-                      setActiveItem(option as GoodPointType | BadPointType)
-                    }
+                    onClick={() => {
+                      const item = option as GoodPointType | BadPointType;
+                      setActiveItem((prev) =>
+                        prev.includes(item)
+                          ? prev.filter((i) => i !== item)
+                          : [...prev, item]
+                      );
+                    }}
                     className={`xl:min-w-[238px] min-w-[158px] cursor-pointer rounded-[120px] border py-2 flex justify-center font-medium text-[16px] ${
                       isActive
                         ? points === "bad-points"
