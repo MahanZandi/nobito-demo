@@ -672,19 +672,48 @@ const doctors = [
   },
 ];
 
-const options = [
-  { title: "تشخیص درست" },
-  { title: "امکانات رفاهی" },
-  { title: "نظافت مطب" },
-  { title: "زمان انتظار در مطب" },
-  { title: "رفتار مناسب" },
-  { title: "نسخه الکترونیکی" },
+type GoodPointType =
+  | "تشخیص درست"
+  | "امکانات رفاهی"
+  | "نظافت مطب"
+  | "زمان انتظار در مطب"
+  | "رفتار مناسب"
+  | "نسخه الکترونیکی";
+
+type BadPointType =
+  | "تشخیص نادرست"
+  | "امکانات رفاهی نامناسب"
+  | "نظافت نامناسب"
+  | "زمان انتظار نامناسب"
+  | "رفتار نامناسب"
+  | "نسخه الکترونیکی اشتباه";
+
+const goodOptions = [
+  "تشخیص درست",
+  "امکانات رفاهی",
+  "نظافت مطب",
+  "زمان انتظار در مطب",
+  "رفتار مناسب",
+  "نسخه الکترونیکی",
+];
+
+const badOptions = [
+  "تشخیص نادرست",
+  "امکانات رفاهی نامناسب",
+  "نظافت نامناسب",
+  "زمان انتظار نامناسب",
+  "رفتار نامناسب",
+  "نسخه الکترونیکی اشتباه",
 ];
 
 type pointsType = "good-points" | "bad-points";
 
 const FeedbackPage = () => {
   const { feedbackSlug } = useParams();
+
+  const [activeItem, setActiveItem] = useState<
+    GoodPointType | BadPointType | null
+  >(null);
 
   const [points, setPoints] = useState<pointsType>("good-points");
   const goodPoint = () => {
@@ -798,14 +827,28 @@ const FeedbackPage = () => {
               : "از کدام موارد رضایت نداشته اید؟"}
           </p>
           <div className="grid grid-cols-2 xl:grid-cols-3 gap-3">
-            {options.map((option, index) => (
-              <div
-                key={index}
-                className="xl:min-w-[238px] min-w-[158px] cursor-pointer rounded-[120px] border border-black-500 text-black-500 py-2 flex justify-center font-medium text-[16px]"
-              >
-                <span>{option.title}</span>
-              </div>
-            ))}
+            {(points === "good-points" ? goodOptions : badOptions).map(
+              (option, index) => {
+                const isActive = activeItem === option;
+                return (
+                  <div
+                    key={index}
+                    onClick={() =>
+                      setActiveItem(option as GoodPointType | BadPointType)
+                    }
+                    className={`xl:min-w-[238px] min-w-[158px] cursor-pointer rounded-[120px] border py-2 flex justify-center font-medium text-[16px] ${
+                      isActive
+                        ? points === "bad-points"
+                          ? "border-error-500 text-error-500"
+                          : "border-primary-500 text-primary-500"
+                        : "border-black-500 text-black-500"
+                    }`}
+                  >
+                    <span>{option}</span>
+                  </div>
+                );
+              }
+            )}
           </div>
         </div>
         <div className="xl:grid grid-cols-6 gap-4 xl:mt-[62px] hidden">
@@ -815,7 +858,10 @@ const FeedbackPage = () => {
           >
             <button>ثبت بازخورد</button>
           </Link>
-          <Link className="grid col-span-2 text-black-500 py-3 rounded-[10px] border border-black-500" href="#">
+          <Link
+            className="grid col-span-2 text-black-500 py-3 rounded-[10px] border border-black-500"
+            href="#"
+          >
             <button>نگارش نظر</button>
           </Link>
         </div>

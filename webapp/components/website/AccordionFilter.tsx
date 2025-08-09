@@ -41,7 +41,7 @@ type filterType =
 type AccordionFilterProps =
   | {
       type: "single";
-      searchBox?: false; // یا undefined
+      searchBox?: false; 
       filterState: string[];
       setFilterState: React.Dispatch<React.SetStateAction<string[]>>;
       filterTypeData: filterType;
@@ -202,7 +202,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
     const selectedValue = filterState[0] || "";
 
     const handleSelectChange = (value: string) => {
-      setFilterState([value]); // چون single هست، فقط یک گزینه رو نگه می‌داریم
+      setFilterState([value]); 
     };
 
     const filteredData = filterData.filter((item) =>
@@ -212,13 +212,14 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
     return (
       <>
         <Select.Root value={selectedValue} onValueChange={handleSelectChange}>
-          <Select.Trigger className=" focus:outline-none">
-            <div className="flex items-center justify-between w-full p-3 rounded-lg text-black-400 border-gray-200 h-12 bg-grey-50">
+          <Select.Trigger className="focus:outline-none">
+            <div className={`${selectedValue ? "flex-row-reverse" : ""} flex items-center justify-between w-full p-3 rounded-lg text-black-400 border-gray-200 h-12 bg-grey-50`}>
               <Select.Value />
               <Select.Icon className="text-xl text-black-400">
                 <span className="isax isax-arrow-down-1"></span>
               </Select.Icon>
             </div>
+            
           </Select.Trigger>
 
           <Select.Portal>
@@ -226,7 +227,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
               position="popper"
               sideOffset={4}
               dir="rtl"
-              className="z-50 overflow-hidden bg-white border border-gray-200 rounded-md shadow-md min-w-[100px]  text-center"
+              className="z-50 overflow-hidden bg-white border border-gray-200 rounded-md shadow-md text-center min-w-[160px]"
             >
               {/* <div
                 className={`${
