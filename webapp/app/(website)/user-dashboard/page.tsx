@@ -187,7 +187,6 @@ const UserDashboard = () => {
           {activeTab === "messages" && <DashboardMessages />}
           {activeTab === "medical-files" && <MedicalFile />}
           {activeTab === "feedbacks" && <DashboardFeedbacks />}
-          {/* TODO create dashboard password */}
           {activeTab === "password" && <DashboardPassword />}
           {activeTab === "logout" && (
             <Modal

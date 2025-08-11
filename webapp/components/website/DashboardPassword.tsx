@@ -41,7 +41,7 @@ const DashboardPassword = () => {
     <div className="w-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="lg:bg-white-100 lg:rounded-[16px] xl:p-6"
+        className="lg:bg-white-100 lg:rounded-[16px] lg:p-6"
       >
         <span className="text-[22px] font-medium text-black-400">رمز عبور</span>
         <div className="h-px bg-grey-200 w-full mb-6 mt-4 lg:my-6"></div>

@@ -67,15 +67,15 @@ const medicalFileData = {
 const MedicalFile = () => {
   return (
     <div className="w-full">
-      <div className="px-3 py-6 xl:p-6 rounded-2xl xl:rounded-4xl border border-grey-200 bg-white xl:max-w-[780px] 2xl:max-w-[1000px]">
+      <div className="px-3 py-6 lg:p-6 rounded-2xl lg:rounded-4xl border border-grey-200 bg-white xl:max-w-[780px] 2xl:max-w-[1000px]">
         <div className="flex justify-between">
-          <div className="flex xl:items-start items-center w-full flex-col gap-3 xl:gap-4">
+          <div className="flex lg:items-start items-center w-full flex-col gap-3 lg:gap-4">
             <Image
               src={medicalFileData.profileImage || "/images/doctor-7.jpeg"}
               width={64}
               height={64}
               alt="profile image"
-              className="rounded-full size-[126px] xl:hidden bg-grey-50 object-contain mb-3"
+              className="rounded-full size-[126px] lg:hidden bg-grey-50 object-contain mb-3"
             />
             <span className="text-xl font-medium">{medicalFileData.name}</span>
             <span className="text-grey-400 text-[16px]">
@@ -85,7 +85,7 @@ const MedicalFile = () => {
               {medicalFileData.typeOfIllness}
             </span>
           </div>
-          <div className="text-grey-400 text-[16px] xl:flex xl:w-full xl:justify-end hidden">
+          <div className="text-grey-400 text-[16px] lg:flex xl:w-full xl:justify-end hidden">
             ویرایش شده در {medicalFileData.date}
           </div>
         </div>
