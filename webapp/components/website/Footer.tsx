@@ -10,15 +10,15 @@ const Footer: React.FC = () => {
       title: "نوبیتو",
       links: [
         {
+          title: "مقالات ما",
+          url: "/weblog",
+        },
+        {
           title: "سوالات متداول",
           url: "#",
         },
         {
           title: "تماس با ما",
-          url: "#",
-        },
-        {
-          title: "میثاق نام",
           url: "#",
         },
         {
@@ -223,10 +223,10 @@ const Footer: React.FC = () => {
                     },
                   })}
                 />
-                  {/* text in mobile view */}
-                  <p className="py-1 xl:py-2 xl:hidden text-xs text-grey-500">
-                    تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
-                  </p>
+                {/* text in mobile view */}
+                <p className="py-1 xl:py-2 xl:hidden text-xs text-grey-500">
+                  تلاش ما ارائه بهترین خدمات ممکن به شما همراهان نوبیتو است.
+                </p>
                 <div className="flex justify-end">
                   <button
                     type="submit"
@@ -236,7 +236,6 @@ const Footer: React.FC = () => {
                     <span className="isax isax-arrow-left-3 text-2xl"></span>
                   </button>
                 </div>
-
               </form>
             </div>
             <p className="pt-2 hidden xl:block text-xs text-grey-500">
