@@ -1,25 +1,47 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import useStore from "@/lib/store";
 import AccountInfo from "@/components/website/AccountInfo";
+import HistoryOfTurns from "@/components/website/HistoryOfTurns";
+import DashboardMessages from "@/components/website/DashboardMessages";
+import MedicalFile from "@/components/website/MedicalFile";
+import DashboardFeedbacks from "@/components/website/DashboardFeedbacks";
+import DashboardPassword from "@/components/website/DashboardPassword";
+import Modal from "@/components/website/Modal";
+import { useRouter } from "next/navigation";
 
 interface BeardCrumbsProps {
-  activeTab: string;
+  activeTab: ActiveTabsType;
 }
 
+type ActiveTabsType =
+  | "account-information"
+  | "history-of-turns"
+  | "messages"
+  | "medical-files"
+  | "feedbacks"
+  | "password"
+  | "logout";
+
 const UserDashboard = () => {
-  const [activeTab, setActiveTab] = useState<
-    | "account-information"
-    | "history-of-turns"
-    | "messages"
-    | "medical-files"
-    | "feedbacks"
-    | "password"
-    | "logout"
-  >("account-information");
+  const { activeTab, setActiveTab, isModalOpen, setIsModalOpen } = useStore();
 
   const changeTabs = (tab: typeof activeTab) => {
     setActiveTab(tab);
+    if (tab === "logout") {
+      setIsModalOpen(true);
+    }
+  };
+
+  const router = useRouter();
+
+  const handleCloseModal = (shouldLogout = false) => {
+    setIsModalOpen(false);
+    setActiveTab("account-information");
+    if (shouldLogout) {
+      // TODO: logout and deleted token ...
+      router.push("/");
+    }
   };
 
   const BeardCrumbs: React.FC<BeardCrumbsProps> = ({ activeTab }) => {
@@ -38,7 +60,7 @@ const UserDashboard = () => {
         case "password":
           return "رمز عبور";
         case "logout":
-          return "خروج از حساب کاربری";
+          return "";
         default:
           return "account-information";
       }
@@ -105,7 +127,7 @@ const UserDashboard = () => {
     <div>
       <BeardCrumbs activeTab={activeTab} />
       <div className="mt-6 xl:mt-10 container flex gap-6">
-        <aside className="lg:block hidden w-[384px] bg-white-100  rounded-2xl border border-grey-100">
+        <aside className="lg:block hidden w-[384px] bg-white-100 lg:max-h-[890px] rounded-2xl border border-grey-100">
           <div className="p-6">
             <div className="bg-[url('/banner.png')] h-[120px] w-full rounded-xl flex justify-center">
               <div className="rounded-full bg-body p-6 size-[144px] mt-12">
@@ -125,7 +147,10 @@ const UserDashboard = () => {
                 <div className="text-grey-500">۲۱۸۷۸‍</div>
               </div>
               <div>
-                <span className="isax isax-edit-2 text-[32px] cursor-pointer text-black-400"></span>
+                <span
+                  onClick={() => changeTabs("account-information")}
+                  className="isax isax-edit-2 text-[32px] cursor-pointer text-black-400"
+                ></span>
               </div>
             </div>
           </div>
@@ -158,11 +183,20 @@ const UserDashboard = () => {
 
         <main className="flex flex-1">
           {activeTab === "account-information" && <AccountInfo />}
-          {/* {activeTab === "history-of-turns" && <HistoryOfTurns />}
-          {activeTab === "messages" && <Messages />}
-          {activeTab === "medical-files" && <MedicalFiles />}
-          {activeTab === "feedbacks" && <Feedbacks />}
-          {activeTab === "password" && <Password />} */}
+          {activeTab === "history-of-turns" && <HistoryOfTurns />}
+          {activeTab === "messages" && <DashboardMessages />}
+          {activeTab === "medical-files" && <MedicalFile />}
+          {activeTab === "feedbacks" && <DashboardFeedbacks />}
+          {activeTab === "password" && <DashboardPassword />}
+          {activeTab === "logout" && (
+            <Modal
+              title="خروج از حساب کاربری"
+              exitText="خروج از حساب"
+              description="با خروج از حساب کاربریتان به اطلاعاتی که وارد کردید دسترسی نخواهید داشت و باید مجددا وارد شوید"
+              open={isModalOpen}
+              onClose={handleCloseModal}
+            />
+          )}
         </main>
       </div>
     </div>

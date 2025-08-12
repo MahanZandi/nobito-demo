@@ -55,6 +55,7 @@
   --color-black-300: #606060;
   --color-black-350: #4e4e4e;
   --color-black-400: #414141;
+  --color-black-450: #292d32;
   --color-black-500: #121212;
   --color-black-600: #101010;
   --color-black-700: #0d0d0d;
@@ -63,6 +64,7 @@
 
   --color-grey-50: #f1f1f1;
   --color-grey-100: #d4d4d4;
+  --color-grey-150: #d9d9d9;
   --color-grey-200: #c0c0c0;
   --color-grey-250: #d4d4d4;
   --color-grey-300: #a3a3a3;
@@ -113,6 +115,7 @@
   --color-sky-250: #e0eefb;
   --color-sky-550: #78beff;
   --color-sky-650: #157eb9;
+  --color-sky-750: #0683c9;
   --color-sky-850: #136cbf;
 
   --default-font-family: "Vazirmatn UI";

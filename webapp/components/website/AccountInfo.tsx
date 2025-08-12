@@ -1,6 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
-import AccordionFilter from "./AccordionFilter";
+import SelectBox from "./SelectBox";
 import { useState } from "react";
 
 type FormValues = {
@@ -56,39 +56,62 @@ const AccountInfo = () => {
     );
   }
 
+  // داده شهرهای مهم ایران
   const cityData: CitysType[] = [
     { id: 1, name: "تهران" },
-    { id: 2, name: "کرج" },
-    { id: 3, name: "مشهد" },
+    { id: 2, name: "مشهد" },
+    { id: 3, name: "اصفهان" },
     { id: 4, name: "تبریز" },
-    { id: 5, name: "ارومیه" },
-    { id: 6, name: "اردبیل" },
-    { id: 7, name: "اصفهان" },
+    { id: 5, name: "شیراز" },
+    { id: 6, name: "کرج" },
+    { id: 7, name: "قم" },
     { id: 8, name: "اهواز" },
-    { id: 9, name: "ایلام" },
-    { id: 10, name: "بندرعباس" },
-    { id: 11, name: "بوشهر" },
-    { id: 12, name: "بیرجند" },
-    { id: 13, name: "خرم‌آباد" },
-    { id: 14, name: "رشت" },
-    { id: 15, name: "زاهدان" },
-    { id: 16, name: "زنجان" },
+    { id: 9, name: "رشت" },
+    { id: 10, name: "ارومیه" },
+    { id: 11, name: "کرمانشاه" },
+    { id: 12, name: "زاهدان" },
+    { id: 13, name: "اراک" },
+    { id: 14, name: "همدان" },
+    { id: 15, name: "یاسوج" },
+    { id: 16, name: "گرگان" },
     { id: 17, name: "ساری" },
-    { id: 18, name: "سمنان" },
-    { id: 19, name: "سنندج" },
-    { id: 20, name: "شهرکرد" },
-    { id: 21, name: "شیراز" },
+    { id: 18, name: "خرم‌آباد" },
+    { id: 19, name: "بندرعباس" },
+    { id: 20, name: "بوشهر" },
+    { id: 21, name: "سنندج" },
     { id: 22, name: "قزوین" },
-    { id: 23, name: "قم" },
-    { id: 24, name: "کرمان" },
-    { id: 25, name: "کرمانشاه" },
-    { id: 26, name: "گرگان" },
-    { id: 27, name: "یاسوج" },
-    { id: 28, name: "یزد" },
-    { id: 29, name: "همدان" },
-    { id: 30, name: "اراک" },
+    { id: 23, name: "ایلام" },
+    { id: 24, name: "اردبیل" },
+    { id: 25, name: "بیرجند" },
+    { id: 26, name: "زنجان" },
+    { id: 27, name: "سمنان" },
+    { id: 28, name: "شهرکرد" },
+    { id: 29, name: "مراغه" },
+    { id: 30, name: "بجنورد" },
+    { id: 31, name: "سبزوار" },
+    { id: 32, name: "کاشان" },
+    { id: 33, name: "قشم" },
+    { id: 34, name: "آمل" },
+    { id: 35, name: "بابل" },
+    { id: 36, name: "شاهرود" },
+    { id: 37, name: "دزفول" },
+    { id: 38, name: "شوشتر" },
+    { id: 39, name: "کیش" },
+    { id: 40, name: "ملایر" },
+    { id: 41, name: "بروجرد" },
+    { id: 42, name: "ساوه" },
+    { id: 43, name: "قوچان" },
+    { id: 44, name: "مرودشت" },
+    { id: 45, name: "بندر انزلی" },
+    { id: 46, name: "کازرون" },
+    { id: 47, name: "آبادان" },
+    { id: 48, name: "شوش" },
+    { id: 49, name: "ایرانشهر" },
+    { id: 50, name: "مهاباد" },
+    // ... شهرهای مهم دیگر را می‌توانید اضافه کنید ...
   ];
 
+  // داده استان‌های ایران
   const provinceData: CitysType[] = [
     { id: 1, name: "آذربایجان شرقی" },
     { id: 2, name: "آذربایجان غربی" },
@@ -124,8 +147,46 @@ const AccountInfo = () => {
   ];
 
   const [selectedCity, setSelectedCity] = useState<string[]>([]);
-
   const [selectedProvince, setSelectedProvince] = useState<string[]>([]);
+
+  const provinceToCities: { [province: string]: string[] } = {
+    تهران: ["تهران", "کرج", "ری", "شمیرانات"],
+    "آذربایجان شرقی": ["تبریز", "مراغه", "مرند"],
+    "آذربایجان غربی": ["ارومیه", "مهاباد"],
+    "خراسان رضوی": ["مشهد", "سبزوار"],
+    فارس: ["شیراز", "مرودشت", "کازرون"],
+    اصفهان: ["اصفهان", "کاشان"],
+    هرمزگان: ["بندرعباس", "قشم", "کیش"],
+    بوشهر: ["بوشهر", "آبادان"],
+    یزد: ["یزد"],
+    کرمان: ["کرمان"],
+    کرمانشاه: ["کرمانشاه", "سنندج"],
+    لرستان: ["خرم‌آباد", "بروجرد"],
+    گیلان: ["رشت", "بندر انزلی"],
+    مازندران: ["ساری", "آمل", "بابل"],
+    زنجان: ["زنجان"],
+    سمنان: ["سمنان", "شاهرود"],
+    قم: ["قم"],
+    قزوین: ["قزوین"],
+    ایلام: ["ایلام"],
+    "کهگیلویه و بویراحمد": ["یاسوج"],
+    مرکزی: ["اراک", "ساوه"],
+    "خراسان شمالی": ["بجنورد"],
+    "خراسان جنوبی": ["بیرجند"],
+    گلستان: ["گرگان"],
+    همدان: ["همدان", "ملایر"],
+    "سیستان و بلوچستان": ["زاهدان", "ایرانشهر"],
+    اردبیل: ["اردبیل"],
+    "چهارمحال و بختیاری": ["شهرکرد"],
+    البرز: ["کرج"],
+    اهواز: ["اهواز", "دزفول", "شوشتر", "شوش"],
+    // سایر استان‌ها را می‌توانید اضافه کنید
+  };
+
+  const getCitiesForProvince = (province: string): CitysType[] => {
+    const cities = provinceToCities[province] || [];
+    return cityData.filter((city) => cities.includes(city.name));
+  };
 
   return (
     <div className="w-full">
@@ -158,7 +219,7 @@ const AccountInfo = () => {
               <input
                 id="fName"
                 type="text"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.fName ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("fName", {
@@ -181,7 +242,7 @@ const AccountInfo = () => {
               <input
                 id="lName"
                 type="text"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.lName ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("lName", {
@@ -204,7 +265,7 @@ const AccountInfo = () => {
               <input
                 id="nationalCode"
                 type="text"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.nationalCode ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("nationalCode", {
@@ -228,8 +289,7 @@ const AccountInfo = () => {
               </label>
               <input
                 id="phone"
-                type="number"
-                className={`rounded-xl  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
+                className={`rounded-lg  h-[48px] text-xs px-3 bg-grey-50 focus:outline-1 outline-primary-500 ${
                   errors.phone ? "outline-red-500 outline-1" : ""
                 }`}
                 {...register("phone", {
@@ -244,25 +304,33 @@ const AccountInfo = () => {
               </p>
             </div>
             <div className="flex-col flex gap-2">
-              <p className="text-grey-400">شهر</p>
-              <AccordionFilter
-                style="dashboard"
-                searchBox={true}
-                filterTypeData="city"
-                filterState={selectedCity}
-                setFilterState={setSelectedCity}
-                data={cityData}
+              <p className="text-grey-400">استان</p>
+              <SelectBox
+                styleType="user-dashboard"
+                options={provinceData.map((province) => province.name)}
+                onChange={(value) =>
+                  setSelectedProvince(Array.isArray(value) ? value : [value])
+                }
+                value={selectedProvince}
+                triggerTitle="استان"
+                placeholder="استان"
+                multiple={false}
               />
             </div>
             <div className="flex-col flex gap-2">
-              <p className="text-grey-400">استان</p>
-              <AccordionFilter
-                style="dashboard"
-                searchBox={true}
-                filterTypeData="city"
-                filterState={selectedProvince}
-                setFilterState={setSelectedProvince}
-                data={provinceData}
+              <p className="text-grey-400">شهر</p>
+              <SelectBox
+                styleType="user-dashboard"
+                options={getCitiesForProvince(selectedProvince[0] || "").map(
+                  (city) => city.name
+                )}
+                onChange={(value) =>
+                  setSelectedCity(Array.isArray(value) ? value : [value])
+                }
+                value={selectedCity}
+                triggerTitle="شهر"
+                placeholder="شهر"
+                multiple={false}
               />
             </div>
           </div>
