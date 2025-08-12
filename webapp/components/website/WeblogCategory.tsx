@@ -61,19 +61,19 @@ const WeblogCategory = () => {
             onClick={() => handleSelectCategory(data.state)}
             className={`${
               weblogCategory === data.state
-                ? "border-4 border-primary-500 transition-all duration-200"
-                : "border-4 border-white-100"
-            } bg-white-100 rounded-full p-5 cursor-pointer`}
+                ? "border-2 xl:border-4 border-primary-500 transition-all duration-[125ms]"
+                : "border-2 xl:border-4 border-white-100"
+            } bg-white-100 rounded-full p-1.5 xl:p-5 cursor-pointer`}
           >
-            <Image src={data.image} alt={data.title} width={160} height={160} />
+            <Image className="xl:size-[160px] size-[80px]" src={data.image} alt={data.title} width={160} height={160} />
           </div>
           <span
             onClick={() => handleSelectCategory(data.state)}
             className={`${
               weblogCategory === data.state
-                ? "text-primary-500 transition-all duration-200"
+                ? "text-primary-500 transition-all duration-[125ms]"
                 : "text-black-400"
-            } text-2xl font-medium cursor-pointer`}
+            } text-[16px] xl:text-2xl font-medium cursor-pointer`}
           >
             {data.title}
           </span>
