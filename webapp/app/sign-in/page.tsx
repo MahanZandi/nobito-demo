@@ -1,13 +1,15 @@
 "use client";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface FormValues {
   number: string;
 }
 
 const SignInPage = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -15,7 +17,8 @@ const SignInPage = () => {
   } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
-    console.log("ایمیل معتبره:", data.number);
+    console.log("شماره موبایل معتبر:", data.number);
+    router.push("/user-dashboard");
   };
 
   return (
@@ -42,7 +45,7 @@ const SignInPage = () => {
             </p>
           </div>
           <input
-            type="number"
+            type="text"
             className={`${
               errors.number ? "outline-red-500 outline-1" : ""
             } bg-body xl:mt-12 mt-6 w-full h-14 px-4 rounded-lg`}
@@ -60,17 +63,17 @@ const SignInPage = () => {
             errors.number ? "text-red-500" : "text-primary-500"
           } text-[14px] mt-2`}
         >
-          لطفا این بخش را خالی نگذارید
+          {errors.number ? errors.number.message : "لطفا این بخش را خالی نگذارید"}
         </div>
         <div className="w-full mt-6">
-          <Link href="/user-dashboard">
+          <div>
             <button
               type="submit"
               className="bg-primary-500 py-3 w-full rounded-[10px] cursor-pointer text-white-500"
             >
               ورود/ثبت نام
             </button>
-          </Link>
+          </div>
         </div>
         <p className="mt-6 text-[14px] text-grey-400 text-center">
           ورود شما به معنای پذیرش شرایط و{" "}
