@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import AccordionFilter from "@/components/website/AccordionFilter";
 import CalendarDate from "@/components/website/CalendarDate";
 import TurnRatingBanner from "./TurnRatingBanner";
+import SelectBox from "./SelectBox";
 
 type ConsultationMethod = "calling" | "online" | "in-person" | "";
 
@@ -222,56 +222,71 @@ const TurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
             </div>
             {/* specialization accordion */}
             <div className="h-px bg-grey-250 my-6"></div>
-            <AccordionFilter
+            <SelectBox
+              styleType="filter-card"
+              options={doctors.map((doctor) => doctor.specialization)}
+              multiple={true}
+              value={selectedSpecialization}
+              onChange={(value) =>
+                setSelectedSpecialization(
+                  Array.isArray(value) ? value : [value]
+                )
+              }
+              placeholder="تخصص"
               triggerTitle="تخصص"
-              searchBox={true}
-              filterTypeData="specialization"
-              data={doctors}
-              filterState={selectedSpecialization}
-              setFilterState={setSelectedSpecialization}
             />
-
             {/* services accordion */}
             <div className="h-px bg-grey-250 my-6"></div>
-            <AccordionFilter
+            <SelectBox
+              styleType="filter-card"
+              options={doctors.map((doctor) => doctor.services)}
+              multiple={true}
+              value={selectedServices}
+              onChange={(value) =>
+                setSelectedServices(Array.isArray(value) ? value : [value])
+              }
+              placeholder="خدمات"
               triggerTitle="خدمات"
-              searchBox={true}
-              filterTypeData="services"
-              data={doctors}
-              filterState={selectedServices}
-              setFilterState={setSelectedServices}
             />
-
             <div className="h-px bg-grey-250 my-6"></div>
             <div className="grid grid-cols-2 gap-[17px]">
-              {/* citys accordion */}
-              <AccordionFilter
+              {/* citys selection */}
+              <SelectBox
+                styleType="filter-card"
+                options={doctors.map((doctor) => doctor.city)}
+                multiple={true}
+                value={selectedCitys}
+                onChange={(value) =>
+                  setSelectedCitys(Array.isArray(value) ? value : [value])
+                }
+                placeholder="شهر"
                 triggerTitle="شهر"
-                searchBox={true}
-                filterTypeData="city"
-                data={doctors}
-                filterState={selectedCitys}
-                setFilterState={setSelectedCitys}
               />
-              {/* insurance accordion */}
-              <AccordionFilter
+              {/* insurance selection */}
+              <SelectBox
+                styleType="filter-card"
+                options={doctors.map((doctor) => doctor.insurance)}
+                multiple={true}
+                value={selectedInsurance}
+                onChange={(value) =>
+                  setSelectedInsurance(Array.isArray(value) ? value : [value])
+                }
+                placeholder="بیمه"
                 triggerTitle="بیمه"
-                searchBox={true}
-                filterTypeData="insurance"
-                data={doctors}
-                filterState={selectedInsurance}
-                setFilterState={setSelectedInsurance}
               />
             </div>
             <div className="h-px bg-grey-250 my-6"></div>
             {/* location accordion */}
-            <AccordionFilter
+            <SelectBox
+              styleType="filter-card"
+              options={doctors.map((doctor) => doctor.location)}
+              multiple={true}
+              value={selectedLocation}
+              onChange={(value) =>
+                setSelectedLocation(Array.isArray(value) ? value : [value])
+              }
+              placeholder="محله"
               triggerTitle="محله"
-              searchBox={true}
-              filterTypeData="location"
-              data={doctors}
-              filterState={selectedLocation}
-              setFilterState={setSelectedLocation}
             />
             <div className="h-px bg-grey-250 my-6"></div>
             {/* gender selection */}
