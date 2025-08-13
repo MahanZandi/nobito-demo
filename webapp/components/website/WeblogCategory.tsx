@@ -50,6 +50,8 @@ const WeblogCategory = () => {
   const handleSelectCategory = (category: WeblogCategoryType) => {
     if (weblogCategory !== category) {
       setWeblogCategory(category);
+    } else {
+      setWeblogCategory("latest");
     }
   };
 
@@ -65,7 +67,13 @@ const WeblogCategory = () => {
                 : "border-2 xl:border-4 border-white-100"
             } bg-white-100 rounded-full p-1.5 xl:p-5 cursor-pointer`}
           >
-            <Image className="xl:size-[160px] size-[80px]" src={data.image} alt={data.title} width={160} height={160} />
+            <Image
+              className="xl:size-[160px] size-[80px]"
+              src={data.image}
+              alt={data.title}
+              width={160}
+              height={160}
+            />
           </div>
           <span
             onClick={() => handleSelectCategory(data.state)}
