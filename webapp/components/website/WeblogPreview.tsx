@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 type WeblogCategory =
   | "skin-and-hair"
   | "mental-health"
@@ -17,10 +20,50 @@ interface WeblogPreviewProps {
   author: string;
 }
 
-const WeblogPreview:React.FC<WeblogPreviewProps> = ({ title, description, spendTime, view, image, slug, category, author }) => {
+const WeblogPreview: React.FC<WeblogPreviewProps> = ({
+  title,
+  description,
+  spendTime,
+  view,
+  image,
+  slug,
+}) => {
   return (
-    <div className="flex flex-col  bg-white-100">
-      <div>{category}</div>
+    <div className="flex gap-4 bg-white-100 p-6 rounded-2xl">
+      <Image
+        className="rounded-xl object-cover w-[180px] h-[185px]"
+        src={image}
+        alt={title}
+        width={180}
+        height={185}
+      />
+      <div className="flex flex-col gap-6">
+        <h3 className="text-xl font-bold text-black-400">{title}</h3>
+        <p className="text-grey-500 leading-[155%] line-clamp-3">
+          {description}
+        </p>
+        <div className="flex">
+          <div className="flex gap-4 text-grey-500 items-center">
+            <div className="flex gap-2 items-center">
+              <span className="isax isax-clock text-[18px]"></span>
+              <span>{spendTime}</span>
+            </div>
+            <div className="flex gap-2 items-center">
+              <span className="isax isax-eye text-[18px]"></span>
+              <span>{view}</span>
+            </div>
+          </div>
+          <div className="flex justify-end w-full">
+            <Link
+              className="flex items-center px-4 rounded-[7px] border border-primary-500 h-10 gap-2 text-primary-500 cursor-pointer"
+              href={`weblog/${slug}`}
+            >
+              <span className="text-[16px]">ادامه مطلب</span>
+              <span className="isax isax-arrow-left text-2xl"></span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
