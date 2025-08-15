@@ -2,6 +2,8 @@
 import useStore from "@/lib/store";
 import TopWeblogs from "./TopWeblogs";
 import WeblogPreview from "./WeblogPreview";
+import useEmblaCarousel from "embla-carousel-react";
+import Link from "next/link";
 import { useState } from "react";
 
 type WeblogCategory =
@@ -263,42 +265,84 @@ const WeblogsShowcase = () => {
     .sort((a, b) => b.view - a.view)
     .slice(0, 6);
 
+  const DesktopWeblogPreview = () => {
+    return (
+      <div className="flex xl:flex-1 gap-4 xl:flex-col xl:gap-6">
+        {visibleWeblogs?.map((weblog: WeblogsData) => (
+          <WeblogPreview
+            key={weblog.id}
+            title={weblog.title}
+            description={weblog.description}
+            spendTime={weblog.spendTime}
+            view={weblog.view}
+            image={weblog.image}
+            slug={weblog.slug}
+            category={weblog.category}
+            author={weblog.author}
+          />
+        ))}
+        {visibleCount < filteredWeblogs.length && (
+          <div className="mt-12 hidden xl:flex justify-center">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 3)}
+              className="text-black-500 font-medium cursor-pointer mt-3 flex gap-2"
+            >
+              <span>مشاهده مطالب بیشتر</span>
+              <span className="isax isax-arrow-down text-2xl"></span>
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const MobileWeblogPreview = () => {
+    const [emblaRef] = useEmblaCarousel({
+      direction: "rtl",
+    });
+
+    return (
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex items-center gap-4 ">
+          {visibleWeblogs?.map((weblog: WeblogsData) => (
+            <div key={weblog.id}>
+              <WeblogPreview
+                title={weblog.title}
+                description={weblog.description}
+                spendTime={weblog.spendTime}
+                view={weblog.view}
+                image={weblog.image}
+                slug={weblog.slug}
+                category={weblog.category}
+                author={weblog.author}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="container">
-      <div className="flex items-center gap-3">
-        <h2 className="text-xl lg:text-[32px] leading-[155%] font-semibold lg:font-bold text-grey-500 flex items-center gap-1 lg:gap-2">
+      <div className="flex items-center xl:gap-3">
+        <h2 className="text-xl xl:text-[32px] leading-[155%] font-semibold xl:font-bold text-grey-500 flex items-center gap-1 xl:gap-2">
           <span className="text-primary-500"> {getTitle()} </span>
-          <span className="lg:font-medium"> مقالات </span>
+          <span className="xl:font-medium"> مقالات </span>
         </h2>
-        <div className="h-px bg-grey-200 flex-1 hidden lg:block"></div>
+        <div className="h-px xl:bg-grey-200 flex-1 block"></div>
+        <Link className="text-grey-500 text-xs cursor-pointer" href="#">
+          مشاهده همه
+        </Link>
       </div>
-      <div className="flex items-start gap-6 mt-16">
-        <div className="flex flex-1 flex-col gap-6">
-          {visibleWeblogs.map((weblog: WeblogsData) => (
-            <WeblogPreview
-              key={weblog.id}
-              title={weblog.title}
-              description={weblog.description}
-              spendTime={weblog.spendTime}
-              view={weblog.view}
-              image={weblog.image}
-              slug={weblog.slug}
-              category={weblog.category}
-              author={weblog.author}
-            />
-          ))}
-          {visibleCount < filteredWeblogs.length && (
-            <div className="mt-12 flex justify-center">
-              <button
-                onClick={() => setVisibleCount((prev) => prev + 3)}
-                className="text-black-500 font-medium cursor-pointer mt-3 flex gap-2"
-              >
-                <span>مشاهده مطالب بیشتر</span>
-                <span className="isax isax-arrow-down text-2xl"></span>
-              </button>
-            </div>
-          )}
+      <div className="flex flex-col xl:flex-row xl:items-start gap-16 xl:gap-6 mt-10 xl:mt-16">
+        <div className="xl:hidden block">
+          <MobileWeblogPreview />
         </div>
+        <div className="hidden xl:block">
+          <DesktopWeblogPreview />
+        </div>
+
         <TopWeblogs topWeblogs={topWeblogs} />
       </div>
     </div>
