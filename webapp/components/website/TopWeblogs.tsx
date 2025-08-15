@@ -95,8 +95,8 @@ const TopWeblogs = ({ topWeblogs }: TopWeblogsProps) => {
         <div>
           <div className="flex items-center xl:gap-3">
             <h2 className="text-xl xl:text-[32px] leading-[155%] font-semibold xl:font-bold text-grey-500 flex items-center gap-1 xl:gap-2">
-              <span className="text-primary-500"> پر بازدید ترین </span>
-              <span className="xl:font-medium"> مقالات </span>
+              
+              <span className="xl:font-medium"> پر بازدید ترین ها </span>
             </h2>
             <div className="h-px xl:bg-grey-200 flex-1 block"></div>
             <Link className="text-grey-500 text-xs cursor-pointer" href="#">
