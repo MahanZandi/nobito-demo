@@ -219,9 +219,9 @@ const HomeTopMedicsSection = () => {
                       </div>
                     </div>
 
-                    <p className="text-grey-400 font-t3-regular mt-3">
+                    <span className="text-grey-400 font-t3-regular mt-3">
                       {doctor.specialization}
-                    </p>
+                    </span>
 
                     <div
                       className="mt-6 text-primary-500 font-t3-medium font-vazir-farsi
