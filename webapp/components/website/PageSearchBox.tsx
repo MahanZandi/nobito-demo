@@ -10,7 +10,7 @@ import Link from "next/link";
 type SearchBoxType = "for-page" | "for-shop";
 
 interface SearchBoxProps {
-  container: string;
+  container?: string;
   mobileInput: boolean;
   lableStyle: string;
   trigerWidth: string;
