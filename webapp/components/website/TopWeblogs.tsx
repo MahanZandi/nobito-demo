@@ -108,7 +108,7 @@ const TopWeblogs = ({ topWeblogs }: TopWeblogsProps) => {
               {topWeblogs?.map((weblog: WeblogsData) => (
                 <div key={weblog.id}>
                   <div className="xl:hidden ">
-                    <div className="bg-white-100 rounded-2xl p-4 w-[288px] flex flex-col gap-4">
+                    <Link href={`/weblog/${weblog.slug}`} className="bg-white-100 rounded-2xl p-4 w-[288px] flex flex-col gap-4">
                       <Image
                         className="w-[256px] h-[160px] rounded-xl object-cover"
                         alt={weblog.title}
@@ -132,7 +132,7 @@ const TopWeblogs = ({ topWeblogs }: TopWeblogsProps) => {
                           <span>{weblog.view}</span>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               ))}

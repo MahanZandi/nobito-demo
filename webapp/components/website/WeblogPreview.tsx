@@ -48,7 +48,7 @@ const WeblogPreview: React.FC<WeblogPreviewProps> = ({
             <div className="flex gap-4 text-grey-500 items-center">
               <div className="flex gap-2 items-center">
                 <span className="isax isax-clock text-[18px]"></span>
-                <span>{spendTime}</span>
+                <span>{spendTime}دقیقه</span>
               </div>
               <div className="flex gap-2 items-center">
                 <span className="isax isax-eye text-[18px]"></span>
@@ -72,8 +72,8 @@ const WeblogPreview: React.FC<WeblogPreviewProps> = ({
 
   const MobileWeblogPreview = () => {
     return (
-      <div className="xl:hidden ">
-        <div className="bg-white-100 rounded-2xl p-4 w-[288px] flex flex-col gap-4">
+      <div className="xl:hidden">
+        <Link href={`weblog/${slug}`} className="bg-white-100 rounded-2xl p-4 w-[288px] flex flex-col gap-4">
           <Image
             className="w-[256px] h-[160px] rounded-xl object-cover"
             alt={title}
@@ -95,7 +95,7 @@ const WeblogPreview: React.FC<WeblogPreviewProps> = ({
               <span>{view}</span>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   };
