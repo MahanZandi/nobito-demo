@@ -204,9 +204,6 @@ const PageSearchBox = ({
   // This code is to prevent duplicate city names
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
 
-  // for open our clode search box
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-
   // query for search input
   const [query, setQuery] = useState<string>("");
 
@@ -302,30 +299,26 @@ const PageSearchBox = ({
           className={`xl:hidden ${mobileInput ? "block" : "hidden"}`}
           onClick={openMobileSearch}
         >
-          <label
-            form="search"
-            className={`lg:w-[798px] lg:h-20 bg-white-50 relative z-20 -mt-10 p-5
-            flex items-center gap-2 mx-auto ${
-              isFocused ? "rounded-t-2xl" : "rounded-2xl"
-            }`}
-          >
-            <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+          <label form="search" className={`rounded-lg xl:rounded-2xl ${lableStyle}`}>
+            <span className="isax isax-search-normal text-[18px] leading-8 text-grey-400 flex-1"></span>
             <input
               id="search"
-              onFocus={() => setIsFocused(true)}
-              className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
+              className="absolute inset-0 outline-none flex-1 p-5 pr-[38px] xl:pr-[60px] text-black-400 text-sm"
               placeholder={placeholder}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-
-            <button
-              className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
+            {type === "for-page" ? (
+              <button
+                className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
             flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
-            >
-              <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-              <span className="hidden xl:block">انتخاب شهر</span>
-            </button>
+              >
+                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                <span className="hidden xl:block">انتخاب شهر</span>
+              </button>
+            ) : (
+              <></>
+            )}
           </label>
         </div>
         {/* this input for desktop view becouse we have a search box in desktop */}
@@ -335,12 +328,17 @@ const PageSearchBox = ({
               <div className="hidden xl:block">
                 <label form="search" className={`rounded-2xl ${lableStyle}`}>
                   {type === "for-shop" ? <div className="flex-1"></div> : <></>}
-                  <span className={`${type === "for-page" ? "flex-1" : ""} isax isax-search-normal text-[32px] leading-8 text-grey-400`}></span>
+                  <span
+                    className={`${
+                      type === "for-page" ? "flex-1" : ""
+                    } isax isax-search-normal text-[32px] leading-8 text-grey-400`}
+                  ></span>
                   <input
                     id="search"
                     autoComplete="off"
-                    onFocus={() => setIsFocused(true)}
-                    className={`${type === "for-page" ? "pr-[60px]" : ""} absolute inset-0 outline-none flex-1 p-5 text-black-400`}
+                    className={`${
+                      type === "for-page" ? "pr-[60px]" : "text-xl"
+                    } absolute inset-0 outline-none flex-1 p-5 text-black-400`}
                     placeholder={placeholder}
                   />
                   {type === "for-page" ? (
@@ -389,7 +387,6 @@ const PageSearchBox = ({
                           <input
                             id="search"
                             autoComplete="off"
-                            onFocus={() => setIsFocused(true)}
                             className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
                             placeholder={placeholder}
                             value={query}
