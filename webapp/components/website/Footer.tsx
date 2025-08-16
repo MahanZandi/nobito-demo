@@ -35,6 +35,10 @@ const Footer: React.FC = () => {
           url: "#",
         },
         {
+          title: "فروشگاه کالای پزشکی",
+          url: "/shop",
+        },
+        {
           title: "مشاوره حضوری",
           url: "#",
         },

@@ -74,6 +74,8 @@ const WeblogHeroSection = () => {
             flex items-center gap-2 mx-auto"
           mobileInput={true}
           container="px-4 xl:px-0"
+          type="for-page"
+          placeholder="جستجو پزشک،درمانگر،کلینیک..."
         />
       </div>
     </section>

@@ -21,6 +21,8 @@ const Home = () => {
             flex items-center gap-2 mx-auto"
           mobileInput={true}
           container="px-4 xl:px-0"
+          placeholder="جستجو پزشک،درمانگر،کلینیک..."
+          type="for-page"
         />
       </div>
 
