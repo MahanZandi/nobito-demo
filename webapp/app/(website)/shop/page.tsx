@@ -28,7 +28,7 @@ const Shop = () => {
         placeholder="جستجو دارو،کالای پزشکی و ..."
         type="for-shop"
       />
-      <div className="flex container items-center justify-end xl:justify-between xl:mt-8 mt-4">
+      <div className="flex items-center justify-end xl:justify-between xl:mt-8 mt-4">
         <span className="text-xl text-grey-500 lg:block hidden">
           آدرس محل تحویل خود را انتخاب کنید
         </span>

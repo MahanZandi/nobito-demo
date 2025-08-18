@@ -1,8 +1,9 @@
 import { useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import * as Checkbox from "@radix-ui/react-checkbox";
+import clsx from "clsx";
 
-type StyleType = "filter-card" | "user-dashboard";
+type StyleType = "filter-card" | "user-dashboard" | "shop";
 
 interface MultiSelectProps {
   options: string[];
@@ -53,11 +54,14 @@ const SelectBox: React.FC<MultiSelectProps> = ({
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger
-        className={`${
-          styleType === "filter-card"
-            ? "border border-grey-200 bg-white-100"
-            : "bg-grey-50"
-        } flex flex-col gap-1.5  focus:outline-none rounded-lg p-3 justify-center w-full`}
+        className={clsx(
+          "flex flex-col gap-1.5 focus:outline-none  p-3 justify-center w-full",
+          styleType === "filter-card" &&
+            "border border-grey-200 bg-white-100 rounded-lg",
+          styleType === "user-dashboard" && "bg-grey-50 rounded-lg",
+          styleType === "shop" &&
+            "border border-grey-200 bg-white-100 xl:h-[88px] rounded-xl"
+        )}
       >
         <div className="flex w-full">
           <div className="flex justify-between w-full">
@@ -76,13 +80,23 @@ const SelectBox: React.FC<MultiSelectProps> = ({
                 ></span>
               )}
 
-              {styleType === "user-dashboard" && <span className="text-black-400">{renderLabel()}</span>}
+              {(styleType === "user-dashboard" || styleType === "shop") && (
+                <span
+                  className={clsx(
+                    "",
+                    styleType === "user-dashboard" && "text-black-400",
+                    styleType === "shop" && "text-grey-400 text-[22px]"
+                  )}
+                >
+                   {value.length > 0 ? renderLabel() : "دسته بندی دارو ها"}
+                </span>
+              )}
             </div>
 
             <span
-              className={`${
-                open ? "rotate-180" : ""
-              } isax isax-arrow-down-1 text-2xl text-black-400 transition-transform`}
+              className={`${open ? "rotate-180" : ""} ${
+                styleType === "shop" ? "text-[32px]" : "text-2xl"
+              } isax isax-arrow-down-1 text-black-400 transition-transform`}
             ></span>
           </div>
         </div>
@@ -95,6 +109,7 @@ const SelectBox: React.FC<MultiSelectProps> = ({
             {renderLabel()}
           </p>
         )}
+
       </Popover.Trigger>
 
       <Popover.Content
