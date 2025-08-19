@@ -35,12 +35,12 @@ const Footer: React.FC = () => {
           url: "#",
         },
         {
-          title: "مشاوره حضوری",
-          url: "#",
+          title: "فروشگاه کالای پزشکی",
+          url: "/shop",
         },
         {
-          title: "مشاوره غیرحضوری",
-          url: "#",
+          title: "استعلام دارو",
+          url: "/shop/drug-inquiry",
         },
         {
           title: "خدمات پزشکی در منزل",

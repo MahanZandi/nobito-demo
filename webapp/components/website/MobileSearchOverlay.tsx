@@ -277,7 +277,7 @@ const MobileSearchOverlay: React.FC<MobileSearchOverlayProps> = ({
   
   return (
     <div
-      className={`bg-white overflow-y-scroll fixed transition-transform duration-300 inset-0 z-50 xl:hidden block ${
+      className={`bg-grey-50 overflow-y-scroll fixed transition-transform duration-300 inset-0 z-50 xl:hidden block ${
         isMobileSearchOpen ? "translate-0" : "translate-x-full"
       }`}
     >
