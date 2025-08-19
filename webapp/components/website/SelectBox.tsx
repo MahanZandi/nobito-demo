@@ -60,7 +60,7 @@ const SelectBox: React.FC<MultiSelectProps> = ({
             "border border-grey-200 bg-white-100 rounded-lg",
           styleType === "user-dashboard" && "bg-grey-50 rounded-lg",
           styleType === "shop" &&
-            "border border-grey-200 bg-white-100 xl:h-[88px] rounded-xl"
+            "border border-grey-200 bg-white-100 h-[48px] xl:h-[88px] rounded-lg xl:rounded-xl"
         )}
       >
         <div className="flex w-full">
@@ -85,7 +85,7 @@ const SelectBox: React.FC<MultiSelectProps> = ({
                   className={clsx(
                     "",
                     styleType === "user-dashboard" && "text-black-400",
-                    styleType === "shop" && "text-grey-400 text-[22px]"
+                    styleType === "shop" && "text-grey-400 text-[16px] xl:text-[22px]"
                   )}
                 >
                    {value.length > 0 ? renderLabel() : "دسته بندی دارو ها"}
@@ -95,7 +95,7 @@ const SelectBox: React.FC<MultiSelectProps> = ({
 
             <span
               className={`${open ? "rotate-180" : ""} ${
-                styleType === "shop" ? "text-[32px]" : "text-2xl"
+                styleType === "shop" ? "text-2xl xl:text-[32px]" : "text-2xl"
               } isax isax-arrow-down-1 text-black-400 transition-transform`}
             ></span>
           </div>
@@ -115,7 +115,7 @@ const SelectBox: React.FC<MultiSelectProps> = ({
       <Popover.Content
         align="start"
         sideOffset={4}
-        className="bg-white-100 border text-black-400 border-grey-200 rounded-lg shadow-md py-2 min-w-[170px] overflow-auto max-h-[300px] scrollbar-thin"
+        className="bg-white-100 border z-[9999] absolute text-black-400 border-grey-200 rounded-lg shadow-md py-2 min-w-[170px] overflow-auto max-h-[300px] scrollbar-thin"
       >
         {options.length === 0 && (
           <span className="px-2">هیچ گزینه‌ای وجود ندارد</span>
