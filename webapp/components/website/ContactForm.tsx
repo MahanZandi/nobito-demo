@@ -24,7 +24,7 @@ const ContactForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white-100 xl:border border-grey-200 rounded-2xl xl:rounded-3xl py-8 px-4 xl:p-6 xl:mt-12 xl:z-10 xl:relative xl:w-[calc(100%+50px)]"
+      className="bg-white-100 rounded-2xl xl:rounded-3xl py-8 px-4 xl:p-6 xl:mt-12 xl:z-10 xl:relative xl:w-[calc(100%+50px)]"
     >
       <div>
         <div className="grid lg:grid-cols-2 gap-4 xl:gap-6">
@@ -134,7 +134,7 @@ const ContactForm = () => {
           />
         </div>
         <div className="flex xl:flex-row flex-col xl:justify-between items-center mt-4 xl:mt-6 gap-4">
-          <span className="text-grey-400">
+          <span className="text-grey-400 text-center">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،
           </span>
           <button className="rounded-lg flex items-center px-8 xl:w-auto justify-center w-full h-10 xl:h-12 bg-primary-500 text-white-500 text-[16px] font-medium" type="submit">ارسال پیغام</button>
