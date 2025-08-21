@@ -19,11 +19,11 @@ const Footer: React.FC = () => {
         },
         {
           title: "تماس با ما",
-          url: "#",
+          url: "/contact-us",
         },
         {
           title: "درباره ما",
-          url: "#",
+          url: "/about-us",
         },
       ],
     },
