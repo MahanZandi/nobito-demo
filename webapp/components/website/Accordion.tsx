@@ -22,11 +22,11 @@ const Accordion = ({ items }: AccordionProps) => {
         <AccordionPrimitive.Item
           key={item.id}
           value={item.id}
-          className="border border-gray-200 rounded-2xl bg-white overflow-hidden cursor-pointer"
+          className="border border-gray-200 rounded-2xl bg-white overflow-hidden"
         >
           {/* Header */}
           <AccordionPrimitive.Header className="flex">
-            <AccordionPrimitive.Trigger className="group flex w-full items-center justify-between p-4 text-right text-black-400 text-[14px] xl:text-[16px]">
+            <AccordionPrimitive.Trigger className="group cursor-pointer flex w-full items-center justify-between p-4 text-right text-black-400 text-[14px] xl:text-[16px]">
               {item.question}
               <span className="isax isax-arrow-down-1 text-2xl text-gray-500 transition-transform duration-300 group-data-[state=open]:rotate-180"></span>
             </AccordionPrimitive.Trigger>
