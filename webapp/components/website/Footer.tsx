@@ -19,11 +19,11 @@ const Footer: React.FC = () => {
         },
         {
           title: "تماس با ما",
-          url: "#",
+          url: "/contact-us",
         },
         {
           title: "درباره ما",
-          url: "#",
+          url: "/about-us",
         },
       ],
     },
@@ -69,8 +69,8 @@ const Footer: React.FC = () => {
       title: "پشتیبانی",
       links: [
         {
-          title: "شبکه های اجتمایی",
-          url: "#",
+          title: "درباره ما",
+          url: "/about-us",
         },
         {
           title: "واحد انفورماتیک",
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
         },
         {
           title: "تماس با ما",
-          url: "#",
+          url: "/contact-us",
         },
       ],
     },

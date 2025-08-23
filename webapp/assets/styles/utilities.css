@@ -1,3 +1,7 @@
 @utility container {
     @apply mx-auto px-4;
 }
+
+@utility container-none {
+    @apply max-w-none;
+}

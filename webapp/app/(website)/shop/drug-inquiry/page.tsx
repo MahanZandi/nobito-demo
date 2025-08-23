@@ -37,7 +37,7 @@ const ShopDruginquiry = () => {
         </div>
       </div>
       <div className="bg-white-100 xl:rounded-3xl border border-grey-200 py-8 xl:p-8 xl:container ">
-        <div className="container xl:max-w-none flex flex-col">
+        <div className="container xl:container-none flex flex-col">
           <div className="flex xl:flex-row justify-between flex-col gap-6">
             <div className="flex justify-between md:justify-start gap-6">
               <span className="text-xl xl:text-2xl font-medium text-black-400">
