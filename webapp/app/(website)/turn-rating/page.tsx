@@ -126,6 +126,8 @@ const TurnRating = () => {
               flex items-center gap-2"
             mobileInput={false}
             container="container"
+            type="for-page"
+            placeholder="جستجو پزشک،درمانگر،کلینیک..."
           />
         </div>
         <div className="xl:flex gap-6">

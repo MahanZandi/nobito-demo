@@ -7,11 +7,15 @@ import MobileSearchOverlay from "./MobileSearchOverlay";
 import Image from "next/image";
 import Link from "next/link";
 
+type SearchBoxType = "for-page" | "for-shop";
+
 interface SearchBoxProps {
-  container: string;
+  container?: string;
   mobileInput: boolean;
   lableStyle: string;
   trigerWidth: string;
+  type?: SearchBoxType;
+  placeholder: string;
 }
 
 const PageSearchBox = ({
@@ -19,6 +23,8 @@ const PageSearchBox = ({
   mobileInput,
   lableStyle,
   trigerWidth,
+  placeholder,
+  type,
 }: SearchBoxProps) => {
   const searchData = [
     {
@@ -198,9 +204,6 @@ const PageSearchBox = ({
   // This code is to prevent duplicate city names
   const uniqueCities = [...new Set(searchData.map((item) => item.city))];
 
-  // for open our clode search box
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-
   // query for search input
   const [query, setQuery] = useState<string>("");
 
@@ -296,30 +299,26 @@ const PageSearchBox = ({
           className={`xl:hidden ${mobileInput ? "block" : "hidden"}`}
           onClick={openMobileSearch}
         >
-          <label
-            form="search"
-            className={`lg:w-[798px] lg:h-20 bg-white-50 relative z-20 -mt-10 p-5
-            flex items-center gap-2 mx-auto ${
-              isFocused ? "rounded-t-2xl" : "rounded-2xl"
-            }`}
-          >
-            <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+          <label form="search" className={`rounded-lg xl:rounded-2xl ${lableStyle}`}>
+            <span className="isax isax-search-normal text-[18px] leading-8 text-grey-400 flex-1"></span>
             <input
               id="search"
-              onFocus={() => setIsFocused(true)}
-              className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-              placeholder="جستجو پزشک،درمانگر،کلینیک..."
+              className="absolute inset-0 outline-none flex-1 p-5 pr-[38px] xl:pr-[60px] text-black-400 text-sm"
+              placeholder={placeholder}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-
-            <button
-              className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
+            {type === "for-page" ? (
+              <button
+                className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
             flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
-            >
-              <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-              <span className="hidden xl:block">انتخاب شهر</span>
-            </button>
+              >
+                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                <span className="hidden xl:block">انتخاب شهر</span>
+              </button>
+            ) : (
+              <></>
+            )}
           </label>
         </div>
         {/* this input for desktop view becouse we have a search box in desktop */}
@@ -328,34 +327,43 @@ const PageSearchBox = ({
             <Dialog.Trigger className={`${trigerWidth} rounded-2xl`} asChild>
               <div className="hidden xl:block">
                 <label form="search" className={`rounded-2xl ${lableStyle}`}>
-                  <span className="isax isax-search-normal text-[32px] leading-8 text-grey-400 flex-1"></span>
+                  {type === "for-shop" ? <div className="flex-1"></div> : <></>}
+                  <span
+                    className={`${
+                      type === "for-page" ? "flex-1" : ""
+                    } isax isax-search-normal text-[32px] leading-8 text-grey-400`}
+                  ></span>
                   <input
                     id="search"
                     autoComplete="off"
-                    onFocus={() => setIsFocused(true)}
-                    className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-                    placeholder="جستجو پزشک،درمانگر،کلینیک..."
+                    className={`${
+                      type === "for-page" ? "pr-[60px]" : "text-xl"
+                    } absolute inset-0 outline-none flex-1 p-5 text-black-400`}
+                    placeholder={placeholder}
                   />
-
-                  <Select.Root>
-                    <Select.Trigger
-                      className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 cursor-pointer rounded-lg"
-                      aria-label="انتخاب شهر"
-                    >
-                      <Select.Value placeholder="انتخاب شهر" />
-                      <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-                    </Select.Trigger>
-                    <Select.Portal>
-                      <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl">
-                        <Select.ScrollUpButton />
-                        <Select.Viewport className="text-right">
-                          <Select.Separator />
-                        </Select.Viewport>
-                        <Select.ScrollDownButton />
-                        <Select.Arrow />
-                      </Select.Content>
-                    </Select.Portal>
-                  </Select.Root>
+                  {type === "for-page" ? (
+                    <Select.Root>
+                      <Select.Trigger
+                        className="focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-none p-2 px-4 xl:h-10 border text-primary-600 border-primary-600 flex items-center justify-center gap-2 cursor-pointer rounded-lg"
+                        aria-label="انتخاب شهر"
+                      >
+                        <Select.Value placeholder="انتخاب شهر" />
+                        <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
+                      </Select.Trigger>
+                      <Select.Portal>
+                        <Select.Content className="bg-white max-w-[120px] border border-gray-200 shadow rounded-xl">
+                          <Select.ScrollUpButton />
+                          <Select.Viewport className="text-right">
+                            <Select.Separator />
+                          </Select.Viewport>
+                          <Select.ScrollDownButton />
+                          <Select.Arrow />
+                        </Select.Content>
+                      </Select.Portal>
+                    </Select.Root>
+                  ) : (
+                    <></>
+                  )}
                 </label>
               </div>
             </Dialog.Trigger>
@@ -379,9 +387,8 @@ const PageSearchBox = ({
                           <input
                             id="search"
                             autoComplete="off"
-                            onFocus={() => setIsFocused(true)}
                             className="absolute inset-0 outline-none flex-1 p-5 pr-[60px] text-black-400"
-                            placeholder="جستجو پزشک،درمانگر،کلینیک..."
+                            placeholder={placeholder}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                           />
