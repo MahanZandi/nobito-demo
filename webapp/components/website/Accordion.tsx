@@ -22,7 +22,7 @@ const Accordion = ({ items }: AccordionProps) => {
         <AccordionPrimitive.Item
           key={item.id}
           value={item.id}
-          className="border border-gray-200 rounded-2xl bg-white overflow-hidden"
+          className="border border-gray-200 rounded-2xl bg-white overflow-hidden cursor-pointer"
         >
           {/* Header */}
           <AccordionPrimitive.Header className="flex">
