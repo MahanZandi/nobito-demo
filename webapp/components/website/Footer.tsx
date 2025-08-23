@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
         },
         {
           title: "خدمات پزشکی در منزل",
-          url: "#",
+          url: "/medical-services-at-home",
         },
       ],
     },
