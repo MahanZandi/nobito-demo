@@ -3,7 +3,7 @@ import * as Popover from "@radix-ui/react-popover";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import clsx from "clsx";
 
-type StyleType = "filter-card" | "user-dashboard" | "shop";
+type StyleType = "filter-card" | "user-dashboard" | "shop" | "select-doctor";
 
 interface MultiSelectProps {
   options: string[];
@@ -60,15 +60,23 @@ const SelectBox: React.FC<MultiSelectProps> = ({
             "border border-grey-200 bg-white-100 rounded-lg",
           styleType === "user-dashboard" && "bg-grey-50 rounded-lg",
           styleType === "shop" &&
-            "border border-grey-200 bg-white-100 h-[48px] xl:h-[88px] rounded-lg xl:rounded-xl"
+            "border border-grey-200 bg-white-100 h-[48px] xl:h-[88px] rounded-lg xl:rounded-xl",
+          styleType === "select-doctor" &&
+            "border border-grey-200 bg-white-100 rounded-lg h-[48px]"
         )}
       >
         <div className="flex w-full">
           <div className="flex justify-between w-full">
             <div className="flex items-center gap-2 w-full">
               {styleType === "filter-card" && (
-                <span className="text-black-400 font-medium truncate">
+                <span className={clsx("text-black-400 font-medium truncate")}>
                   {triggerTitle}
+                </span>
+              )}
+
+              {styleType === "select-doctor" && (
+                <span className={clsx("text-grey-400 font-medium truncate")}>
+                  {value.length > 0 ? renderLabel() : triggerTitle}
                 </span>
               )}
 
@@ -80,23 +88,31 @@ const SelectBox: React.FC<MultiSelectProps> = ({
                 ></span>
               )}
 
-              {(styleType === "user-dashboard" || styleType === "shop") && (
+              {(styleType === "user-dashboard" ||
+                styleType === "shop") && (
                 <span
                   className={clsx(
                     "",
                     styleType === "user-dashboard" && "text-black-400",
-                    styleType === "shop" && "text-grey-400 text-[16px] xl:text-[22px]"
+                    styleType === "shop" &&
+                      "text-grey-400 text-[16px] xl:text-[22px]"
                   )}
                 >
-                   {value.length > 0 ? renderLabel() : "دسته بندی دارو ها"}
+                  {styleType === "shop" ? value.length > 0 ? renderLabel(): "دسته بندی دارو ها" : renderLabel()}
                 </span>
               )}
             </div>
 
             <span
-              className={`${open ? "rotate-180" : ""} ${
-                styleType === "shop" ? "text-2xl xl:text-[32px]" : "text-2xl"
-              } isax isax-arrow-down-1 text-black-400 transition-transform`}
+              className={`${open ? "rotate-180" : ""} 
+              ${clsx(
+                "isax isax-arrow-down-1  transition-transform",
+                styleType === "shop" &&
+                  "text-2xl xl:text-[32px] text-black-400",
+                styleType === "user-dashboard" && "text-2xl text-black-400",
+                styleType === "select-doctor" && "text-2xl text-grey-400",
+                styleType === "filter-card" && "text-2xl text-black-400"
+              )} `}
             ></span>
           </div>
         </div>
@@ -109,7 +125,6 @@ const SelectBox: React.FC<MultiSelectProps> = ({
             {renderLabel()}
           </p>
         )}
-
       </Popover.Trigger>
 
       <Popover.Content

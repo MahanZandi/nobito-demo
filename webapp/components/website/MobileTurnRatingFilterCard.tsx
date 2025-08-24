@@ -360,15 +360,17 @@ const MobileTurnRatingFilterCard: React.FC<TurnRatingFilterCardProps> = ({
           <div className="flex gap-4">
             <CalendarDate
               inputCalender={true}
-              text="از تاریخ"
+              placeholder="از تاریخ"
               value={startDate}
               onChange={setStartDate}
+              inputStyle="cursor-pointer text-grey-500 border border-grey-200 p-3 flex rounded-lg w-[160px] xl:w-[170px]"
             />
             <CalendarDate
               inputCalender={true}
-              text="تا تاریخ"
+              placeholder="تا تاریخ"
               value={endDate}
               onChange={setEndDate}
+              inputStyle="cursor-pointer text-grey-500 border border-grey-200 p-3 flex rounded-lg w-[160px] xl:w-[170px]"
             />
           </div>
           <div className="h-px bg-grey-250 my-6"></div>

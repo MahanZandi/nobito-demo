@@ -8,9 +8,10 @@ import weekends from "react-multi-date-picker/plugins/highlight_weekends";
 import { Calendar } from "react-multi-date-picker";
 
 interface CommonProps {
-  text?: string;
+  placeholder?: string;
   value?: DateObject | null;
   onChange?: (date: DateObject | null) => void;
+  inputStyle: string;
 }
 
 type AtLeastOneCalendarProp =
@@ -20,11 +21,12 @@ type AtLeastOneCalendarProp =
 type CalendarProps = CommonProps & AtLeastOneCalendarProp;
 
 const CalendarDate: React.FC<CalendarProps> = ({
-  text,
+  placeholder,
   value,
   onChange,
   inputCalender,
   pageCalender,
+  inputStyle,
 }) => {
   const datePickerRef = useRef(null);
   const today = new DateObject({ calendar: persian });
@@ -33,7 +35,7 @@ const CalendarDate: React.FC<CalendarProps> = ({
   const [pageCalenderValues, setPageCalenderValues] = useState<any>([]);
 
   return (
-    <div>
+    <>
       {inputCalender && (
         <DatePicker
           portal
@@ -50,11 +52,8 @@ const CalendarDate: React.FC<CalendarProps> = ({
           render={(value, openCalendar) => {
             const openCalendarFn = () => openCalendar();
             return (
-              <div
-                onClick={openCalendarFn}
-                className="cursor-pointer text-grey-500 border border-grey-200 p-3 flex rounded-lg w-[160px] xl:w-[170px]"
-              >
-                <span className="flex font-medium flex-1">{text}</span>
+              <div onClick={openCalendarFn} className={inputStyle}>
+                <span className="flex font-medium flex-1">{placeholder}</span>
                 <span className="isax isax-calendar-1 text-2xl"></span>
               </div>
             );
@@ -75,7 +74,7 @@ const CalendarDate: React.FC<CalendarProps> = ({
           />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

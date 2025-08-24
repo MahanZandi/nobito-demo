@@ -1,5 +1,7 @@
 import MedServicesHero from "@/components/website/MedServicesHero";
 import PageSearchBox from "@/components/website/PageSearchBox";
+import SensoryServices from "@/components/website/SensoryServices";
+import SelectDoctor from "@/components/website/SelectDoctor";
 
 const MedicalServicesAtHome = () => {
   return (
@@ -15,6 +17,12 @@ const MedicalServicesAtHome = () => {
           placeholder="جستجو پزشک،درمانگر،کلینیک..."
           type="for-page"
         />
+      </div>
+      <div className="py-[36px] xl:my-[72px]">
+        <SensoryServices />
+      </div>
+      <div className="py-[36px] xl:my-[72px]">
+        <SelectDoctor />
       </div>
     </>
   );
