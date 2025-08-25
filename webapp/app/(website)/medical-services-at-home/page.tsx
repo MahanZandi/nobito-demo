@@ -2,6 +2,7 @@ import MedServicesHero from "@/components/website/MedServicesHero";
 import PageSearchBox from "@/components/website/PageSearchBox";
 import SensoryServices from "@/components/website/SensoryServices";
 import SelectDoctor from "@/components/website/SelectDoctor";
+import BestDoctors from "@/components/website/BestDoctors";
 
 const MedicalServicesAtHome = () => {
   return (
@@ -23,6 +24,9 @@ const MedicalServicesAtHome = () => {
       </div>
       <div className="py-[36px] xl:my-[72px]">
         <SelectDoctor />
+      </div>
+      <div className="py-[36px] xl:my-[72px]">
+        <BestDoctors />
       </div>
     </>
   );
