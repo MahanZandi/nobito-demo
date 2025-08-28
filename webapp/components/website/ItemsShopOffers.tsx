@@ -99,7 +99,7 @@ const ItemShopOffers = () => {
 
   return (
     <div className="flex justify-end">
-      <div className="bg-primary-500 rounded-r-[32px] p-6 flex lg:flex-row flex-col gap-6 w-11/12">
+      <div className="bg-primary-500 lg:rounded-r-[32px] pt-6 lg:p-6 flex lg:flex-row flex-col-reverse gap-6 w-full lg:w-11/12">
         <div className="w-[246px] shrink-0 lg:block hidden">
           <Image
             className="w-[246px] h-[350px] object-contain"
@@ -116,6 +116,26 @@ const ItemShopOffers = () => {
               >
                 <span>مشاهده همه</span>
                 <span className="isax isax-arrow-left text-2xl"></span>
+              </Link>
+            </button>
+          </div>
+        </div>
+        <div className="w-full pb-6 shrink-0 lg:hidden items-center flex flex-col ">
+          <Image
+            className="w-[326px] h-[100px] object-contain"
+            alt="offers"
+            width={326}
+            height={100}
+            src="/images/offers-mobile.png"
+          />
+          <div className="w-full container flex justify-center">
+            <button className="cursor-pointer w-full">
+              <Link
+                href="#"
+                className="h-8 lg:h-10 w-full bg-white-500 text-black-500 flex justify-center items-center gap-2 rounded-[5px] lg:rounded-[7px] lg:text-[16px] font-medium"
+              >
+                <span>مشاهده همه</span>
+                <span className="isax isax-arrow-left lg:text-2xl"></span>
               </Link>
             </button>
           </div>
@@ -141,7 +161,7 @@ const ItemShopOffers = () => {
                   <div className="flex w-full justify-center text-[16px] font-medium text-black-400">
                     {item.title}
                   </div>
-                  <div className="xl:mt-6 mt-4 flex justify-between items-center">
+                  <div className="lg:mt-6 mt-4 flex justify-between items-center">
                     <span className="font font-medium lg:font-normal text-black-400 lg:text-[16px]">
                       {formatNumber(item.price)} تومان
                     </span>
@@ -154,7 +174,7 @@ const ItemShopOffers = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="mt-3 xl:mt-4 flex justify-between items-center">
+                  <div className="mt-3 lg:mt-4 flex justify-between items-center">
                     <div
                       onClick={() => toggleLike(item.id)}
                       className="flex gap-1.5 cursor-pointer"
