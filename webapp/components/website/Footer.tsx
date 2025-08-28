@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
         },
         {
           title: "خدمات پزشکی در منزل",
-          url: "#",
+          url: "/medical-services-at-home",
         },
       ],
     },
@@ -106,6 +106,29 @@ const Footer: React.FC = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
   );
+
+  const socialIconLink = [
+    {
+      title:"تلگرام",
+      image:"/images/png-icons/telegram.png",
+      link:"#"
+    },
+    {
+      title:"اینستاگرام",
+      image:"/images/png-icons/instagram.png",
+      link:"#"
+    },
+    {
+      title:"لینکدین",
+      image:"/images/png-icons/Linkdin.png",
+      link:"#"
+    },
+    {
+      title: "یوتوب",
+      image: "/images/png-icons/youtube.png",
+      link: "#"
+    }
+  ]
 
   return (
     <footer className="bg-white-100">
@@ -313,38 +336,16 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="flex w-[272px] xl:w-auto justify-between xl:justify-center gap-4 pt-6">
-            <Link href="#" className="size-8">
-              <Image
-                width={32}
-                height={32}
-                alt="تلگرام"
-                src={"/images/png-icons/instagram.png"}
-              />
-            </Link>
-            <Link href="#" className="size-8">
-              <Image
-                width={32}
-                height={32}
-                alt="تلگرام"
-                src={"/images/png-icons/instagram.png"}
-              />
-            </Link>
-            <Link href="#" className="size-8">
-              <Image
-                width={32}
-                height={32}
-                alt="توییتر"
-                src={"/images/png-icons/Linkdin.png"}
-              />
-            </Link>
-            <Link href="#" className="size-8">
-              <Image
-                width={32}
-                height={32}
-                alt="توییتر"
-                src={"/images/png-icons/telegram.png"}
-              />
-            </Link>
+            {socialIconLink?.map((item,index)=>(
+              <Link href={item.link} className="size-8" key={index}>
+                <Image
+                  width={32}
+                  height={32}
+                  alt={item.title}
+                  src={item.image}
+                />
+              </Link>
+            ))}
           </div>
         </div>
       </div>

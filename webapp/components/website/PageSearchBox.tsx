@@ -299,22 +299,24 @@ const PageSearchBox = ({
           className={`xl:hidden ${mobileInput ? "block" : "hidden"}`}
           onClick={openMobileSearch}
         >
-          <label form="search" className={`rounded-lg xl:rounded-2xl ${lableStyle}`}>
-            <span className="isax isax-search-normal text-[18px] leading-8 text-grey-400 flex-1"></span>
+          <label
+            form="search"
+            className={`rounded-lg lg:rounded-2xl ${lableStyle}`}
+          >
+            <span className="isax isax-search-normal lg:text-2xl text-[18px] leading-8 text-grey-400 flex-1"></span>
             <input
               id="search"
-              className="absolute inset-0 outline-none flex-1 p-5 pr-[38px] xl:pr-[60px] text-black-400 text-sm"
+              className="absolute inset-0 outline-none flex-1 p-5 pr-[50px] lg:pr-[60px] text-black-400 text-sm"
               placeholder={placeholder}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
             {type === "for-page" ? (
               <button
-                className="p-1.5 xl:w-[141px] xl:h-10 border text-primary-600 border-primary-600
+                className="p-1.5 bg-primary-50 border text-primary-600 border-primary-600
             flex items-center justify-center gap-2 relative cursor-pointer rounded-lg"
               >
-                <span className="isax isax-location text-2xl leading-6 text-primary-600"></span>
-                <span className="hidden xl:block">انتخاب شهر</span>
+                <span className="isax isax-location text-[18px] leading-6 text-primary-600"></span>
               </button>
             ) : (
               <></>

@@ -11,13 +11,13 @@ import HomeDoctorsBanners from "@/components/website/HomeDoctorsBanners";
 
 const Home = () => {
   return (
-    <section>
+    <>
       <HomeHeroSection />
 
       <div className="pb-[36px] xl:pb-[72px]">
         <PageSearchBox
           trigerWidth="mx-auto w-[798px]"
-          lableStyle="lg:w-[798px] h-20 bg-white-50 relative -mt-10 p-5
+          lableStyle="lg:w-[798px] h-[48px] lg:h-20 bg-white-50 relative -mt-10 p-5
             flex items-center gap-2 mx-auto"
           mobileInput={true}
           container="px-4 xl:px-0"
@@ -57,7 +57,7 @@ const Home = () => {
       <div className="py-[36px] xl:py-[72px]">
         <HomePatientFeedBack />
       </div>
-    </section>
+    </>
   );
 };
 
