@@ -5,6 +5,7 @@ import SelectDoctor from "@/components/website/SelectDoctor";
 import BestDoctors from "@/components/website/BestDoctors";
 import CareServices from "@/components/website/CareServices";
 import ItemShopOffers from "@/components/website/ItemsShopOffers";
+import DisabilityClinics from "@/components/website/DisabilityClinics";
 
 const MedicalServicesAtHome = () => {
   return (
@@ -35,6 +36,9 @@ const MedicalServicesAtHome = () => {
       </div>
       <div className="py-[36px] xl:my-[72px]">
         <ItemShopOffers />
+      </div>
+      <div className="py-[36px] xl:my-[72px]">
+        <DisabilityClinics />
       </div>
     </>
   );
