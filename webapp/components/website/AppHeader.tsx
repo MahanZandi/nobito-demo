@@ -147,7 +147,7 @@ const AppHeader: React.FC = () => {
       url: "#",
       icon: "isax isax-arrow-down-1",
       dropdownItems: [
-        { label: "نوبت‌دهی آنلاین", link: "#" },
+        { label: "نوبت‌دهی آنلاین", link: "/online-appointments" },
         { label: "فروشگاه کالای پزشکی", link: "/shop" },
         { label: "استعلام دارو", link: "/shop/drug-inquiry" },
         { label: "خدمات پزشکی در منزل", link: "/medical-services-at-home" },

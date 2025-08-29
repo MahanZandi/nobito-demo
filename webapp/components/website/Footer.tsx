@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
       links: [
         {
           title: "نوبت‌دهی آنلاین",
-          url: "#",
+          url: "/online-appointments",
         },
         {
           title: "فروشگاه کالای پزشکی",

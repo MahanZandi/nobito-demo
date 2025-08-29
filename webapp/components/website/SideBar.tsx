@@ -273,7 +273,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       url: "#",
       icon: "isax isax-arrow-down-1",
       dropdownItems: [
-        { title: "نوبت‌دهی آنلاین", link: "#" },
+        { title: "نوبت‌دهی آنلاین", link: "/online-appointments" },
         { title: "فروشگاه کالای پزشکی", link: "/shop" },
         { title: "استعلام دارو", link: "/shop/drug-inquiry" },
         { title: "خدمات پزشکی در منزل", link: "/medical-services-at-home" },
