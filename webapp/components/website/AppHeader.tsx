@@ -151,6 +151,7 @@ const AppHeader: React.FC = () => {
         { label: "فروشگاه کالای پزشکی", link: "/shop" },
         { label: "استعلام دارو", link: "/shop/drug-inquiry" },
         { label: "خدمات پزشکی در منزل", link: "/medical-services-at-home" },
+        { label: "خدمات زیبایی", link: "/beauty-services" }
       ],
     },
     { title: "مشاوره آنلاین", url: "#" },

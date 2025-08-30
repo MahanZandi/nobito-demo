@@ -277,6 +277,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         { title: "فروشگاه کالای پزشکی", link: "/shop" },
         { title: "استعلام دارو", link: "/shop/drug-inquiry" },
         { title: "خدمات پزشکی در منزل", link: "/medical-services-at-home" },
+        { title: "خدمات زیبایی", link: "/beauty-services" }
       ],
     },
     { title: "مشاوره آنلاین", url: "#" },
