@@ -45,16 +45,97 @@ const beautyClinicDiscounts = [
     image: "/images/beauty-service-7.png",
     link: "#",
   },
+  {
+    id: 8,
+    title: "لیزر موهای زائد",
+    image: "/images/beauty-service-2.png",
+    link: "#",
+  },
+  {
+    id: 9,
+    title: "جوان سازی پوست",
+    image: "/images/beauty-service-3.png",
+    link: "#",
+  },
+  {
+    id: 10,
+    title: "لیفت صورت",
+    image: "/images/beauty-service-4.png",
+    link: "#",
+  },
+  {
+    id: 11,
+    title: "برداشتن غبغب",
+    image: "/images/beauty-service-5.png",
+    link: "#",
+  },
+  {
+    id: 12,
+    title: "لاغری موضعی",
+    image: "/images/beauty-service-6.png",
+    link: "#",
+  },
+  {
+    id: 13,
+    title: "برداشتن میخچه",
+    image: "/images/beauty-service-7.png",
+    link: "#",
+  },  {
+    id: 14,
+    title: "لیفت صورت",
+    image: "/images/beauty-service-4.png",
+    link: "#",
+  },
+  {
+    id: 15,
+    title: "برداشتن غبغب",
+    image: "/images/beauty-service-5.png",
+    link: "#",
+  },
+  {
+    id: 16,
+    title: "لاغری موضعی",
+    image: "/images/beauty-service-6.png",
+    link: "#",
+  },
+  {
+    id: 17,
+    title: "برداشتن میخچه",
+    image: "/images/beauty-service-7.png",
+    link: "#",
+  },
+  {
+    id: 18,
+    title: "لیزر موهای زائد",
+    image: "/images/beauty-service-2.png",
+    link: "#",
+  },
+  {
+    id: 19,
+    title: "جوان سازی پوست",
+    image: "/images/beauty-service-3.png",
+    link: "#",
+  },
+  {
+    id: 20,
+    title: "لیفت صورت",
+    image: "/images/beauty-service-4.png",
+    link: "#",
+  },
 ];
 
-const beautyTitle = () => {
+const BeautyTitle = () => {
   return (
     <div className="flex items-center gap-3">
       <div className="xl:text-[32px] flex gap-1">
-        <span className="text-[#848484] font-semibold xl:font-medium">تخفیفات</span>
-        <span className="text-primary-500 font-semibold xl:font-bold">کلینیک های زیبایی</span>
+        <span className="text-[#848484] font-semibold xl:font-medium">
+          تخفیفات
+        </span>
+        <span className="text-primary-500 font-semibold xl:font-bold">
+          کلینیک های زیبایی
+        </span>
       </div>
-      <div className="flex-1 bg-grey-200 h-px"></div>
+      <div className="flex-1 md:bg-grey-200 h-px"></div>
     </div>
   );
 };
@@ -73,7 +154,10 @@ const BeautyServices = () => {
         type="for-page"
       />
       <div className="mt-[64px] xl:mt-[144px]">
-        <BeautyServiceList title={beautyTitle} services={beautyClinicDiscounts} />
+        <BeautyServiceList
+          title={<BeautyTitle />}
+          services={beautyClinicDiscounts}
+        />
       </div>
     </>
   );
