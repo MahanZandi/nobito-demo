@@ -124,7 +124,7 @@ const beautyClinicDiscounts = [
   },
 ];
 
-const BeautyTitle = () => {
+const BeautyServiceTitle = () => {
   return (
     <div className="flex items-center gap-3">
       <div className="xl:text-[32px] flex gap-1">
@@ -155,7 +155,7 @@ const BeautyServices = () => {
       />
       <div className="mt-[64px] xl:mt-[144px]">
         <BeautyServiceList
-          title={<BeautyTitle />}
+          title={<BeautyServiceTitle />}
           services={beautyClinicDiscounts}
         />
       </div>
