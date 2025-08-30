@@ -140,7 +140,6 @@ const ItemShopOffers = () => {
             </button>
           </div>
         </div>
-        {/* TODO create offer for mobile style */}
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex items-center h-full gap-6">
             {itemShopOffers.map((item, index) => (

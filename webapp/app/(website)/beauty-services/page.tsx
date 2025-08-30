@@ -1,6 +1,7 @@
 import PageSearchBox from "@/components/website/PageSearchBox";
 import BeautyServicesHero from "@/components/website/BeautyServicesHero";
 import BeautyServiceList from "@/components/website/BeautyServiceList";
+import ClinicsLists from "@/components/website/ClinicsLists";
 
 const beautyClinicDiscounts = [
   {
@@ -80,7 +81,8 @@ const beautyClinicDiscounts = [
     title: "برداشتن میخچه",
     image: "/images/beauty-service-7.png",
     link: "#",
-  },  {
+  },
+  {
     id: 14,
     title: "لیفت صورت",
     image: "/images/beauty-service-4.png",
@@ -124,6 +126,99 @@ const beautyClinicDiscounts = [
   },
 ];
 
+const beautyClinics = [
+  {
+    title: "جوانسازی گردن با مزوژل برند پروایج (1 جلسه) دکتر شیما میرشاهی",
+    image: "/images/beauty-clinic-1.png",
+    clinicName: "کلینیک میرشاهی",
+    previousPrice: 4230000,
+    price: 3825000,
+    discount: 10,
+    location: "نشانی: تهران - میدان آرژانتین - خیابان 123",
+  },
+  {
+    title: "پاکسازی و میکرودرم صورت (جلسه اول) کلینیک پوست آریا",
+    image: "/images/beauty-clinic-2.png",
+    clinicName: "کلینیک پوست آریا",
+    previousPrice: 2800000,
+    price: 2240000,
+    discount: 20,
+    location: "نشانی: تهران - خیابان کریم‌خان - پلاک 45",
+  },
+  {
+    title: "تزریق بوتاکس برای خطوط پیشانی (0.5 واحد) دکتر نادری",
+    image: "/images/beauty-clinic-3.png",
+    clinicName: "مرکز زیبایی نادری",
+    previousPrice: 1500000,
+    price: 1350000,
+    discount: 10,
+    location: "نشانی: تهران - خیابان ولیعصر - طبقه دوم",
+  },
+  {
+    title: "فیشیال تخصصی و آبرسانی صورت (پکیج کامل) کلینیک سلامت پوست",
+    image: "/images/beauty-clinic-4.png",
+    clinicName: "کلینیک سلامت پوست",
+    previousPrice: 3200000,
+    price: 2560000,
+    discount: 20,
+    location: "نشانی: تهران - سعادت‌آباد - مجتمع سلامت",
+  },
+  {
+    title: "لیزر موهای زائد زیر بغل (جلسه سوم) مرکز لیزر آرمان",
+    image: "/images/beauty-clinic-5.png",
+    clinicName: "مرکز لیزر آرمان",
+    previousPrice: 980000,
+    price: 784000,
+    discount: 20,
+    location: "نشانی: تهران - منطقه 3 - بلوار آفتاب",
+  },
+  {
+    title: "جوانسازی گردن با مزوژل برند پروایج (1 جلسه) دکتر شیما میرشاهی",
+    image: "/images/beauty-clinic-1.png",
+    clinicName: "کلینیک میرشاهی",
+    previousPrice: 4230000,
+    price: 3825000,
+    discount: 10,
+    location: "نشانی: تهران - میدان آرژانتین - خیابان 123",
+  },
+  {
+    title: "پاکسازی و میکرودرم صورت (جلسه اول) کلینیک پوست آریا",
+    image: "/images/beauty-clinic-2.png",
+    clinicName: "کلینیک پوست آریا",
+    previousPrice: 2800000,
+    price: 2240000,
+    discount: 20,
+    location: "نشانی: تهران - خیابان کریم‌خان - پلاک 45",
+  },
+  {
+    title: "تزریق بوتاکس برای خطوط پیشانی (0.5 واحد) دکتر نادری",
+    image: "/images/beauty-clinic-3.png",
+    clinicName: "مرکز زیبایی نادری",
+    previousPrice: 1500000,
+    price: 1350000,
+    discount: 10,
+    location: "نشانی: تهران - خیابان ولیعصر - طبقه دوم",
+  },
+  {
+    title: "فیشیال تخصصی و آبرسانی صورت (پکیج کامل) کلینیک سلامت پوست",
+    image: "/images/beauty-clinic-4.png",
+    clinicName: "کلینیک سلامت پوست",
+    previousPrice: 3200000,
+    price: 2560000,
+    discount: 20,
+    location: "نشانی: تهران - سعادت‌آباد - مجتمع سلامت",
+  },
+  {
+    title: "لیزر موهای زائد زیر بغل (جلسه سوم) مرکز لیزر آرمان",
+    image: "/images/beauty-clinic-5.png",
+    clinicName: "مرکز لیزر آرمان",
+    previousPrice: 980000,
+    price: 784000,
+    discount: 20,
+    location: "نشانی: تهران - منطقه 3 - بلوار آفتاب",
+  },
+];
+
 const BeautyServiceTitle = () => {
   return (
     <div className="flex items-center gap-3">
@@ -158,6 +253,9 @@ const BeautyServices = () => {
           title={<BeautyServiceTitle />}
           services={beautyClinicDiscounts}
         />
+      </div>
+      <div className="mt-[64px] xl:mt-[144px]">
+        <ClinicsLists clinics={beautyClinics} />
       </div>
     </>
   );
