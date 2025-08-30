@@ -22,22 +22,22 @@ const MedicalServicesAtHome = () => {
           type="for-page"
         />
       </div>
-      <div className="py-[36px] xl:my-[72px]">
+      <div className="mt-[64px] xl:mt-[144px]">
         <SensoryServices />
       </div>
-      <div className="py-[36px] xl:my-[72px]">
+      <div className="mt-[64px] xl:mt-[144px]">
         <SelectDoctor />
       </div>
-      <div className="py-[36px] xl:my-[72px]">
+      <div className="mt-[64px] xl:mt-[144px]">
         <BestDoctors />
       </div>
-      <div className="py-[36px] xl:my-[72px] xl:block hidden">
+      <div className="mt-[64px] xl:mt-[144px] xl:block hidden">
         <CareServices />
       </div>
-      <div className="py-[36px] xl:my-[72px]">
+      <div className="mt-[64px] xl:mt-[144px]">
         <ItemShopOffers />
       </div>
-      <div className="py-[36px] xl:my-[72px]">
+      <div className="mt-[64px] xl:mt-[144px] mb-[36px] xl:mb-[72px]">
         <DisabilityClinics />
       </div>
     </>
