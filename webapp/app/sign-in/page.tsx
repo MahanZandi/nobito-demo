@@ -24,7 +24,7 @@ const SignInPage = () => {
   return (
     <div className="h-screen flex flex-col justify-center mx-4 xl:mx-0">
       <Image
-        className="w-full h-[242px] absolute -z-10 xl:block hidden"
+        className="w-full h-[242px] absolute object-cover -z-10 xl:block hidden"
         src="/banner.png"
         alt="Banner"
         width={1140}
