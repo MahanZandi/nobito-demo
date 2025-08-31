@@ -257,7 +257,7 @@ const HomePatientFeedBack = () => {
                         <div className="flex flex-col justify-between">
                           {/* comment */}
                           <div className="pt-[16px] h-[60px] xl:h-[130px]">
-                            <span className="text-[12px] text-grey-500 font-normal line-clamp-5 leading-[170%]">
+                            <span className="embla__slide__comment">
                               {feedback.comment}
                             </span>
                           </div>
@@ -430,7 +430,7 @@ const HomePatientFeedBack = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1340px)");
+    const mediaQuery = window.matchMedia("(max-width: 1220px)");
     const handelChange = () => {
       setIsMobile(mediaQuery.matches);
     };
@@ -443,14 +443,16 @@ const HomePatientFeedBack = () => {
 
   return (
     <>
+
+      {/* TODO: dynamic title */}
       {/* title */}
       <div className="container flex items-center gap-3 ">
-        <h2 className="text-xl lg:text-[32px] leading-[155%] lg:font-medium font-[700] text-grey-500 flex items-center gap-1">
+        <h2 className="text-xl xl:text-[32px] leading-[155%] xl:font-medium font-[700] text-grey-500 flex items-center gap-1">
           <span className="text-primary-500">بازخورد بیماران</span>
           <span>این ماه</span>
         </h2>
-        <div className="h-px bg-grey-200 flex-1 hidden lg:block"></div>
-        <div className="flex flex-1 lg:hidden"></div>
+        <div className="h-px bg-grey-200 flex-1 hidden xl:block"></div>
+        <div className="flex flex-1 xl:hidden"></div>
 
         <Link
           href="/"
