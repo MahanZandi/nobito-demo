@@ -104,7 +104,6 @@ const SelectDoctor = () => {
               multiple={false}
             />
           </div>
-          {/* TODO create button */}
           <div className="w-full flex justify-end">
             <button className="text-white-500 flex items-center justify-center bg-primary-500 w-[134px] xl:w-[207px] h-10 xl:h-12 rounded-[7px] xl:rounded-lg">
               جستجو
