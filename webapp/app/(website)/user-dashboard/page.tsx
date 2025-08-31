@@ -8,7 +8,8 @@ import MedicalFile from "@/components/website/MedicalFile";
 import DashboardFeedbacks from "@/components/website/DashboardFeedbacks";
 import DashboardPassword from "@/components/website/DashboardPassword";
 import Modal from "@/components/website/Modal";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 interface BeardCrumbsProps {
   activeTab: ActiveTabsType;
@@ -25,21 +26,33 @@ type ActiveTabsType =
 
 const UserDashboard = () => {
   const { activeTab, setActiveTab, isModalOpen, setIsModalOpen } = useStore();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const changeTabs = (tab: typeof activeTab) => {
+  useEffect(() => {
+    const tabFromQuery = searchParams.get("tab") as ActiveTabsType | null;
+    if (tabFromQuery) {
+      setActiveTab(tabFromQuery);
+    }
+  }, [searchParams, setActiveTab]);
+
+  const changeTabs = (tab: ActiveTabsType) => {
     setActiveTab(tab);
+
+    const newUrl = `?tab=${tab}`;
+    router.push(newUrl, { scroll: false });
+
     if (tab === "logout") {
       setIsModalOpen(true);
     }
   };
 
-  const router = useRouter();
-
   const handleCloseModal = (shouldLogout = false) => {
     setIsModalOpen(false);
     setActiveTab("account-information");
+    router.push("?tab=account-information", { scroll: false });
     if (shouldLogout) {
-      // TODO: logout and deleted token ...
+      // TODO: logout and delete token ...
       router.push("/");
     }
   };
