@@ -9,7 +9,11 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const HomePatientFeedBack = () => {
+interface HomePatientFeedBackProps {
+  title: React.ReactNode;
+}
+
+const HomePatientFeedBack: React.FC<HomePatientFeedBackProps> = ({ title }) => {
   const feedbacks = [
     {
       id: 1,
@@ -443,24 +447,7 @@ const HomePatientFeedBack = () => {
 
   return (
     <>
-      {/* TODO: dynamic title */}
-      {/* title */}
-      <div className="container flex items-center gap-3 ">
-        <h2 className="text-xl xl:text-[32px] leading-[155%] xl:font-medium font-[700] text-grey-500 flex items-center gap-1">
-          <span className="text-primary-500">بازخورد بیماران</span>
-          <span>این ماه</span>
-        </h2>
-        <div className="h-px bg-grey-200 flex-1 hidden xl:block"></div>
-        <div className="flex flex-1 xl:hidden"></div>
-
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-t2-regular text-grey-500"
-        >
-          مشاهده همه
-          <span className="isax isax-arrow-left-3 text-grey-500 text-2xl leading-6"></span>
-        </Link>
-      </div>
+      {title}
       {isMobile ? <MobileSlider /> : <DesktopSlider />}
     </>
   );
