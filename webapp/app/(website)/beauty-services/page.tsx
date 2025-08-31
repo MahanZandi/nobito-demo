@@ -2,6 +2,7 @@ import PageSearchBox from "@/components/website/PageSearchBox";
 import BeautyServicesHero from "@/components/website/BeautyServicesHero";
 import BeautyServiceList from "@/components/website/BeautyServiceList";
 import ClinicsLists from "@/components/website/ClinicsLists";
+import Image from "next/image";
 
 const beautyClinicDiscounts = [
   {
@@ -219,6 +220,21 @@ const beautyClinics = [
   },
 ];
 
+const banners = [
+  {
+    title: "آزمایش در محل",
+    description:
+      "انجام انواع آزمایش‌های پزشکی در منزل یا محل کار شما\nبدون نیاز به مراجعه حضوری به آزمایشگاه\nپاسخ‌دهی سریع و دقیق توسط متخصصان مجرب",
+    image: "/images/banner-3.png",
+  },
+  {
+    title: "پرستار در منزل",
+    description:
+      "ارائه خدمات پرستاری تخصصی در منزل\nمراقبت از بیماران، سالمندان و کودکان توسط پرستاران حرفه‌ای\nپشتیبانی شبانه‌روزی و مشاوره رایگان",
+    image: "/images/banner-4.png",
+  },
+];
+
 const BeautyServiceTitle = () => {
   return (
     <div className="flex items-center gap-3">
@@ -256,6 +272,31 @@ const BeautyServices = () => {
       </div>
       <div className="mt-[64px] xl:mt-[144px]">
         <ClinicsLists clinics={beautyClinics} />
+      </div>
+      <div className="mt-[64px] container grid lg:grid-cols-2 lg:gap-6 gap-8 xl:mt-[144px]">
+        {banners.map((banner, index) => (
+          <div
+            className="bg-white p-6 flex gap-8 lg:gap-6 rounded-3xl"
+            key={index}
+          >
+            <div className="flex flex-col gap-6">
+              <h2 className="text-black-500 font-bold lg:font-medium lg:text-[28px]">
+                {banner.title}
+              </h2>
+              <p className="text-[16px] text-grey-500 lg:leading-[170%] leading-[155%]">
+                {banner.description}
+              </p>
+            </div>
+            <Image
+              className="rounded-2xl object-cover w-full h-[192px]"
+              src={banner.image}
+              alt={banner.title}
+              width={176}
+              height={192}
+            />
+            
+          </div>
+        ))}
       </div>
     </>
   );
