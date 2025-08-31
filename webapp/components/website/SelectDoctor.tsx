@@ -85,6 +85,13 @@ const SelectDoctor = () => {
               placeholder="تخصص"
               multiple={false}
             />
+            <CalendarDate
+              placeholder="انتخاب تاریخ"
+              inputStyle="cursor-pointer text-grey-400 border border-grey-200 p-3 flex rounded-lg xl:w-[380px] 2xl:w-[500px]"
+              value={date}
+              onChange={setDate}
+              inputCalender={true}
+            />
             <SelectBox
               styleType="select-doctor"
               options={diseaseTypes.map((item) => item.title)}
@@ -96,16 +103,13 @@ const SelectDoctor = () => {
               placeholder="نوع بیماری"
               multiple={false}
             />
-            <CalendarDate
-              placeholder="انتخاب تاریخ"
-              inputStyle="cursor-pointer text-grey-400 border border-grey-200 p-3 flex rounded-lg xl:w-[380px] 2xl:w-[500px]"
-              value={date}
-              onChange={setDate}
-              inputCalender={true}
-            />
           </div>
           {/* TODO create button */}
-          <div></div>
+          <div className="w-full flex justify-end">
+            <button className="text-white-500 flex items-center justify-center bg-primary-500 w-[134px] xl:w-[207px] h-10 xl:h-12 rounded-[7px] xl:rounded-lg">
+              جستجو
+            </button>
+          </div>
         </div>
       </div>
     </>
