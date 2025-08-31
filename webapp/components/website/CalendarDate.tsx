@@ -53,7 +53,7 @@ const CalendarDate: React.FC<CalendarProps> = ({
             const openCalendarFn = () => openCalendar();
             return (
               <div onClick={openCalendarFn} className={inputStyle}>
-                <span className="flex font-medium flex-1">{placeholder}</span>
+                <span className="flex font-medium flex-1">{value ? value.toString() : placeholder}</span>
                 <span className="isax isax-calendar-1 text-2xl"></span>
               </div>
             );
