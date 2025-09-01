@@ -20,6 +20,25 @@
   }
   .embla__slide__number {
     user-select: none;
-    @apply xl:w-[400px] xl:h-[260px]  2xl:w-[500px] 2xl:h-[260px] bg-white border border-grey-200 rounded-xl;
+    @apply xl:w-[370px] xl:h-[260px] 2xl:w-[460px] 2xl:h-[260px] bg-white border border-grey-200 rounded-xl;
+  }
+
+  @media (min-width: 1300px) and (max-width: 1600px) {
+    .embla__slide__number {
+      @apply w-[400px];
+    }
+  }
+  @media (min-width: 1220px) and (max-width: 1230px) {
+    @apply w-[283px] h-[190px];
+  }
+
+  .embla__slide__comment {
+    @apply text-[12px] text-grey-500 font-normal line-clamp-4 leading-[170%];
+  }
+
+  @media (min-width: 1213px) and (max-width: 1230px) {
+    .embla__slide__comment {
+      @apply line-clamp-2;
+    }
   }
 }

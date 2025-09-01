@@ -79,7 +79,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ links }) => {
                 {openDropdownIndex === index && (
                   <ul className="absolute top-full mt-2 w-40 bg-white shadow-md rounded-md py-2 z-10">
                     {link.dropdownItems.map((item) => (
-                      <li key={item.label}>
+                      <li onClick={() => setOpenDropdownIndex(null)} key={item.label}>
                         <Link
                           href={item.link}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
