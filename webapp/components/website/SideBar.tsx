@@ -3,6 +3,7 @@ import LogoTitle from "@/public/logo-title.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useCallback } from "react";
 import useStore from "@/lib/store";
 interface SideBarLinks {
@@ -143,8 +144,6 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({
     null
   );
 
-  const { setActiveTab, setIsModalOpen } = useStore();
-
   type ActiveTabsType =
     | "account-information"
     | "history-of-turns"
@@ -154,12 +153,28 @@ const SecondaryLinks: React.FC<SideBarLinksProps> = ({
     | "password"
     | "logout";
 
+  const { setActiveTab, setIsModalOpen } = useStore();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const tabFromQuery = searchParams.get("tab") as ActiveTabsType | null;
+    if (tabFromQuery) {
+      setActiveTab(tabFromQuery);
+    }
+  }, [searchParams, setActiveTab]);
+
   const changeTabs = (tab: ActiveTabsType) => {
     setActiveTab(tab);
+
+    const newUrl = `/user-dashboard?tab=${tab}`;
+    router.push(newUrl, { scroll: false });
+
     if (tab === "logout") {
       setIsModalOpen(true);
     }
     closeSidebar();
+    setOpenDropdownIndex(null);
   };
 
   return (

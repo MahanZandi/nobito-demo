@@ -50,7 +50,6 @@ const UserDashboard = () => {
   const handleCloseModal = (shouldLogout = false) => {
     setIsModalOpen(false);
     setActiveTab("account-information");
-    router.push("?tab=account-information", { scroll: false });
     if (shouldLogout) {
       // TODO: logout and delete token ...
       router.push("/");
