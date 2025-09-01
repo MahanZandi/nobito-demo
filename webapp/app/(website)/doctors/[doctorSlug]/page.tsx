@@ -836,7 +836,10 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
                 که پرستیدنش مایه سعادت
               </p>
             </div>
-            <CalendarDate pageCalender={true} />
+            <CalendarDate
+              inputStyle="cursor-pointer text-grey-500 border border-grey-200 p-3 flex rounded-lg w-[160px] xl:w-[170px]"
+              pageCalender={true}
+            />
           </div>
           <div className="block xl:hidden">
             <DoctorInfo />

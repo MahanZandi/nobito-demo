@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
-type Tab = "جاری" | "انجام شده" | "لغو شده";
+type Tab = "in-progress" | "done" | "cancel";
 
 type VisitType = "نوبت تلفنی" | "نوبت حضوری" | "نوبت آنلاین";
 
@@ -23,10 +25,28 @@ interface DoctorCardProps {
 }
 
 const HistoryOfTurns = () => {
-  const [activeTab, setActiveTab] = useState<Tab>("جاری");
-  const currentlyTab = () => setActiveTab("جاری");
-  const completedTab = () => setActiveTab("انجام شده");
-  const canceledTab = () => setActiveTab("لغو شده");
+  const [activeTab, setActiveTab] = useState<Tab>("in-progress");
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const tabFromQuery = searchParams.get("status") as Tab | null;
+    if (tabFromQuery) {
+      setActiveTab(tabFromQuery);
+    }
+  }, [searchParams]);
+
+  const onChangeTab = (tab: Tab) => {
+    setActiveTab(tab);
+
+    const newUrl = `/user-dashboard?section=history-of-turns&status=${tab}`;
+    router.push(newUrl, { scroll: false });
+  };
+
+  const currentlyTab = () => onChangeTab("in-progress");
+  const completedTab = () => onChangeTab("done");
+  const canceledTab = () => onChangeTab("cancel");
 
   const currentlyTabData: DoctorCardType[] = [
     {
@@ -182,7 +202,7 @@ const HistoryOfTurns = () => {
           <li
             onClick={currentlyTab}
             className={` ${
-              activeTab === "جاری"
+              activeTab === "in-progress"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
             } cursor-pointer`}
@@ -192,7 +212,7 @@ const HistoryOfTurns = () => {
           <li
             onClick={completedTab}
             className={` ${
-              activeTab === "انجام شده"
+              activeTab === "done"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
             } cursor-pointer`}
@@ -202,7 +222,7 @@ const HistoryOfTurns = () => {
           <li
             onClick={canceledTab}
             className={` ${
-              activeTab === "لغو شده"
+              activeTab === "cancel"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
             } cursor-pointer`}
@@ -210,7 +230,7 @@ const HistoryOfTurns = () => {
             لغو شده
           </li>
         </ul>
-        {activeTab === "جاری" && (
+        {activeTab === "in-progress" && (
           <div>
             {currentlyTabData.map((doctor, index) => {
               const isLastItem = index === currentlyTabData.length - 1;
@@ -224,7 +244,7 @@ const HistoryOfTurns = () => {
             })}
           </div>
         )}
-        {activeTab === "انجام شده" && (
+        {activeTab === "done" && (
           <div>
             {completedTabData.map((doctor, index) => {
               const isLastItem = index === completedTabData.length - 1;
@@ -238,7 +258,7 @@ const HistoryOfTurns = () => {
             })}
           </div>
         )}
-        {activeTab === "لغو شده" && (
+        {activeTab === "cancel" && (
           <div>
             {canceledTabData.map((doctor, index) => {
               const isLastItem = index === canceledTabData.length - 1;

@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
-type CommentStatus = "تایید شده" | "در انتظار تایید" | "رد شده";
+type Tab = "accepted" | "awaiting-accepted" | "rejected";
 
 interface MyComments {
   doctorName: string;
@@ -10,7 +11,7 @@ interface MyComments {
   specialization: string;
   suggestion: boolean;
   starRate: number;
-  status: CommentStatus;
+  status: Tab;
   comment: string;
   features?: string[];
   likes: number;
@@ -25,7 +26,7 @@ const myComments: MyComments[] = [
     specialization: "متخصص مغز و اعصاب",
     suggestion: true,
     starRate: 5,
-    status: "تایید شده",
+    status: "accepted",
     comment:
       "دکتر بسیار حرفه‌ای و خوش‌برخورد بودند. تشخیص دقیق و راهنمایی‌های عالی داشتند. حتماً پیشنهاد می‌کنم.",
     features: ["رفتار محترمانه", "تشخیص دقیق", "پرسنل خوب", "کمترین معطلی"],
@@ -39,7 +40,7 @@ const myComments: MyComments[] = [
     specialization: "متخصص قلب و عروق",
     suggestion: false,
     starRate: 3,
-    status: "در انتظار تایید",
+    status: "awaiting-accepted",
     comment:
       "تشخیص خوبی داشتند، اما معطلی در مطب زیاد بود و پرسنل کمی بی‌نظم بودند.",
     features: ["تشخیص دقیق"],
@@ -53,7 +54,7 @@ const myComments: MyComments[] = [
     specialization: "متخصص ارتوپدی",
     suggestion: true,
     starRate: 4,
-    status: "تایید شده",
+    status: "accepted",
     comment:
       "دکتر رضایی بسیار با حوصله توضیح دادند و روند درمان را به‌خوبی مدیریت کردند. تجربه خوبی بود.",
     features: ["رفتار محترمانه", "تشخیص دقیق", "توضیح کامل"],
@@ -67,7 +68,7 @@ const myComments: MyComments[] = [
     specialization: "متخصص پوست و مو",
     suggestion: true,
     starRate: 5,
-    status: "در انتظار تایید",
+    status: "awaiting-accepted",
     comment:
       "واقعاً از نتیجه درمان راضی بودم. دکتر کاظمی با دقت و حرفه‌ای عمل کردند.",
     features: ["تشخیص دقیق", "نتایج عالی", "رفتار محترمانه"],
@@ -81,7 +82,7 @@ const myComments: MyComments[] = [
     specialization: "متخصص گوش، حلق و بینی",
     suggestion: false,
     starRate: 2,
-    status: "تایید شده",
+    status: "accepted",
     comment:
       "تشخیص درست بود، ولی وقت‌دهی مطب خیلی طول کشید و پرسنل پاسخگویی خوبی نداشتند.",
     features: ["تشخیص دقیق"],
@@ -95,7 +96,7 @@ const myComments: MyComments[] = [
     specialization: "متخصص زنان و زایمان",
     suggestion: true,
     starRate: 4,
-    status: "در انتظار تایید",
+    status: "awaiting-accepted",
     comment:
       "دکتر حسینی بسیار مهربان و حرفه‌ای بودند. احساس راحتی کردم و توضیحاتشون کامل بود.",
     features: ["رفتار محترمانه", "توضیح کامل", "محیط آرام"],
@@ -109,7 +110,7 @@ const myComments: MyComments[] = [
     specialization: "متخصص داخلی",
     suggestion: true,
     starRate: 5,
-    status: "تایید شده",
+    status: "accepted",
     comment:
       "دکتر نجفی فوق‌العاده بودند. هم تشخیص دقیق داشتند و هم با صبر و حوصله به سؤالم پاسخ دادند.",
     features: ["تشخیص دقیق", "رفتار محترمانه", "توضیح کامل", "کمترین معطلی"],
@@ -120,18 +121,35 @@ const myComments: MyComments[] = [
 ];
 
 const pendingComments = myComments.filter(
-  (comments) => comments.status === "در انتظار تایید"
+  (comments) => comments.status === "awaiting-accepted"
 );
 
 const verifiedComments = myComments.filter(
-  (comments) => comments.status === "تایید شده"
+  (comments) => comments.status === "accepted"
 );
 
 const DashboardFeedbacks = () => {
-  const [activeTab, setActiveTab] = useState<CommentStatus>("تایید شده");
+  const [activeTab, setActiveTab] = useState<Tab>("accepted");
 
-  const verifiedCommentsTab = () => setActiveTab("تایید شده");
-  const pendingCommentsTab = () => setActiveTab("در انتظار تایید");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const tabFromQuery = searchParams.get("status") as Tab | null;
+    if (tabFromQuery) {
+      setActiveTab(tabFromQuery);
+    }
+  }, [searchParams]);
+
+  const onChangeTab = (tab: Tab) => {
+    setActiveTab(tab);
+
+    const newUrl = `/user-dashboard?section=feedbacks&status=${tab}`;
+    router.push(newUrl, { scroll: false });
+  };
+
+  const verifiedCommentsTab = () => onChangeTab("accepted");
+  const pendingCommentsTab = () => onChangeTab("awaiting-accepted");
 
   interface CommentProps {
     comment: MyComments;
@@ -193,7 +211,8 @@ const DashboardFeedbacks = () => {
           <div className="flex mt-6 gap-1">
             <span className="text-grey-500">
               {" "}
-              <span className="text-black-400">نظر پزشک : </span> {comment.comment}{" "}
+              <span className="text-black-400">نظر پزشک : </span>{" "}
+              {comment.comment}{" "}
             </span>
           </div>
           {comment.features && (
@@ -242,7 +261,7 @@ const DashboardFeedbacks = () => {
           <li
             onClick={verifiedCommentsTab}
             className={` ${
-              activeTab === "تایید شده"
+              activeTab === "accepted"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
             } cursor-pointer`}
@@ -253,7 +272,7 @@ const DashboardFeedbacks = () => {
           <li
             onClick={pendingCommentsTab}
             className={` ${
-              activeTab === "در انتظار تایید"
+              activeTab === "awaiting-accepted"
                 ? "font-bold text-primary-500 pb-1 border-b-2 border-primary-500"
                 : "text-grey-500 pb-2"
             } cursor-pointer`}
@@ -262,14 +281,14 @@ const DashboardFeedbacks = () => {
             <span>({pendingComments.length})</span>
           </li>
         </ul>
-        {activeTab === "تایید شده" && (
+        {activeTab === "accepted" && (
           <div className="flex flex-col gap-6">
             {verifiedComments.map((comment, index) => (
               <Comment comment={comment} key={index} />
             ))}
           </div>
         )}
-        {activeTab === "در انتظار تایید" && (
+        {activeTab === "awaiting-accepted" && (
           <div className="flex flex-col gap-6">
             {pendingComments.map((comment, index) => (
               <Comment comment={comment} key={index} />

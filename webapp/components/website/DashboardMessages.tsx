@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
-type TabType = "دستور پزشک" | "اطلاع رسانی ها" | "همه پیغام ها";
+type Tab = "doctors-order" | "notification" | "all-messages";
 
-type MessageType = "اطلاع رسانی" | "دستور پزشک" | "همه پیام‌ها";
+type MessageType = "notification" | "doctors-order" | "all-messages";
 
 interface MessageData {
   title: string;
@@ -20,10 +21,28 @@ interface MessagesProps {
 }
 
 const DashboardMessages = () => {
-  const [activeTab, setActiveTab] = useState<TabType>("همه پیغام ها");
-  const allMessageTab = () => setActiveTab("همه پیغام ها");
-  const notificationsTab = () => setActiveTab("اطلاع رسانی ها");
-  const doctorsOrderTab = () => setActiveTab("دستور پزشک");
+  const [activeTab, setActiveTab] = useState<Tab>("all-messages");
+  
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  useEffect(() => {
+    const tabFromQuery = searchParams.get("status") as Tab | null;
+    if (tabFromQuery) {
+      setActiveTab(tabFromQuery);
+    }
+  }, [searchParams]);
+  
+  const onChangeTab = (tab: Tab) => {
+    setActiveTab(tab);
+    
+    const newUrl = `/user-dashboard?section=messages&status=${tab}`;
+    router.push(newUrl, { scroll: false });
+  };
+  
+  const allMessageTab = () => onChangeTab("all-messages");
+  const notificationsTab = () => onChangeTab("notification");
+  const doctorsOrderTab = () => onChangeTab("doctors-order");
 
   const allMessageData: MessageData[] = [
     {
@@ -31,7 +50,7 @@ const DashboardMessages = () => {
       description:
         "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای",
       hasNotfication: true,
-      messageType: "دستور پزشک",
+      messageType: "doctors-order",
       icon: "isax isax-note-1 xl:text-2xl text-[18px] p-2 bg-sky-750 text-white rounded-full",
       date: "۱۴۰۳/۰۳/۰۴",
     },
@@ -40,7 +59,7 @@ const DashboardMessages = () => {
       description:
         "ساعت کاری کلینیک در تعطیلات تغییر کرد. لطفاً برای دریافت خدمات حضوری یا تلفنی، قبل از مراجعه با پذیرش هماهنگ کنید. اطلاعات بیشتر در وبسایت موجود است.",
       hasNotfication: true,
-      messageType: "اطلاع رسانی",
+      messageType: "notification",
       icon: "isax isax-notification xl:text-2xl text-[18px] p-2 bg-secondary-500 text-black-400 rounded-full",
       date: "۱۴۰۳/۰۳/۰۸",
     },
@@ -49,7 +68,7 @@ const DashboardMessages = () => {
       description:
         "سامانه نوبیتو به دلیل به‌روزرسانی از ساعت ۲۳ تا ۳ بامداد در دسترس نخواهد بود.",
       hasNotfication: true,
-      messageType: "اطلاع رسانی",
+      messageType: "notification",
       icon: "isax isax-notification xl:text-2xl text-[18px] p-2 bg-secondary-500 text-black-400 rounded-full",
       date: "۱۴۰۳/۰۳/۰۷",
     },
@@ -58,7 +77,7 @@ const DashboardMessages = () => {
       description:
         "به سامانه نوبیتو خوش آمدید. با استفاده از این سامانه می‌توانید به راحتی نوبت رزرو کنید، سوابق پزشکی خود را مشاهده نمایید و با پزشکان در ارتباط باشید.",
       hasNotfication: false,
-      messageType: "همه پیام‌ها",
+      messageType: "all-messages",
       icon: "isax isax-notification xl:text-2xl text-[18px] p-2 bg-primary-500 text-white rounded-full",
       date: "۱۴۰۳/۰۳/۰۵",
     },
@@ -70,7 +89,7 @@ const DashboardMessages = () => {
       description:
         "ساعت کاری کلینیک در تعطیلات تغییر کرد. لطفاً برای دریافت خدمات حضوری یا تلفنی، قبل از مراجعه با پذیرش هماهنگ کنید. اطلاعات بیشتر در وبسایت موجود است.",
       hasNotfication: true,
-      messageType: "اطلاع رسانی",
+      messageType: "notification",
       icon: "isax isax-notification xl:text-2xl text-[18px] p-2 bg-secondary-500 text-black-400 rounded-full",
       date: "۱۴۰۳/۰۳/۰۸",
     },
@@ -79,7 +98,7 @@ const DashboardMessages = () => {
       description:
         "سامانه نوبیتو به دلیل به‌روزرسانی از ساعت ۲۳ تا ۳ بامداد در دسترس نخواهد بود.",
       hasNotfication: true,
-      messageType: "اطلاع رسانی",
+      messageType: "notification",
       icon: "isax isax-notification xl:text-2xl text-[18px] p-2 bg-secondary-500 text-black-400 rounded-full",
       date: "۱۴۰۳/۰۳/۰۷",
     },
@@ -91,7 +110,7 @@ const DashboardMessages = () => {
       description:
         "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای",
       hasNotfication: true,
-      messageType: "دستور پزشک",
+      messageType: "doctors-order",
       icon: "isax isax-note-1 xl:text-2xl text-[18px] p-2 bg-sky-750 text-white rounded-full",
       date: "۱۴۰۳/۰۳/۰۴",
     },
@@ -112,7 +131,9 @@ const DashboardMessages = () => {
               <span className="bg-sky-750 size-2 rounded-full"></span>
             )}
           </div>
-          <p className="text-grey-500 text-xs lg:text-sm">{messageData.description}</p>
+          <p className="text-grey-500 text-xs lg:text-sm">
+            {messageData.description}
+          </p>
           <div className="flex items-center justify-between">
             <span className="text-grey-400">{messageData.date}</span>
             <div className="flex gap-2 text-sky-750">
@@ -136,7 +157,9 @@ const DashboardMessages = () => {
           <h1 className="text-[22px] text-black-400">پیام ها</h1>
           <div className="flex items-center gap-2 text-primary-500 cursor-pointer">
             <span className="isax isax-notification text-lg xl:text-2xl"></span>
-            <span className="text-xs xl:text-sm">تغییر پیام ها به خوانده شده</span>
+            <span className="text-xs xl:text-sm">
+              تغییر پیام ها به خوانده شده
+            </span>
           </div>
         </div>
         <div className="bg-grey-200 w-full h-px mb-6"></div>
@@ -144,7 +167,7 @@ const DashboardMessages = () => {
           <li
             onClick={allMessageTab}
             className={`${
-              activeTab === "همه پیغام ها"
+              activeTab === "all-messages"
                 ? "text-primary-500 border-primary-500"
                 : "text-grey-400 border-grey-400"
             }  rounded-[200px] gap-2 border flex items-center h-8 px-3 cursor-pointer`}
@@ -154,18 +177,18 @@ const DashboardMessages = () => {
           <li
             onClick={notificationsTab}
             className={`${
-              activeTab === "اطلاع رسانی ها"
+              activeTab === "notification"
                 ? "text-primary-500 border-primary-500"
                 : "text-grey-400 border-grey-400"
             }  rounded-[200px] gap-2 border flex px-3 cursor-pointer items-center h-8`}
           >
             <span className="isax isax-notification text-lg"></span>
-            <span>اطلاع رسانی ها</span>
+            <span>اطلاع رسانی</span>
           </li>
           <li
             onClick={doctorsOrderTab}
             className={`${
-              activeTab === "دستور پزشک"
+              activeTab === "doctors-order"
                 ? "text-primary-500 border-primary-500"
                 : "text-grey-400 border-grey-400"
             } rounded-[200px] gap-2 border flex px-3 cursor-pointer items-center h-8`}
@@ -175,7 +198,7 @@ const DashboardMessages = () => {
           </li>
         </ul>
         <div className="flex flex-col gap-4 xl:gap-6">
-          {activeTab === "همه پیغام ها" &&
+          {activeTab === "all-messages" &&
             allMessageData.map((message, index) => {
               const isLastItem = index === allMessageData.length - 1;
               return (
@@ -186,7 +209,7 @@ const DashboardMessages = () => {
                 />
               );
             })}
-          {activeTab === "اطلاع رسانی ها" &&
+          {activeTab === "notification" &&
             notificationsData.map((message, index) => {
               const isLastItem = index === notificationsData.length - 1;
               return (
@@ -197,7 +220,7 @@ const DashboardMessages = () => {
                 />
               );
             })}
-          {activeTab === "دستور پزشک" &&
+          {activeTab === "doctors-order" &&
             doctorsOrderData.map((message, index) => {
               const isLastItem = index === doctorsOrderData.length - 1;
               return (
