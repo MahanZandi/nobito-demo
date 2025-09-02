@@ -5,13 +5,15 @@ const OnSiteTesting = () => {
     <div className="xl:container container-none">
       <div className="flex flex-col items-center">
         <div className="xl:w-11/12 sm:w-full mx-4 sm:container xl:container-none sm:mx-0 h-[522px] sm:h-[280px] rounded-3xl relative bg-primary-500">
-          <Image
-            className="object-cover opacity-30 sm:h-[280px] h-[522px] w-full rounded-3xl"
-            src="/banner2.png"
-            alt="banner"
-            width={1104}
-            height={280}
-          />
+          <div>
+            <Image
+              className="object-cover opacity-30 sm:h-[280px] h-[522px] w-full rounded-3xl"
+              src="/banner2.png"
+              alt="banner"
+              width={1104}
+              height={280}
+            />
+          </div>
           <div className="text-white-500 absolute inset-0 py-8 px-3 xl:py-[46px] xl:px-10">
             <div className="flex flex-col xl:gap-8 gap-10">
               <h2 className="text-[28px] xl:text-[36px] font-bold flex justify-center">

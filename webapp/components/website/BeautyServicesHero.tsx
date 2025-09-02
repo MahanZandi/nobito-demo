@@ -34,13 +34,16 @@ const BeautyServicesHero = () => {
               <span className="icon-quote-up text-secondary-500 absolute top-0 left-0 md:hidden"></span>
             </div>
           </div>
-          <Image
-            className="size-[260px] object-contain md:size-[340px] md:object-cover"
-            src="/images/teeth.png"
-            alt="teeth"
-            width={340}
-            height={340}
-          />
+          <div>
+            <Image
+              className="size-[260px] object-contain md:size-[340px] md:object-cover"
+              src="/images/teeth.png"
+              alt="teeth"
+              width={340}
+              height={340}
+              suppressHydrationWarning
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -470,12 +470,12 @@ const BeautyServiceTitle = () => {
 const FeedBacksTitle = () => {
   return (
     <div className="container flex items-center gap-3 ">
-      <h2 className="text-xl xl:text-[32px] leading-[155%] xl:font-medium font-[700] text-grey-500 flex items-center gap-1">
-        <span className="text-primary-500">بازخورد بیماران</span>
-        <span>این ماه</span>
-      </h2>
       <div className="h-px bg-grey-200 flex-1 hidden xl:block"></div>
-      <div className="flex flex-1 xl:hidden"></div>
+      <h2 className="text-xl xl:text-[32px] leading-[155%] xl:font-medium font-[700] text-grey-500 flex items-center gap-1">
+        <span className="text-primary-500">بازخورد</span>
+        <span>بیماران نوبیتو</span>
+      </h2>
+      <div className="h-px bg-grey-200 flex-1"></div>
     </div>
   );
 };
