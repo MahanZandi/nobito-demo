@@ -3,6 +3,7 @@ import BeautyServicesHero from "@/components/website/BeautyServicesHero";
 import BeautyServiceList from "@/components/website/BeautyServiceList";
 import ClinicsLists from "@/components/website/ClinicsLists";
 import OnSiteTesting from "@/components/website/OnSiteTesting";
+import HomePatientFeedBack from "@/components/website/HomePatientFeedBack";
 import Image from "next/image";
 
 const beautyClinicDiscounts = [
@@ -466,6 +467,19 @@ const BeautyServiceTitle = () => {
   );
 };
 
+const FeedBacksTitle = () => {
+  return (
+    <div className="container flex items-center gap-3 ">
+      <h2 className="text-xl xl:text-[32px] leading-[155%] xl:font-medium font-[700] text-grey-500 flex items-center gap-1">
+        <span className="text-primary-500">بازخورد بیماران</span>
+        <span>این ماه</span>
+      </h2>
+      <div className="h-px bg-grey-200 flex-1 hidden xl:block"></div>
+      <div className="flex flex-1 xl:hidden"></div>
+    </div>
+  );
+};
+
 const BeautyServices = () => {
   return (
     <>
@@ -529,8 +543,11 @@ const BeautyServices = () => {
           clinics={dentalClinics}
         />
       </div>
-      <div className="mt-[64px] xl:mt-[144px] xl:container">
-        <OnSiteTesting/>
+      <div className="mt-[64px] xl:mt-[144px]">
+        <OnSiteTesting />
+      </div>
+      <div className="mt-[64px] xl:mt-[144px]">
+        <HomePatientFeedBack title={<FeedBacksTitle />} />
       </div>
     </>
   );

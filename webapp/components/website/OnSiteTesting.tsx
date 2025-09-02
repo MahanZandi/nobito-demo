@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const OnSiteTesting = () => {
   return (
-    <>
+    <div className="xl:container container-none">
       <div className="flex flex-col items-center">
         <div className="xl:w-11/12 sm:w-full mx-4 sm:container xl:container-none sm:mx-0 h-[522px] sm:h-[280px] rounded-3xl relative bg-primary-500">
           <Image
@@ -32,7 +32,7 @@ const OnSiteTesting = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white-100 border relative bottom-[261px] sm:bottom-[140px] -z-10 xl:rounded-3xl border-grey-100">
+      <div className="bg-white-100 border -mt-[261px] sm:-mt-[140px] -z-10 xl:rounded-3xl border-grey-100">
         <div className="grid gap-10 xl:grid-cols-3 sm:mt-[188px] mt-[301px] container xl:container-none xl:px-12 xl:pb-8 pb-10">
           <div className="flex flex-col gap-4 items-center">
             <div className="size-[72px] flex items-center justify-center border border-primary-500 rounded-xl">
@@ -93,7 +93,7 @@ const OnSiteTesting = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
