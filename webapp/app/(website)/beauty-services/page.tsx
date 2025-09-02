@@ -2,6 +2,7 @@ import PageSearchBox from "@/components/website/PageSearchBox";
 import BeautyServicesHero from "@/components/website/BeautyServicesHero";
 import BeautyServiceList from "@/components/website/BeautyServiceList";
 import ClinicsLists from "@/components/website/ClinicsLists";
+import OnSiteTesting from "@/components/website/OnSiteTesting";
 import Image from "next/image";
 
 const beautyClinicDiscounts = [
@@ -527,6 +528,9 @@ const BeautyServices = () => {
           highlightTitle="دندان پزشکی"
           clinics={dentalClinics}
         />
+      </div>
+      <div className="mt-[64px] xl:mt-[144px] xl:container">
+        <OnSiteTesting/>
       </div>
     </>
   );
