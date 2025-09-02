@@ -16,9 +16,15 @@ interface Clinic {
 
 interface ClinicsListsProps {
   clinics: Clinic[];
+  normalTitle: string;
+  highlightTitle: string;
 }
 
-const ClinicsLists: React.FC<ClinicsListsProps> = ({ clinics }) => {
+const ClinicsLists: React.FC<ClinicsListsProps> = ({
+  clinics,
+  highlightTitle,
+  normalTitle,
+}) => {
   const formatNumber = (num: number): string => {
     return num.toLocaleString("fa-IR");
   };
@@ -45,10 +51,10 @@ const ClinicsLists: React.FC<ClinicsListsProps> = ({ clinics }) => {
       <div className="flex container items-center gap-3">
         <div className="xl:text-[32px] flex gap-1">
           <span className="text-[#848484] font-semibold xl:font-medium">
-            کلینیک های
+            {normalTitle}
           </span>
           <span className="text-primary-500 font-semibold xl:font-bold">
-            زیبایی
+            {highlightTitle}
           </span>
         </div>
         <div className="flex-1 md:bg-grey-200 h-px"></div>
@@ -91,7 +97,9 @@ const ClinicsLists: React.FC<ClinicsListsProps> = ({ clinics }) => {
                     {formatNumber(clinic.price)} تومان
                   </span>
                 </div>
-                <div className="h-[36px] w-[67px] text-xl pr-4 rounded-r-[32px] relative -left-4 bg-error-500 text-white-500 flex items-center">{clinic.discount} %</div>
+                <div className="h-[36px] w-[67px] text-xl pr-4 rounded-r-[32px] relative -left-4 bg-error-500 text-white-500 flex items-center">
+                  {clinic.discount} %
+                </div>
               </div>
               <div className="w-full my-4 h-px bg-grey-200"></div>
               <div className="flex text-grey-400 gap-2">
