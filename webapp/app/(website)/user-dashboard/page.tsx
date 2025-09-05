@@ -10,6 +10,7 @@ import DashboardPassword from "@/components/website/DashboardPassword";
 import Modal from "@/components/website/Modal";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, Suspense } from "react";
+import Loading from "@/components/website/Loading";
 
 interface BeardCrumbsProps {
   activeTab: ActiveTabsType;
@@ -193,7 +194,7 @@ const UserDashboardContent = () => {
         </aside>
 
         <main className="flex flex-1">
-          <Suspense fallback={<div>در حال بارگذاری محتوا...</div>}>
+          <Suspense fallback={<Loading/>}>
             {activeTab === "account-information" && <AccountInfo />}
             {activeTab === "history-of-turns" && <HistoryOfTurns />}
             {activeTab === "messages" && <DashboardMessages />}
@@ -218,7 +219,7 @@ const UserDashboardContent = () => {
 
 export default function UserDashboard() {
   return (
-    <Suspense fallback={<div>در حال بارگذاری...</div>}>
+    <Suspense fallback={<Loading/>}>
       <UserDashboardContent />
     </Suspense>
   );

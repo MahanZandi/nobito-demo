@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useCallback } from "react";
 import useStore from "@/lib/store";
 import { Suspense } from "react";
+import Loading from "./Loading";
 
 interface SideBarLinks {
   title: string;
@@ -375,7 +376,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   }, [closeSidebar]);
 
   return (
-    <Suspense fallback={<div>در حال بارگذاری...</div>}>
+    <Suspense fallback={<Loading/>}>
       <nav>
         {isOpen && (
           <div
