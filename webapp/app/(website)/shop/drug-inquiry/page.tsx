@@ -39,8 +39,8 @@ const ShopDruginquiry = () => {
       <div className="bg-white-100 xl:rounded-3xl border border-grey-200 py-8 xl:p-8 xl:container ">
         <div className="container xl:container-none flex flex-col">
           <div className="flex xl:flex-row justify-between flex-col gap-6">
-            <div className="flex justify-between md:justify-start gap-6">
-              <span className="text-xl xl:text-2xl font-medium text-black-400">
+            <div className="flex flex-wrap justify-between md:justify-start gap-6">
+              <span className="text-lg xl:text-2xl font-medium text-black-400">
                 سفارش دارو :
               </span>
               <RadioGroup.Root
@@ -59,7 +59,7 @@ const ShopDruginquiry = () => {
                       selectedMedicine === "by-prescription"
                         ? "text-primary-500"
                         : "text-grey-400"
-                    } text-[16px] xl:text-[22px]`}
+                    } xl:text-[22px]`}
                   >
                     دارو با نسخه
                   </span>
@@ -86,7 +86,7 @@ const ShopDruginquiry = () => {
                       selectedMedicine === "over-the-counter"
                         ? "text-primary-500"
                         : "text-grey-400"
-                    } text-[16px] xl:text-[22px]`}
+                    } xl:text-[22px]`}
                   >
                     دارو بدون نسخه
                   </span>
