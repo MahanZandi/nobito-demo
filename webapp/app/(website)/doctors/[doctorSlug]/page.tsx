@@ -678,14 +678,12 @@ const doctors = [
 ];
 
 interface DoctorProfilePageProps {
-  params: {
-    doctorSlug: string;
-  };
+  params: Promise<{ doctorSlug: string }>;
 }
 
-const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
+export default async function DoctorProfilePage({
   params,
-}) => {
+}: DoctorProfilePageProps) {
   const { doctorSlug } = await params;
 
   const doctor = doctors.find((d) => d.slug === doctorSlug);
@@ -855,6 +853,4 @@ const DoctorProfilePage: React.FC<DoctorProfilePageProps> = async ({
       </div>
     </>
   );
-};
-
-export default DoctorProfilePage;
+}
