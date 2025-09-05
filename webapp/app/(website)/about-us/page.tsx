@@ -48,7 +48,7 @@ const accordionItems = [
 const AboutUs = () => {
   return (
     <>
-      <div className="container flex xl:flex-row flex-col-reverse gap-10 mt-10">
+      <div className="container flex xl:flex-row flex-col-reverse items-center xl:items-start gap-10 mt-10">
         <div className="flex flex-col">
           <h2 className="text-black-400 font-medium text-[22px] xl:font-bold xl:text-[28px]">
             سوالات متداول
@@ -74,7 +74,7 @@ const AboutUs = () => {
       <div className="mt-[64px] xl:mt-[144px]">
         <SocialMedia />
       </div>
-      <div className="mt-[64px] xl:mt-[144px] container flex flex-col xl:gap-16 gap-10 items-center">
+      <div className="mt-[64px] xl:mt-[144px] container flex flex-col xl:gap-16 gap-10 items-center ">
         <Image
           className="w-[255px] h-[92px] xl:w-[427px] xl:h-[154px]"
           src="/images/nobito-about.png"

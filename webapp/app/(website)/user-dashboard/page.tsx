@@ -9,7 +9,7 @@ import DashboardFeedbacks from "@/components/website/DashboardFeedbacks";
 import DashboardPassword from "@/components/website/DashboardPassword";
 import Modal from "@/components/website/Modal";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 
 interface BeardCrumbsProps {
   activeTab: ActiveTabsType;
@@ -24,7 +24,7 @@ type ActiveTabsType =
   | "password"
   | "logout";
 
-const UserDashboard = () => {
+const UserDashboardContent = () => {
   const { activeTab, setActiveTab, isModalOpen, setIsModalOpen } = useStore();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -38,7 +38,6 @@ const UserDashboard = () => {
 
   const changeTabs = (tab: ActiveTabsType) => {
     setActiveTab(tab);
-
     const newUrl = `?tab=${tab}`;
     router.push(newUrl, { scroll: false });
 
@@ -136,7 +135,7 @@ const UserDashboard = () => {
   ] as const;
 
   return (
-    <div>
+    <>
       <BeardCrumbs activeTab={activeTab} />
       <div className="mt-6 xl:mt-10 container flex gap-6">
         <aside className="lg:block hidden w-[384px] bg-white-100 lg:max-h-[890px] rounded-2xl border border-grey-100">
@@ -194,25 +193,33 @@ const UserDashboard = () => {
         </aside>
 
         <main className="flex flex-1">
-          {activeTab === "account-information" && <AccountInfo />}
-          {activeTab === "history-of-turns" && <HistoryOfTurns />}
-          {activeTab === "messages" && <DashboardMessages />}
-          {activeTab === "medical-files" && <MedicalFile />}
-          {activeTab === "feedbacks" && <DashboardFeedbacks />}
-          {activeTab === "password" && <DashboardPassword />}
-          {activeTab === "logout" && (
-            <Modal
-              title="خروج از حساب کاربری"
-              exitText="خروج از حساب"
-              description="با خروج از حساب کاربریتان به اطلاعاتی که وارد کردید دسترسی نخواهید داشت و باید مجددا وارد شوید"
-              open={isModalOpen}
-              onClose={handleCloseModal}
-            />
-          )}
+          <Suspense fallback={<div>در حال بارگذاری محتوا...</div>}>
+            {activeTab === "account-information" && <AccountInfo />}
+            {activeTab === "history-of-turns" && <HistoryOfTurns />}
+            {activeTab === "messages" && <DashboardMessages />}
+            {activeTab === "medical-files" && <MedicalFile />}
+            {activeTab === "feedbacks" && <DashboardFeedbacks />}
+            {activeTab === "password" && <DashboardPassword />}
+            {activeTab === "logout" && (
+              <Modal
+                title="خروج از حساب کاربری"
+                exitText="خروج از حساب"
+                description="با خروج از حساب کاربریتان به اطلاعاتی که وارد کردید دسترسی نخواهید داشت و باید مجددا وارد شوید"
+                open={isModalOpen}
+                onClose={handleCloseModal}
+              />
+            )}
+          </Suspense>
         </main>
       </div>
-    </div>
+    </>
   );
 };
 
-export default UserDashboard;
+export default function UserDashboard() {
+  return (
+    <Suspense fallback={<div>در حال بارگذاری...</div>}>
+      <UserDashboardContent />
+    </Suspense>
+  );
+}

@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useCallback } from "react";
 import useStore from "@/lib/store";
+import { Suspense } from "react";
+
 interface SideBarLinks {
   title: string;
   url: string;
@@ -292,7 +294,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         { title: "فروشگاه کالای پزشکی", link: "/shop" },
         { title: "استعلام دارو", link: "/shop/drug-inquiry" },
         { title: "خدمات پزشکی در منزل", link: "/medical-services-at-home" },
-        { title: "خدمات زیبایی", link: "/beauty-services" }
+        { title: "خدمات زیبایی", link: "/beauty-services" },
       ],
     },
     { title: "مشاوره آنلاین", url: "#" },
@@ -373,45 +375,53 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   }, [closeSidebar]);
 
   return (
-    <nav>
-      {isOpen && (
+    <Suspense fallback={<div>در حال بارگذاری...</div>}>
+      <nav>
+        {isOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-40"
+            onClick={closeSidebar}
+          ></div>
+        )}
         <div
-          className="fixed inset-0 bg-black/50 z-40"
-          onClick={closeSidebar}
-        ></div>
-      )}
-      <div
-        className={`fixed top-0 right-0 h-full w-[260px] bg-body z-50 transition-transform duration-300
+          className={`fixed top-0 right-0 h-full w-[260px] bg-body z-50 transition-transform duration-300
           ${isOpen ? "translate-0" : "translate-x-full"}`}
-      >
-        {/* sidebar content */}
-        <div className="p-4 overflow-y-auto h-full">
-          <div className="flex flex-col min-h-screen pb-10">
-            <div className="pb-4">
-              <Image src={LogoTitle} alt="logo" width={156} height={56} />
+        >
+          {/* sidebar content */}
+          <div className="p-4 overflow-y-auto h-full">
+            <div className="flex flex-col min-h-screen pb-10">
+              <div className="pb-4">
+                <Image src={LogoTitle} alt="logo" width={156} height={56} />
+              </div>
+              <div className="h-px bg-grey-200"></div> {/* horizontal line */}
+              <div>
+                <PrimaryLinks
+                  closeSidebar={closeSidebar}
+                  links={primaryLinks}
+                />
+              </div>
+              <div className="h-px bg-grey-200"></div> {/* horizontal line */}
+              <div>
+                <SecondaryLinks
+                  closeSidebar={closeSidebar}
+                  links={secondaryLinks}
+                />
+              </div>
+              <div className="mt-auto pb-6">
+                <SocialLinks
+                  closeSidebar={closeSidebar}
+                  socials={socialLinks}
+                />
+              </div>
+              <div className="h-px bg-grey-200"></div> {/* horizontal line */}
+              <span className="text-grey-500 pt-4">
+                آپدیت شده در تاریخ 17/08/1402
+              </span>
             </div>
-            <div className="h-px bg-grey-200"></div> {/* horizontal line */}
-            <div>
-              <PrimaryLinks closeSidebar={closeSidebar} links={primaryLinks} />
-            </div>
-            <div className="h-px bg-grey-200"></div> {/* horizontal line */}
-            <div>
-              <SecondaryLinks
-                closeSidebar={closeSidebar}
-                links={secondaryLinks}
-              />
-            </div>
-            <div className="mt-auto pb-6">
-              <SocialLinks closeSidebar={closeSidebar} socials={socialLinks} />
-            </div>
-            <div className="h-px bg-grey-200"></div> {/* horizontal line */}
-            <span className="text-grey-500 pt-4">
-              آپدیت شده در تاریخ 17/08/1402
-            </span>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </Suspense>
   );
 };
 
