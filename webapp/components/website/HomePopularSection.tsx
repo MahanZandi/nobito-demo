@@ -100,7 +100,7 @@ const HomePopularSection = () => {
         },
         {
             id: 6,
-            name: 'محمد ابراهیمی',
+            name: 'سارا ابراهیمی',
             image: '/images/doctor-6.jpeg',
             rate: '4/5',
             specialization: 'متخصص قلب و عروق',
@@ -145,7 +145,7 @@ const HomePopularSection = () => {
         },
         {
             id: 9,
-            name: 'امیرحسین فربد',
+            name: 'زهرا فربد',
             image: '/images/doctor-9.png',
             rate: '4/5',
             specialization: 'متخصص قلب و عروق',

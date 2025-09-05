@@ -27,7 +27,7 @@ const HomePatientFeedBack: React.FC<HomePatientFeedBackProps> = ({ title }) => {
     },
     {
       id: 2,
-      name: "دکتر محمدی",
+      name: "علی محمدی",
       rate: "4/5",
       date: "۱۴۰۲/۲/۱۲",
       comment:
@@ -43,7 +43,7 @@ const HomePatientFeedBack: React.FC<HomePatientFeedBackProps> = ({ title }) => {
       comment:
         "ای داشتم. پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران ",
       suggest: true,
-      image: "/images/comment-1.png",
+      image: "/images/doctor-4.jpeg",
     },
     {
       id: 4,
@@ -63,7 +63,7 @@ const HomePatientFeedBack: React.FC<HomePatientFeedBackProps> = ({ title }) => {
       comment:
         "پیدا کردن پزشک از طریق نوبیتو بسیار راحت بود و توانستم به سرعت وقت و از خدمات ارائه شده راضی هستم.",
       suggest: true,
-      image: "/images/comment-1.png",
+      image: "/images/doctor-4.jpeg",
     },
     {
       id: 6,
@@ -93,7 +93,7 @@ const HomePatientFeedBack: React.FC<HomePatientFeedBackProps> = ({ title }) => {
       comment:
         "ای داشتم. پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران ",
       suggest: true,
-      image: "/images/comment-1.png",
+      image: "/images/doctor-4.jpeg",
     },
     {
       id: 9,
@@ -113,7 +113,7 @@ const HomePatientFeedBack: React.FC<HomePatientFeedBackProps> = ({ title }) => {
       comment:
         "پیدا کردن پزشک از طریق نوبیتو بسیار راحت بود و توانستم به سرعت وقت و از خدمات ارائه شده راضی هستم.",
       suggest: true,
-      image: "/images/comment-1.png",
+      image: "/images/doctor-4.jpeg",
     },
   ];
 

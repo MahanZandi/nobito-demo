@@ -85,7 +85,7 @@ const doctors = [
         comment:
           "پزشک بسیار حرفه‌ای و خوش‌برخورد بود و توانست مشکل من را به خوبی تشخیص دهد. حتماً به دیگران توصیه می‌کنم. روند درمانم خیلی سریع پیش رفت و از دقت و توجه ایشان بسیار راضی بودم. حتی بعد از ویزیت هم پیگیر وضعیت من بودند و این برایم ارزشمند بود.",
         suggest: true,
-        image: "/images/comment-1.png",
+        image: "/images/doctor-5.jpeg",
         waitingTime: "۱۵ دقیقه",
         takeTurns: { title: "گفتگو تلفنی", icon: "isax isax-call-calling" },
       },
@@ -109,7 +109,7 @@ const doctors = [
         comment:
           "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
         suggest: true,
-        image: "/images/comment-1.png",
+        image: "/images/doctor-5.jpeg",
         waitingTime: "۲۰ دقیقه",
         takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
       },
@@ -133,7 +133,7 @@ const doctors = [
         comment:
           "محیط مطب تمیز و منظم بود و دکتر با صبر و دقت پاسخ دادند. سوالاتم را کامل جواب دادند و نگرانی‌هایم را برطرف کردند. زمان انتظار هم نسبتاً کوتاه بود و همه چیز به خوبی پیش رفت.",
         suggest: true,
-        image: "/images/comment-1.png",
+        image: "/images/doctor-5.jpeg",
         waitingTime: "۲۰ دقیقه",
         takeTurns: { title: "جلسه آنلاین", icon: "isax isax-monitor-mobbile" },
       },
@@ -166,13 +166,13 @@ const doctors = [
       {
         slug: "sara-ahmadi",
         name: "سارا احمدی",
-        image: "/images/doctor-9.png",
+        image: "/images/doctor-5.jpeg",
         specialization: "متخصص مغز و اعصاب کودکان",
       },
       {
         slug: "mina-karimi",
         name: "مینا کریمی",
-        image: "/images/doctor-9.png",
+        image: "/images/doctor-5.jpeg",
         specialization: "متخصص نورولوژی و سکته مغزی",
       },
     ],
