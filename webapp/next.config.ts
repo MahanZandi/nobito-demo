@@ -7,6 +7,18 @@ const withPWA = withPWAInit({
   // disable service worker in development so cached SW doesn't hide changes
   disable: process.env.NODE_ENV === "development",
   // runtime caching rules to improve mobile offline/poor-network experience
+  additionalManifestEntries: [
+    { url: "/", revision: "1" },
+    { url: "/about-us", revision: "1" },
+    { url: "/contact-us", revision: "1" },
+    { url: "/beauty-services", revision: "1" },
+    { url: "/doctors", revision: "1" },
+    { url: "/medical-services-at-home", revision: "1" },
+    { url: "/turn-rating", revision: "1" },
+    { url: "/shop", revision: "1" },
+    { url: "/weblog", revision: "1" },
+    { url: "/online-appointments", revision: "1" },
+  ],
   runtimeCaching: [
     {
       // images: use cache first
