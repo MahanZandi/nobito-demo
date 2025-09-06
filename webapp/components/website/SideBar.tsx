@@ -346,9 +346,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         },
       ],
     },
-    { title: "درباره ما", url: "#" },
-    { title: "تماس با ما", url: "#" },
-    { title: "سوالات متداول", url: "#" },
+    { title: "درباره ما", url: "/about-us" },
+    { title: "تماس با ما", url: "/contact-us" },
+    { title: "سوالات متداول", url: "/about-us" },
   ];
 
   const socialLinks: SocialLink[] = [
