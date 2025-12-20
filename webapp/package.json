@@ -20,7 +20,7 @@
     "@tailwindcss/postcss": "^4.0.14",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.5.2",
-    "next": "15.2.2",
+    "next": "15.2.8",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-date-object": "^2.1.9",
